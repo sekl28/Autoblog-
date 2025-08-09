@@ -1,85 +1,99 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Удалённая работа с обучением</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #ff6600;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .container h2 {
-            color: #ff6600;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        ul li {
-            background: #ffe6cc;
-            margin: 8px 0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background: #333;
-            color: #fff;
-            margin-top: 40px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Удалённая работа с обучением</title>
+  <style>
+    :root{
+      --bg:#0b0c0f;
+      --card:#14161b;
+      --text:#e6e8eb;
+      --muted:#a7adb7;
+      --accent:#58c4a8;
+      --accent-2:#2ea4e6;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b0c0f 0%,#0e1116 100%);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+    a{color:var(--accent-2);text-decoration:none}
+    a:hover{opacity:.9}
+
+    .wrap{max-width:960px;margin:0 auto;padding:32px 20px 56px}
+
+    .hero{border:1px solid #1f232b;background:radial-gradient(1200px 500px at 70% -50%,rgba(46,164,230,.15),transparent),var(--card);border-radius:20px;padding:36px 28px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .eyebrow{color:var(--accent);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+    h1{margin:6px 0 10px;font-size:32px;line-height:1.2}
+    .subtitle{color:var(--muted);margin:0 0 22px}
+
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    @media (max-width:820px){.grid{grid-template-columns:1fr}}
+
+    .card{background:var(--card);border:1px solid #1f232b;border-radius:16px;padding:18px 18px 14px}
+    .card h2{margin:0 0 10px;font-size:18px}
+    ul{margin:8px 0 0;padding:0;list-style:none}
+    li{display:flex;gap:10px;align-items:flex-start;margin:8px 0;padding:10px 12px;border-radius:12px;background:#0e1116;border:1px solid #1a1d24}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:6px;flex:0 0 8px}
+
+    .about{margin-top:22px}
+
+    .cta{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+    .btn{appearance:none;border:0;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer}
+    .btn-primary{background:var(--accent);color:#0b0c0f}
+    .btn-primary:hover{filter:brightness(1.06)}
+    .btn-ghost{background:transparent;border:1px solid #2d313a;color:var(--text)}
+
+    footer{margin-top:36px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .pill{display:inline-block;border:1px solid #2d313a;border-radius:999px;padding:6px 10px;font-size:12px;color:var(--muted)}
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Удалённая работа с обучением</h1>
-    </header>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Удалённая работа с обучением</div>
+      <h1>Ищем ответственных с желанием работать и расти</h1>
+      <p class="subtitle">Проект с живым сопровождением: вы не одни — у нас полноценная команда и отлаженная система. Всё покажем пошагово.</p>
 
-    <div class="container">
-        <h2>Что требуется:</h2>
+      <div class="grid">
+        <div class="card">
+          <h2>Что требуется</h2>
+          <ul>
+            <li><span class="dot"></span>Ответственность и дисциплина</li>
+            <li><span class="dot"></span>Стремление работать и учиться каждый день</li>
+            <li><span class="dot"></span>Стабильный интернет</li>
+            <li><span class="dot"></span>Камера</li>
+            <li><span class="dot"></span>Компьютер или ноутбук</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>О проекте</h2>
+          <ul>
+            <li><span class="dot"></span>Работа основана на стриминге на платформах, которые мы укажем и настроим</li>
+            <li><span class="dot"></span>С вами работает команда: маркетинг, обучение, операционное сопровождение</li>
+            <li><span class="dot"></span>В продвижение закладываются существенные бюджеты — трафик и рост обеспечены</li>
+            <li><span class="dot"></span>Успех закономерен при серьёзном отношении к работе</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="about card">
+        <h2>Что вы получаете</h2>
         <ul>
-            <li>Ответственность</li>
-            <li>Стремление работать</li>
-            <li>Стабильный интернет</li>
-            <li>Камера</li>
-            <li>Компьютер или ноутбук</li>
+          <li><span class="dot"></span>Пошаговое обучение с нуля и личное кураторство</li>
+          <li><span class="dot"></span>Готовые сценарии, техники ведения стримов и контроль качества</li>
+          <li><span class="dot"></span>Гибкий график, работа из дома</li>
         </ul>
+        <p>Вернитесь и заполните форму, чтобы мы могли связаться с вами и рассказать все детали.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#form">Заполнить форму</a>
+          <a class="btn btn-ghost" href="#privacy">Политика конфиденциальности (скоро)</a>
+        </div>
+      </div>
 
-        <h2>Что мы предлагаем:</h2>
-        <ul>
-            <li>Полное обучение с нуля</li>
-            <li>Поддержка на всех этапах</li>
-            <li>Работа из дома</li>
-            <li>Гибкий график</li>
-        </ul>
-
-        <p>Если вы готовы серьёзно относиться к делу и развиваться — оставьте свои контакты, и мы свяжемся с вами для подробностей.</p>
-    </div>
-
-    <div class="footer">
-        <p>&copy; 2025 Удалённая работа | Все права защищены</p>
-    </div>
+      <footer>
+        <span class="pill">© 2025 Проект стриминга</span>
+      </footer>
+    </section>
+  </div>
 </body>
 </html>
