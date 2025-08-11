@@ -1,206 +1,335 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Стриминг для девушек – Ваш путь к успеху</title>
-  <style>
-    body { margin: 0; font-family: Arial, sans-serif; line-height: 1.6; color: #333; background: #fff; }
-    * { box-sizing: border-box; }
-    h1, h2, h3, p { margin: 0; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Онлайн‑эфиры: доход от $2000 в первый месяц</title>
+<meta name="description" content="Профессиональная команда запускает и продвигает Ваши онлайн‑эфиры. Выплата после первого эфира. Рекомендация по графику — около 8 часов в день. Telegram: @cammanager9">
+<style>
+  :root{
+    --bg:#ffffff;
+    --text:#17202A;
+    --muted:#6B7280;
+    --accent:#EA4CB8;
+    --accent-2:#7C83FF;
+    --surface:#F7F8FC;
+    --surface-2:#FDF2FA;
+    --border:rgba(23,32,42,.08);
+    --shadow:0 6px 24px rgba(17,24,39,.08), 0 2px 8px rgba(17,24,39,.05);
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif}
+  h1,h2,h3{margin:0 0 12px}
+  p{margin:0 0 12px}
+  .container{max-width:1160px;margin:0 auto;padding:0 20px}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow);font-size:14px}
+  .chip .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .btn{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;text-decoration:none;font-weight:700;padding:14px 22px;border-radius:12px;box-shadow:0 8px 24px rgba(234,76,184,.25);transform:translateY(0);transition:.2s}
+  .btn:hover{opacity:.96;transform:translateY(-1px)}
+  .btn-ghost{display:inline-block;padding:12px 18px;border-radius:12px;border:1px solid var(--border);text-decoration:none;color:var(--text);background:#fff}
+  .hero{
+    position:relative;
+    padding:92px 0 84px;
+    background:
+      radial-gradient(1200px 420px at 50% -120px,#FDE8F7 0%,#EAF0FF 45%,#ffffff 90%);
+  }
+  .hero h1{font-size:40px;line-height:1.15;letter-spacing:.2px;margin-bottom:12px}
+  .hero p{font-size:18px;color:var(--muted);max-width:760px;margin:0 auto 28px}
+  .hero .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .hero .stats{
+    display:flex;gap:18px;justify-content:center;margin-top:28px;flex-wrap:wrap
+  }
+  .kpi{
+    background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px 18px;
+    box-shadow:var(--shadow);min-width:220px;text-align:center
+  }
+  .kpi .num{font-size:24px;font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .kpi .label{font-size:13px;color:var(--muted)}
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    section { padding: 60px 0; }
+  /* benefits */
+  section{padding:64px 0}
+  .grid{display:grid;gap:18px}
+  .benefits{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .card{
+    background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)
+  }
+  .card h3{font-size:18px;margin-bottom:6px}
+  .muted{color:var(--muted)}
+  .icon{width:28px;height:28px;color:var(--accent);margin-bottom:8px}
 
-    /* Заголовки секций */
-    h2 { text-align: center; font-size: 1.8em; margin-bottom: 30px; }
+  /* schedule highlight */
+  .schedule{
+    display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:center
+  }
+  .pill{display:inline-block;border-radius:999px;background:var(--surface-2);padding:8px 12px;color:#AD1457;font-weight:600}
+  .note{font-size:14px;color:var(--muted)}
 
-    /* Первый экран (Hero) */
-    .hero { background: linear-gradient(90deg, #BDAFDF 0%, #FBC2EB 100%); text-align: center; padding: 100px 0; }
-    .hero h1 { font-size: 2.5em; margin-bottom: 20px; }
-    .hero p.subheader { font-size: 1.2em; margin-bottom: 30px; }
-    .btn { display: inline-block; background: #ff70d2; color: #fff; text-decoration: none; padding: 15px 30px; border-radius: 5px; font-size: 1.1em; font-weight: bold; }
-    .btn:hover { opacity: 0.9; }
+  /* myths (accordions) */
+  .accord{border:1px solid var(--border);border-radius:14px;background:#fff;box-shadow:var(--shadow);overflow:hidden}
+  .accord details{border-bottom:1px solid var(--border)}
+  .accord details:last-child{border-bottom:0}
+  .accord summary{
+    cursor:pointer;list-style:none;padding:18px 50px 18px 18px;font-weight:700;position:relative
+  }
+  .accord summary::-webkit-details-marker{display:none}
+  .accord summary:after{
+    content:'+';position:absolute;right:18px;top:18px;width:28px;height:28px;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;background:var(--surface);color:#333;font-weight:800
+  }
+  details[open] summary:after{content:'–'}
+  .accord .content{padding:0 18px 18px;color:var(--muted)}
+  .list{margin:8px 0 0;padding-left:18px}
+  .list li{margin:6px 0}
 
-    /* Блок преимуществ */
-    .advantages { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-    .adv-item { flex: 1 1 200px; max-width: 250px; text-align: center; padding: 10px; }
-    .adv-item .icon { width: 40px; height: 40px; margin-bottom: 10px; stroke: #ff70d2; }
-    .adv-item h3 { font-size: 1.2em; margin: 10px 0 5px; }
-    .adv-item p { font-size: 0.95em; }
+  /* income timeline */
+  .timeline{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .income-box{text-align:center;padding:22px;border-radius:16px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow)}
+  .income-box .amount{font-size:34px;font-weight:900;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .progress{height:10px;border-radius:8px;background:#ECEFF9;overflow:hidden;margin-top:12px}
+  .progress .bar{height:100%;width:65%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+  .caption{font-size:13px;color:var(--muted)}
 
-    /* Развенчание мифов */
-    .myth-item { margin-bottom: 20px; }
-    .myth-item p { margin-bottom: 10px; }
-    .myth-item em { color: #666; }
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .step{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow);position:relative}
+  .step .n{
+    position:absolute;top:-12px;left:-12px;background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    color:#fff;border-radius:12px;padding:6px 10px;font-weight:800;font-size:12px;box-shadow:var(--shadow)
+  }
 
-    /* Пример роста дохода */
-    .income-example { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-top: 20px; }
-    .income-step { text-align: center; font-size: 1.2em; }
-    .income-step .amount { display: block; font-size: 2em; font-weight: bold; color: #ff70d2; }
-    .income-step .label { margin-top: 5px; }
+  /* final CTA */
+  .final{background:linear-gradient(90deg,#FFF7FB,#EEF2FF);text-align:center;padding:56px 20px;border-top:1px solid var(--border)}
+  .final h2{font-size:28px;margin-bottom:10px}
+  .final p{color:var(--muted);margin:0 auto 18px;max-width:720px}
 
-    /* Что нужно для старта */
-    .equipment { display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; margin-top: 30px; }
-    .equip-item { text-align: center; flex: 1 1 150px; }
-    .equip-item .icon { width: 40px; height: 40px; margin-bottom: 10px; stroke: #ff70d2; }
-    .equip-item p { font-size: 1em; }
-
-    /* Этапы запуска */
-    .steps-intro { text-align: center; font-size: 1.1em; margin-bottom: 30px; }
-    .steps { counter-reset: step; list-style: none; padding: 0; }
-    .steps li { position: relative; padding-left: 50px; margin-bottom: 20px; }
-    .steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 30px; height: 30px; background: #ff70d2; color: #fff; border-radius: 50%; text-align: center; line-height: 30px; font-weight: bold; }
-    .steps li a { color: #ff70d2; text-decoration: none; }
-    .steps li a:hover { text-decoration: underline; }
-
-    /* Финальный CTA */
-    .final-section { text-align: center; background: #f9f9f9; padding: 40px 20px; }
-    .final-section p { font-size: 1.4em; margin-bottom: 20px; font-weight: bold; }
-    .final-section .btn { font-size: 1.2em; }
-
-    /* Адаптивность для мобильных */
-    @media (max-width: 768px) {
-      .hero { padding: 80px 20px; }
-      .hero h1 { font-size: 2em; }
-      .advantages { flex-direction: column; align-items: center; }
-      .adv-item { max-width: 300px; margin-bottom: 20px; }
-      .income-example { flex-direction: column; }
-      .equipment { flex-direction: column; gap: 20px; }
-      .steps li { padding-left: 40px; }
-      .steps li::before { width: 25px; height: 25px; line-height: 25px; }
-    }
-  </style>
+  /* responsive */
+  @media (max-width:1024px){
+    .benefits{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .steps{grid-template-columns:repeat(2,1fr)}
+    .schedule{grid-template-columns:1fr}
+  }
+  @media (max-width:720px){
+    .hero h1{font-size:30px}
+    .benefits{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .steps{grid-template-columns:1fr}
+    .timeline{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
 
-  <!-- Первый экран с мотивацией и CTA -->
-  <section class="hero">
-    <div class="container">
-      <h1>Зарабатывай, общаясь онлайн!</h1>
-      <p class="subheader">Свободный график, высокий доход и никакого офиса — работай из дома в удобное время. Опыт не нужен: научим всему с нуля.</p>
-      <a href="https://t.me/cammanager9" class="btn" target="_blank" rel="noopener">Написать в Telegram</a>
+<!-- HERO -->
+<section class="hero">
+  <div class="container" style="text-align:center">
+    <div class="chip" aria-label="Выплата после первого эфира">
+      <span class="dot"></span> Выплата сразу после первого эфира
     </div>
-  </section>
-
-  <!-- Блок преимуществ -->
-  <section>
-    <div class="container">
-      <h2>Преимущества</h2>
-      <div class="advantages">
-        <div class="adv-item">
-          <svg class="icon icon-dollar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>
-          <h3>Высокий доход</h3>
-          <p>Зарабатывай от <strong>$2000</strong> в первый месяц и увеличивай свой доход с опытом.</p>
-        </div>
-        <div class="adv-item">
-          <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-          <h3>Гибкий график</h3>
-          <p>Работай, когда удобно – сама планируй свой день и совмещай стримы с учебой или другой работой.</p>
-        </div>
-        <div class="adv-item">
-          <svg class="icon icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
-          <h3>Работа из дома</h3>
-          <p>Всё, что тебе нужно, – компьютер и интернет. Зарабатывай, не выходя из дома.</p>
-        </div>
-        <div class="adv-item">
-          <svg class="icon icon-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7" /><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" /></svg>
-          <h3>Обучение и поддержка</h3>
-          <p>Начни без опыта – мы всему научим и поможем на каждом этапе твоего развития.</p>
-        </div>
-        <div class="adv-item">
-          <svg class="icon icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-          <h3>Безопасно и конфиденциально</h3>
-          <p>Никакой эротики или обнажения. Твои личные данные под защитой.</p>
-        </div>
+    <h1>Начните зарабатывать на онлайн‑эфирах уже в первый месяц</h1>
+    <p>
+      Профессиональная команда создаёт и продвигает Ваши аккаунты, запускает рекламу
+      и доводит до результата. При ответственном подходе Вы выходите на
+      <strong>$2000</strong> в первый месяц, а через 6 месяцев — на <strong>$6000+</strong>.
+    </p>
+    <div class="actions">
+      <a class="btn" href="https://t.me/cammanager9" target="_blank" rel="noopener">Написать в Telegram</a>
+      <a class="btn-ghost" href="#steps">Как это работает</a>
+    </div>
+    <div class="stats">
+      <div class="kpi">
+        <div class="num">$2000</div>
+        <div class="label">стартовый доход при соблюдении рекомендаций</div>
+      </div>
+      <div class="kpi">
+        <div class="num">$6000+</div>
+        <div class="label">через 6 месяцев системной работы</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Развенчание мифов -->
-  <section>
-    <div class="container">
-      <h2>Развенчание мифов</h2>
-      <div class="myth-item">
-        <p><strong>Миф:</strong> <em>Чтобы зарабатывать на стриминге, придется оголяться перед камерой.</em></p>
-        <p><strong>Правда:</strong> Нет! Наш формат стримов не подразумевает никакой эротики или обнажения. Ты общаешься с аудиторией на интересные тебе темы, оставаясь в комфортной для себя одежде.</p>
+<!-- BENEFITS -->
+<section>
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:18px">Почему с нами успех неизбежен</h2>
+    <div class="grid benefits">
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <h3>Высокий доход</h3>
+        <p class="muted">От <strong>$2000</strong> в первый месяц и рост до <strong>$6000+</strong> к 6‑му.</p>
       </div>
-      <div class="myth-item">
-        <p><strong>Миф:</strong> <em>Стримить опасно: об этом узнают знакомые, и твои данные попадут в интернет.</em></p>
-        <p><strong>Правда:</strong> Анонимность и безопасность — наш приоритет. Ты работаешь под псевдонимом, личные данные надежно защищены. Мы обеспечиваем техническую безопасность твоих эфиров.</p>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <h3>График под результат</h3>
+        <p class="muted">Рекомендуем проводить в эфире ~<strong>8 часов в день</strong> — это ключ к стабильному росту.</p>
       </div>
-      <div class="myth-item">
-        <p><strong>Миф:</strong> <em>Нужна идеальная внешность и опыт, чтобы стать стримером.</em></p>
-        <p><strong>Правда:</strong> Вовсе нет. Стриминг — это про общение и харизму. Внешность не так важна; куда ценнее твоё обаяние и умение поддержать разговор. Опыт тоже не требуется — мы обучим тебя всем необходимым на старте.</p>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <h3>Удалённо и удобно</h3>
+        <p class="muted">Вы работаете из дома или любого комфортного места. Мы подстраиваем продвижение под Ваш режим.</p>
       </div>
-      <div class="myth-item">
-        <p><strong>Миф:</strong> <em>Для начала работы нужны большие вложения в технику.</em></p>
-        <p><strong>Правда:</strong> Нет. Всё, что нужно для старта, — это ноутбук, веб-камера и стабильный интернет. Никаких больших инвестиций: начинай с тем, что у тебя уже есть.</p>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <h3>Маркетинг под ключ</h3>
+        <p class="muted">Оформляем аккаунты, настраиваем рекламные кампании, приводим аудиторию.</p>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <h3>Ваши границы — Ваши правила</h3>
+        <p class="muted">Площадки рассчитаны на 18+. Вы сами задаёте формат общения. Никаких действий без Вашего согласия.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Пример роста дохода -->
-  <section>
-    <div class="container">
-      <h2>Пример роста дохода</h2>
-      <p>С опытом твой заработок будет расти. Например:</p>
-      <div class="income-example">
-        <div class="income-step">
-          <span class="amount">$2000</span>
-          <span class="label">первый месяц</span>
+<!-- SCHEDULE FOCUS -->
+<section>
+  <div class="container schedule">
+    <div class="card">
+      <span class="pill">График и результат</span>
+      <h2 style="margin:10px 0 6px">Как быстро выйти на $6000+</h2>
+      <p class="muted">Мы сопровождаем Вас ежедневно и даём конкретный план по эфиру и контенту. Практика показывает: при среднем времени в эфире <strong>около 8 часов в день</strong> и следовании рекомендациям уже в первый месяц можно выйти на <strong>$2000</strong>, а через 6 месяцев — на <strong>$6000+</strong>.</p>
+      <p class="note">Если Вы показываете ответственность, создаём персональный сайт и подключаем дополнительные источники трафика.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:8px">Что мы делаем за Вас</h3>
+      <ul class="list">
+        <li>оформляем и настраиваем аккаунты;</li>
+        <li>запускаем платное продвижение и приводим новую аудиторию;</li>
+        <li>ежедневно даём сценарные подсказки и темы для эфиров;</li>
+        <li>подключаем дополнительные каналы трафика при хорошей дисциплине.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MYTHS -->
+<section>
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:18px">Развенчание мифов</h2>
+    <div class="accord">
+      <details>
+        <summary>«Нужно обязательно раздеваться»</summary>
+        <div class="content">
+          Формат общения определяете Вы. Площадки 18+, но Вы сами ставите рамки:
+          можно вести дружеские беседы, игры, творческие эфиры — без откровенного контента.
         </div>
-        <div class="income-step">
-          <span class="amount">$6000+</span>
-          <span class="label">через 6 месяцев</span>
+      </details>
+      <details>
+        <summary>«Это грязная или небезопасная работа»</summary>
+        <div class="content">
+          Это онлайн‑развлечения без физического контакта. Мы соблюдаем правила площадок,
+          работаем легально и уделяем внимание конфиденциальности и репутации.
         </div>
+      </details>
+      <details>
+        <summary>«Меня узнают знакомые»</summary>
+        <div class="content">
+          Вы работаете под псевдонимом. По желанию можно не показывать лицо или использовать маски/ракурсы.
+          Мы ориентируемся на зарубежную аудиторию и бережём Вашу приватность.
+        </div>
+      </details>
+      <details>
+        <summary>«Нужны идеальная внешность и опыт»</summary>
+        <div class="content">
+          Важнее харизма и умение общаться. Опыт не требуется — мы обучаем и сопровождаем.
+        </div>
+      </details>
+      <details>
+        <summary>«Потребуются большие вложения в технику»</summary>
+        <div class="content">
+          Для старта достаточно веб‑камеры, ноутбука/ПК и стабильного интернета. Дальше улучшаем качество по мере роста.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- INCOME -->
+<section>
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:6px">Пример роста дохода</h2>
+    <p class="muted" style="text-align:center;margin-bottom:18px">При ответственном подходе и среднем времени в эфире около 8 часов в день.</p>
+    <div class="timeline">
+      <div class="income-box">
+        <div class="amount">$2000</div>
+        <div class="caption">первый месяц</div>
+        <div class="progress"><div class="bar" style="width:34%"></div></div>
+      </div>
+      <div class="income-box">
+        <div class="amount">$6000+</div>
+        <div class="caption">через 6 месяцев</div>
+        <div class="progress"><div class="bar" style="width:100%"></div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Что нужно для старта -->
-  <section>
-    <div class="container">
-      <h2>Что нужно для старта</h2>
-      <p>Вам понадобится минимум оборудования — скорее всего оно у вас уже есть:</p>
-      <div class="equipment">
-        <div class="equip-item">
-          <svg class="icon icon-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" /><circle cx="12" cy="13" r="4" /></svg>
-          <p>Веб-камера</p>
-        </div>
-        <div class="equip-item">
-          <svg class="icon icon-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" /></svg>
-          <p>Компьютер или ноутбук</p>
-        </div>
-        <div class="equip-item">
-          <svg class="icon icon-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0" /><path d="M1.42 9a16 16 0 0 1 21.16 0" /><path d="M8.53 16.11a6 6 0 0 1 6.95 0" /><line x1="12" y1="20" x2="12.01" y2="20" /></svg>
-          <p>Стабильный интернет</p>
-        </div>
+<!-- STARTER KIT -->
+<section>
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:18px">Что нужно для старта</h2>
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:18px">
+      <div class="card" style="text-align:center">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <h3>Веб‑камера</h3>
+        <p class="muted">Подойдёт встроенная или внешняя HD‑камера.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <h3>Ноутбук / ПК</h3>
+        <p class="muted">Стабильная работа браузера и микрофона.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+        <h3>Стабильный интернет</h3>
+        <p class="muted">Надёжное соединение — основа качественного эфира.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Этапы запуска -->
-  <section>
-    <div class="container">
-      <h2>Этапы запуска</h2>
-      <p class="steps-intro">Всего 6 шагов отделяют тебя от начала успешной карьеры стримера:</p>
-      <ol class="steps">
-        <li><strong>Связь с менеджером:</strong> напишите нам в Telegram <a href="https://t.me/cammanager9" target="_blank" rel="noopener">@cammanager9</a>.</li>
-        <li><strong>Консультация:</strong> мы обсудим все детали и ответим на ваши вопросы.</li>
-        <li><strong>Подготовка:</strong> поможем настроить технику и создадим необходимые аккаунты.</li>
-        <li><strong>Обучение:</strong> вы пройдете обучение и будете готовы к первому эфиру.</li>
-        <li><strong>Первый эфир:</strong> проводите свой первый стрим и получаете первый доход.</li>
-        <li><strong>Рост и поддержка:</strong> вы регулярно выходите в эфир, увеличиваете доход, а мы помогаем вам с продвижением.</li>
-      </ol>
+<!-- STEPS -->
+<section id="steps">
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:18px">Этапы запуска</h2>
+    <div class="steps">
+      <div class="step"><span class="n">1</span>
+        <h3>Свяжитесь с нами</h3>
+        <p class="muted">Напишите в Telegram <a href="https://t.me/cammanager9" target="_blank" rel="noopener">@cammanager9</a>.</p>
+      </div>
+      <div class="step"><span class="n">2</span>
+        <h3>Диагностика и план</h3>
+        <p class="muted">Короткий созвон: отвечаем на вопросы, согласуем формат и график.</p>
+      </div>
+      <div class="step"><span class="n">3</span>
+        <h3>Оформление аккаунтов</h3>
+        <p class="muted">Готовим анкеты, тексты, визуал; проводим верификацию 18+.</p>
+      </div>
+      <div class="step"><span class="n">4</span>
+        <h3>Запуск рекламы</h3>
+        <p class="muted">Включаем платные и органические источники трафика.</p>
+      </div>
+      <div class="step"><span class="n">5</span>
+        <h3>Первый эфир</h3>
+        <p class="muted">Мы на связи во время выхода. <strong>Выплата сразу после эфира.</strong></p>
+      </div>
+      <div class="step"><span class="n">6</span>
+        <h3>Рост 6 месяцев</h3>
+        <p class="muted">Ежедневные подсказки, <strong>~8 часов</strong> в эфире, подключение личного сайта и доп. трафика.</p>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Финальный призыв к действию -->
-  <section class="final-section">
-    <p>Начните путь к финансовой независимости прямо сейчас!</p>
-    <a href="https://t.me/cammanager9" class="btn" target="_blank" rel="noopener">Написать в Telegram</a>
-  </section>
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="container">
+    <h2>Готовы к финансовой независимости?</h2>
+    <p>Покажите, что Вы готовы работать ответственно — мы сделаем остальное. Стартуйте сегодня: первый месяц от <strong>$2000</strong>, через 6 месяцев — <strong>$6000+</strong>.</p>
+    <a class="btn" href="https://t.me/cammanager9" target="_blank" rel="noopener">Написать в Telegram</a>
+  </div>
+</section>
 
 </body>
 </html>
