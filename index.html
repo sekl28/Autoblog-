@@ -1,326 +1,150 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Онлайн-эфиры: доход от $2000 в первый месяц</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ehotlovea — смотреть мои стримы</title>
+  <meta name="description" content="7 лет в топ‑5, часто топ‑1. Присоединяйся к моим прямым эфирам и смотри эксклюзивный контент. 18+" />
+  <meta name="robots" content="index,follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#0b0b12; --bg2:#101022; --acc:#ff2f86; --acc2:#ffd166; --card:rgba(255,255,255,.06);
+      --text:#e9e9ef; --muted:#b5b7c3; --ok:#26d07c;
+    }
+    html,body{height:100%}
+    body{
+      margin:0; background: radial-gradient(1200px 600px at 10% 10%, #1b1b3a 0, transparent 60%),
+                         radial-gradient(900px 500px at 90% 20%, #2a103a 0, transparent 60%),
+                         linear-gradient(180deg, var(--bg1), var(--bg2));
+      color:var(--text); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      display:flex; flex-direction:column; gap:32px;
+    }
+    .wrap{max-width:1080px; margin:0 auto; padding:24px 16px 48px}
+    header{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg, var(--acc), #7c2cff); display:grid; place-items:center; box-shadow:0 10px 30px rgba(255,47,134,.35)}
+    .logo span{font-weight:800; font-size:18px}
+    .brand h1{margin:0; font:700 22px/1 Playfair Display, serif; letter-spacing:.3px}
+    .muted{color:var(--muted)}
 
-<!-- УНИКАЛЬНЫЕ ШРИФТЫ -->
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+    .hero{margin-top:16px; display:grid; grid-template-columns:1.1fr .9fr; gap:24px}
+    .hero-card{background:var(--card); border:1px solid rgba(255,255,255,.12); border-radius:20px; padding:28px; backdrop-filter: blur(6px);}
+    .hero h2{font:800 44px/1.05 Inter, system-ui; margin:0 0 14px;}
+    .hero p{margin:8px 0 18px; color:var(--muted); font-size:16px}
 
-<style>
-  :root{
-    --bg:#0f0f14;
-    --panel:#13141c;
-    --panel-2:#161826;
-    --text:#EAEAF2;
-    --muted:#9aa0b2;
-    --accent-a:#F73CA7;   /* фуксия */
-    --accent-b:#7A67FF;   /* фиолетовый */
-    --success:#46e0a0;
-    --border:rgba(255,255,255,.06);
-    --shadow:0 10px 30px rgba(0,0,0,.35), 0 2px 10px rgba(0,0,0,.25);
-    --radius:18px;
-  }
+    .cta{display:flex; flex-wrap:wrap; gap:12px}
+    .btn{appearance:none; border:0; cursor:pointer; padding:14px 18px; border-radius:14px; font-weight:700; letter-spacing:.2px; text-decoration:none; display:inline-flex; align-items:center; gap:10px}
+    .btn.main{background:linear-gradient(135deg, var(--acc), #7c2cff); color:white; box-shadow:0 12px 30px rgba(124,44,255,.35)}
+    .btn.ghost{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.18)}
+    .btn small{opacity:.85; font-weight:600}
 
-  /* БАЗА */
-  *{box-sizing:border-box}
-  html,body{margin:0;background:linear-gradient(180deg,#0c0c12 0%,#121423 60%,#0f0f14 100%);color:var(--text);font:16px/1.65 Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;scroll-behavior:smooth}
-  h1,h2,h3{margin:0 0 .4em}
-  h1{font:700 44px/1.15 "Space Grotesk",sans-serif;letter-spacing:.2px}
-  h2{font:700 28px/1.2 "Space Grotesk",sans-serif}
-  h3{font:600 18px/1.25 Manrope,sans-serif}
-  p{margin:0 0 .9em}
-  a{color:inherit}
-  .container{max-width:1120px;margin:0 auto;padding:0 20px}
-  .section{padding:64px 0}
-  .glass{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03)); backdrop-filter:saturate(130%) blur(8px); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow)}
-  .chip{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.04)}
-  .chip .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(90deg,var(--accent-a),var(--accent-b))}
-  .btn{display:inline-block;padding:14px 22px;border-radius:12px;font-weight:800;text-decoration:none;letter-spacing:.2px;transition:.18s transform,.18s opacity;white-space:nowrap}
-  .btn:hover{transform:translateY(-1px);opacity:.95}
-  .btn-primary{color:#fff;background:linear-gradient(90deg,var(--accent-a),var(--accent-b));box-shadow:0 12px 34px rgba(247,60,167,.28)}
-  .btn-ghost{color:var(--text);border:1px solid var(--border);background:rgba(255,255,255,.02)}
-  .grid{display:grid;gap:18px}
-  .icon{width:26px;height:26px;flex:0 0 26px;color:var(--accent-a)}
+    .note{margin-top:8px; font-size:13px; color:var(--muted)}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.12); border-radius:18px; padding:20px}
 
-  /* HERO */
-  .hero{padding:96px 0 64px;background:
-    radial-gradient(1200px 480px at 50% -160px,rgba(122,103,255,.30) 0%,rgba(247,60,167,.22) 45%,rgba(0,0,0,0) 70%)}
-  .hero .lead{max-width:780px;color:var(--muted);font-size:18px;margin:10px auto 24px}
-  .hero .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  .kpis{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:28px}
-  .kpi{min-width:220px;text-align:center;padding:16px 18px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.03)}
-  .kpi .num{font:700 26px/1 "Space Grotesk";background:linear-gradient(90deg,var(--accent-a),var(--accent-b));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .kpi .sub{font-size:13px;color:var(--muted)}
+    .grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px}
+    .tz{display:grid; grid-template-columns:auto 1fr; gap:6px 12px; align-items:center}
+    .tz b{font-size:15px}
+    .pill{display:inline-block; padding:4px 10px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); font-size:12px; color:var(--muted)}
 
-  /* ADVANTAGES */
-  .benefits{grid-template-columns:repeat(5,minmax(0,1fr))}
-  .card{padding:18px;border-radius:16px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));box-shadow:var(--shadow)}
-  .card p{color:var(--muted);margin:6px 0 0}
+    .links{display:grid; gap:14px}
+    .tile{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));}
+    .tile h3{margin:0; font-size:18px}
+    .tile p{margin:4px 0 0; color:var(--muted); font-size:14px}
+    .tile a{white-space:nowrap}
 
-  /* SCHEDULE BLOCK */
-  .split{grid-template-columns:1.2fr .8fr}
-  .pill{display:inline-block;border-radius:999px;padding:7px 12px;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--accent-a),var(--accent-b))}
-  .list{margin:10px 0 0;padding-left:18px}
-  .list li{margin:6px 0;color:var(--muted)}
+    footer{opacity:.7; text-align:center; font-size:12px; padding:12px 0 40px}
 
-  /* MYTHS */
-  .accord{overflow:hidden;border-radius:16px;border:1px solid var(--border)}
-  details{border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
-  details:last-child{border-bottom:0}
-  summary{list-style:none;cursor:pointer;padding:18px 56px 18px 18px;position:relative;font-weight:700}
-  summary::-webkit-details-marker{display:none}
-  summary:after{content:'+';position:absolute;right:14px;top:14px;width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);font:700 18px/1 "Space Grotesk"}
-  details[open] summary:after{content:'–'}
-  details .content{padding:0 18px 18px;color:var(--muted)}
-
-  /* INCOME TIMELINE */
-  .timeline{grid-template-columns:repeat(2,1fr)}
-  .income{padding:22px;text-align:center;border-radius:16px;border:1px solid var(--border);background:rgba(255,255,255,.03)}
-  .income .amount{font:700 34px/1 "Space Grotesk";background:linear-gradient(90deg,var(--accent-a),var(--accent-b));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .progress{height:9px;border-radius:8px;background:#2a2d3d;margin-top:12px;overflow:hidden}
-  .bar{height:100%;background:linear-gradient(90deg,var(--accent-a),var(--accent-b))}
-
-  /* STEPS */
-  .steps{grid-template-columns:repeat(3,1fr)}
-  .step{position:relative;padding:18px;border-radius:16px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02))}
-  .badge{position:absolute;top:-12px;left:-12px;background:linear-gradient(90deg,var(--accent-a),var(--accent-b));color:#fff;border-radius:12px;padding:6px 10px;font:800 12px/1 Manrope;box-shadow:var(--shadow)}
-
-  /* CTA FINAL */
-  .final{padding:60px 0;text-align:center;background:
-    radial-gradient(700px 220px at 50% 0,rgba(247,60,167,.18),rgba(122,103,255,.18) 45%,rgba(0,0,0,0) 70%)}
-
-  /* RESPONSIVE */
-  @media (max-width:1024px){
-    .benefits{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .steps{grid-template-columns:repeat(2,1fr)}
-    .split{grid-template-columns:1fr}
-  }
-  @media (max-width:720px){
-    h1{font-size:34px}
-    .benefits{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .timeline{grid-template-columns:1fr}
-    .steps{grid-template-columns:1fr}
-  }
-</style>
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr;}
+      .hero h2{font-size:36px}
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="container" style="text-align:center">
-    <span class="chip"><span class="dot"></span> Выплата сразу после первого эфира</span>
-    <h1 style="margin-top:14px">Начните карьеру в онлайн-эфирах и выйдите на <span style="background:linear-gradient(90deg,var(--accent-a),var(--accent-b));-webkit-background-clip:text;background-clip:text;color:transparent">доход от $2000</span> в первый месяц</h1>
-    <p class="lead">
-      Мы профессионально оформляем Ваши аккаунты, запускаем рекламу, приводим аудиторию и доводим до результата.
-      При ответственном подходе через 6 месяцев реально выйти на <b>$6000+</b>.
-    </p>
-    <div class="actions">
-      <a class="btn btn-primary" href="https://t.me/cammanager9" target="_blank" rel="noopener">Написать в Telegram</a>
-      <a class="btn btn-ghost" href="#steps">Получить план на 30 дней</a>
-    </div>
-
-    <div class="kpis">
-      <div class="kpi glass"><div class="num">$2000</div><div class="sub">первый месяц при соблюдении рекомендаций</div></div>
-      <div class="kpi glass"><div class="num">$6000+</div><div class="sub">через 6 месяцев системной работы</div></div>
-    </div>
-  </div>
-</header>
-
-<!-- BENEFITS -->
-<section class="section">
-  <div class="container">
-    <h2 style="text-align:center;margin-bottom:18px">Почему с нами успех неизбежен</h2>
-    <div class="grid benefits">
-      <article class="card">
-        <div style="display:flex;align-items:center;gap:10px"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><h3>Высокий доход</h3></div>
-        <p>От <b>$2000</b> в первый месяц, устойчивый рост к <b>$6000+</b> за полгода.</p>
-      </article>
-
-      <article class="card">
-        <div style="display:flex;align-items:center;gap:10px"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><h3>График под результат</h3></div>
-        <p>Рекомендуем <b>~8 часов в день</b> в эфире — это ускоряет рост и закрепляет доход.</p>
-      </article>
-
-      <article class="card">
-        <div style="display:flex;align-items:center;gap:10px"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><h3>Удалённо и удобно</h3></div>
-        <p>Работаете из дома. Мы подстраиваем продвижение под Ваш режим.</p>
-      </article>
-
-      <article class="card">
-        <div style="display:flex;align-items:center;gap:10px"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><h3>Маркетинг под ключ</h3></div>
-        <p>Оформляем аккаунты, настраиваем рекламу, приводим новую аудиторию.</p>
-      </article>
-
-      <article class="card">
-        <div style="display:flex;align-items:center;gap:10px"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h3>Ваши границы — Ваши правила</h3></div>
-        <p>Аудитория 18+. Формат общения задаёте Вы. Никаких действий без согласия.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- SCHEDULE & WHAT WE DO -->
-<section class="section">
-  <div class="container grid split">
-    <article class="card">
-      <span class="pill">Как быстро выйти на $6000+</span>
-      <h3 style="margin:10px 0 6px">План роста на 6 месяцев</h3>
-      <p class="muted">Практика показывает: при времени в эфире около <b>8 часов в день</b>,
-      дисциплине и нашей ежедневной поддержке первый месяц выводит на <b>$2000</b>, к шестому — на <b>$6000+</b>.</p>
-      <ul class="list">
-        <li>ежедневные подсказки по темам и сценариям эфиров;</li>
-        <li>контроль качества: свет, звук, подача, оформление;</li>
-        <li>еженедельные разборы и корректировка стратегии;</li>
-        <li>при стабильности — персональный мини-сайт и доп. трафик.</li>
-      </ul>
-    </article>
-
-    <article class="card">
-      <h3 style="margin-bottom:8px">Что мы делаем за Вас</h3>
-      <ul class="list">
-        <li>оформляем профили и проходим верификацию 18+;</li>
-        <li>запускаем платную рекламу и органические источники;</li>
-        <li>оптимизируем описание, визуал, цены/пакеты;</li>
-        <li>подключаем дополнительные каналы при хорошей дисциплине;</li>
-        <li><b>выплата</b> — сразу после первого эфира.</li>
-      </ul>
-    </article>
-  </div>
-</section>
-
-<!-- MYTHS -->
-<section class="section">
-  <div class="container">
-    <h2 style="text-align:center;margin-bottom:18px">Развенчание мифов</h2>
-    <div class="accord glass">
-      <details>
-        <summary>«Нужно обязательно раздеваться»</summary>
-        <div class="content">Нет. Формат общения определяете Вы: дружеские беседы, интерактив, игры, творчество — без откровенного контента. Никакого принуждения.</div>
-      </details>
-      <details>
-        <summary>«Это грязная или небезопасная работа»</summary>
-        <div class="content">Онлайн-развлечения без физического контакта. Мы соблюдаем правила площадок, бережём конфиденциальность и репутацию. Вы всегда в безопасности дома.</div>
-      </details>
-      <details>
-        <summary>«Меня узнают знакомые»</summary>
-        <div class="content">Работа под псевдонимом. По желанию — без лица/с масками и особыми ракурсами. Ориентируемся на зарубежную аудиторию.</div>
-      </details>
-      <details>
-        <summary>«Нужны идеальная внешность и опыт»</summary>
-        <div class="content">Важнее харизма, регулярность и умение общаться. Опыт не требуется — обучаем и сопровождаем с нуля.</div>
-      </details>
-      <details>
-        <summary>«Нужны большие вложения в технику»</summary>
-        <div class="content">Для старта достаточно веб-камеры, ноутбука/ПК и стабильного интернета. Качество улучшаем по мере роста.</div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- INCOME -->
-<section class="section">
-  <div class="container">
-    <h2 style="text-align:center;margin-bottom:6px">Пример роста дохода</h2>
-    <p style="text-align:center;color:var(--muted);margin-bottom:18px">При ответственном подходе и среднем времени в эфире ~8 часов в день.</p>
-    <div class="grid timeline">
-      <div class="income glass">
-        <div class="amount">$2000</div>
-        <div style="color:var(--muted)">первый месяц</div>
-        <div class="progress"><div class="bar" style="width:36%"></div></div>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><span>e</span></div>
+        <div>
+          <h1>@ehotlovea_</h1>
+          <div class="muted" style="font-size:13px">7 лет в топ‑5 (часто топ‑1). Проверим, смогу ли удивить тебя в прямом эфире?</div>
+        </div>
       </div>
-      <div class="income glass">
-        <div class="amount">$6000+</div>
-        <div style="color:var(--muted)">через 6 месяцев</div>
-        <div class="progress"><div class="bar" style="width:100%"></div></div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h2>Смотреть мои стримы</h2>
+        <p><strong>Важно:</strong> чтобы смотреть трансляции, сначала <u>зарегистрируйся</u>, а затем заходи в комнату. 18+</p>
+        <div class="cta">
+          <a class="btn main" href="https://chaturbate.com/in/?tour=APi5&campaign=l8Gy2&track=default&room=ehotlovea" target="_blank" rel="noopener nofollow">▶︎ Смотреть стрим</a>
+          <a class="btn ghost" href="#schedule">⏰ В какое время я онлайн</a>
+        </div>
+        <div class="note">Мой обычный старт: <b>22:00 по Белграду (CEST)</b>. Ниже — время для Канады.</div>
       </div>
-    </div>
+
+      <div class="card" id="schedule">
+        <div class="pill">Расписание по Канаде (летнее время)</div>
+        <div class="grid" style="margin-top:12px">
+          <div class="tz">
+            <b>PDT — Pacific (Ванкувер)</b>
+            <div class="muted">13:00 (1:00 PM)</div>
+          </div>
+          <div class="tz">
+            <b>MDT — Mountain (Калгари)</b>
+            <div class="muted">14:00 (2:00 PM)</div>
+          </div>
+          <div class="tz">
+            <b>CDT — Central (Виннипег)</b>
+            <div class="muted">15:00 (3:00 PM)</div>
+          </div>
+          <div class="tz">
+            <b>EDT — Eastern (Торонто/Монреаль)</b>
+            <div class="muted">16:00 (4:00 PM)</div>
+          </div>
+          <div class="tz">
+            <b>ADT — Atlantic (Галифакс)</b>
+            <div class="muted">17:00 (5:00 PM)</div>
+          </div>
+          <div class="tz">
+            <b>NDT — Newfoundland (Сент-Джонс)</b>
+            <div class="muted">17:30 (5:30 PM)</div>
+          </div>
+        </div>
+        <p class="note" style="margin-top:10px">Конвертация: 22:00 CEST (Белград) → 20:00 UTC → время по канадским часовым поясам.</p>
+      </div>
+    </section>
+
+    <section class="links" style="margin-top:10px">
+      <div class="tile">
+        <div>
+          <h3>OnlyFans — мой архив за 2 года <span class="pill">18+</span></h3>
+          <p>Смотри эксклюзивный контент, который я публиковала на протяжении двух лет.</p>
+        </div>
+        <a class="btn ghost" href="https://onlyfans.com/ehotlovea1/c4" target="_blank" rel="noopener nofollow">Открыть OnlyFans</a>
+      </div>
+
+      <div class="tile">
+        <div>
+          <h3>Telegram‑канал</h3>
+          <p>Иногда выкладываю бесплатные видео и анонсы трансляций.</p>
+        </div>
+        <a class="btn ghost" href="https://t.me/+e0dk8_rRqKo2MTQ8" target="_blank" rel="noopener">Перейти в Telegram</a>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="y"></span> ehotlovea · Все ссылки 18+ · Переходя, вы подтверждаете, что вам есть 18 лет.
+    </footer>
   </div>
-</section>
 
-<!-- STARTER KIT -->
-<section class="section">
-  <div class="container">
-    <h2 style="text-align:center;margin-bottom:18px">Что нужно для старта</h2>
-    <div class="grid benefits" style="grid-template-columns:repeat(3,1fr)">
-      <article class="card" style="text-align:center">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <h3>Веб-камера</h3>
-        <p>Встроенная или внешняя HD-камера подойдёт.</p>
-      </article>
-      <article class="card" style="text-align:center">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        <h3>Ноутбук / ПК</h3>
-        <p>Стабильная работа браузера и микрофона.</p>
-      </article>
-      <article class="card" style="text-align:center">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-        <h3>Стабильный интернет</h3>
-        <p>Надёжное соединение — основа качественного эфира.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- STEPS -->
-<section id="steps" class="section">
-  <div class="container">
-    <h2 style="text-align:center;margin-bottom:18px">Этапы запуска</h2>
-    <div class="grid steps">
-      <article class="step"><span class="badge">1</span><h3>Свяжитесь с нами</h3><p style="color:var(--muted)">Напишите в Telegram <b>@cammanager9</b>. Получите консультацию и стартовый чек-лист.</p></article>
-      <article class="step"><span class="badge">2</span><h3>Диагностика и план</h3><p style="color:var(--muted)">Короткий созвон: формат, график, цели на 30 дней.</p></article>
-      <article class="step"><span class="badge">3</span><h3>Оформление аккаунтов</h3><p style="color:var(--muted)">Анкеты, визуал, тексты. Проходим верификацию 18+.</p></article>
-      <article class="step"><span class="badge">4</span><h3>Запуск рекламы</h3><p style="color:var(--muted)">Платные и органические источники трафика.</p></article>
-      <article class="step"><span class="badge">5</span><h3>Первый эфир</h3><p style="color:var(--muted)">Мы на связи. <b>Выплата сразу после эфира.</b></p></article>
-      <article class="step"><span class="badge">6</span><h3>Рост 6 месяцев</h3><p style="color:var(--muted)">Ежедневные подсказки, <b>~8 часов</b> в эфире, подключение доп. трафика.</p></article>
-    </div>
-
-    <div style="text-align:center;margin-top:22px">
-      <a class="btn btn-primary" href="https://t.me/cammanager9" target="_blank" rel="noopener">Хочу зарабатывать</a>
-      <a class="btn btn-ghost" href="https://t.me/cammanager9" target="_blank" rel="noopener">Узнать подробнее</a>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="final">
-  <div class="container">
-    <h2>Следующая история успеха — Ваша</h2>
-    <p style="color:var(--muted);max-width:760px;margin:8px auto 20px">
-      Покажите ответственность — мы сделаем остальное: маркетинг, трафик, сопровождение.
-      Первый месяц от <b>$2000</b>, через 6 месяцев — <b>$6000+</b>.
-    </p>
-    <a class="btn btn-primary" href="https://t.me/cammanager9" target="_blank" rel="noopener">Написать в Telegram</a>
-  </div>
-</section>
-
-<!-- UMNICO WIDGET (добавлено по инструкции, перед </body>) -->
-<a
-  href="https://umnico.com/?utm_source=widget&amp;utm_medium=online_chat&amp;utm_campaign=button"
-  target="_blank"
-  draggable="false"
-  data-umnico-logo="true"
-  style="position:fixed !important;right:38px !important;bottom:25px !important;z-index:2147483646 !important;display:flex !important;align-items:center !important;justify-content:center !important;padding-top:1px !important;padding-bottom:2px !important;background-color:rgba(227, 237, 243, 0.4) !important;border-radius:41px !important;cursor:pointer !important"
->
-  <img
-    draggable="false"
-    src="https://umnico.com/assets/index/umnico1.svg"
-    alt="Umnico logo"
-    style="width:45px !important;height:9px !important"
-  />
-</a>
-
-<div data-umnico-loader="true" style="all: initial;position:fixed !important;right:37px !important;bottom:9px !important;z-index:2147483646 !important;font-family:sans-serif !important;font-size:10px !important;line-height:1 !important;font-weight:bold !important;padding:2px 4px 1px !important;background-color:rgba(227, 237, 243, 0.4) !important;border-radius:41px !important">Loading</div>
-<script type="text/javascript">
-  document.umnicoWidgetHash = '1c103faeb1ec8affc3cd345aa57fb0a0';
-  var x = document.createElement('script');
-  x.src = 'https://umnico.com/assets/widget-loader.js';
-  x.type = 'text/javascript';
-  x.charset = 'UTF-8';
-  x.async = true;
-  document.body.appendChild(x);
-</script>
-
+  <script>
+    // Год в футере
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
