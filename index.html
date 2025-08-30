@@ -1,190 +1,86 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Эксклюзивный канал — Бесплатные видео</title>
-  <meta name="description" content="Тут вы увидите бесплатные видео, а также эксклюзивный контент. Присоединяйтесь в Telegram." />
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Эксклюзивный канал — Бесплатные видео" />
-  <meta property="og:description" content="Тут вы увидите бесплатные видео, а также эксклюзивный контент. Присоединяйтесь в Telegram." />
-  <meta property="og:image" content="https://dummyimage.com/1200x630/000/fff&text=Join+on+Telegram" />
-  <meta property="og:locale" content="ru_RU" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='%2300a2ff' d='M128 0a128 128 0 1 0 0 256a128 128 0 0 0 0-256'/%3E%3Cpath fill='%23fff' d='M196.9 69.7c3.7-1.5 7.6 1.9 6.4 5.7l-27.6 90.2c-1.2 3.9-5.6 5.6-9 3.5l-35.3-22.1a6 6 0 0 1-2.6-3.5l-5.5-21.1l62.5-47.9c2.4-1.9-.5-5.4-3-3.8L96.5 126.6l-27.4-9c-4-1.3-4.1-6.9-.2-8.4l127.9-39.5z'/%3E%3C/svg%3E" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ehotlovea’s Private Telegram Channel</title>
   <style>
-    :root{
-      --bg1:#0f0f12; --bg2:#1a1b22; --acc:#00a2ff; --txt:#f2f2f2; --mut:#b7bcc6; --ok:#21d07a;
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      text-align: center;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
-      color:var(--txt); background:radial-gradient(1200px 800px at 80% -10%, #1f2230 0%, #121219 45%, #0b0b10 100%) fixed;
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
     }
-    .wrap{min-height:100%; display:flex; align-items:center; justify-content:center; padding:24px}
-    .card{
-      width:min(960px,100%); border:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      backdrop-filter: blur(6px); border-radius:20px; padding:28px; box-shadow:0 20px 60px rgba(0,0,0,.45);
+    h1 {
+      font-size: 2.5em;
+      margin: 0.5em 0;
+      color: #e63946;
     }
-    .top{display:flex; gap:24px; align-items:center; flex-wrap:wrap}
-    .logo{
-      display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--txt)
+    .subheading {
+      font-size: 1.2em;
+      color: #ccc;
     }
-    .logo svg{width:28px; height:28px}
-    .pill{font-size:12px; color:#0b1b12; background:var(--ok); padding:6px 10px; border-radius:999px; font-weight:700}
-    .hero{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; margin-top:12px}
-    @media (max-width:860px){.hero{grid-template-columns:1fr}}
-    h1{font-size: clamp(28px, 4.5vw, 44px); line-height:1.1; margin:8px 0 10px}
-    p{margin:0 0 16px; color:var(--mut); font-size:16px}
-    .badges{display:flex; gap:12px; flex-wrap:wrap; margin:8px 0 20px}
-    .badge{border:1px solid rgba(255,255,255,.14); padding:8px 12px; border-radius:12px; font-size:13px}
-    .cta{display:flex; gap:12px; flex-wrap:wrap}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:14px 18px; border-radius:14px; font-weight:700; border:1px solid rgba(255,255,255,.12);
-      text-decoration:none; color:#081018; background:var(--acc); transition:transform .12s ease, box-shadow .12s ease;
-      will-change: transform;
+    .hero-img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin: 20px 0;
     }
-    .btn:active{transform:translateY(1px)}
-    .btn--ghost{background:transparent; color:var(--txt)}
-    .btn svg{width:20px; height:20px}
-    .shot{
-      position:relative; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.08);
-      background: linear-gradient(160deg, rgba(0,162,255,.20), rgba(0,0,0,.0));
-      min-height:220px;
+    .btn-telegram {
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 20px 0;
+      background: #e63946;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2em;
+      font-weight: bold;
+      border-radius: 30px;
     }
-    .shot::before{
-      content:""; position:absolute; inset:0;
-      background:repeating-linear-gradient( 135deg, rgba(255,255,255,.06) 0 2px, transparent 2px 10px);
-      mix-blend-mode: overlay; opacity:.25;
+    .features {
+      text-align: left;
+      margin: 30px 0;
+      color: #aaa;
+      list-style: none;
+      padding: 0;
     }
-    .shot-inner{padding:18px}
-    .shot h3{margin:0 0 8px; font-size:18px}
-    .foot{display:flex; justify-content:space-between; gap:12px; margin-top:18px; color:#98a0aa; font-size:12px; flex-wrap:wrap}
-    /* age gate */
-    .gate{
-      position:fixed; inset:0; background:rgba(10,10,15,.8);
-      display:flex; align-items:center; justify-content:center; z-index:9999; backdrop-filter: blur(6px);
+    .features li {
+      margin: 10px 0;
+      font-size: 1.1em;
     }
-    .gate-box{
-      width:min(520px,92%); background:#121218; border:1px solid rgba(255,255,255,.12);
-      border-radius:16px; padding:20px; text-align:center; box-shadow:0 16px 50px rgba(0,0,0,.55)
+    footer {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 40px;
     }
-    .gate h2{margin:4px 0 4px; font-size:24px}
-    .gate p{color:var(--mut); margin:0 0 18px}
-    .gate .row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
-    .hide{display:none}
   </style>
 </head>
 <body>
-  <!-- Age Gate -->
-  <div id="ageGate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
-    <div class="gate-box">
-      <div class="pill">18+</div>
-      <h2 id="gateTitle">Вам уже исполнилось 18 лет?</h2>
-      <p>Сайт содержит материалы для взрослых. Для продолжения подтвердите возраст.</p>
-      <div class="row">
-        <button class="btn" id="yesBtn" aria-label="Мне 18 и более">Да, 18+</button>
-        <a class="btn btn--ghost" href="https://www.google.com" rel="nofollow noopener">Нет</a>
-      </div>
-    </div>
+  <div class="container">
+    <h1>Join Ehotlovea’s Private Channel</h1>
+    <p class="subheading">Unlimited live shows, personal chat, and daily exclusive content.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Roberto_Nickson_2017_%28Unsplash%29.jpg"
+         alt="Glamorous model teaser" class="hero-img">
+    <a href="https://t.me/+Er9QlKyQy-EyNjY0" class="btn-telegram">Join on Telegram</a>
+    <ul class="features">
+      <li>🔥 Unlimited private shows and exclusive content</li>
+      <li>💬 Direct 1-on-1 chat with Ehotlovea</li>
+      <li>⏰ New photos & videos added daily</li>
+      <li>🔒 100% anonymous – no signup required</li>
+      <li>⭐️ No restrictions – all fantasies welcome</li>
+    </ul>
+    <a href="https://t.me/+Er9QlKyQy-EyNjY0" class="btn-telegram">Open Ehotlovea’s Telegram</a>
+    <footer>
+      By joining, you confirm you are 18+ and agree to receive erotic content. Enjoy freely.
+    </footer>
   </div>
-
-  <div class="wrap">
-    <main class="card" role="main">
-      <div class="top">
-        <a class="logo" href="https://t.me/+Er9QlKyQy-EyNjY0" target="_blank" rel="noopener nofollow">
-          <!-- Telegram mark -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" aria-hidden="true">
-            <path fill="#00a2ff" d="M128 0a128 128 0 1 0 0 256a128 128 0 0 0 0-256"/>
-            <path fill="#fff" d="M196.9 69.7c3.7-1.5 7.6 1.9 6.4 5.7l-27.6 90.2c-1.2 3.9-5.6 5.6-9 3.5l-35.3-22.1a6 6 0 0 1-2.6-3.5l-5.5-21.1l62.5-47.9c2.4-1.9-.5-5.4-3-3.8L96.5 126.6l-27.4-9c-4-1.3-4.1-6.9-.2-8.4l127.9-39.5z"/>
-          </svg>
-          <strong>Join on Telegram</strong>
-        </a>
-        <span class="pill">Моментальный доступ</span>
-      </div>
-
-      <section class="hero" aria-label="Главный блок">
-        <div>
-          <h1>Бесплатные видео + Эксклюзивный контент</h1>
-          <p>Тут вы увидите <strong>бесплатные видео</strong>, а также <strong>эксклюзивный контент</strong> популярной модели. Обновления ежедневно.</p>
-
-          <div class="badges" aria-label="Преимущества">
-            <div class="badge">Без регистрации на сайте</div>
-            <div class="badge">Сразу в Telegram</div>
-            <div class="badge">Новые публикации каждый день</div>
-          </div>
-
-          <div class="cta">
-            <a class="btn" id="joinBtn"
-               href="https://t.me/+Er9QlKyQy-EyNjY0"
-               target="_blank" rel="noopener nofollow">
-              <!-- paper plane icon -->
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13" stroke="#081018" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="m22 2-7 20-4-9-9-4 20-7Z" fill="#081018"/></svg>
-              Открыть в Telegram
-            </a>
-            <button class="btn btn--ghost" id="copyBtn" type="button">Скопировать ссылку</button>
-          </div>
-        </div>
-
-        <div class="shot" aria-hidden="true">
-          <div class="shot-inner">
-            <h3>Что внутри?</h3>
-            <p>Посты 18+, сторис-тизеры, backstage, анонсы стримов и розыгрыши. Вход бесплатный, эксклюзив — для подписчиков канала.</p>
-            <div class="foot">
-              <span>Возрастное ограничение 18+</span>
-              <span>⚠️ Если Telegram не открывается, нажмите «Скопировать ссылку» и вставьте в приложение вручную.</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="foot" role="contentinfo">
-        <span>© <span id="y"></span> Exclusive Channel. Все права защищены.</span>
-        <span>Отказ от ответственности: весь контент предназначен только для совершеннолетних пользователей.</span>
-      </div>
-    </main>
-  </div>
-
-  <script>
-    (function(){
-      const y=document.getElementById('y'); y.textContent=new Date().getFullYear();
-
-      // Age gate
-      const gate=document.getElementById('ageGate');
-      const yes=document.getElementById('yesBtn');
-      const KEY='age_ok_v1';
-      const ok=localStorage.getItem(KEY);
-      if(ok==='1'){ gate.classList.add('hide'); document.body.style.overflow='auto'; }
-      yes?.addEventListener('click',()=>{ localStorage.setItem(KEY,'1'); gate.classList.add('hide'); document.body.style.overflow='auto'; });
-
-      // Copy link
-      const TG_LINK = 'https://t.me/+Er9QlKyQy-EyNjY0';
-      const copyBtn = document.getElementById('copyBtn');
-      copyBtn?.addEventListener('click', async ()=>{
-        try{
-          await navigator.clipboard.writeText(TG_LINK);
-          copyBtn.textContent='Ссылка скопирована';
-          setTimeout(()=>copyBtn.textContent='Скопировать ссылку',1600);
-        }catch(e){
-          const t=document.createElement('input');
-          t.value=TG_LINK; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove();
-          copyBtn.textContent='Ссылка скопирована';
-          setTimeout(()=>copyBtn.textContent='Скопировать ссылку',1600);
-        }
-      });
-
-      // Ensure join button has UTM if нужно
-      const joinBtn = document.getElementById('joinBtn');
-      // Пример: добавьте свои метки, если хотите (раскомментируйте):
-      // const utm = '?start=ads_ca&utm_source=landing&utm_medium=propeller&utm_campaign=adult_model_ca';
-      // joinBtn.href = TG_LINK + utm;
-    })();
-  </script>
 </body>
 </html>
