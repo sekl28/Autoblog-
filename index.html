@@ -2,293 +2,161 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Exclusive Ehotlovea Content - Join My Telegram</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join My Telegram</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Base styles */
+        /* Global Styles */
+        html {
+            scroll-behavior: smooth; /* smooth scroll for internal anchors */
+        }
         body {
             margin: 0;
-            padding: 0;
-            background: #111; /* dark background */
-            color: #fff;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif; /* Expressive font */
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
             line-height: 1.6;
         }
-        /* Links */
         a {
-            color: inherit;
             text-decoration: none;
+            color: inherit;
         }
-        /* Container */
         .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px 0;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
-
-        /* HERO SECTION */
+        /* Hero Section */
         .hero {
             position: relative;
-            /* Placeholder background: replace with model image for live site */
-            background: url('hero-bg.jpg') center center/cover no-repeat;
-            height: 100vh;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            height: 100vh; /* Full viewport height */
+            background: url('background.jpg') no-repeat center/cover; /* Use uploaded image or placeholder */
         }
-        .hero .overlay {
+        .hero::before {
+            content: "";
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
-            transition: background 0.5s;
-        }
-        .hero:hover .overlay {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.6); /* Dark overlay */
         }
         .hero-content {
-            position: relative;
-            z-index: 1;
-            padding: 20px;
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 100%;
         }
-        .hero h1 {
-            font-size: 2.5em;
-            margin-bottom: 0.5em;
-            transition: color 0.5s;
+        .hero-content h1 {
+            font-size: 2rem;
+            margin: 0 0 10px;
         }
-        .hero h1:hover {
-            color: #e74c3c; /* highlight on hover */
+        .hero-content p {
+            font-size: 1rem;
+            margin: 0 0 20px;
+            opacity: 0.9;
         }
-        .hero .subheading {
-            font-size: 1.2em;
-            margin-bottom: 1.5em;
-            font-style: italic;
-        }
-        .cta-button {
+        .btn {
             display: inline-block;
-            background-color: #e74c3c;
+            background-color: #e63946; /* Red accent */
             color: #fff;
             padding: 15px 30px;
-            font-size: 1.2em;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
             border-radius: 30px;
-            transition: background 0.3s, transform 0.3s;
-            margin: 10px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Shadow under button */
+            transition: transform 0.2s, background-color 0.2s;
         }
-        .cta-button:hover {
-            background-color: #c0392b;
-            transform: scale(1.05);
+        .btn:hover {
+            background-color: #ff4d4d;
+            transform: translateY(-2px);
         }
-        .fans-count {
-            font-size: 0.9em;
-            margin-top: 1em;
-            opacity: 0.8;
+        .tagline {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #ccc;
         }
-
-        /* FEATURES SECTION */
-        .features {
-            background: #000;
-            padding: 60px 0;
-            text-align: center;
+        /* Benefits Section */
+        .benefits {
+            background-color: #111; /* Slightly lighter black */
+            padding: 40px 0;
         }
-        .features h2 {
-            font-size: 2em;
-            margin-bottom: 0.5em;
-        }
-        .features p {
-            max-width: 600px;
-            margin: 0.5em auto 2em;
-            font-size: 1.1em;
-        }
-        .feature-cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .card {
-            background: #222;
+        .benefit-item {
+            margin-bottom: 30px;
             padding: 20px;
-            flex: 1 1 250px;
-            max-width: 300px;
+            background-color: rgba(255,255,255,0.05);
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            background: #333;
-        }
-        .card h3 {
-            margin-top: 0;
-            font-size: 1.3em;
-            color: #e74c3c;
-        }
-        .card p {
-            font-size: 1em;
-            margin: 10px 0 0;
-        }
-
-        /* TEASER SECTION */
-        .teaser {
-            background: linear-gradient(135deg, #111 0%, #222 100%);
-            color: #ddd;
-            padding: 60px 0;
             text-align: center;
         }
-        .teaser h2 {
-            font-size: 2em;
-            color: #e74c3c;
-            margin-bottom: 0.5em;
+        .benefit-item h2 {
+            color: #e63946; /* Red heading */
+            font-size: 1.2rem;
+            margin-bottom: 10px;
         }
-        .teaser-content {
-            max-width: 600px;
-            margin: 0 auto;
+        .benefit-item p {
+            font-size: 0.95rem;
+            margin: 0;
+            color: #eee;
         }
-        .teaser p {
-            margin-bottom: 1.5em;
-            font-size: 1.1em;
-        }
-
-        /* INTERACTIVE COVER SECTION */
-        .interactive-cover-section {
-            background: #000;
-            color: #fff;
-            padding: 60px 0;
+        /* Bottom CTA */
+        .bottom-cta {
             text-align: center;
+            padding: 40px 20px;
         }
-        .interactive-cover-section h2 {
-            font-size: 2em;
-            margin-bottom: 1em;
-        }
-        .interactive-cover {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto 20px;
-        }
-        .interactive-cover .model-img {
+        .bottom-cta .btn {
             width: 100%;
-            border-radius: 10px;
-            transition: transform 0.5s, filter 0.5s;
+            max-width: 300px;
         }
-        .interactive-cover .overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            /* Light flash effect */
-            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.8) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s;
-            border-radius: 10px;
-        }
-        .interactive-cover .model-img:hover {
-            filter: brightness(1.2);
-            transform: scale(1.05);
-        }
-        .interactive-cover .model-img:hover + .overlay {
-            opacity: 1;
-        }
-
-        /* FOOTER */
-        footer {
-            background: #111;
-            text-align: center;
-            padding: 60px 0;
-        }
-        footer h2 {
-            font-size: 2em;
-            margin-bottom: 0.5em;
-            color: #e74c3c;
-        }
-        footer p {
-            font-size: 1.1em;
-            margin-bottom: 1em;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2em;
+        /* Responsive Typography */
+        @media (min-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
-            .features h2, .teaser h2, .interactive-cover-section h2, footer h2 {
-                font-size: 1.8em;
+            .hero-content p {
+                font-size: 1.1rem;
             }
-            .feature-cards {
-                flex-direction: column;
-                align-items: center;
+            .benefit-item h2 {
+                font-size: 1.5rem;
             }
-            .card {
-                max-width: 90%;
-            }
-            .cta-button {
-                width: 80%;
-                padding: 15px 0;
+            .benefit-item p {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
 
-<!-- HERO SECTION -->
-<header class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content container">
-        <h1>Uncensored &amp; Exclusive Content<br>Only for You!</h1>
-        <p class="subheading">See my secret side. I'm waiting...</p>
-        <a href="https://t.me/+Er9QlKyQy-EyNjY0" target="_blank" rel="noopener" class="cta-button">Join Telegram</a>
-        <p class="fans-count">Over 25,000 fans can't be wrong — join now!</p>
-    </div>
-</header>
-
-<!-- FEATURES SECTION -->
-<section class="features container">
-    <h2>Talk to Me Now</h2>
-    <p>All requests welcome. OnlyFans-style content, 100% free and completely uncensored. No sign-ups needed. I can't wait to show you what you crave.</p>
-    <div class="feature-cards">
-        <div class="card">
-            <h3>Exclusive Photos &amp; Videos</h3>
-            <p>Never posted on my social media. Only for my private Telegram fans.</p>
+    <!-- Hero Section with Background Image -->
+    <section class="hero">
+        <div class="hero-content container">
+            <h1>Uncensored & Exclusive Content Only for You!</h1>
+            <p>See my secret side. I'm waiting...</p>
+            <a href="https://t.me/+Er9QlKyQy-EyNjY0" class="btn" target="_blank">Join Telegram</a>
+            <div class="tagline">Over 25,000 fans can't be wrong — join now!</div>
         </div>
-        <div class="card">
-            <h3>Personal Chat</h3>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits container">
+        <div class="benefit-item">
+            <h2>Exclusive Photos & Videos</h2>
+            <p>Never posted on any social media. Only for my private Telegram fans.</p>
+        </div>
+        <div class="benefit-item">
+            <h2>Personal Chat</h2>
             <p>Get to know me intimately. I promise privacy and a personal connection.</p>
         </div>
-        <div class="card">
-            <h3>Total Privacy</h3>
-            <p>Your secrets are safe with me. Enjoy anonymity and freedom.</p>
+        <div class="benefit-item">
+            <h2>Total Privacy</h2>
+            <p>Your secrets are safe with me. Enjoy complete anonymity and freedom.</p>
         </div>
-    </div>
-    <a href="https://t.me/+Er9QlKyQy-EyNjY0" target="_blank" rel="noopener" class="cta-button">Join Telegram</a>
-</section>
+    </section>
 
-<!-- TEASER SECTION -->
-<section class="teaser container">
-    <h2>See What She Never Posts on Social Media...</h2>
-    <div class="teaser-content">
-        <p>Experience the uncensored side of Ehotlovea – from playful sneak peeks to wild adventures. Over 25,000 fans are already enjoying exclusive content.</p>
-        <a href="https://t.me/+Er9QlKyQy-EyNjY0" target="_blank" rel="noopener" class="cta-button">Join Telegram</a>
-    </div>
-</section>
-
-<!-- INTERACTIVE COVER SECTION -->
-<section class="interactive-cover-section container">
-    <h2>Touch to Ignite</h2>
-    <div class="interactive-cover">
-        <!-- The model's cover image -->
-        <img src="model-placeholder.jpg" alt="Ehotlovea Teaser" class="model-img">
-        <div class="overlay"></div>
-    </div>
-    <p>Hover or tap the image to reveal a secret...</p>
-</section>
-
-<!-- FOOTER / FINAL CTA -->
-<footer>
-    <h2>Ready for More?</h2>
-    <p>Join now and let's get personal. No sign-ups, no limits. I'm here for all your fantasies.</p>
-    <a href="https://t.me/+Er9QlKyQy-EyNjY0" target="_blank" rel="noopener" class="cta-button">Join Telegram</a>
-</footer>
+    <!-- Bottom CTA -->
+    <section class="bottom-cta">
+        <a href="https://t.me/+Er9QlKyQy-EyNjY0" class="btn" target="_blank">Join Telegram</a>
+    </section>
 
 </body>
 </html>
