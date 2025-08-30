@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Подписывайся в Telegram — бесплатные видео + эксклюзив</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#0b0b0c">
+
+  <!-- Basic SEO -->
+  <meta name="description" content="Залетай в Telegram: бесплатные видео и эксклюзивный контент популярной модели. Быстрый доступ, ежедневные обновления. 18+">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Бесплатные видео + эксклюзив в Telegram">
+  <meta property="og:description" content="Нажми, чтобы попасть в закрытый канал. 18+">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:image" content="">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Бесплатные видео + эксклюзив в Telegram">
+  <meta name="twitter:description" content="Нажми, чтобы попасть в закрытый канал. 18+">
+  <meta name="twitter:image" content="">
+
+  <style>
+    :root{
+      --bg:#0b0b0c;--fg:#ffffff;--muted:#b7bcc6;--accent:#2ea6ff;--accent-2:#6ae3ff;--ok:#20d07a;--danger:#ff3b6b;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(46,166,255,.15), transparent 60%),
+                  radial-gradient(900px 700px at 0% 100%, rgba(106,227,255,.12), transparent 60%),
+                  var(--bg);
+      color:var(--fg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.35;
+      display:flex;align-items:center;justify-content:center;
+      padding:24px;
+    }
+    .card{
+      width:100%;max-width:680px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:28px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 30px rgba(0,0,0,.35);
+    }
+    .badge{
+      display:inline-flex;gap:8px;align-items:center;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(46,166,255,.15);color:#dff2ff;
+      font-size:12px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;
+      border:1px solid rgba(46,166,255,.35)
+    }
+    h1{
+      font-size: clamp(24px, 4vw, 40px);
+      margin:14px 0 6px;
+      line-height:1.15;
+    }
+    .sub{
+      color:var(--muted);
+      font-size: clamp(14px, 2.4vw, 18px);
+      margin:0 0 18px;
+    }
+    .highlight{
+      display:inline-block;
+      padding:2px 8px;border-radius:8px;
+      background:rgba(32,208,122,.16);
+      color:#d6ffe8;font-weight:600;
+      border:1px solid rgba(32,208,122,.35)
+    }
+    .cta-wrap{display:grid;gap:12px;margin:18px 0 6px}
+    .btn{
+      appearance:none;border:0;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      width:100%;padding:16px 18px;border-radius:12px;
+      font-weight:700;font-size:16px;text-decoration:none;color:#0b1220;
+      transition: transform .06s ease, box-shadow .2s ease, background .2s ease;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      box-shadow: 0 8px 18px rgba(46,166,255,.35), inset 0 -2px 0 rgba(0,0,0,.15);
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn:active{transform:translateY(0)}
+    .btn.secondary{
+      background: rgba(255,255,255,.08);
+      color:#f2f5f9; border:1px solid rgba(255,255,255,.16);
+      box-shadow:none;
+    }
+    .copy{
+      display:flex;gap:10px;align-items:center;justify-content:space-between;
+      padding:12px 12px;border-radius:10px;margin-top:8px;
+      border:1px dashed rgba(255,255,255,.22);color:#e7ecf4;
+      font-size:14px;word-break:break-all;background:rgba(255,255,255,.03)
+    }
+    .copy button{
+      appearance:none;border:0;cursor:pointer;border-radius:8px;
+      padding:8px 10px;font-weight:700;font-size:13px;
+      background:rgba(46,166,255,.18);color:#dff2ff
+    }
+    .trust{
+      display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;color:#c9ced8;font-size:13px
+    }
+    .trust span{display:inline-flex;gap:8px;align-items:center;padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+    .age{
+      margin-top:14px;font-size:12px;color:#a0a6b2
+    }
+    footer{
+      margin-top:18px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#8f96a3;font-size:12px
+    }
+    .mini{font-size:12px;color:#aab1bc}
+    .tg-icon{width:18px;height:18px;display:inline-block;background:conic-gradient(from 220deg at 50% 50%, #2ea6ff, #6ae3ff);mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24"><path d="M9.5 16.6 9.6 13l7-6.3c.3-.3-.1-.4-.5-.2L7.8 12 4.4 10.9c-.7-.2-.7-.7.2-1.1l15.4-6c.7-.3 1.3.2 1.1 1.1l-2.6 15.7c-.1.8-.6 1-1.3.6l-5.6-4.1-2.7 2.6c-.1.1-.3.1-.3 0Z"/></svg>') no-repeat center / contain}
+    .web-icon{width:18px;height:18px;display:inline-block;background:linear-gradient(180deg,#fff,#cfe6ff);mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20Zm0 2c1.9 0 3.6.7 4.9 1.8H7.1A8 8 0 0112 4Zm-8 8c0-.7.1-1.4.3-2h15.4c.2.6.3 1.3.3 2s-.1 1.4-.3 2H4.3c-.2-.6-.3-1.3-.3-2Zm2.1 4.2h9.8A7.9 7.9 0 0112 20a8 8 0 01-3.9-9.8 8.1 8.1 0 00-2 6Z"/></svg>') no-repeat center / contain}
+    .copy-icon{width:16px;height:16px;display:inline-block;background:#dfe8f5;mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24"><path d="M8 7a3 3 0 013-3h6a3 3 0 013 3v6a3 3 0 01-3 3h-6a3 3 0 01-3-3V7Zm-2 3H5a3 3 0 00-3 3v6a3 3 0 003 3h6a3 3 0 003-3v-1H8a4 4 0 01-4-4v-4Z"/></svg>') no-repeat center / contain}
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="h1">
+    <span class="badge">Официальный канал · 18+</span>
+    <h1 id="h1">Бесплатные видео + <span class="highlight">эксклюзивный контент</span> в Telegram</h1>
+    <p class="sub">Здесь вы увидите <strong>бесплатные видео</strong>, а также <strong>эксклюзивный контент</strong> популярной вебкам-модели. Ежедневные обновления. Без спама.</p>
+
+    <div class="cta-wrap">
+      <!-- Основная кнопка — открытие в Telegram (прямая ссылка) -->
+      <a class="btn" href="https://t.me/+Er9QlKyQy-EyNjY0" target="_blank" rel="noopener noreferrer" id="cta-main">
+        <i class="tg-icon" aria-hidden="true"></i> Открыть канал в Telegram
+      </a>
+
+      <!-- Альтернативно — открыть в веб версии Telegram -->
+      <a class="btn secondary" href="https://web.telegram.org/k/#@telegram" target="_blank" rel="noopener noreferrer" id="cta-web">
+        <i class="web-icon" aria-hidden="true"></i> Открыть в веб-версии Telegram
+      </a>
+
+      <!-- Блок со ссылкой и копированием -->
+      <div class="copy" aria-live="polite">
+        <span id="link-text">https://t.me/+Er9QlKyQy-EyNjY0</span>
+        <button id="copy-btn" type="button" aria-label="Скопировать ссылку">
+          <i class="copy-icon" aria-hidden="true"></i> Копировать
+        </button>
+      </div>
+    </div>
+
+    <div class="trust" aria-label="Преимущества канала">
+      <span>Ежедневные публикации</span>
+      <span>Оригинальные видео</span>
+      <span>Без рекламы и спама</span>
+      <span>Закрытый доступ</span>
+    </div>
+
+    <p class="age">Предназначено для лиц старше 18 лет. Нажимая «Открыть канал», вы подтверждаете совершеннолетие и согласие с правилами платформы Telegram.</p>
+
+    <footer>
+      <div>© Канал Telegram. Все права защищены.</div>
+      <div class="mini">Отказ от ответственности: весь контент размещается в соответствии с правилами платформы.</div>
+    </footer>
+  </main>
+
+  <script>
+    (function(){
+      const link = "https://t.me/+Er9QlKyQy-EyNjY0";
+      // Пытаемся открыть приложение Telegram при клике на основную кнопку (для мобильных)
+      document.getElementById('cta-main').addEventListener('click', function(e){
+        // Ничего дополнительно не делаем — используем прямую ссылку.
+      });
+
+      // Копирование ссылки
+      const copyBtn = document.getElementById('copy-btn');
+      copyBtn.addEventListener('click', async function(){
+        try{
+          await navigator.clipboard.writeText(link);
+          copyBtn.textContent = 'Скопировано';
+          setTimeout(()=> copyBtn.innerHTML = '<i class="copy-icon" aria-hidden="true"></i> Копировать', 1600);
+        }catch(err){
+          // Фолбэк, если clipboard API недоступно
+          const sel = window.getSelection();
+          const range = document.createRange();
+          const node = document.getElementById('link-text');
+          range.selectNodeContents(node);
+          sel.removeAllRanges();
+          sel.addRange(range);
+          try{ document.execCommand('copy'); copyBtn.textContent = 'Скопировано'; }catch(e){}
+          setTimeout(()=> copyBtn.innerHTML = '<i class="copy-icon" aria-hidden="true"></i> Копировать', 1600);
+        }
+      });
+
+      // Опционально: если хотите трекать клики — тут можно вставить события GA/Meta
+      // example:
+      // document.getElementById('cta-main').addEventListener('click', ()=> { /* gtag('event','join_click') */ });
+      // document.getElementById('cta-web').addEventListener('click', ()=> { /* gtag('event','web_click') */ });
+    })();
+  </script>
+</body>
+</html>
