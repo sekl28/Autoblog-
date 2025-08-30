@@ -1,86 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ehotlovea’s Private Telegram Channel</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      line-height: 1.5;
-      text-align: center;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin: 0.5em 0;
-      color: #e63946;
-    }
-    .subheading {
-      font-size: 1.2em;
-      color: #ccc;
-    }
-    .hero-img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin: 20px 0;
-    }
-    .btn-telegram {
-      display: inline-block;
-      padding: 15px 30px;
-      margin: 20px 0;
-      background: #e63946;
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.2em;
-      font-weight: bold;
-      border-radius: 30px;
-    }
-    .features {
-      text-align: left;
-      margin: 30px 0;
-      color: #aaa;
-      list-style: none;
-      padding: 0;
-    }
-    .features li {
-      margin: 10px 0;
-      font-size: 1.1em;
-    }
-    footer {
-      font-size: 0.9em;
-      color: #666;
-      margin-top: 40px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Exclusive Ehotlovea Content - Join My Telegram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Base styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background: #111; /* dark background */
+            color: #fff;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        /* Links */
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            /* Placeholder background: replace with model image for live site */
+            background: url('hero-bg.jpg') center center/cover no-repeat;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero .overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            transition: background 0.5s;
+        }
+        .hero:hover .overlay {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            transition: color 0.5s;
+        }
+        .hero h1:hover {
+            color: #e74c3c; /* highlight on hover */
+        }
+        .hero .subheading {
+            font-size: 1.2em;
+            margin-bottom: 1.5em;
+            font-style: italic;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 30px;
+            transition: background 0.3s, transform 0.3s;
+            margin: 10px 0;
+        }
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+        .fans-count {
+            font-size: 0.9em;
+            margin-top: 1em;
+            opacity: 0.8;
+        }
+
+        /* FEATURES SECTION */
+        .features {
+            background: #000;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .features h2 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+        .features p {
+            max-width: 600px;
+            margin: 0.5em auto 2em;
+            font-size: 1.1em;
+        }
+        .feature-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card {
+            background: #222;
+            padding: 20px;
+            flex: 1 1 250px;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            background: #333;
+        }
+        .card h3 {
+            margin-top: 0;
+            font-size: 1.3em;
+            color: #e74c3c;
+        }
+        .card p {
+            font-size: 1em;
+            margin: 10px 0 0;
+        }
+
+        /* TEASER SECTION */
+        .teaser {
+            background: linear-gradient(135deg, #111 0%, #222 100%);
+            color: #ddd;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .teaser h2 {
+            font-size: 2em;
+            color: #e74c3c;
+            margin-bottom: 0.5em;
+        }
+        .teaser-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .teaser p {
+            margin-bottom: 1.5em;
+            font-size: 1.1em;
+        }
+
+        /* INTERACTIVE COVER SECTION */
+        .interactive-cover-section {
+            background: #000;
+            color: #fff;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .interactive-cover-section h2 {
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+        .interactive-cover {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        .interactive-cover .model-img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.5s, filter 0.5s;
+        }
+        .interactive-cover .overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            /* Light flash effect */
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.8) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            border-radius: 10px;
+        }
+        .interactive-cover .model-img:hover {
+            filter: brightness(1.2);
+            transform: scale(1.05);
+        }
+        .interactive-cover .model-img:hover + .overlay {
+            opacity: 1;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #111;
+            text-align: center;
+            padding: 60px 0;
+        }
+        footer h2 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+            color: #e74c3c;
+        }
+        footer p {
+            font-size: 1.1em;
+            margin-bottom: 1em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .features h2, .teaser h2, .interactive-cover-section h2, footer h2 {
+                font-size: 1.8em;
+            }
+            .feature-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                max-width: 90%;
+            }
+            .cta-button {
+                width: 80%;
+                padding: 15px 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Join Ehotlovea’s Private Channel</h1>
-    <p class="subheading">Unlimited live shows, personal chat, and daily exclusive content.</p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Roberto_Nickson_2017_%28Unsplash%29.jpg"
-         alt="Glamorous model teaser" class="hero-img">
-    <a href="https://t.me/+Er9QlKyQy-EyNjY0" class="btn-telegram">Join on Telegram</a>
-    <ul class="features">
-      <li>🔥 Unlimited private shows and exclusive content</li>
-      <li>💬 Direct 1-on-1 chat with Ehotlovea</li>
-      <li>⏰ New photos & videos added daily</li>
-      <li>🔒 100% anonymous – no signup required</li>
-      <li>⭐️ No restrictions – all fantasies welcome</li>
-    </ul>
-    <a href="https://t.me/+Er9QlKyQy-EyNjY0" class="btn-telegram">Open Ehotlovea’s Telegram</a>
-    <footer>
-      By joining, you confirm you are 18+ and agree to receive erotic content. Enjoy freely.
-    </footer>
-  </div>
+
+<!-- HERO SECTION -->
+<header class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content container">
+        <h1>Uncensored &amp; Exclusive Content<br>Only for You!</h1>
+        <p class="subheading">See my secret side. I'm waiting...</p>
+        <a href="https://t.me/+Er9QlKyQy-EyNjY0" target="_blank" rel="noopener" class="cta-button">Join Telegram</a>
+        <p class="fans-count">Over 25,000 fans can't be wrong — join now!</p>
+    </div>
+</header>
+
+<!-- FEATURES SECTION -->
+<section class="features container">
+    <h2>Talk to Me Now</h2>
+    <p>All requests welcome. OnlyFans-style content, 100% free and completely uncensored. No sign-ups needed. I can't wait to show you what you crave.</p>
+    <div class="feature-cards">
+        <div class="card">
+            <h3>Exclusive Photos &amp; Videos</h3>
+            <p>Never posted on my social media. Only for my private Telegram fans.</p>
+        </div>
+        <div class="card">
+            <h3>Personal Chat</h3>
+            <p>Get to know me intimately. I promise privacy and a personal connection.</p>
+        </div>
+        <div class="card">
+            <h3>Total Privacy</h3>
+            <p>Your secrets are safe with me. Enjoy anonymity and freedom.</p>
+        </div>
+    </div>
+    <a href="https://t.me/+Er9QlKyQy-EyNjY0" target="_blank" rel="noopener" class="cta-button">Join Telegram</a>
+</section>
+
+<!-- TEASER SECTION -->
+<section class="teaser container">
+    <h2>See What She Never Posts on Social Media...</h2>
+    <div class="teaser-content">
+        <p>Experience the uncensored side of Ehotlovea – from playful sneak peeks to wild adventures. Over 25,000 fans are already enjoying exclusive content.</p>
+        <a href="https://t.me/+Er9QlKyQy-EyNjY0" target="_blank" rel="noopener" class="cta-button">Join Telegram</a>
+    </div>
+</section>
+
+<!-- INTERACTIVE COVER SECTION -->
+<section class="interactive-cover-section container">
+    <h2>Touch to Ignite</h2>
+    <div class="interactive-cover">
+        <!-- The model's cover image -->
+        <img src="model-placeholder.jpg" alt="Ehotlovea Teaser" class="model-img">
+        <div class="overlay"></div>
+    </div>
+    <p>Hover or tap the image to reveal a secret...</p>
+</section>
+
+<!-- FOOTER / FINAL CTA -->
+<footer>
+    <h2>Ready for More?</h2>
+    <p>Join now and let's get personal. No sign-ups, no limits. I'm here for all your fantasies.</p>
+    <a href="https://t.me/+Er9QlKyQy-EyNjY0" target="_blank" rel="noopener" class="cta-button">Join Telegram</a>
+</footer>
+
 </body>
 </html>
