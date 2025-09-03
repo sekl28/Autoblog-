@@ -3,26 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ehotlovea - A New Universe of Pleasures</title>
-    <meta name="description" content="I am a webcam model with 9 years of experience. With me you don’t just watch a broadcast — you dive into a special world.">
+    <title>ehotlovea - The Experience</title>
+    <meta name="description" content="This is not just a website. This is a universe of pleasures.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Roboto:wght@400&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
     <style>
         :root {
-            --bg-color: #02010a;
-            --text-color: #e_ae_ae_d;
-            --primary-color: #ff007f;
-            --secondary-color: #7f00ff;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --font-display: 'Bai Jamjuree', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --perspective: 1000px;
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --primary-color: #ff005d;
+            --secondary-color: #a600ff;
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Roboto', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,385 +28,377 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: var(--font-body);
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
-            cursor: none;
-        }
-        
-        /* --- Background Effects --- */
-        .bg-gradient {
-            position: fixed;
-            width: 800px;
-            height: 800px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--primary-color), transparent 60%);
-            filter: blur(150px);
-            opacity: 0.2;
-            pointer-events: none;
-            z-index: -2;
-            top: -20%; left: -20%;
-            animation: moveGradient 20s infinite alternate;
-        }
-        .bg-gradient-2 {
-            background: radial-gradient(circle, var(--secondary-color), transparent 60%);
-            top: auto; left: auto;
-            bottom: -20%; right: -20%;
-            animation-delay: -10s;
+            overflow-y: scroll;
         }
 
-        @keyframes moveGradient {
-            from { transform: translate(0, 0) scale(1); }
-            to { transform: translate(100px, 200px) scale(1.2); }
+        #interactive-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
 
-        /* --- Custom Cursor --- */
-        .cursor {
-            position: fixed;
-            width: 24px;
-            height: 24px;
-            border: 2px solid var(--primary-color);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: transform 0.2s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
         }
-        .cursor-dot {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: white;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-        }
-        body:hover .cursor, body:hover .cursor-dot { opacity: 1; }
 
-        /* --- Global Styles --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
-        section { padding: 150px 0; position: relative; }
-        h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.2; color: #fff; }
-        h1 { font-size: clamp(3.5rem, 6vw, 5.5rem); }
-        h2 { font-size: clamp(3rem, 5vw, 4rem); }
-        h3 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
-        p { font-size: 1.1rem; max-width: 600px; color: #b_ab_ac_b; }
-        strong { color: var(--primary-color); }
-        .btn {
-            display: inline-block; background: var(--primary-color); color: #fff;
-            font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; text-decoration: none;
-            padding: 16px 40px; border-radius: 50px; border: 2px solid var(--primary-color);
-            transition: all 0.3s ease;
-        }
-        .btn:hover { background: transparent; transform: scale(1.05); }
-
-        /* Scroll Animations */
-        .reveal { opacity: 0; transform: translateY(50px); transition: opacity 1s ease, transform 1s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* --- Section 1: Intro --- */
-        #intro {
+        
+        section {
             min-height: 100vh;
-            display: flex; align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
         }
-        .intro-grid {
-            display: grid; grid-template-columns: 1fr 400px;
-            gap: 50px; align-items: center;
+
+        h1, h2 { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; }
+        h1 { font-size: clamp(4rem, 12vw, 10rem); line-height: 1; }
+        h2 { font-size: clamp(3rem, 8vw, 6rem); line-height: 1.1; }
+        p { font-size: 1.1rem; max-width: 600px; margin-bottom: 2rem; }
+
+        .btn {
+            display: inline-block; background: transparent; color: #fff;
+            font-family: var(--font-display); text-decoration: none;
+            padding: 18px 45px; border: 2px solid var(--primary-color);
+            border-radius: 50px; transition: all 0.3s ease;
         }
-        .intro-text p { margin: 2rem 0; }
-        .side-video-container {
-            height: 70vh; max-height: 600px; border-radius: 20px;
-            overflow: hidden; position: relative;
-            border: 1px solid var(--border-color);
-            transform: perspective(var(--perspective)) rotateY(-5deg);
-            box-shadow: -20px 20px 50px rgba(0,0,0,0.3);
-        }
-        .side-video-container video { width: 100%; height: 100%; object-fit: cover; }
+        .btn:hover { background: var(--primary-color); box-shadow: 0 0 30px var(--primary-color); }
         
-        /* --- Section 2: About --- */
-        #about { text-align: center; }
-        #about h2 { margin-bottom: 4rem; }
-        .about-content {
-            display: grid; grid-template-columns: 1fr 300px 1fr;
-            align-items: center; gap: 40px;
+        /* --- BLOCK 1: INTRO --- */
+        #intro { text-align: center; }
+        #intro h1 {
+            color: white;
+            mix-blend-mode: difference;
         }
-        .about-quote { font-family: var(--font-display); font-size: 1.8rem; color: #fff; text-align: right; }
-        .about-image { border-radius: 50%; overflow: hidden; box-shadow: 0 0 50px var(--primary-color); }
-        .about-image img { width: 100%; display: block; }
-        .about-text { text-align: left; }
-        
-        /* --- Section 3: Benefits --- */
+
+        /* --- BLOCK 2: HORIZONTAL SCROLL --- */
+        #horizontal-scroll-section {
+            height: 100vh;
+            overflow: hidden;
+        }
+        .horizontal-scroll-wrapper {
+            height: 100%;
+            width: 400vw; /* 4 slides */
+            display: flex;
+        }
+        .horizontal-slide {
+            height: 100%;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+        .slide-content { max-width: 800px; text-align: center; }
+
+        /* --- BLOCK 3: BENEFITS --- */
         #benefits { text-align: center; }
-        #benefits h2 { margin-bottom: 4rem; }
-        .benefits-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px; transform-style: preserve-3d;
+        .benefits-triggers {
+            display: flex; justify-content: center; gap: 5rem;
+            margin-bottom: 3rem;
         }
-        .benefit-card {
-            background: var(--glass-bg); border: 1px solid var(--border-color);
-            border-radius: 15px; padding: 30px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .benefit-card h4 { font-size: 1.5rem; color: #fff; margin: 1rem 0; }
-        .benefit-card .icon { font-size: 2.5rem; color: var(--primary-color); }
-
-        /* --- Section 4: Social Proof --- */
-        #social-proof { text-align: center; }
-        .counter-container { position: relative; }
-        .counter {
+        .trigger {
             font-family: var(--font-display);
-            font-size: clamp(8rem, 20vw, 18rem);
-            font-weight: 700; line-height: 1; color: transparent;
-            -webkit-text-stroke: 2px var(--primary-color);
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: color 0.4s;
         }
-        .social-proof-text {
-            max-width: 500px; margin: 0 auto;
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-        }
+        .trigger.active, .trigger:hover { color: white; }
+        .benefit-content { display: none; }
+        .benefit-content.active { display: block; }
         
-        /* --- Section 5: Rumors --- */
-        .rumor-item {
-            display: grid; grid-template-columns: 300px 1fr;
-            gap: 50px; margin-bottom: 5rem; align-items: start;
+        /* --- BLOCK 4: SOCIAL PROOF --- */
+        #social-proof {
+            display: block;
+            height: 120vh; /* Extra space for animation */
+            padding-top: 10vh;
+            text-align: center;
         }
-        .rumor-item:nth-child(even) { grid-template-columns: 1fr 300px; }
-        .rumor-item:nth-child(even) .rumor-title { text-align: right; }
-        .rumor-item h3 { color: var(--primary-color); }
-        blockquote {
-            padding: 20px; margin-top: 1rem;
-            background: var(--glass-bg); border-left: 3px solid var(--primary-color);
-            border-radius: 5px;
+        #social-proof h2 { color: white; margin-bottom: 2rem; }
+        #text-canvas { display: block; margin: 0 auto; }
+        
+        /* --- BLOCK 5: FINAL --- */
+        #final {
+            background: #000;
+            text-align: center;
         }
-
-        /* Footer */
-        .footer { padding: 50px 0; text-align: center; border-top: 1px solid var(--border-color); }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 992px) {
-            .intro-grid { grid-template-columns: 1fr; text-align: center; }
-            .side-video-container { margin: 2rem auto 0; height: 50vh; width: 100%; max-width: 350px; transform: perspective(0) rotateY(0); }
-            .about-content { grid-template-columns: 1fr; }
-            .about-image { width: 200px; height: 200px; margin: 2rem auto; }
-            .about-quote, .about-text { text-align: center; }
-            .rumor-item, .rumor-item:nth-child(even) { grid-template-columns: 1fr; }
-            .rumor-item .rumor-title, .rumor-item:nth-child(even) .rumor-title { text-align: left; }
+        #final .container {
+             max-width: 800px;
         }
     </style>
 </head>
 <body>
 
-    <div class="cursor"></div>
-    <div class="cursor-dot"></div>
+    <canvas id="interactive-canvas"></canvas>
 
-    <div class="bg-gradient"></div>
-    <div class="bg-gradient bg-gradient-2"></div>
-    
-    <main>
+    <div class="content-wrapper">
         <section id="intro">
             <div class="container">
-                <div class="intro-grid">
-                    <div class="intro-text reveal">
-                        <h1>Let’s Get Acquainted</h1>
-                        <p>Hi! Let’s get to know each other better. I have something to surprise and delight you with. Don’t believe it? Just take a look and see for yourself. 😉</p>
-                        <a href="#about" class="btn">Start our acquaintance</a>
-                    </div>
-                    <div class="side-video-container reveal">
-                        <video playsinline autoplay muted loop src="https://assets.mixkit.co/videos/preview/mixkit-beautiful-woman-in-a-field-of-flowers-2144-large.mp4"></video>
-                    </div>
-                </div>
+                <h1>UNIVERSE OF PLEASURES</h1>
+                <p>This is not a website. This is an experience. Are you ready?</p>
+                <a href="#horizontal-scroll-section" class="btn">Start The Journey</a>
             </div>
         </section>
 
-        <section id="about">
-            <div class="container reveal">
-                <h2>A Special World, Created For You</h2>
-                <div class="about-content">
-                    <div class="about-quote">"Each of my streams is not just a video, but a real show."</div>
-                    <div class="about-image">
-                        <img src="https://images.pexels.com/photos/3775131/pexels-photo-3775131.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Alice">
+        <section id="horizontal-scroll-section">
+            <div class="horizontal-scroll-wrapper">
+                <div class="horizontal-slide">
+                    <div class="slide-content">
+                        <h2>Who I am</h2>
+                        <p>I am a webcam model with 9 years of experience. With me you don’t just watch a broadcast — you dive into a special world where every moment is created for your pleasure.</p>
                     </div>
-                    <div class="about-text">I am a webcam model with 9 years of experience. With me you don’t just watch a broadcast — you dive into a special world where every moment is created for your pleasure. I love to experiment and delight you with new emotions every time.</div>
+                </div>
+                <div class="horizontal-slide">
+                     <div class="slide-content">
+                        <h2>A Real Show</h2>
+                        <p>Each of my streams is not just a video, but a real show. I love to experiment and delight you with new emotions every time.</p>
+                    </div>
+                </div>
+                <div class="horizontal-slide">
+                     <div class="slide-content">
+                        <h2>The Truth</h2>
+                        <p>On the internet, there is a whole sect of amateur detectives who invent incredible stories about me. I will tell you the truth. </p>
+                    </div>
+                </div>
+                 <div class="horizontal-slide">
+                     <div class="slide-content">
+                        <h2>Ready to Join?</h2>
+                        <p>The world where fans become closer to me is already waiting for you.</p>
+                        <a href="#" target="_blank" class="btn">Join Telegram</a>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="benefits">
-            <div class="container reveal">
-                <h2>What You Will Get For Free</h2>
-                <div class="benefits-grid">
-                    <div class="benefit-card reveal">
-                        <div class="icon"><i class="fas fa-video"></i></div>
-                        <h4>Free Videos</h4>
-                        <p>In my Telegram channel I share candid clips available only to subscribers.</p>
-                    </div>
-                    <div class="benefit-card reveal">
-                        <div class="icon"><i class="fas fa-users"></i></div>
-                        <h4>Streams with Models</h4>
-                        <p>Sometimes I go live not alone, but with hot girlfriends. Double the pleasure!</p>
-                    </div>
-                    <div class="benefit-card reveal">
-                        <div class="icon"><i class="fas fa-comments"></i></div>
-                        <h4>Open Fan Chat (Soon)</h4>
-                        <p>We are creating a place where my fans can communicate and become a real community.</p>
-                    </div>
+            <div class="container">
+                <h2>What You Get</h2>
+                <div class="benefits-triggers">
+                    <div class="trigger active" data-target="b1">VIDEOS</div>
+                    <div class="trigger" data-target="b2">STREAMS</div>
+                    <div class="trigger" data-target="b3">COMMUNITY</div>
                 </div>
-                <div style="margin-top: 3rem;">
-                    <p>All this is ready for you for free — just click the button.</p>
-                    <a href="#" target="_blank" class="btn">Join Telegram</a>
+                <div id="b1" class="benefit-content active">
+                    <p>In my Telegram channel I share candid clips and exclusive videos available only to subscribers.</p>
+                </div>
+                <div id="b2" class="benefit-content">
+                    <p>Sometimes I go live not alone, but with hot girlfriends. I guarantee: double the pleasure!</p>
+                </div>
+                 <div id="b3" class="benefit-content">
+                    <p>We are creating a place where my fans can communicate, share impressions and become a real community.</p>
                 </div>
             </div>
         </section>
-
+        
         <section id="social-proof">
-            <div class="container reveal">
-                <div class="counter-container">
-                    <div class="counter" data-target="13000">0</div>
-                    <div class="social-proof-text">
-                        <h2>You Are Not Alone</h2>
-                        <p>Imagine: thousands of people have already become part of our private club. Don’t miss your chance — join the company of like-minded people!</p>
-                        <a href="#" target="_blank" class="btn">Join 13,000+ Fans</a>
-                    </div>
-                </div>
+            <div class="container">
+                <h2>Join The 13,000+</h2>
+                <p>You are not alone. Thousands of people have already become part of our private club.</p>
+                <canvas id="text-canvas"></canvas>
             </div>
         </section>
-
-        <section id="rumors">
-            <div class="container reveal">
-                <div style="text-align: center; max-width: 800px; margin: 0 auto 5rem auto;">
-                    <h2>The Truth Behind The Rumors</h2>
-                    <p>On the internet, there is a whole sect of amateur detectives who invent incredible stories about me. Here’s a brief overview of the most epic rumors and the actual facts.</p>
-                </div>
-
-                <div class="rumor-item reveal">
-                    <div class="rumor-title"><h3>Rumor: I am a prisoner.</h3></div>
-                    <div class="rumor-content">
-                        <p>Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout.</p>
-                        <p><strong>Fact:</strong> It’s a thriller fantasy. I am an independent professional, working with a team of friends, and fully in control of my life and career.</p>
-                    </div>
-                </div>
-
-                <div class="rumor-item reveal">
-                    <div class="rumor-content">
-                        <p>This is the most popular myth: a "monster" forces me to work. That my streams are not pleasure, but torture.</p>
-                        <p><strong>Fact:</strong> No one controls me. Everything I have achieved is the result of my own effort, a well-thought-out strategy, and hard work. 🎓</p>
-                    </div>
-                    <div class="rumor-title"><h3>Rumor: I am "controlled by a monster."</h3></div>
-                </div>
-                
-                <div class="rumor-item reveal">
-                    <div class="rumor-title"><h3>The Author of This Madness?</h3></div>
-                    <div class="rumor-content">
-                        <p>One especially persistent viewer, who positions himself as a knight-savior 🎭. With one hand he writes posts about my “rescue,” and with the other hand… he masturbates on my streams 🤦‍♀️.</p>
-                        <p><strong>Fact:</strong> We have uncovered his identity. Legal steps will not take long. We’ll all laugh together later.</p>
-                    </div>
-                </div>
-
-                <div style="text-align: center; max-width: 800px; margin: 5rem auto 0 auto;" class="reveal">
-                    <h2>Stop Fantasizing — It's Time To Act!</h2>
-                    <p>Thank you to all my true fans for your support and common sense. You are the best. ❤️ Immerse yourself in my real universe of pleasures — click the button and join right now!</p>
-                    <a href="#" target="_blank" class="btn">Join The Real World</a>
-                </div>
+        
+        <section id="final">
+            <div class="container">
+                <h2>Stop Fantasizing — It's Time To Act!</h2>
+                <p>There is no villain, no captivity, and no drama. There is me – and a universe of pleasures waiting for you. Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
+                <a href="#" target="_blank" class="btn">Enter The Universe</a>
             </div>
         </section>
-    </main>
-
-    <footer class="footer">
-        <p>&copy; 2025 ehotlovea. All rights reserved. 18+</p>
-    </footer>
+    </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        
-        // --- 1. Custom Cursor Logic ---
-        const cursor = document.querySelector('.cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
-        const interactiveElements = document.querySelectorAll('a, button');
-
-        window.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
-        });
-
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursor.style.borderColor = 'white';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursor.style.borderColor = 'var(--primary-color)';
-            });
-        });
-
-        // --- 2. 3D Parallax Effect on Mouse Move ---
-        const benefitsGrid = document.querySelector('.benefits-grid');
-        if(benefitsGrid) {
-            benefitsGrid.addEventListener('mousemove', e => {
-                const { clientX, clientY, currentTarget } = e;
-                const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget;
-                const x = (clientX - offsetLeft) / clientWidth - 0.5;
-                const y = (clientY - offsetTop) / clientHeight - 0.5;
-                
-                const cards = currentTarget.querySelectorAll('.benefit-card');
-                cards.forEach(card => {
-                    card.style.transform = `perspective(var(--perspective)) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateZ(10px)`;
-                    card.style.boxShadow = `${-x * 30}px ${-y * 30}px 40px rgba(0,0,0,0.3)`;
-                });
-            });
-             benefitsGrid.addEventListener('mouseleave', e => {
-                const cards = e.currentTarget.querySelectorAll('.benefit-card');
-                cards.forEach(card => {
-                    card.style.transform = `perspective(var(--perspective)) rotateY(0) rotateX(0)`;
-                    card.style.boxShadow = 'none';
-                });
-            });
+    class Particle {
+        constructor(effect, x, y) {
+            this.effect = effect;
+            this.x = Math.random() * this.effect.width;
+            this.y = Math.random() * this.effect.height;
+            this.originX = Math.floor(x);
+            this.originY = Math.floor(y);
+            this.size = this.effect.gap;
+            this.dx = 0;
+            this.dy = 0;
+            this.vx = 0;
+            this.vy = 0;
+            this.force = 0;
+            this.angle = 0;
+            this.distance = 0;
+            this.friction = Math.random() * 0.2 + 0.15;
+            this.ease = Math.random() * 0.1 + 0.005;
+            this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
         }
 
-        // --- 3. Scroll Reveal Animations ---
-        const scrollObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    scrollObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => scrollObserver.observe(el));
+        draw() {
+            this.effect.context.fillStyle = this.color;
+            this.effect.context.fillRect(this.x, this.y, this.size, this.size);
+        }
 
-        // --- 4. Counter Animation ---
-        const counter = document.querySelector('.counter');
-        if (counter) {
-            const animateCounter = () => {
-                const target = +counter.getAttribute('data-target');
-                let current = 0;
-                const duration = 2000;
-                const stepTime = Math.abs(Math.floor(duration / target));
+        update() {
+            this.dx = this.effect.mouse.x - this.x;
+            this.dy = this.effect.mouse.y - this.y;
+            this.distance = this.dx * this.dx + this.dy * this.dy;
+            this.force = -this.effect.mouse.radius / this.distance;
 
-                const timer = setInterval(() => {
-                    current += Math.ceil(target / 100);
-                    if (current >= target) {
-                        clearInterval(timer);
-                        counter.innerText = new Intl.NumberFormat('en-US').format(target);
-                        return;
-                    }
-                    counter.innerText = new Intl.NumberFormat('en-US').format(current);
-                }, stepTime > 0 ? stepTime : 1);
+            if (this.distance < this.effect.mouse.radius) {
+                this.angle = Math.atan2(this.dy, this.dx);
+                this.vx += this.force * Math.cos(this.angle);
+                this.vy += this.force * Math.sin(this.angle);
+            }
+
+            if (this.effect.textCoordinates) {
+                 this.x += (this.vx *= this.friction) + (this.originX - this.x) * this.ease;
+                 this.y += (this.vy *= this.friction) + (this.originY - this.y) * this.ease;
+            } else {
+                 this.x += (this.vx *= this.friction);
+                 this.y += (this.vy *= this.friction);
+            }
+        }
+    }
+
+    class Effect {
+        constructor(context, canvasWidth, canvasHeight) {
+            this.context = context;
+            this.canvasWidth = canvasWidth;
+            this.canvasHeight = canvasHeight;
+            this.particles = [];
+            this.gap = 2;
+            this.mouse = {
+                radius: 3000,
+                x: undefined,
+                y: undefined
             };
-
-            const counterObserver = new IntersectionObserver(entries => {
-                if (entries[0].isIntersecting && !counter.classList.contains('animated')) {
-                    animateCounter();
-                    counter.classList.add('animated');
-                    counterObserver.unobserve(counter);
-                }
-            }, { threshold: 0.8 });
-            counterObserver.observe(counter);
+            this.textCoordinates = null;
+            window.addEventListener('mousemove', e => {
+                this.mouse.x = e.clientX;
+                this.mouse.y = e.clientY;
+            });
         }
+
+        render() {
+            this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+            this.particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+        }
+        
+        setTextCoordinates(coordinates) {
+            this.textCoordinates = coordinates;
+            this.particles = [];
+             for(let y = 0; y < this.canvasHeight; y += this.gap) {
+                for (let x = 0; x < this.canvasWidth; x += this.gap) {
+                    const index = (y * this.canvasWidth + x) * 4;
+                    const alpha = coordinates.data[index + 3];
+                    if (alpha > 0) {
+                       this.particles.push(new Particle(this, x, y));
+                    }
+                }
+            }
+        }
+        
+        clearText() {
+            this.textCoordinates = null;
+            this.particles = [];
+            for (let i = 0; i < 2000; i++) {
+                 this.particles.push(new Particle(this));
+            }
+        }
+    }
+
+    // Main script execution
+    document.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.getElementById('interactive-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const effect = new Effect(ctx, canvas.width, canvas.height);
+        effect.clearText();
+
+        function animate() {
+            effect.render();
+            requestAnimationFrame(animate);
+        }
+        animate();
+        
+        window.addEventListener('resize', () => {
+             canvas.width = window.innerWidth;
+             canvas.height = window.innerHeight;
+             // re-init effect on resize
+        });
+
+        // Horizontal Scroll
+        const wrapper = document.querySelector('.horizontal-scroll-wrapper');
+        const section = document.querySelector('#horizontal-scroll-section');
+        gsap.to(wrapper, {
+            x: () => -(wrapper.scrollWidth - document.documentElement.clientWidth) + "px",
+            ease: "none",
+            scrollTrigger: {
+                trigger: section,
+                pin: true,
+                scrub: 1,
+                end: () => "+=" + (wrapper.scrollWidth - document.documentElement.clientWidth),
+            }
+        });
+
+        // Benefits Triggers
+        const triggers = document.querySelectorAll('.trigger');
+        const contents = document.querySelectorAll('.benefit-content');
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                triggers.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+                trigger.classList.add('active');
+                document.getElementById(trigger.dataset.target).classList.add('active');
+            });
+        });
+        
+        // Text to Particle
+        const textCanvas = document.getElementById('text-canvas');
+        const textCtx = textCanvas.getContext('2d');
+        const socialProofSection = document.getElementById('social-proof');
+        
+        function drawText() {
+            const size = Math.min(window.innerWidth * 0.8, 800);
+            textCanvas.width = size;
+            textCanvas.height = size * 0.3;
+            textCtx.clearRect(0, 0, textCanvas.width, textCanvas.height);
+            
+            const gradient = textCtx.createLinearGradient(0, 0, textCanvas.width, textCanvas.height);
+            gradient.addColorStop(0.3, 'red');
+            gradient.addColorStop(0.5, 'orange');
+            gradient.addColorStop(0.7, 'purple');
+
+            textCtx.fillStyle = gradient;
+            textCtx.textAlign = 'center';
+            textCtx.textBaseline = 'middle';
+            const fontSize = Math.floor(textCanvas.width / 5);
+            textCtx.font = `bold ${fontSize}px ${getComputedStyle(document.body).getPropertyValue('--font-display')}`;
+            textCtx.fillText('13,000+', textCanvas.width / 2, textCanvas.height / 2);
+            
+            return textCtx.getImageData(0, 0, textCanvas.width, textCanvas.height);
+        }
+
+        const textObserver = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) {
+                 effect.setTextCoordinates(drawText());
+            } else {
+                 effect.clearText();
+            }
+        }, { threshold: 0.1 });
+        
+        textObserver.observe(socialProofSection);
+
     });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </body>
 </html>
+
