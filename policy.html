@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ehotlovea - Давай познакомимся!</title>
-    <meta name="description" content="Привет! Давай познакомимся поближе… Загляни на мою трансляцию и присоединяйся к 13 000+ фанатов в моем закрытом сообществе.">
+    <title>ehotlovea - Слухи обо мне</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
-        /* --- ОБЩИЕ СТИЛИ И ПЕРЕМЕННЫЕ --- */
+        /* --- ИСПОЛЬЗУЕМ ТЕ ЖЕ ОСНОВНЫЕ СТИЛИ, ЧТО И НА ГЛАВНОЙ --- */
         :root {
-            --color-background: #0d0a14; /* Глубокий фиолетовый/черный */
+            --color-background: #0d0a14;
             --color-text: #e0e0e0;
-            --color-primary: #f955c7; /* Неоново-розовый */
-            --color-secondary: #6d55f9; /* Пурпурный */
-            --color-telegram: #0088cc; /* Голубой */
+            --color-primary: #f955c7;
+            --color-secondary: #6d55f9;
+            --color-telegram: #0088cc;
             --font-main: 'Inter', sans-serif;
-            --font-display: 'Playfair Display', serif;
+            --font-display: 'Playfair+Display', serif;
         }
 
         * {
@@ -38,36 +36,16 @@
             font-family: var(--font-main);
             background-color: var(--color-background);
             color: var(--color-text);
-            line-height: 1.6;
-            overflow-x: hidden;
+            line-height: 1.7;
+            font-size: 1.1rem;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 800px; /* Делаем контейнер уже для лучшей читаемости */
             margin: 0 auto;
             padding: 0 20px;
         }
         
-        section {
-            padding: 100px 0;
-            overflow: hidden;
-        }
-
-        h1, h2, h3 {
-            font-family: var(--font-display);
-            line-height: 1.2;
-        }
-        
-        h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
         .btn {
             display: inline-block;
             padding: 15px 35px;
@@ -91,73 +69,21 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(249, 85, 199, 0.6);
         }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--color-primary);
-            border: 2px solid var(--color-primary);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--color-primary);
-            color: white;
-        }
         
-        /* Стили для анимации появления */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
-        }
-        
-        .reveal.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- МОДАЛЬНОЕ ОКНО 18+ --- */
-        .age-gate {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            flex-direction: column;
-            padding: 20px;
-            transition: opacity 0.5s;
-        }
-        .age-gate h2 {
-            font-size: 2.5rem;
-            color: white;
-        }
-        .age-gate p {
-            font-size: 1.2rem;
-            margin: 1rem 0 2rem;
-        }
-        .age-gate-buttons button {
-            margin: 0 10px;
-        }
-
         /* --- HEADER --- */
         .header {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             z-index: 100;
             padding: 20px 0;
+            background-color: rgba(13, 10, 20, 0.8);
+            backdrop-filter: blur(10px);
         }
         
         .header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1100px;
         }
         
         .logo {
@@ -177,230 +103,77 @@
         .nav-links a:hover {
             color: var(--color-primary);
         }
-
-        /* --- БЛОК 1: HERO --- */
-        #hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        .hero-video-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -2;
-        }
-
-        .hero-video-bg video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(13, 10, 20, 0.7);
-            z-index: -1;
-        }
-
-        #hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        #hero p {
-            font-size: 1.3rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            color: rgba(255, 255, 255, 0.9);
+        
+        /* --- СТИЛИ СТРАНИЦЫ СЛУХОВ --- */
+        .rumors-page {
+            padding: 80px 0;
         }
         
-        .note {
-            font-size: 0.9rem;
-            display: block;
-            margin-top: 10px;
-            opacity: 0.8;
-        }
-        
-        /* Модальное окно для видео */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            visibility: hidden;
-            opacity: 0;
-            transition: visibility 0s, opacity 0.5s;
-        }
-
-        .lightbox.visible {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .lightbox-content {
-            position: relative;
-            width: 90%;
-            max-width: 960px;
-            height: auto;
-            max-height: 90vh;
-        }
-        
-        .lightbox-content video {
-            width: 100%;
-            height: auto;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            font-size: 2.5rem;
-            color: white;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        /* --- БЛОК 2: О МОДЕЛИ --- */
-        #about {
-            background-color: #110d1b;
-        }
-        
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .about-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        
-        .about-text h2 {
-            text-align: left;
-            margin-bottom: 1.5rem;
-        }
-        
-        .about-text strong {
-            color: var(--color-primary);
-        }
-
-        /* --- БЛОК 3: ПРЕИМУЩЕСТВА --- */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 3rem;
-        }
-        
-        .benefit-item {
-            background: rgba(255,255,255,0.05);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        
-        .benefit-item:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.1);
-        }
-        
-        .benefit-item .icon {
-            font-size: 3rem;
-            color: var(--color-primary);
-            margin-bottom: 1rem;
-        }
-        
-        .benefit-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .benefits-cta {
-            text-align: center;
-        }
-        
-        .benefits-cta p {
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            font-size: 1.1rem;
-        }
-
-        /* --- БЛОК 4: СОЦИАЛЬНОЕ ДОКАЗАТЕЛЬСТВО --- */
-        #social-proof {
-             background: linear-gradient(rgba(13, 10, 20, 0.9), rgba(13, 10, 20, 0.9)), url('https://via.placeholder.com/1920x1080/0d0a14/FFFFFF?text=Background') center/cover no-repeat; /* ЗАМЕНИТЕ НА ВАШ ФОН */
-        }
-        
-        .social-proof-content {
-            text-align: center;
-        }
-        
-        .counter {
-            font-size: 6rem;
-            font-weight: bold;
+        .rumors-page h1 {
             font-family: var(--font-display);
-            color: var(--color-primary);
+            font-size: 3.5rem;
+            text-align: center;
             margin-bottom: 1rem;
+            color: var(--color-primary);
         }
         
-        .social-proof-content p {
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
+        .rumors-page .subtitle {
+            text-align: center;
             font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 4rem;
         }
-
-        /* --- БЛОК 5: ФИНАЛЬНЫЙ ПРИЗЫВ --- */
-        #final-cta {
-            background-color: #110d1b;
+        
+        .rumor-block {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .rumor-block:last-child {
+            border-bottom: none;
+        }
+        
+        .rumor-block h2 {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .rumor-block h2 .icon {
+            margin-right: 15px;
+            font-size: 2rem;
+        }
+        
+        blockquote {
+            background-color: rgba(255,255,255,0.05);
+            border-left: 4px solid var(--color-primary);
+            padding: 20px;
+            margin: 1.5rem 0;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        strong {
+            color: var(--color-primary);
+        }
+        
+        .final-call {
+            margin-top: 4rem;
+            padding: 40px;
+            background: linear-gradient(45deg, rgba(249, 85, 199, 0.1), rgba(109, 85, 249, 0.1));
+            border-radius: 20px;
             text-align: center;
         }
         
-        .final-cta-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .final-call h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
         
-        .final-cta-content .vip-teaser {
-            font-style: italic;
-            opacity: 0.8;
-            margin-top: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .final-cta-content .btn {
-            padding: 20px 50px;
-            font-size: 1.3rem;
-        }
-        
-        .safety-note {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
         /* --- FOOTER --- */
         .footer {
             padding: 30px 0;
@@ -408,200 +181,83 @@
             border-top: 1px solid rgba(255,255,255,0.1);
         }
         
-        .footer p {
-            margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.6;
-        }
+        .footer p { margin: 0; font-size: 0.9rem; opacity: 0.6; }
+        .footer a { color: var(--color-primary); text-decoration: none; }
         
-        .footer a {
-            color: var(--color-primary);
-            text-decoration: none;
-        }
-
-        /* --- АДАПТИВНОСТЬ --- */
         @media (max-width: 768px) {
-            h2 {
-                font-size: 2.5rem;
-            }
-            
-            section {
-                padding: 60px 0;
-            }
-            
-            .header .nav-links {
-                display: none; /* Упрощаем шапку для мобильных, можно добавить бургер-меню при необходимости */
-            }
-
-            #hero h1 {
-                font-size: 2.8rem;
-            }
-
-            #hero p {
-                font-size: 1.1rem;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .about-image {
-                margin-bottom: 30px;
-            }
-            
-            .about-text h2 {
-                text-align: center;
-            }
-            
-            .counter {
-                font-size: 4rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .age-gate h2 { font-size: 1.8rem; }
-            .age-gate p { font-size: 1rem; }
-            .age-gate-buttons {
-                display: flex;
-                flex-direction: column;
-            }
-            .age-gate-buttons .btn {
-                width: 100%;
-                margin: 5px 0;
-            }
-
-            #hero h1 { font-size: 2.2rem; }
-            h2 { font-size: 2rem; }
-            .btn {
-                width: 100%;
-                padding: 15px 20px;
-            }
-            .final-cta-content .btn {
-                padding: 18px 20px;
-            }
+            body { font-size: 1rem; }
+            .rumors-page h1 { font-size: 2.8rem; }
+            .rumor-block h2 { font-size: 1.8rem; }
+            .header .nav-links { display: none; }
         }
 
     </style>
 </head>
 <body>
-
-    <div class="age-gate" id="age-gate">
-        <div class="age-gate-content">
-            <h2>Вам есть 18 лет?</h2>
-            <p>Этот сайт содержит материалы для взрослых и предназначен для лиц старше 18 лет.</p>
-            <div class="age-gate-buttons">
-                <button class="btn btn-primary" id="age-confirm">Да, мне есть 18</button>
-                <button class="btn btn-secondary" id="age-deny">Нет</button>
-            </div>
-        </div>
-    </div>
-    
-    <div class="lightbox" id="video-lightbox">
-        <div class="lightbox-content">
-            <span class="lightbox-close" id="lightbox-close">&times;</span>
-            <video id="demo-video" src="https://via.placeholder.com/1280x720.mp4" controls></video>
-        </div>
-    </div>
-
     <header class="header">
         <div class="container">
-            <a href="#" class="logo">ehotlovea</a>
+            <a href="index.html" class="logo">ehotlovea</a>
             <nav class="nav-links">
-                <a href="rumors.html">Слухи обо мне</a>
+                <a href="index.html">← Назад на главную</a>
                 <a href="#">В Telegram</a>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section id="hero">
-            <div class="hero-video-bg">
-                <video playsinline autoplay muted loop poster="https://via.placeholder.com/1920x1080/0d0a14/FFFFFF?text=Loading...">
-                    <source src="https://via.placeholder.com/1920x1080.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="hero-overlay"></div>
-            <div class="hero-content container reveal">
-                <h1>Привет! Давай познакомимся поближе…</h1>
-                <p>Просто загляни хотя бы на 5–10 секунд моей реальной трансляции и убедись сам 😉
-                   <span class="note">немного из моей трансляции – посмотри, как там весело!</span>
-                </p>
-                <button class="btn btn-primary" id="play-video-btn"><i class="fa-solid fa-play"></i> Посмотреть</button>
-            </div>
-        </section>
+    <main class="rumors-page">
+        <div class="container">
+            <h1>Слухи обо мне</h1>
+            <p class="subtitle">Что говорят в интернете и где на самом деле правда</p>
 
-        <section id="about">
-            <div class="container reveal">
-                <div class="about-grid">
-                    <div class="about-image">
-                        <img src="https://via.placeholder.com/500x600/CCCCCC/FFFFFF?text=Фото+Алисы" alt="Вебкам-модель Алиса">
-                    </div>
-                    <div class="about-text">
-                        <h2>Кто я?</h2>
-                        <p>Я вебкам-модель с <strong>9-летним опытом</strong>. Для меня это не просто работа, а искусство и особый мир, который я создаю для своих фанатов.</p>
-                        <p>Каждая моя трансляция — это <strong>настоящее шоу</strong>. Я люблю экспериментировать, пробовать новое и радовать вас эмоциями, которые вы не получите больше нигде.</p>
-                        <a href="rumors.html" class="btn btn-secondary">Узнать больше обо мне →</a>
-                    </div>
-                </div>
+            <div class="intro">
+                <p>В интернете существует целая секта детективов-любителей с Reddit, которые сочиняют обо мне самые невероятные истории. Давайте разберём самые популярные из них.</p>
             </div>
-        </section>
 
-        <section id="benefits">
-            <div class="container reveal">
-                <h2>Что ты получишь бесплатно</h2>
-                <div class="benefits-grid">
-                    <div class="benefit-item">
-                        <div class="icon"><i class="fa-solid fa-video"></i></div>
-                        <h3>Бесплатные видео</h3>
-                        <p>Эксклюзивные и откровенные ролики, доступные только в моём закрытом Telegram-канале.</p>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="icon"><i class="fa-solid fa-users"></i></div>
-                        <h3>Весёлые стримы</h3>
-                        <p>Горячие совместные эфиры с другими моделями – двойное удовольствие гарантировано!</p>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="icon"><i class="fa-solid fa-comments"></i></div>
-                        <h3>Чат фанатов</h3>
-                        <p>Скоро откроется наше сообщество, где мы сможем общаться ещё ближе. Будь среди первых!</p>
-                    </div>
-                     <div class="benefit-item">
-                        <div class="icon"><i class="fa-solid fa-gift"></i></div>
-                        <h3>И это только начало…</h3>
-                        <p>Внутри тебя ждёт ещё много сюрпризов. Я люблю удивлять своих подписчиков.</p>
-                    </div>
+            <article>
+                <div class="rumor-block">
+                    <h2><span class="icon">🔗</span>Слух 1: "Я – пленница"</h2>
+                    <p>Да-да, по версии форумных экспертов, меня держат в заложниках, морят голодом и заставляют работать. Кажется, кто-то насмотрелся триллеров.</p>
+                    <blockquote>"Is ehotlovea a hostage and is she being starved?"</blockquote>
+                    <p>На самом деле, я просто люблю свою работу и иногда так увлекаюсь, что забываю поесть. Никакой драмы.</p>
                 </div>
-                <div class="benefits-cta">
-                     <p>Всё это уже готово для тебя бесплатно — просто жми на кнопку и забирай свой доступ.</p>
-                     <a href="#" class="btn btn-primary"><i class="fa-brands fa-telegram"></i> Вступить в Telegram</a>
+                
+                <div class="rumor-block">
+                    <h2><span class="icon">👹</span>Слух 2: "Меня контролирует монстр"</h2>
+                    <p>Говорят, за кадром стоит некий «кукловод», который всем управляет. Звучит как сюжет для плохого фильма, правда?</p>
+                    <p>На самом деле, я сама себе хозяйка. Все решения, идеи для шоу и эксперименты – это <strong>моя инициатива</strong>. Я работаю с командой, но финальное слово всегда за мной.</p>
                 </div>
-            </div>
-        </section>
+                
+                <div class="rumor-block">
+                    <h2><span class="icon">✈️</span>Слух 3: "Я постоянно в бегах"</h2>
+                    <p>Теория гласит, что я постоянно переезжаю, скрываясь от этого самого «монстра». Очень драматично!</p>
+                    <p>Я действительно люблю путешествовать и менять обстановку. Это вдохновляет меня и делает мои шоу разнообразнее. Но я делаю это по своей воле, а не потому что от кого-то бегу.</p>
+                </div>
 
-        <section id="social-proof">
-            <div class="container reveal">
-                <div class="social-proof-content">
-                    <h2>Со мной уже...</h2>
-                    <div class="counter" data-target="13000">0</div>
-                    <h2>...подписчиков! Ты не один такой!</h2>
-                    <p>Представь: тысячи людей уже стали частью нашего закрытого клуба. Они получают то, о чём многие только мечтают… и только избранные проходят дальше. Не упусти свой шанс — присоединяйся и почувствуй себя в компании единомышленников!</p>
-                    <a href="#" class="btn btn-primary">Присоединиться к 13 000+ фанатов</a>
+                <div class="rumor-block">
+                    <h2><span class="icon">🕵️</span>Слух 4: "За мной следят спецслужбы"</h2>
+                    <p>Это уже совсем из области фантастики. Видимо, моя жизнь кажется кому-то настолько интересной, что в неё решили вписать шпионские интриги. Увы, всё гораздо прозаичнее.</p>
                 </div>
-            </div>
-        </section>
+                
+                <div class="rumor-block">
+                    <h2><span class="icon">💰</span>Слух 5: "У меня нет денег и успеха"</h2>
+                    <p>Некоторые считают, что все мои доходы забирает тот самый мифический «злодей». Это самая смешная теория. Моя работа приносит мне отличный доход, и я полностью финансово независима. Я успешна, потому что люблю то, что делаю, и вы это чувствуете.</p>
+                </div>
+                
+                <div class="rumor-block">
+                    <h2>Кто распускает эти слухи?</h2>
+                    <p>Автор всей этой фантазии — один настырный зритель, который вообразил себя моим рыцарем-спасителем 🎭. Сначала он пытался добиться моего внимания, а получив отказ, решил создать вокруг меня драму. Иронично, что этот же «спаситель» был пойман за тем, что мастурбировал на моих стримах 🤦‍♀️.</p>
+                    <blockquote>"Очнитесь, не верьте ей! Всё это написано по приказу того самого злодея…"</blockquote>
+                    <p>Да, именно так он пытается убедить всех в своей правоте. Не ведитесь на провокации.</p>
+                </div>
 
-        <section id="final-cta">
-            <div class="container reveal">
-                <div class="final-cta-content">
-                    <h2>Хватит фантазировать — настало время действовать!</h2>
-                    <p>Не забывай — все эти удовольствия ты получаешь совершенно бесплатно. Мир, где фанаты становятся ближе ко мне, уже ждёт тебя. Погружайся в мою вселенную удовольствий!</p>
-                    <p class="vip-teaser">А для самых смелых у меня припасён VIP-уровень, но обо всём расскажу позже 😉.</p>
-                    <a href="#" class="btn btn-primary">Вступить прямо сейчас!</a>
-                    <p class="safety-note"><i class="fa-solid fa-lock"></i> Ваши данные в безопасности, отписка в любой момент.</p>
+                <div class="final-call">
+                    <h2>А теперь – к фактам</h2>
+                    <p>Правда в том, что никакого злодея, плена и драмы нет. Есть только я, моя любовь к своему делу и вы, мои дорогие зрители. Хочешь лично убедиться, что всё это лишь выдумки?</p>
+                    <p>Приходи в мой закрытый клуб. Там ты увидишь настоящую меня.</p>
+                    <a href="#" class="btn btn-primary">Вступить и увидеть правду</a>
                 </div>
-            </div>
-        </section>
+            </article>
+        </div>
     </main>
 
     <footer class="footer">
@@ -610,100 +266,5 @@
             <p><a href="#">Политика конфиденциальности</a></p>
         </div>
     </footer>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        // --- ЛОГИКА МОДАЛЬНОГО ОКНА 18+ ---
-        const ageGate = document.getElementById('age-gate');
-        const confirmBtn = document.getElementById('age-confirm');
-        const denyBtn = document.getElementById('age-deny');
-
-        if (sessionStorage.getItem('isAgeVerified') !== 'true') {
-            ageGate.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        } else {
-            ageGate.style.display = 'none';
-        }
-
-        confirmBtn.addEventListener('click', () => {
-            ageGate.style.opacity = '0';
-            setTimeout(() => {
-                ageGate.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 500);
-            sessionStorage.setItem('isAgeVerified', 'true');
-        });
-
-        denyBtn.addEventListener('click', () => {
-            window.location.href = 'https://google.com'; // Редирект на другой сайт
-        });
-
-        // --- ЛОГИКА ЛАЙТБОКСА ДЛЯ ВИДЕО ---
-        const playBtn = document.getElementById('play-video-btn');
-        const lightbox = document.getElementById('video-lightbox');
-        const closeBtn = document.getElementById('lightbox-close');
-        const demoVideo = document.getElementById('demo-video');
-        
-        playBtn.addEventListener('click', () => {
-            lightbox.classList.add('visible');
-            demoVideo.play();
-        });
-
-        const closeLightbox = () => {
-            lightbox.classList.remove('visible');
-            demoVideo.pause();
-            demoVideo.currentTime = 0;
-        }
-
-        closeBtn.addEventListener('click', closeLightbox);
-        
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-
-        // --- ЛОГИКА АНИМАЦИИ СЧЕТЧИКА ---
-        const counter = document.querySelector('.counter');
-        const animateCounter = () => {
-            const target = +counter.getAttribute('data-target');
-            const c = +counter.innerText;
-
-            const increment = target / 200; // Скорость анимации
-
-            if (c < target) {
-                counter.innerText = `${Math.ceil(c + increment)}`;
-                setTimeout(animateCounter, 10);
-            } else {
-                counter.innerText = new Intl.NumberFormat('ru-RU').format(target) + "+";
-            }
-        };
-
-        // --- АНИМАЦИЯ ЭЛЕМЕНТОВ ПРИ ПРОКРУТКЕ ---
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    
-                    // Запуск счетчика, когда он виден
-                    if (entry.target.contains(counter) && !counter.classList.contains('animated')) {
-                         animateCounter();
-                         counter.classList.add('animated');
-                    }
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        revealElements.forEach(el => {
-            observer.observe(el);
-        });
-
-    });
-    </script>
 </body>
 </html>
