@@ -1,441 +1,321 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ehotlovea - The Unfiltered Experience</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Твоя тайна ждёт...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+    <style>
+        /* --- ОБЩИЕ СТИЛИ И СБРОС --- */
+        :root {
+            --primary-color: #f0f; /* Яркий неоновый пурпурный */
+            --background-color: #0d0d1a; /* Глубокий тёмно-синий */
+            --text-color: #e0e0e0; /* Светло-серый текст */
+            --dark-grey: #1a1a2e; /* Более тёмный фон для блоков */
+        }
 
-  <!-- Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Jost:wght@400;500&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
 
-  <style>
-    /* ==========================================================================
-       THE KINETIC & ADAPTIVE GRID
-       PART 1/5: Base + Design System
-    ========================================================================== */
-    :root{
-      --color-light-background:#F0EDE9;
-      --color-light-text:#121212;
-      --color-light-accent:#E52422;
-      --color-light-muted:#B0AFAF;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-      --color-dark-background:#121212;
-      --color-dark-text:#D1D1D1;
-      --color-dark-accent:#338BFF;
-      --color-dark-muted:#555555;
+        /* --- СТИЛИ ДЛЯ АНИМАЦИИ ПОЯВЛЕНИЯ --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
 
-      --font-display:'Syne',sans-serif;
-      --font-body:'Jost',sans-serif;
-      --font-mono:'Space Mono',monospace;
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-      --font-size-base:clamp(16px,1.1vw,18px);
-      --font-size-sm:clamp(.8rem,.8vw,.9rem);
-      --font-size-md:clamp(1rem,1.2vw,1.2rem);
-      --font-size-lg:clamp(1.5rem,2vw,2rem);
-      --font-size-xl:clamp(2rem,4vw,3.5rem);
-      --font-size-xxl:clamp(3rem,8vw,7rem);
-      --font-size-display:clamp(4rem,12vw,11rem);
+        /* --- БЛОК "ЗНАКОМСТВО" (ВИДЕО) --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+        }
 
-      --line-height-tight:1.1;
-      --line-height-body:1.7;
+        .video-player-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+        }
 
-      --space-xxs:clamp(.25rem,.5vw,.5rem);
-      --space-xs:clamp(.5rem,1vw,1rem);
-      --space-s:clamp(1rem,2vw,2rem);
-      --space-m:clamp(2rem,4vw,4rem);
-      --space-l:clamp(4rem,8vw,8rem);
-      --space-xl:clamp(8rem,16vw,16rem);
+        #main-video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
 
-      --border-radius:12px;
-      --border-width:2px;
-      --shadow-sm:0 4px 10px rgba(0,0,0,.05);
-      --shadow-md:0 8px 30px rgba(0,0,0,.1);
+        .video-thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
-      --ease-in-out:cubic-bezier(.77,0,.175,1);
-      --duration-fast:.3s;
-      --duration-normal:.6s;
-    }
+        .thumb {
+            width: 120px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
 
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    ::selection{background:var(--color-light-accent);color:#fff}
-    html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth}
-    body{
-      font-family:var(--font-body);
-      font-size:var(--font-size-base);
-      line-height:var(--line-height-body);
-      background:var(--color-light-background);
-      color:var(--color-light-text);
-      transition:background-color var(--duration-normal) var(--ease-in-out),color var(--duration-normal) var(--ease-in-out);
-      overflow-x:hidden;
-    }
+        .thumb:hover {
+            transform: scale(1.1);
+            border-color: var(--primary-color);
+        }
+        
+        .thumb.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px var(--primary-color);
+        }
 
-    /* ==========================================================================
-       PART 2/5: Layout & Grid
-    ========================================================================== */
-    .main-wrapper{width:100%;position:relative;z-index:1}
-    .section{position:relative;width:100%;padding:var(--space-l) 0}
-    .section--full-height{min-height:100vh}
-    .grid-container{
-      display:grid;
-      grid-template-columns:repeat(12,1fr);
-      grid-gap:clamp(10px,2vw,20px);
-      width:100%;
-      max-width:1800px;
-      margin:0 auto;
-      padding:0 var(--space-m);
-    }
+        /* --- БЛОК "СЛУХИ" --- */
+        .rumors-section {
+            padding: 80px 0;
+        }
+        
+        .rumors-content {
+            background-color: var(--dark-grey);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
 
-    /* Typography */
-    .heading-display{
-      font-family:var(--font-display);
-      font-size:var(--font-size-display);
-      line-height:var(--line-height-tight);
-      text-transform:uppercase;
-      color:var(--color-light-text);
-      z-index:3;position:relative;
-    }
-    .body-text{
-      font-size:var(--font-size-md);
-      line-height:var(--line-height-body);
-      z-index:3;position:relative;
-      max-width:40ch;
-    }
+        .rumors-section h1 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px var(--primary-color);
+        }
 
-    /* Act I */
-    #intro .grid-container{align-items:center;min-height:100vh}
-    .intro__heading{mix-blend-mode:multiply}
-    #about .grid-container{align-items:center;padding-top:var(--space-l);padding-bottom:var(--space-l)}
-    .about__text-content{align-self:center}
+        .rumors-section p, .rumors-section li {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
 
-    .marquee-section{
-      padding:var(--space-m) 0;overflow:hidden;
-      background:var(--color-light-accent);color:var(--color-light-background);
-      border-top:var(--border-width) solid var(--color-light-text);
-      border-bottom:var(--border-width) solid var(--color-light-text);
-    }
+        .rumors-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
 
-    #benefits-social .grid-container{align-items:center;padding-top:var(--space-l);padding-bottom:var(--space-l)}
-    .benefits__content{align-self:center}
-    .social-proof__content{text-align:right;align-self:center}
+        .rumors-section li::before {
+            content: '⚡';
+            margin-right: 15px;
+            color: var(--primary-color);
+        }
+        
+        .rumors-section i {
+            font-family: 'Roboto', sans-serif;
+            font-style: italic;
+            color: #b0b0b0;
+        }
+        
+        .rumors-section strong {
+            color: #fff;
+            font-weight: 700;
+        }
 
-    /* Act II */
-    #act2{background:var(--color-light-background);position:relative;z-index:10}
-    #rumors{padding-top:var(--space-xl);padding-bottom:var(--space-xl)}
-    .rumors__intro{text-align:center;padding-bottom:var(--space-l)}
-    .rumors__intro .body-text{max-width:60ch;margin:0 auto}
-    .rumor-block{padding:var(--space-l) 0;border-bottom:1px solid var(--color-dark-muted)}
-    .rumor-block:first-of-type{border-top:1px solid var(--color-dark-muted)}
-    .full-width-text{text-align:center}
-    .full-width-text .body-text{margin-left:auto;margin-right:auto}
-    .full-width-text .button{margin-top:var(--space-m)}
+        /* --- КНОПКА CTA (TELEGRAM) --- */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff00ff, #8a2be2);
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-align: center;
+            margin: 20px auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            border: none;
+            cursor: pointer;
+        }
 
-    @media (max-width:900px){
-      .heading-display{grid-column:1 / -1 !important}
-      .body-text{font-size:var(--font-size-base)}
-      #intro .grid-container,#about .grid-container,#benefits-social .grid-container{
-        grid-template-columns:1fr;grid-gap:var(--space-m);align-items:start;
-      }
-      #intro .body-text,#about .about__text-content,.benefits__content,.social-proof__content{
-        grid-column:1 / -1 !important;grid-row:auto !important;text-align:left !important;
-      }
-      #intro .intro__media{min-height:50vh}
-      #benefits-social .social-proof__content{padding-top:var(--space-l)}
-    }
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(255, 0, 255, 0.8);
+        }
+        
+        .cta-center {
+            text-align: center;
+            margin-top: 30px;
+        }
 
-    /* ==========================================================================
-       PART 3/5: Components
-    ========================================================================== */
-    .media-container{position:relative;overflow:hidden;border-radius:var(--border-radius);z-index:1;min-height:500px;height:100%;width:100%}
-    .media-element{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transform-origin:center;scale:1.2}
-    .media-revealer{position:absolute;top:0;left:0;width:100%;height:100%;background:var(--color-light-accent);z-index:2;transform-origin:left}
+        /* --- ФУТЕР --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--dark-grey);
+            color: #888;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
 
-    .button{
-      display:inline-block;font-family:var(--font-mono);text-transform:uppercase;text-decoration:none;font-weight:700;
-      font-size:var(--font-size-sm);padding:var(--space-xs) var(--space-s);z-index:5;position:relative;border-width:var(--border-width);
-      border-style:solid;transition:color var(--duration-fast),background-color var(--duration-fast);
-    }
-    #act1 .button{color:var(--color-light-background);background:var(--color-light-text);border-color:var(--color-light-text)}
-    #act1 .button:hover{background:transparent;color:var(--color-light-text)}
-    #act2 .button{color:var(--color-dark-background);background:var(--color-dark-text);border-color:var(--color-dark-text)}
-    #act2 .button:hover{background:transparent;color:var(--color-dark-text)}
-
-    .marquee-wrapper{display:flex;width:fit-content}
-    .marquee-text{font-family:var(--font-display);font-size:var(--font-size-xxl);text-transform:uppercase;white-space:nowrap;animation:marquee-scroll 30s linear infinite}
-    @keyframes marquee-scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
-
-    .benefit-list{list-style:none;padding:0;margin:var(--space-m) 0}
-    .benefit-list li{
-      font-size:var(--font-size-lg);font-weight:500;padding:var(--space-s) 0;border-bottom:var(--border-width) solid var(--color-light-text);
-      transition:color var(--duration-fast);position:relative;padding-left:var(--space-s);
-    }
-    .benefit-list li strong{font-weight:500}
-    .benefit-list li:hover{color:var(--color-light-accent)}
-    .benefit-list li::before{
-      content:'✹';position:absolute;left:0;top:50%;transform:translateY(-50%);color:var(--color-light-accent);
-      opacity:0;transition:opacity var(--duration-fast) var(--ease-in-out);
-    }
-    .benefit-list li:hover::before{opacity:1}
-
-    .social-proof-number{
-      font-family:var(--font-display);font-size:var(--font-size-display);line-height:var(--line-height-tight);
-      -webkit-text-stroke:var(--border-width) var(--color-light-text);text-stroke:var(--border-width) var(--color-light-text);
-      color:transparent;
-    }
-
-    .rumor-title{font-family:var(--font-mono);font-size:var(--font-size-md);color:var(--color-dark-accent);text-transform:uppercase;margin-bottom:var(--space-m)}
-    .rumor-block p{font-size:var(--font-size-lg);max-width:65ch;color:var(--color-dark-text)}
-    .rumor-block blockquote{
-      font-family:var(--font-body);font-style:italic;font-size:var(--font-size-xl);color:#fff;
-      padding-left:var(--space-m);margin:var(--space-m) 0;border-left:3px solid var(--color-dark-accent);
-    }
-    #act2 .heading-display{color:#fff}
-    #act2 .full-width-text .body-text{max-width:60ch}
-
-    /* ==========================================================================
-       PART 4/5: Animation States
-    ========================================================================== */
-    .heading-display,
-    .body-text,
-    .button,
-    .media-container,
-    .benefit-list li,
-    .social-proof-number,
-    .rumor-block{
-      opacity:0;visibility:hidden; /* GSAP will toggle via autoAlpha */
-    }
-
-    .button{position:relative;overflow:hidden;transform:translateZ(0)}
-    .button::before{
-      content:'';position:absolute;inset:0;background:var(--color-light-accent);transform:scaleX(0);
-      transform-origin:right;transition:transform var(--duration-fast) var(--ease-in-out);z-index:-1;
-    }
-    #act2 .button::before{background:var(--color-dark-accent)}
-    .button:hover::before{transform:scaleX(1);transform-origin:left}
-    #act1 .button:hover{color:#fff}
-    #act2 .button:hover{color:var(--color-dark-background)}
-  </style>
+        /* --- Адаптивность --- */
+        @media (max-width: 768px) {
+            .rumors-section h1 {
+                font-size: 2.2rem;
+            }
+            .rumors-content {
+                padding: 25px;
+            }
+            .thumb {
+                width: 100px;
+                height: 56px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <main class="main-wrapper">
-    <div id="act1">
-      <section id="intro" class="section section--full-height">
-        <div class="grid-container">
-          <h1 class="heading-display intro__heading" style="grid-column:1 / 11;">Let's get acquainted!</h1>
-
-          <div class="intro__media media-container" style="grid-column:2 / 7;grid-row:1 / 3;">
-            <div class="media-revealer"></div>
-            <video class="media-element" loop muted playsinline
-              src="https://assets.mixkit.co/videos/preview/mixkit-girl-posing-for-the-camera-in-a-meadow-30403-large.mp4"></video>
-          </div>
-
-          <p class="body-text intro__subheading" style="grid-column:8 / -1;grid-row:2;align-self:end;">
-            Hi! Let’s get to know each other better. I have something to surprise and delight you with.
-            Don’t believe it? Just take a look and see for yourself. 😉
-          </p>
+    <header class="hero">
+        <div class="container">
+            <div class="video-player-wrapper fade-in">
+                <video id="main-video" src="path/to/your/video1.mp4" autoplay muted loop playsinline></video>
+            </div>
+            <div class="video-thumbnails fade-in" style="transition-delay: 0.2s;">
+                <img src="path/to/your/preview1.jpg" data-video-src="path/to/your/video1.mp4" class="thumb active" alt="Превью видео 1">
+                <img src="path/to/your/preview2.jpg" data-video-src="path/to/your/video2.mp4" class="thumb" alt="Превью видео 2">
+                <img src="path/to/your/preview3.jpg" data-video-src="path/to/your/video3.mp4" class="thumb" alt="Превью видео 3">
+                <img src="path/to/your/preview4.jpg" data-video-src="path/to/your/video4.mp4" class="thumb" alt="Превью видео 4">
+            </div>
         </div>
-      </section>
+    </header>
 
-      <section id="about" class="section">
-        <div class="grid-container">
-          <div class="about__media media-container" style="grid-column:7 / -1;grid-row:1;">
-            <div class="media-revealer"></div>
-            <img class="media-element" alt="Alice looking confident"
-              src="https://images.pexels.com/photos/1848565/pexels-photo-1848565.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-          </div>
+    <main class="rumors-section">
+        <div class="container">
+            <div class="rumors-content">
+                <h1 class="fade-in">Rumors About Me</h1>
 
-          <div class="about__text-content" style="grid-column:1 / 8;grid-row:1;z-index:2;">
-            <h2 class="heading-display">9 Years of <br>Experience</h2>
-            <p class="body-text">
-              I am a webcam model with 9 years of experience. With me you don’t just watch a broadcast —
-              you dive into a special world where every moment is created for your pleasure. I love to
-              experiment and delight you with new emotions every time.
-            </p>
-          </div>
+                <p class="fade-in">
+                    On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around me there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:
+                </p>
+
+                <ul class="fade-in">
+                    <li>I am a prisoner. Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: <i>“Is she a hostage and is she being starved?”</i> Looks like someone has been watching too many thrillers.</li>
+                    <li>I am “controlled by a monster.” According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</li>
+                    <li>I am constantly on the run in different countries. Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. It creates the impression that I change location every couple of weeks.</li>
+                    <li>Secret services and human rights defenders are watching me. Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free me.”</li>
+                </ul>
+
+                <div class="cta-center fade-in">
+                    <a href="https://t.me/your_channel_link" target="_blank" class="cta-button">Узнать правду в Telegram</a>
+                </div>
+
+                <p class="fade-in">
+                    <strong>I have no money or success of my own.</strong> Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent – <i>“the slave is used like an object, what kind of reward could she get.”</i> All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?
+                </p>
+
+                <p class="fade-in">
+                    Sounds insane? That’s because it is pure madness. But let’s see who the author of all this phantasmagoria is. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. And you know why? <strong>Simply to masturbate on camera.</strong> 🤦‍♀️ That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing.
+                </p>
+
+                <p class="fade-in">
+                    This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. Even other forum users are already rolling their eyes: many have noticed that our author is not in search of truth at all but simply obsessed with me. One commenter directly wrote that the behavior of this “savior” is very similar to that of a typical “simp” who doesn’t actually want to expose anything but is head over heels in love and is desperately seeking attention. <strong>Exactly right!</strong>
+                </p>
+
+                <p class="fade-in">
+                    And now – to the facts. Ready to know the truth, not the fairy tale? It is very simple: there is no villain, no captivity, and no drama whatsoever. There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved is the result of my own effort, a well-thought-out strategy, and hard work. No one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow.
+                </p>
+
+                <p class="fade-in">
+                    And one last thing. We have already uncovered the identity of that very storyteller. Legal steps will not take long. 😉
+                </p>
+
+                <p class="fade-in">
+                    So what’s the bottom line? Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 More is coming soon, there are many interesting things ahead! Thank you to all my true fans for your support and common sense. You are the best. ❤️
+                </p>
+
+                <div class="cta-center fade-in">
+                    <a href="https://t.me/your_channel_link" target="_blank" class="cta-button">Присоединиться к закрытому каналу</a>
+                </div>
+            </div>
         </div>
-      </section>
+    </main>
 
-      <section class="marquee-section">
-        <div class="marquee-wrapper">
-          <div class="marquee-text">REAL SHOW ✹ EXCLUSIVE ✹ NEW EMOTIONS ✹ REAL SHOW ✹ EXCLUSIVE ✹ NEW EMOTIONS ✹ </div>
-          <div class="marquee-text">REAL SHOW ✹ EXCLUSIVE ✹ NEW EMOTIONS ✹ REAL SHOW ✹ EXCLUSIVE ✹ NEW EMOTIONS ✹ </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Имя Модели. Все права защищены.</p>
+            <p><strong>18+</strong> | Материалы на этом сайте предназначены для совершеннолетних.</p>
         </div>
-      </section>
+    </footer>
 
-      <section id="benefits-social" class="section">
-        <div class="grid-container">
-          <div class="benefits__content" style="grid-column:1 / 8;">
-            <h2 class="heading-display">What You Get</h2>
-            <ul class="benefit-list">
-              <li><strong>Free videos:</strong> In my Telegram channel I share candid clips available only to subscribers.</li>
-              <li><strong>Fun streams with other models:</strong> Sometimes I go live not alone, but with hot girlfriends. Double the pleasure!</li>
-              <li><strong>Open fan chat (coming soon):</strong> We are creating a place for a real community.</li>
-              <li><strong>And this is just the beginning...</strong> Ahead of you there are even more pleasant surprises.</li>
-            </ul>
-            <a href="#" target="_blank" class="button">Join Telegram</a>
-          </div>
+    <script>
+        // --- СКРИПТ ДЛЯ ПЕРЕКЛЮЧЕНИЯ ВИДЕО ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainVideo = document.getElementById('main-video');
+            const thumbnails = document.querySelectorAll('.thumb');
 
-          <div class="social-proof__content" style="grid-column:8 / -1;">
-            <div class="social-proof-number">13,000+</div>
-            <p class="body-text">Subscribers have already become part of our private club. You are not the only one!</p>
-          </div>
-        </div>
-      </section>
-    </div>
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    // Получаем новый источник видео из атрибута data-video-src
+                    const videoSrc = this.getAttribute('data-video-src');
+                    
+                    // Устанавливаем его для главного плеера
+                    mainVideo.src = videoSrc;
+                    mainVideo.play();
 
-    <div id="act2">
-      <section id="rumors" class="section">
-        <div class="grid-container">
-          <div class="rumors__intro" style="grid-column:1 / -1;">
-            <h1 class="heading-display">The Rumors</h1>
-            <p class="body-text">
-              On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause,
-              invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around ehotlovea there is
-              an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief
-              overview of the most epic rumors:
-            </p>
-          </div>
-
-          <div class="rumor-block" style="grid-column:2 / 12;">
-            <h3 class="rumor-title">[RUMOR_01]: I am a prisoner.</h3>
-            <p>Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout.</p>
-            <blockquote>“Is ehotlovea a hostage and is she being starved?”</blockquote>
-            <p>Looks like someone has been watching too many thrillers.</p>
-          </div>
-
-          <div class="rumor-block" style="grid-column:2 / 12;">
-            <h3 class="rumor-title">[RUMOR_02]: I am “controlled by a monster.”</h3>
-            <p>
-              According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will.
-              They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.
-            </p>
-          </div>
-          
-          <div class="rumor-block full-width-text" style="grid-column:1 / -1;">
-            <h2 class="heading-display">And now – to the facts.</h2>
-            <p class="body-text">
-              Ready to know the truth, not the fairy tale? It is very simple: <strong>there is no villain, no captivity, and no drama whatsoever.</strong>
-              There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result
-              of my own effort, a well-thought-out strategy, and hard work. 🎓
-            </p>
-            <p class="body-text">
-              No one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals. I especially want to mention
-              the Chaturbate support team. These guys are true pros. 💙 This really is the best platform, where they take care of the safety and comfort
-              of models properly. Do you think that if something really bad were happening to me, it would go unnoticed? Not a chance – not by my team,
-              nor by the platform.
-            </p>
-            <p class="body-text">
-              We have already uncovered the identity of that very storyteller (thanks to my clever Eric 😉). Legal steps will not take long. We’ll all laugh
-              together later, when this person has to answer for his words to the full extent of the law.
-            </p>
-            <p class="body-text">
-              So what’s the bottom line? I continue to do my work and reach new heights, which I wish for you as well. ✨ Let those who are capable of nothing else
-              keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions.
-              Thank you to all my true fans for your support and common sense. You are the best. ❤️
-            </p>
-            <a href="#" target="_blank" class="button">Join The Real World</a>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <script>
-    /* ==========================================================================
-       PART 5/5: GSAP Choreography
-    ========================================================================== */
-    document.addEventListener('DOMContentLoaded', () => {
-      gsap.registerPlugin(ScrollTrigger, SplitText);
-
-      // Smooth scroll (Lenis)
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      });
-      function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
-      requestAnimationFrame(raf);
-      gsap.ticker.add((t)=>{ lenis.raf(t*1000); });
-
-      // Make elements visible immediately when GSAP starts animating them
-      const autoReveal = targets => gsap.set(targets, { autoAlpha: 1 });
-
-      // Autoplay/pause videos in view
-      gsap.utils.toArray('.media-element[src$=".mp4"]').forEach(video=>{
-        ScrollTrigger.create({
-          trigger: video, start:"top 90%", end:"bottom 10%",
-          onEnter:()=>video.play(), onLeave:()=>video.pause(),
-          onEnterBack:()=>video.play(), onLeaveBack:()=>video.pause(),
+                    // Обновляем активный класс для превью
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
         });
-      });
 
-      // Theme switch on Act II
-      ScrollTrigger.create({
-        trigger:"#act2", start:"top 60%", end:"top 60%",
-        onToggle:self=>{
-          document.body.style.backgroundColor = self.isActive ? 'var(--color-dark-background)' : 'var(--color-light-background)';
-          document.body.style.color = self.isActive ? 'var(--color-dark-text)' : 'var(--color-light-text)';
-        },
-        toggleActions:"play none none reverse",
-      });
-
-      // Headings reveal (chars)
-      gsap.utils.toArray('.heading-display').forEach(h=>{
-        autoReveal(h);
-        const split = new SplitText(h, { type:"lines,words,chars" });
-        gsap.from(split.chars,{
-          autoAlpha:0, y:80, rotateX:-90, stagger:0.02, duration:1, ease:'power3.out',
-          scrollTrigger:{ trigger:h, start:'top 85%', toggleActions:'play none none none' }
+        // --- СКРИПТ ДЛЯ АНИМАЦИИ ПОЯВЛЕНИЯ ЭЛЕМЕНТОВ ПРИ СКРОЛЛЕ ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1 // Элемент считается видимым при появлении на 10%
         });
-      });
 
-      // Body text / list items / rumor titles (lines)
-      gsap.utils.toArray('.body-text, .benefit-list li, .rumor-title').forEach(el=>{
-        autoReveal(el);
-        const split = new SplitText(el, { type:"lines" });
-        gsap.from(split.lines,{
-          autoAlpha:0, y:50, stagger:0.1, duration:0.8, ease:'power3.out',
-          scrollTrigger:{ trigger:el, start:'top 90%', toggleActions:'play none none none' }
-        });
-      });
+        // Наблюдаем за всеми элементами с классом .fade-in
+        const elementsToFadeIn = document.querySelectorAll('.fade-in');
+        elementsToFadeIn.forEach(el => observer.observe(el));
+    </script>
 
-      // Media curtain reveal
-      gsap.utils.toArray('.media-container').forEach(container=>{
-        autoReveal(container);
-        const revealer = container.querySelector('.media-revealer');
-        const media = container.querySelector('.media-element');
-
-        const tl = gsap.timeline({
-          scrollTrigger:{ trigger:container, start:'top 80%', toggleActions:'play none none none' }
-        });
-        tl.to(revealer,{ scaleX:0, duration:1.2, ease:'power4.inOut' })
-          .from(media,{ scale:1.2, duration:1.5, ease:'power3.out' }, "-=1.1");
-      });
-
-      // Buttons and numbers
-      gsap.utils.toArray('.button, .social-proof-number').forEach(el=>{
-        autoReveal(el);
-        gsap.from(el,{
-          autoAlpha:0, y:30, duration:1, ease:'power3.out',
-          scrollTrigger:{ trigger:el, start:'top 90%', toggleActions:'play none none none' }
-        });
-      });
-
-      // Subtle parallax on media containers
-      gsap.utils.toArray('.media-container').forEach(container=>{
-        gsap.to(container,{
-          yPercent:-10, ease:'none',
-          scrollTrigger:{ trigger:container, start:'top bottom', end:'bottom top', scrub:true }
-        });
-      });
-    });
-  </script>
 </body>
 </html>
