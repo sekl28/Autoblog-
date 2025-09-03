@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Mirror: Reflection of Truth</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>BitStarz NEO-VELOCITY: Мгновенная Эйфория</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        /* --- Global Styles & Variables (Obsidian Mirror Palette) --- */
+        /* --- Global Variables & Theme (Cyber-Luxe) --- */
         :root {
-            --bg-obsidian: #0B0B0B;
-            --text-main: #FDFDFD; /* Pure white for high contrast */
-            --text-dim: #888888;
-            /* Spectral Gradient (Hypnotic Accent) */
-            --spectral-violet: #6a0dad;
-            --spectral-blue: #00ffff;
-            --font-display: 'Bodoni Moda', serif;
-            --font-body: 'Manrope', sans-serif;
+            --bg-dark: #05050f;
+            --bg-secondary: #1c1c3a;
+            --neon-gold: #ffd700;
+            --neon-cyan: #00ffff;
+            --neon-purple: #8a2be2;
+            --text-light: #e0e0e0;
+            --color-success: #4ade80;
         }
 
         * {
@@ -24,735 +23,734 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            background-color: var(--bg-obsidian);
-            color: var(--text-main);
-            font-family: var(--font-body);
-            line-height: 1.7;
-            font-weight: 300;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            /* Hide default cursor (Crucial for Innovation 2) */
-            cursor: none;
         }
-
-        /* --- Innovation 1: Hypnotic Background (The Vortex) --- */
-        #vortex-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .vortex-layer {
-            position: absolute;
-            /* Center the layer */
-            top: 50%;
-            left: 50%;
-            width: 200vmax; /* Ensure it covers the whole screen even when rotated */
-            height: 200vmax;
-            transform: translate(-50%, -50%);
-            /* Complex radial gradient simulating depth and light */
-            background: radial-gradient(circle at center, 
-                rgba(106, 13, 173, 0.2) 0%, 
-                rgba(0, 0, 0, 0) 40%, 
-                rgba(0, 255, 255, 0.1) 60%, 
-                rgba(0, 0, 0, 0) 70%);
-            /* Slow, mesmerizing rotation and pulse */
-            animation: vortex-spin 120s linear infinite, vortex-pulse 15s ease-in-out infinite;
-        }
-
-        @keyframes vortex-spin {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        @keyframes vortex-pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 30px;
-        }
-
-        /* Centered text content for focus */
-        .text-content {
-            max-width: 750px;
-            margin: 0 auto;
+            padding: 0 20px;
         }
 
         h1, h2, h3 {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-optical-sizing: auto;
-        }
-
-        /* --- Utility & Animations --- */
-
-        /* Innovation 4: The "Magnetic" CTA (The Singularity) */
-        .cta-button {
-            display: inline-block;
-            padding: 15px 50px;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 50px; /* Smooth shape */
+            font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 1rem;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            color: var(--text-main);
-            /* Spectral gradient background */
-            background: linear-gradient(90deg, var(--spectral-violet), var(--spectral-blue), var(--spectral-violet));
-            background-size: 200% 100%;
-            /* Slow, magnetic flow animation */
-            animation: gradient-flow 8s linear infinite;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        @keyframes gradient-flow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            /* Brighter shadow on hover */
-            box-shadow: 0 0 40px rgba(106, 13, 173, 0.8);
-        }
-
-
-        /* Scroll Animations (Smooth Reveal) */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-            will-change: opacity, transform;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Innovation 2: The "Focus-Lock" Cursor (The Guiding Light) --- */
-        #cursor-light {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            /* The core innovation: Invert colors underneath the cursor */
-            mix-blend-mode: difference;
-            /* The "light source" - a bright white radial gradient */
-            background: radial-gradient(circle at center, 
-                rgba(255, 255, 255, 1) 0%, 
-                rgba(255, 255, 255, 0.8) 40%,
-                rgba(255, 255, 255, 0) 70%);
-            display: none; /* Hidden until mouse movement */
-            will-change: transform;
-            transition: width 0.3s ease, height 0.3s ease;
-        }
-
-        /* Cursor Hover State (Applied via JS) - Focused beam */
-        .cursor-hover #cursor-light {
-            width: 60px;
-            height: 60px;
-        }
-
-
-        /* --- Hero Section (Cinematic Intro) --- */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-top: 50px;
-            padding-bottom: 50px;
-        }
-
-        #hero h1 {
-            font-size: 6rem;
-            line-height: 1.1;
-            margin-bottom: 30px;
-            max-width: 900px;
-        }
-
-        #hero p {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            max-width: 600px;
-            margin-bottom: 50px;
-        }
-
-        /* --- Video Section (Reflective UI) --- */
-        #videos {
-            padding: 150px 0;
-            text-align: center;
-        }
-
-        .flirt-message {
-            font-size: 1.5rem;
-            color: var(--text-main);
-            /* Using italic Bodoni for the flirt message */
-            font-family: var(--font-display);
-            font-style: italic;
-            margin-bottom: 60px;
-        }
-
-        .video-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        #main-video-wrapper {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-
-        /* Glossy Overlay Effect */
-        #main-video-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 10;
-            pointer-events: none;
-            /* High gloss reflection gradient */
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.2) 100%);
-        }
-
-        #mainVideo {
-            width: 100%;
-            display: block;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            background-color: #000;
-        }
-
-        .video-thumbnails {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .thumbnail {
-            width: 140px;
-            height: 80px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            opacity: 0.5;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .thumbnail img {
-             width: 100%;
-             height: 100%;
-             object-fit: cover;
-        }
-
-        .thumbnail:hover {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        .thumbnail.active {
-            opacity: 1;
-            border-color: var(--spectral-violet);
-        }
-
-        /* --- Rumors Section (Kinetic Typography Implementation) --- */
-        #rumors {
-            padding: 100px 0;
-        }
-
-        #rumors h2 {
-            font-size: 4rem;
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        #rumors h3 {
-            font-size: 2.5rem;
-            margin-top: 80px;
-            margin-bottom: 30px;
-            color: var(--text-main);
-            text-align: center;
-        }
-
-        /* Innovation 3: Kinetic Typography Container */
-        .kinetic-text {
-            /* This class is applied to paragraphs/text blocks */
             margin-bottom: 20px;
         }
 
-        /* The individual words/spans animated via JS */
-        .k-word {
-            display: inline-block;
-            opacity: 0;
-            /* Initial state: Rotated back and slightly down */
-            transform: translateY(20px) rotateX(-90deg);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            transform-origin: top center;
-        }
-
-
-        .rumor-list {
-            margin: 50px 0;
-        }
-
-        /* Card styling (Reflective UI) */
-        .rumor-card {
-            /* Glass/Obsidian effect */
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-
-            padding: 40px;
-            margin-bottom: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .rumor-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .rumor-card strong {
-            color: var(--text-main);
-            font-size: 1.2rem;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 15px;
-        }
-
-        .highlight {
-            font-weight: 600;
-            color: var(--text-main);
-            /* Subtle underline instead of background color */
-            text-decoration: underline wavy var(--spectral-violet) 2px;
-        }
-
-        .cta-center {
+        h2 {
+            font-size: 2.8rem;
             text-align: center;
-            margin: 100px 0;
+            margin-bottom: 60px;
+            color: var(--neon-cyan);
+            /* Неоновый эффект заголовков */
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* --- CTA Button (Maximum Conversion) --- */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--neon-gold);
+            color: var(--bg-dark);
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            /* Эффект свечения для привлечения внимания */
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            border: 2px solid var(--neon-gold);
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            /* Усиление эффекта при наведении (Глитч-эффект симулируется быстрым смещением тени) */
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9), 5px 0 0 rgba(0, 255, 255, 0.5), -5px 0 0 rgba(138, 43, 226, 0.5);
+            transform: translateY(-3px);
+            background-color: #ffeb3b;
+        }
+
+        /* --- Header/Nav --- */
+        header.nav-bar {
+            padding: 20px 0;
+            background-color: rgba(5, 5, 15, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            color: var(--neon-gold);
+        }
+
+        /* --- 1. HERO SECTION (The Hook) --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* Плейсхолдер для динамичного фона (WebGL или Видео). Используем симуляцию сетки данных. */
+            background: radial-gradient(ellipse at top, #1c1c3a 0%, #05050f 60%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(138, 43, 226, 0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            background-blend-mode: overlay;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .hero-pretitle {
+            font-size: 1.2rem;
+            color: var(--neon-cyan);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px var(--neon-cyan);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .text-gold {
+            color: var(--neon-gold);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-offer {
+            font-size: 3rem;
+            color: var(--neon-gold);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 40px;
+            display: inline-block;
+            padding: 20px 40px;
+            /* Рамка для выделения оффера */
+            border: 2px dashed var(--neon-gold);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .trust-badges {
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+        .trust-badges span {
+            margin: 0 15px;
+            font-size: 1rem;
+        }
+
+        /* --- 2. SPEED SECTION (The Core USP) --- */
+        #speed {
+            background-color: var(--bg-secondary);
+        }
+
+        .live-timer {
+            background-color: var(--bg-dark);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 60px;
+            /* Подсветка блока таймера */
+            border: 1px solid var(--neon-purple);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .timer-value {
+            font-size: 4rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-cyan);
+            display: block;
+            margin-top: 10px;
+            text-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        .speed-comparison {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .comparison-box {
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 45%;
+            transition: transform 0.3s ease;
+        }
+
+        .box-slow {
+            background-color: #333;
+            opacity: 0.5;
+        }
+        .box-slow:hover {
+            opacity: 0.8;
+        }
+
+        /* Визуальное превосходство BitStarz */
+        .box-fast {
+            background-color: var(--bg-dark);
+            border: 2px solid var(--neon-gold);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+        .box-fast h3 {
+            color: var(--neon-gold);
+        }
+
+        /* --- 3. VICTORY ATMOSPHERE (FOMO) --- */
+        #atmosphere {
+            background-color: var(--bg-dark);
+        }
+        
+        .victory-wrapper {
+            display: flex;
+            gap: 30px;
+        }
+
+        .live-wins {
+            flex: 2;
+            background-color: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--neon-cyan);
+            height: 450px;
+            overflow-y: hidden;
+        }
+
+        /* Симуляция прокрутки ленты */
+        .win-feed {
+            /* Требует JS для реальной реализации, CSS анимация - плейсхолдер */
+             animation: scrollFeed 30s linear infinite;
+        }
+
+        .win-item {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background-color: var(--bg-dark);
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .win-amount {
+            color: var(--color-success);
+            font-weight: 700;
+        }
+        /* Выделение джекпота */
+        .win-item.jackpot {
+            background-color: rgba(255, 215, 0, 0.2);
+            border: 1px solid var(--neon-gold);
+        }
+        .win-item.jackpot .win-amount {
+            color: var(--neon-gold);
+            font-size: 1.1rem;
+        }
+
+        /* Placeholder animation keyframes */
+        @keyframes scrollFeed {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); } /* Предполагается, что список продублирован */
+        }
+
+        .promo-banner {
+            flex: 1;
+            /* Градиент для привлечения внимания к промо */
+            background: linear-gradient(145deg, var(--neon-purple), var(--bg-secondary));
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .promo-banner h3 {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+        .promo-icon {
+            font-size: 5rem;
+            margin: 20px 0;
+            color: var(--neon-gold);
+        }
+
+        /* --- 4. ARSENAL (Features) --- */
+        #features {
+            background-color: var(--bg-secondary);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--bg-dark);
+            padding: 30px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, border 0.3s ease;
+            border: 1px solid transparent;
+            text-align: center;
+        }
+
+        /* Интерактивный эффект при наведении */
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border: 1px solid var(--neon-cyan);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--neon-gold);
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            color: var(--neon-cyan);
+        }
+
+        /* --- 5. BONUS (The Offer) - Горизонтальный макет для лучшей видимости --- */
+        #bonus {
+            background-color: var(--bg-dark);
+        }
+        .bonus-steps {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .bonus-step {
+            background-color: var(--bg-secondary);
+            padding: 30px 20px;
+            border-radius: 10px;
+            width: 260px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Метки для визуального разделения шагов */
+        .step-label {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--neon-purple);
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Максимальное выделение бездепозитного бонуса */
+        .bonus-step.highlight {
+            border: 3px solid var(--neon-gold);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            transform: scale(1.05);
+        }
+        .bonus-step.highlight .step-label {
+            background-color: var(--neon-gold);
+            color: var(--bg-dark);
+        }
+
+        .bonus-step h3 {
+            margin-top: 20px;
+            color: var(--neon-cyan);
+            font-size: 1.5rem;
+        }
+
+        /* --- 6. TRUST (Social Proof) --- */
+        #trust {
+            background-color: var(--bg-secondary);
+        }
+        .testimonials {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .testimonial-item {
+            flex: 1;
+            background-color: var(--bg-dark);
+            padding: 30px;
+            border-radius: 10px;
+            font-style: italic;
+        }
+        .testimonial-author {
+            margin-top: 15px;
+            font-style: normal;
+            font-weight: 700;
+            color: var(--neon-gold);
+        }
+        .ratings {
+            text-align: center;
+            font-size: 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            opacity: 0.9;
+        }
+
+        /* --- 7. FINAL CTA (The Closer) --- */
+        .final-cta {
+            text-align: center;
+            padding: 150px 0;
+            /* Радиальный градиент для фокусировки внимания в центре */
+            background: radial-gradient(ellipse at center, var(--bg-secondary) 0%, var(--bg-dark) 70%);
+            border-top: 3px solid var(--neon-gold);
+        }
+
+        .final-cta h2 {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: none;
+        }
+        
+        .cta-mega {
+            font-size: 1.5rem; 
+            padding: 25px 60px;
+            /* Анимация пульсации для финального призыва */
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            from {
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+                transform: scale(1);
+            }
+            to {
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.9), 0 0 60px rgba(255, 215, 0, 0.5);
+                transform: scale(1.03);
+            }
+        }
+
+        .disclaimer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            opacity: 0.6;
         }
 
         /* --- Footer --- */
         footer {
+            background-color: var(--bg-dark);
+            padding: 30px 0;
             text-align: center;
-            padding: 80px 0 40px 0;
-            font-size: 0.9rem;
-            color: var(--text-dim);
+            color: rgba(255, 255, 255, 0.5);
         }
 
-        .warning {
-            display: inline-block;
-            color: var(--text-dim);
-            padding: 10px 30px;
-            margin-bottom: 30px;
-            font-weight: 400;
-        }
-
-        /* --- Responsive Design (Crucial Polish) --- */
+        /* --- Responsive Design --- */
         @media (max-width: 1024px) {
-            body {
-                /* Re-enable default cursor on tablet/mobile (mix-blend-mode is confusing on touch) */
-                cursor: auto;
-            }
-             /* Hide custom cursor elements */
-            #cursor-light {
-                display: none !important;
-            }
-
-            #hero h1 {
+            .hero h1 {
                 font-size: 4rem;
             }
+            .victory-wrapper {
+                flex-direction: column;
+            }
+            .live-wins, .promo-banner {
+                width: 100%;
+            }
+            .live-wins {
+                height: 300px;
+            }
+            .bonus-step.highlight {
+                transform: scale(1);
+            }
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 0 20px;
-            }
-            #hero h1 {
+        @media (max-width: 768px) {
+            .hero h1 {
                 font-size: 3rem;
             }
-            .thumbnail {
-                width: 100px;
-                height: 60px;
+            .hero-offer {
+                font-size: 2rem;
+                padding: 15px 20px;
             }
-            #rumors h2 {
+            h2 {
+                font-size: 2rem;
+            }
+            .timer-value {
+                font-size: 3rem;
+            }
+            .speed-comparison {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            .comparison-box {
+                width: 90%;
+            }
+            .box-fast {
+                transform: scale(1);
+            }
+            .testimonials {
+                flex-direction: column;
+            }
+            .final-cta h2 {
                 font-size: 2.5rem;
             }
-            .rumor-card {
-                padding: 25px;
+            .cta-mega {
+                font-size: 1.2rem;
+                padding: 20px 40px;
             }
         }
-
     </style>
 </head>
 <body>
 
-    <div id="vortex-bg">
-        <div class="vortex-layer"></div>
-    </div>
-
-    <div id="cursor-light"></div>
-
-    <section id="hero">
+    <header class="nav-bar">
         <div class="container">
-            <h1 class="reveal">Look Closer. The Truth Hides in the Shadows.</h1>
-            <p class="reveal">You've heard the whispers, the conspiracies, the fantasies. Now, discover the reality.</p>
-            <div class="reveal">
-                <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">Enter The Void</a>
+            <nav>
+                <div class="logo">BITSTARZ</div>
+                <a href="#register" class="cta-button">Регистрация</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="register">
+        <div class="container hero-content">
+            <div class="hero-pretitle">⚡ Получи 30 Фриспинов БЕЗ ДЕПОЗИТА прямо сейчас! ⚡</div>
+            <h1>ВЫИГРЫВАЙ ПО-КРУПНОМУ. <span class="text-gold">ВЫВОДИ МГНОВЕННО.</span></h1>
+            <p class="hero-subtitle">Присоединяйся к легендарному крипто-казино №1. Здесь твой выигрыш прилетает на счет в среднем за 8 минут!</p>
+            <div class="hero-offer">
+                ПАКЕТ ДО 5 BTC + 180 FS
+            </div>
+            <a href="#register" class="cta-button cta-mega">ИГРАТЬ СЕЙЧАС! →</a>
+            <div class="trust-badges">
+                <span>🏆 AskGamblers Best Casino</span>
+                <span>⭐ Casinomeister Accredited</span>
+                <span>₿ BTC | ETH | VISA | MC</span>
             </div>
         </div>
     </section>
 
-    <section id="videos">
-        <div class="container reveal">
-            <p class="flirt-message">Here are some clips from my streams, look how much fun we have 😇</p>
+    <section id="speed">
+        <div class="container">
+            <h2>УСТАЛ ЖДАТЬ СВОИ ДЕНЬГИ? МЫ ИЗМЕНИЛИ ПРАВИЛА.</h2>
+            
+            <div class="live-timer">
+                <p>Среднее время вывода за последние 24 часа:</p>
+                <span class="timer-value">[ 07 : 45 ]</span>
+            </div>
 
-            <div class="video-container">
-                <div id="main-video-wrapper">
-                    <video id="mainVideo" controls autoplay muted loop playsinline>
-                        <source src="video1.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+            <div class="speed-comparison">
+                <div class="comparison-box box-slow">
+                    <h3>Обычные Казино</h3>
+                    <p>❌ Вывод до 72 часов</p>
+                    <p>❌ Бесконечные проверки документов</p>
+                    <p>❌ Стресс и ожидание</p>
                 </div>
-
-                <div class="video-thumbnails">
-                    <div class="thumbnail active" data-video="video1.mp4">
-                        <img src="thumb1.jpg" alt="Video preview 1">
-                    </div>
-                    <div class="thumbnail" data-video="video2.mp4">
-                         <img src="thumb2.jpg" alt="Video preview 2">
-                    </div>
-                    <div class="thumbnail" data-video="video3.mp4">
-                         <img src="thumb3.jpg" alt="Video preview 3">
-                    </div>
-                    <div class="thumbnail" data-video="video4.mp4">
-                         <img src="thumb4.jpg" alt="Video preview 4">
-                    </div>
+                <div class="comparison-box box-fast">
+                    <h3>BitStarz</h3>
+                    <p>✅ Кэшаут <10 минут</p>
+                    <p>✅ Автоматическая обработка 24/7</p>
+                    <p>✅ Мгновенная эйфория от победы</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="rumors">
-        <div class="container text-content">
-            <h2 class="reveal">The Echo Chamber: Rumors About Me.</h2>
-
-            <div class="reveal kinetic-text">
-                <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around <span class="highlight">ehotlovea</span> there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:</p>
-            </div>
-
-            <div class="rumor-list">
-                <div class="rumor-card reveal">
-                    <strong>I am a prisoner.</strong>
-                    <div class="kinetic-text">Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: “Is ehotlovea a hostage and is she being starved?” Looks like someone has been watching too many thrillers.</div>
-                </div>
-                <div class="rumor-card reveal">
-                    <strong>I am “controlled by a monster.”</strong>
-                     <div class="kinetic-text">According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</div>
-                </div>
-                <div class="rumor-card reveal">
-                    <strong>I am constantly on the run in different countries.</strong>
-                     <div class="kinetic-text">Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. Someone even claimed that I was “transported through a dozen places in half a dozen countries”.</div>
-                </div>
-                <div class="rumor-card reveal">
-                    <strong>Secret services and human rights defenders are watching me.</strong>
-                    <div class="kinetic-text">Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.”</div>
-                </div>
-                <div class="rumor-card reveal">
-                    <strong>I have no money or success of my own.</strong>
-                     <div class="kinetic-text">Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent. All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?</div>
-                </div>
-            </div>
-
-            <h3 class="reveal">The Source of the Madness</h3>
-            <div class="reveal kinetic-text">
-                <p>Sounds insane? That’s because it is pure madness. But let’s see who the author of all this phantasmagoria is. Here comes one especially persistent viewer. He is the one who creates most of these threads on the forums, typing “exposés” under different nicknames and fueling the drama. He positions himself as some sort of knight-savior. 🎭</p>
-            </div>
-
-            <div class="reveal kinetic-text">
-                <p>However, reality is far more banal. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. And you know why? <span class="highlight">Simply to masturbate on camera. 🤦‍♀️</span> That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing. I’m not even offended anymore – it just makes me laugh.</p>
-            </div>
-
-            <div class="reveal kinetic-text">
-                <p>This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. He invented me a new name, a biography, a villain-“kidnapper” – and fell in love with his own fairy tale. Our would-be knight doesn’t so much want to save me as he dreams, apparently, that I will appreciate his “heroism.”</p>
-            </div>
+    <section id="atmosphere">
+        <div class="container">
+            <h2>ЗДЕСЬ ВЫИГРЫВАЮТ. ПРЯМО СЕЙЧАС.</h2>
             
-             <div class="reveal kinetic-text">
-                <p>I can already foresee the next move of this conspiracist. He will probably cry out: “Wake up, don’t believe her! All of this was written on the orders of that very villain, it’s part of the plan!” 😀 Well, we’ve already figured you out too, my paranoid friend.</p>
+            <div class="victory-wrapper">
+                <div class="live-wins">
+                    <h3>Последние Победители (Live):</h3>
+                    <div class="win-feed">
+                        <div class="win-item">
+                            <span>Alex K. в Gates of Olympus</span>
+                            <span class="win-amount">0.15 BTC</span>
+                        </div>
+                        <div class="win-item jackpot">
+                            <span>Maria_S в Mega Moolah</span>
+                            <span class="win-amount">ДЖЕКПОТ $50,000!</span>
+                        </div>
+                        <div class="win-item">
+                            <span>Crypto_God в Crazy Time</span>
+                            <span class="win-amount">3.5 ETH</span>
+                        </div>
+                        <div class="win-item">
+                            <span>Player777 в Book of Dead</span>
+                            <span class="win-amount">$1,200</span>
+                        </div>
+                        <div class="win-item">
+                            <span>Dmitry_V в BitStarz Originals</span>
+                            <span class="win-amount">$540</span>
+                        </div>
+                        <div class="win-item">
+                            <span>Alex K. в Gates of Olympus</span>
+                            <span class="win-amount">0.15 BTC</span>
+                        </div>
+                        <div class="win-item jackpot">
+                            <span>Maria_S в Mega Moolah</span>
+                            <span class="win-amount">ДЖЕКПОТ $50,000!</span>
+                        </div>
+                        <div class="win-item">
+                            <span>Crypto_God в Crazy Time</span>
+                            <span class="win-amount">3.5 ETH</span>
+                        </div>
+                        <div class="win-item">
+                            <span>Player777 в Book of Dead</span>
+                            <span class="win-amount">$1,200</span>
+                        </div>
+                        <div class="win-item">
+                            <span>Dmitry_V в BitStarz Originals</span>
+                            <span class="win-amount">$540</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="promo-banner">
+                    <div>
+                        <div class="promo-icon">🚗💨</div>
+                        <h3>ВЫИГРАЙ TESLA!</h3>
+                        <p>Участвуй в грандиозном розыгрыше до 2 Октября 2025. Твой следующий спин может стать победным!</p>
+                    </div>
+                    <a href="#register" class="cta-button" style="margin-top: 20px;">УЧАСТВОВАТЬ!</a>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="cta-center reveal">
-                <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">See The Reality</a>
+    <section id="features">
+        <div class="container">
+            <h2>ПОЧЕМУ ЧЕМПИОНЫ ВЫБИРАЮТ BITSTARZ?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">₿</div>
+                    <h3>Крипто-Свобода</h3>
+                    <p>Мы были первыми с 2014 года. Играй анонимно и безопасно. Поддержка 500+ криптовалют и фиата.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Вселенная Азарта</h3>
+                    <p>4000+ игр. От эксклюзивов (BitStarz Originals) и Provably Fair (доказуемо честных) игр до Live-шоу.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎧</div>
+                    <h3>Поддержка Супергероев</h3>
+                    <p>Никаких ботов. Только живые профессионалы 24/7. Признаны лучшими в индустрии.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏁</div>
+                    <h3>Турниры и Гонки</h3>
+                    <p>Еженедельные Slot Wars и Table Wars с призовыми фондами $10,000+.</p>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <h3 class="reveal">The Facts</h3>
+    <section id="bonus">
+        <div class="container">
+            <h2>ВОРВИСЬ В ИГРУ С ПАКЕТОМ ДО 5 BTC</h2>
+            <div class="bonus-steps">
+                
+                <div class="bonus-step highlight">
+                    <div class="step-label">БЕСПЛАТНО!</div>
+                    <h3>ШАГ 0</h3>
+                    <p>30 Фриспинов БЕЗ ДЕПОЗИТА за регистрацию!</p>
+                </div>
 
-            <div class="reveal kinetic-text">
-                <p>And now – to the facts. Ready to know the truth, not the fairy tale? It is very simple: there is no villain, no captivity, and no drama whatsoever.</p>
+                <div class="bonus-step">
+                    <div class="step-label">БУСТ X2</div>
+                    <h3>ДЕПОЗИТ 1</h3>
+                    <p>100% Бонус до 1 BTC + 180 Фриспинов.</p>
+                </div>
+
+                <div class="bonus-step">
+                    <div class="step-label">МАКСИМУМ</div>
+                    <h3>ДЕПОЗИТ 2 и 3</h3>
+                    <p>До 3 BTC Бонусами для крупных ставок.</p>
+                </div>
+
+                <div class="bonus-step">
+                    <div class="step-label">ФИНАЛ</div>
+                    <h3>ДЕПОЗИТ 4</h3>
+                    <p>100% Бонус до 1 BTC.</p>
+                </div>
+
             </div>
-
-            <div class="reveal kinetic-text">
-                <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result of my own effort, a well-thought-out strategy, and hard work. Yes, sometimes I work many hours in a row, travel, try new things – but I do it by choice, because I have a dream and a clear plan on how to achieve it. 🎓</p>
+            <div style="text-align: center;">
+                <a href="#register" class="cta-button">АКТИВИРОВАТЬ ПАКЕТ!</a>
+                <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.7;">Мин. депозит $20. Вейджер x40. Применяются правила и условия.</p>
             </div>
-            
-            <div class="reveal kinetic-text">
-                <p>The reality is this: no one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow. By the way, speaking of professionals: I especially want to mention the Chaturbate support team. These guys are true pros, always ready to help and solving every issue quickly. 💙 This really is the best platform.</p>
+        </div>
+    </section>
+
+    <section id="trust">
+        <div class="container">
+            <h2>ЧТО ГОВОРЯТ ИГРОКИ И ЭКСПЕРТЫ</h2>
+            <div class="testimonials">
+                <div class="testimonial-item">
+                    <p>"Это безумие! Выиграл $5000 и через 10 минут уже тратил их. BitStarz – это другой уровень скорости! Никаких задержек, никаких нервов."</p>
+                    <div class="testimonial-author">– Игрок_Pro (Trustpilot)</div>
+                </div>
+                <div class="testimonial-item">
+                    <p>"Играю только в крипте. Такого быстрого и честного (Provably Fair) казино я не встречал. 1 BTC вывели без вопросов за 5 минут. Поддержка отвечает мгновенно."</p>
+                    <div class="testimonial-author">– CryptoLord77 (AskGamblers)</div>
+                </div>
+                 <div class="testimonial-item">
+                    <p>"Бонусы просто огромные. Начала с бездепозитных спинов, потом сделала депозит и получила еще 180. Очень щедро и интерфейс супер удобный."</p>
+                    <div class="testimonial-author">– Maria_Vegas</div>
+                </div>
             </div>
-
-            <h3 class="reveal">The Consequences</h3>
-
-            <div class="reveal kinetic-text">
-                <p>And one last thing worth mentioning. I do not intend to let this situation with dirty slander go unchecked. We have already uncovered the identity of that very storyteller (thanks to my clever Eric 😉). Legal steps will not take long. Believe me, we have enough evidence. We’ll all laugh together later, when this person has to answer for his words to the full extent of the law.</p>
+            <div class="ratings">
+                Trustpilot: 4.4/5 | AskGamblers: 9.8/10 | Casinomeister: Accredited
             </div>
+        </div>
+    </section>
 
-            <h3 class="reveal">The Bottom Line</h3>
-
-            <div class="reveal kinetic-text">
-                <p>So what’s the bottom line? The bottom line is – I continue to do my work and reach new heights, which I wish for you as well. ✨ Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
-            </div>
-
-             <div class="cta-center reveal">
-                 <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">Join The Private Channel 🔥</a>
-            </div>
+    <section class="final-cta">
+        <div class="container">
+            <h2>ХВАТИТ СМОТРЕТЬ, КАК ВЫИГРЫВАЮТ ДРУГИЕ.</h2>
+            <p>Твой шанс здесь и сейчас. Регистрация займет 30 секунд. Получи 30 бездепозитных спинов и пакет до 5 BTC.</p>
+            <a href="#register" class="cta-button cta-mega">НАЧАТЬ ВЫИГРЫВАТЬ СЕЙЧАС! →</a>
+            <p class="disclaimer">Лицензировано и регулируется. Гарантия безопасности и честной игры. 18+</p>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <div class="warning">18+ ADULTS ONLY</div>
-            <p>&copy; 2025 [Your Model Name/Brand]. All Rights Reserved.</p>
+            <p>&copy; 2025 BitStarz. Все права защищены. Играйте ответственно.</p>
         </div>
     </footer>
-
-    <script>
-        // Determine if the device supports fine pointer input (mouse)
-        const IS_DESKTOP = window.matchMedia("(pointer: fine)").matches && window.innerWidth > 1024;
-
-        // --- 1. Innovation 2: The "Focus-Lock" Cursor (Zero Lag, Optimized) ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const cursorLight = document.getElementById('cursor-light');
-            const body = document.body;
-
-            if (!IS_DESKTOP) return;
-
-            let mouseX = 0;
-            let mouseY = 0;
-            let initialized = false;
-            let isHovering = false;
-
-            // Update mouse coordinates
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                if (!initialized) {
-                    initialized = true;
-                    cursorLight.style.display = 'block';
-                }
-            });
-
-            // Function to animate the cursor using requestAnimationFrame (Syncs with refresh rate)
-            function updateCursor() {
-                // Move instantly (No Delay)
-                // Using translate3d for hardware acceleration
-                cursorLight.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
-                requestAnimationFrame(updateCursor);
-            }
-
-            updateCursor();
-
-            // Add hover interactions (Event Delegation for performance)
-            // When hovering interactive elements, the cursor focuses (shrinks)
-            document.addEventListener('mouseover', (e) => {
-                if (e.target.closest('a, button, .thumbnail, video')) {
-                    if (!isHovering) {
-                        body.classList.add('cursor-hover');
-                        isHovering = true;
-                    }
-                }
-            });
-
-            document.addEventListener('mouseout', (e) => {
-                 if (e.target.closest('a, button, .thumbnail, video')) {
-                     if (isHovering) {
-                        body.classList.remove('cursor-hover');
-                        isHovering = false;
-                     }
-                 }
-            });
-            
-            // Hide custom cursor when leaving the viewport
-            document.addEventListener('mouseleave', () => {
-                cursorLight.style.display = 'none';
-                initialized = false;
-            });
-             document.addEventListener('mouseenter', () => {
-                if (IS_DESKTOP) {
-                    cursorLight.style.display = 'block';
-                }
-            });
-        });
-
-        // --- 2. Innovation 3: Kinetic Typography (Whispering Text) ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const kineticTexts = document.querySelectorAll('.kinetic-text');
-
-            // Step 1: Split text into words wrapped in spans
-            kineticTexts.forEach(element => {
-                // We need to handle nested elements (like <span class="highlight">) correctly
-                const nodes = Array.from(element.childNodes);
-                element.innerHTML = ''; // Clear the element
-
-                nodes.forEach(node => {
-                    if (node.nodeType === Node.TEXT_NODE) {
-                        // Split text node content by space
-                        const words = node.textContent.split(' ');
-                        words.forEach((word, index) => {
-                            if (word) {
-                                const span = document.createElement('span');
-                                span.classList.add('k-word');
-                                span.textContent = word;
-                                element.appendChild(span);
-                            }
-                            // Add space back if not the last word and the word wasn't empty
-                            if (index < words.length - 1 && word) {
-                                element.appendChild(document.createTextNode(' '));
-                            }
-                        });
-                    } else if (node.nodeType === Node.ELEMENT_NODE) {
-                        // If it's an element, wrap the whole element in k-word
-                         const wrapper = document.createElement('span');
-                         wrapper.classList.add('k-word');
-                         wrapper.appendChild(node.cloneNode(true));
-                         element.appendChild(wrapper);
-                         element.appendChild(document.createTextNode(' ')); // Add space after element
-                    }
-                });
-                 // Mark the element as processed
-                element.classList.add('kinetic-processed');
-            });
-
-            // Step 2: Use Intersection Observer to trigger animation on scroll
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.5 // Trigger when 50% of the text block is visible
-            };
-
-            const observerCallback = (entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const words = entry.target.querySelectorAll('.k-word');
-                        
-                        // Animate words sequentially (The "Whisper" effect)
-                        words.forEach((word, index) => {
-                            setTimeout(() => {
-                                word.style.opacity = '1';
-                                word.style.transform = 'translateY(0) rotateX(0deg)';
-                            }, index * 25); // 25ms stagger between words for a fluid effect
-                        });
-
-                        observer.unobserve(entry.target); // Stop observing once animated
-                    }
-                });
-            };
-
-            const kineticObserver = new IntersectionObserver(observerCallback, observerOptions);
-            
-            // Observe the processed containers
-            document.querySelectorAll('.kinetic-processed').forEach(el => {
-                kineticObserver.observe(el);
-            });
-
-        });
-
-
-        // --- 3. Video Switching Functionality ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const mainVideo = document.getElementById('mainVideo');
-            const thumbnails = document.querySelectorAll('.thumbnail');
-
-            thumbnails.forEach(thumb => {
-                thumb.addEventListener('click', () => {
-                    if (thumb.classList.contains('active')) return;
-
-                    const videoUrl = thumb.getAttribute('data-video');
-
-                    // Update active classes
-                    document.querySelector('.thumbnail.active')?.classList.remove('active');
-                    thumb.classList.add('active');
-
-                    // Change the video source and play
-                    mainVideo.src = videoUrl;
-                    mainVideo.play().catch(error => {
-                        console.error("Error playing video:", error);
-                    });
-                });
-            });
-        });
-
-        // --- 4. Scroll Animation (Standard Reveals) ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const revealElements = document.querySelectorAll('.reveal');
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px 0px -100px 0px',
-                threshold: 0.1
-            };
-
-            const observerCallback = (entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        // We don't unobserve kinetic parents here, as the kinetic observer handles them separately
-                        if (!entry.target.classList.contains('kinetic-text')) {
-                             observer.unobserve(entry.target);
-                        }
-                    }
-                });
-            };
-
-            const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-            revealElements.forEach(el => {
-                // Don't observe elements that are also kinetic text parents (to avoid conflict)
-                if (!el.classList.contains('kinetic-text')) {
-                     observer.observe(el);
-                }
-            });
-        });
-    </script>
 
 </body>
 </html>
