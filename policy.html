@@ -1,131 +1,171 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>ehotlovea — давай познакомимся!</title>
-<meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#0b0f14">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>ehotlovea — портальная платформа (превью)</title>
+<meta name="robots" content="noindex,nofollow" />
 <style>
   :root{
-    --bg:#0b0f14; --ink:#eef3fb; --muted:#9fb6c9;
-    --line:rgba(255,255,255,.08); --tg:#229ED9; --gold:rgba(255,215,0,.7);
-    --vio1:#8f66ff; --vio2:#c54dfc; --r:16px;
+    --bg:#0b0f14;
+    --ink:#eaf2ff;
+    --muted:#9bb1c6;
+    --line:rgba(255,255,255,.08);
+    --vio1:#8f66ff;
+    --vio2:#c54dfc;
+    --gold:rgba(255,215,0,.65);
+    --tg:#229ED9;
+    --r:18px;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
-    margin:0;color:var(--ink); background:var(--bg);
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; line-height:1.55;
-    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    margin:0;color:var(--ink);background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(143,102,255,.20), transparent 60%),
+      radial-gradient(900px 500px at 15% 110%, rgba(197,77,252,.12), transparent 60%),
+      var(--bg);
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   }
-  #bg3d{position:fixed;inset:0;z-index:-1;background:
-    radial-gradient(1200px 600px at 80% -10%, rgba(143,102,255,.22), transparent 60%),
-    radial-gradient(900px 500px at 10% 110%, rgba(197,77,252,.14), transparent 60%)}
-  .wrap{max-width:1080px;margin:0 auto;padding:20px}
-  a{color:inherit;text-decoration:none}
-  .row{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-  .brand{display:flex;gap:10px;align-items:center;font-weight:800}
-  .mark{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;
-        background:linear-gradient(135deg,var(--vio1),var(--vio2));box-shadow:0 10px 30px rgba(143,102,255,.45)}
-  .chip{display:inline-flex;gap:8px;align-items:center;color:var(--muted);
-        background:rgba(255,255,255,.05);border:1px solid var(--line);
-        padding:8px 12px;border-radius:999px;font-size:13px}
-  .cta{display:inline-flex;gap:10px;align-items:center;background:var(--tg);color:#fff;
-       padding:14px 20px;border-radius:999px;font-weight:800;letter-spacing:.2px;
-       box-shadow:0 0 24px var(--gold),0 0 64px rgba(255,215,0,.35);
-       transition:transform .12s ease, box-shadow .12s ease}
-  .cta:hover{transform:translateY(-1px);box-shadow:0 0 30px rgba(255,215,0,.9),0 0 84px rgba(255,215,0,.45)}
-  .cta-alt{display:inline-flex;padding:12px 16px;border-radius:999px;background:linear-gradient(135deg,var(--vio1),var(--vio2));color:#fff;font-weight:800;box-shadow:0 10px 30px rgba(143,102,255,.4)}
-  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;margin:18px 0 28px}
-  @media (max-width:900px){.hero{grid-template-columns:1fr}}
-  h1{font-size:clamp(26px,5.6vw,48px);line-height:1.04;margin:.1em 0 .25em}
-  .lead{font-size:clamp(16px,2.6vw,19px);color:var(--muted);max-width:700px}
-  .panel{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
-         border:1px solid var(--line);border-radius:var(--r);padding:18px}
-  .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-  @media (max-width:720px){.metrics{grid-template-columns:repeat(2,1fr)}}
-  .metric{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:12px}
-  .metric .k{font:800 20px/1.1 system-ui,-apple-system,Segoe UI,Roboto,Arial}
-  .metric .d{color:var(--muted);font-size:13px}
-  .videoBox{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#000}
-  .censor{position:absolute;left:0;right:0;bottom:0;height:160px;background:linear-gradient(0deg, rgba(0,0,0,.88), rgba(0,0,0,0));pointer-events:none}
-  h2{font-size:clamp(22px,3.6vw,32px);margin:30px 0 12px}
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
-  .card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:var(--r);padding:18px}
-  .muted{color:var(--muted)}
-  .note{border-left:3px solid var(--vio1);padding-left:12px;margin-top:12px}
-  .sticky{position:sticky;bottom:10px;z-index:10;display:flex;justify-content:center;padding:6px}
+  .wrap{min-height:100%;display:grid;place-items:center;padding:28px}
+  .stage{
+    width:min(92vw,820px);
+    aspect-ratio: 16/10;
+    position:relative;
+    display:grid;
+    place-items:center;
+    border-radius:calc(var(--r) + 6px);
+    background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+
+  /* Портал за тизером */
+  .portal{
+    position:absolute; inset:0; display:grid; place-items:center; pointer-events:none;
+    filter: drop-shadow(0 0 40px rgba(143,102,255,.45));
+  }
+  .portal::before{
+    content:"";
+    width:56%; aspect-ratio:1/1; border-radius:50%;
+    background:
+      radial-gradient(closest-side, rgba(143,102,255,.35), transparent 70%),
+      radial-gradient(farthest-side, rgba(197,77,252,.18), transparent 60%);
+    box-shadow:
+      0 0 90px rgba(143,102,255,.35) inset,
+      0 0 70px rgba(197,77,252,.25) inset,
+      0 0 120px rgba(143,102,255,.25);
+    position:relative;
+  }
+  .portal::after{
+    /* тонкое «кольцо» со слабым вращением */
+    content:"";
+    position:absolute; inset:0; margin:auto; width:58%; aspect-ratio:1/1; border-radius:50%;
+    background:conic-gradient(from 0deg,
+      rgba(255,255,255,.0) 0deg,
+      rgba(255,255,255,.25) 35deg,
+      rgba(255,255,255,.0) 90deg,
+      rgba(255,255,255,.15) 140deg,
+      rgba(255,255,255,.0) 220deg,
+      rgba(255,255,255,.22) 280deg,
+      rgba(255,255,255,.0) 360deg);
+    mix-blend-mode:screen; opacity:.65;
+    animation: spin 18s linear infinite;
+  }
+  @keyframes spin{ to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){
+    .portal::after{ animation:none }
+  }
+
+  /* Тизер (сюда вставишь своё видео) */
+  .teaser{
+    position:relative; z-index:1; width:min(66%, 460px); aspect-ratio:9/16; border-radius:16px; overflow:hidden;
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:
+      0 8px 30px rgba(0,0,0,.45),
+      0 0 36px rgba(255,215,0,.18);
+    background:#000;
+  }
+  .teaser video, .teaser .poster{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  }
+  /* Мягкая «цензура» низа — можно усилить/ослабить */
+  .teaser::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:140px;
+    background:linear-gradient(0deg, rgba(0,0,0,.95), rgba(0,0,0,0));
+    pointer-events:none;
+  }
+
+  /* Подий / эллипс внизу (даёт «сцену») */
+  .podium{
+    position:absolute; bottom:-3%; left:50%; transform:translateX(-50%);
+    width:64%; height:32%; pointer-events:none;
+    filter: blur(14px) drop-shadow(0 0 24px rgba(255,215,0,.25));
+  }
+  .podium::before{
+    content:""; position:absolute; inset:auto 0 16% 0; margin:auto;
+    width:92%; height:28%; border-radius:50%;
+    background:
+      radial-gradient(closest-side, rgba(255,255,255,.12), rgba(255,255,255,0) 70%),
+      radial-gradient(closest-side, rgba(143,102,255,.35), rgba(143,102,255,0) 72%);
+    opacity:.55;
+  }
+
+  /* Контент и кнопка */
+  .copy{
+    position:absolute; inset:auto 4% 4% 4%;
+    display:grid; gap:10px; justify-items:center; text-align:center;
+  }
+  h1{margin:0; font-size:clamp(22px,4.8vw,34px); line-height:1.1}
+  .lead{color:var(--muted); font-size:clamp(14px,3.4vw,18px)}
+  .cta{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 20px; border-radius:999px; font-weight:800; letter-spacing:.2px;
+    color:#fff; background:var(--tg);
+    box-shadow:0 0 22px var(--gold), 0 0 60px rgba(255,215,0,.35);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .cta:hover{ transform: translateY(-1px); box-shadow:0 0 28px rgba(255,215,0,.9),0 0 80px rgba(255,215,0,.45) }
+  .badge{
+    position:absolute; top:14px; left:14px;
+    background:rgba(255,255,255,.06); border:1px solid var(--line);
+    color:var(--muted); padding:8px 12px; border-radius:999px; font-size:13px
+  }
 </style>
 </head>
 <body>
-<div id="bg3d"></div>
-<div class="wrap">
-  <header class="row">
-    <div class="brand"><div class="mark">✨</div><span>ehotlovea</span></div>
-    <div class="row" style="gap:8px">
-      <span class="chip">18+</span>
-      <span class="chip">9 лет в стримах</span>
-      <a class="cta" href="https://t.me/+bu69mmPvjYMyOTY0" onclick="return openTG(this.href)">Войти в Telegram</a>
-    </div>
-  </header>
+  <main class="wrap">
+    <section class="stage" aria-label="Портальная платформа (превью)">
+      <div class="portal" aria-hidden="true"></div>
 
-  <section class="hero" aria-label="Знакомство">
-    <div>
-      <div class="chip">FREE • EXCLUSIVE • LIVE</div>
-      <h1>Давай в начале познакомимся! Попробуй узнать меня лучше — и ты не пожалеешь.</h1>
-      <p class="lead">Я — <b>ehotlovea</b>, вебкам-модель и ведущая шоу. Уже 9 лет в онлайне, знаю, как сделать стрим живым: юмор, энергия, гости-модели, интерактив. Здесь — бесплатные 18+ видео-тизеры и анонсы шоу. Без фальши.</p>
-
-      <div class="panel" style="margin-top:12px">
-        <div class="metrics">
-          <div class="metric"><div class="k">9 лет</div><div class="d">опыта и доверия</div></div>
-          <div class="metric"><div class="k">Live</div><div class="d">стримы с моделями</div></div>
-          <div class="metric"><div class="k">Free</div><div class="d">видео для подписчиков</div></div>
-        </div>
-        <p class="muted" style="margin-top:10px">Подпишись в Telegram — забирай бесплатные клипы и не пропусти ближайший эфир.</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
-          <a class="cta" href="https://t.me/+bu69mmPvjYMyOTY0" onclick="return openTG(this.href)">Вступить в канал</a>
-          <a class="cta-alt" href="lp2.html">Узнать больше →</a>
-        </div>
+      <!-- Тизер: подставь свой файл вместо poster/видео -->
+      <div class="teaser">
+        <!-- Если видео готово — раскомментируй ниже и укажи src -->
+        <!-- <video src="teaser.mp4" autoplay muted loop playsinline></video> -->
+        <div class="poster" style="
+          background:
+            radial-gradient(120px 160px at 30% 20%, rgba(34,158,217,.35), transparent 60%),
+            radial-gradient(140px 200px at 70% 80%, rgba(255,215,0,.18), transparent 60%),
+            url('') center/cover no-repeat, #000;
+        "></div>
       </div>
-    </div>
 
-    <div class="videoBox" aria-label="Видео-тизер (10 секунд)">
-      <video src="teaser.mp4" autoplay muted loop playsinline></video>
-      <div class="censor" aria-hidden="true"></div>
-    </div>
-  </section>
+      <div class="podium" aria-hidden="true"></div>
 
-  <section aria-label="Почему со мной">
-    <h2>Почему со мной интересно</h2>
-    <div class="grid-2">
-      <div class="card">
-        <h3>Профессиональное шоу</h3>
-        <p class="muted">Свет, звук, динамика — всё ради эмоций. Ты не просто смотришь — ты участвуешь.</p>
+      <div class="badge">FREE • EXCLUSIVE • LIVE</div>
+      <div class="copy">
+        <h1>Давай познакомимся — сделай шаг в мой мир</h1>
+        <p class="lead">5–10 секунд живого тизера, дальше — шоу, общение и настоящая атмосфера.</p>
+        <a class="cta" href="https://t.me/+bu69mmPvjYMyOTY0" onclick="return openTG(this.href)">Войти в Telegram</a>
       </div>
-      <div class="card">
-        <h3>Комьюнити и диалоги</h3>
-        <p class="muted">Готовим фан-чат. Там будем общаться, устраивать опросы и придумывать безумные идеи.</p>
-      </div>
-    </div>
-    <p class="note">18+. Мы за честность: то, что обещано — действительно будет. Приватность уважаем.</p>
-  </section>
+    </section>
+  </main>
 
-  <section class="sticky"><a class="cta" href="https://t.me/+bu69mmPvjYMyOTY0" onclick="return openTG(this.href)">Войти в Telegram</a></section>
-
-  <footer style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#9fb6c9;font-size:14px;padding:20px 0">
-    <div>© 2025 ehotlovea</div>
-    <div>18+ Только для совершеннолетних</div>
-  </footer>
-</div>
-
-<!-- Three.js (лёгкие частицы) -->
-<script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
 <script>
+  // Глубокая ссылка в Telegram с фолбэком на веб
   function openTG(href){
     const url = href || 'https://t.me/+bu69mmPvjYMyOTY0';
-    const withUtm = url + (url.includes('?')?'&':'?') + 'utm_source=lp1&utm_medium=cta';
+    const withUtm = url + (url.includes('?')?'&':'?') + 'utm_source=portal_demo&utm_medium=cta';
     const app = 'tg://resolve?domain=' + withUtm.replace('https://t.me/','').replace('+','');
     let jumped=false;
     const t=setTimeout(()=>{ if(!jumped) location.href=withUtm; }, 900);
@@ -133,25 +173,6 @@
     setTimeout(()=>{ jumped=true; clearTimeout(t); }, 1400);
     return false;
   }
-
-  // simple particles bg
-  const c = document.createElement('canvas'); c.width=innerWidth; c.height=innerHeight;
-  document.getElementById('bg3d').appendChild(c);
-  const renderer = new THREE.WebGLRenderer({canvas:c, antialias:true, alpha:true});
-  renderer.setSize(innerWidth, innerHeight);
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 1000);
-  camera.position.z = 3;
-  const geo = new THREE.BufferGeometry();
-  const COUNT = 600;
-  const pos = new Float32Array(COUNT*3);
-  for(let i=0;i<COUNT;i++){ pos[i*3]=(Math.random()-0.5)*8; pos[i*3+1]=(Math.random()-0.5)*6; pos[i*3+2]=Math.random()*-6; }
-  geo.setAttribute('position', new THREE.BufferAttribute(pos,3));
-  const mat = new THREE.PointsMaterial({size:0.02, color:0x9a7dff, transparent:true, opacity:0.8});
-  const points = new THREE.Points(geo, mat); scene.add(points);
-  function tick(){ points.rotation.y += 0.0008; renderer.render(scene,camera); requestAnimationFrame(tick); }
-  tick();
-  addEventListener('resize',()=>{renderer.setSize(innerWidth, innerHeight); camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();});
 </script>
 </body>
 </html>
