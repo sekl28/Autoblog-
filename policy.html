@@ -1,667 +1,413 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ehotlovea - The Liquid Experience</title>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
+    <title>Разоблачение | Вся правда здесь</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Manrope:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* ==========================================================================
-           THE LIQUID LIGHTBOX - FULL CONSOLIDATED CODE
-           Analysis: This file contains the complete and structured code for the
-           entire experience, combining all 8 parts into a final, polished product.
-        ========================================================================== */
-
-        /* * -------------------------------------------
-         * Section I: CORE SETUP & DESIGN SYSTEM
-         * ------------------------------------------- */
+        /* --- CORE SETUP & DESIGN TOKENS --- */
         :root {
-            /* Colors */
-            --color-background: #0c0c0f;
-            --color-text-primary: #e0e0e0;
-            --color-text-secondary: #888;
-            --color-accent-1: hsl(340, 100%, 60%);
-            --color-accent-2: hsl(190, 100%, 60%);
-            --color-glass-bg: rgba(20, 20, 25, 0.4);
-            --color-glass-border: rgba(255, 255, 255, 0.1);
-            --color-glow: rgba(255, 255, 255, 0.8);
-
-            /* Typography */
-            --font-display: 'Lora', serif;
-            --font-body: 'Inter', sans-serif;
-            --font-size-base: clamp(16px, 1.1vw, 18px);
-            --line-height-base: 1.7;
-
-            /* Fluid Typographic Scale */
-            --text-sm: clamp(0.8rem, 0.8vw, 0.9rem);
-            --text-md: clamp(1rem, 1.1vw, 1.1rem);
-            --text-lg: clamp(1.25rem, 1.5vw, 1.5rem);
-            --text-xl: clamp(1.5rem, 2.5vw, 2.25rem);
-            --text-xxl: clamp(2rem, 4vw, 3.5rem);
-
-            /* Spacing */
-            --space-xs: clamp(0.5rem, 1vw, 1rem);
-            --space-s: clamp(1rem, 2vw, 2rem);
-            --space-m: clamp(2rem, 3vw, 3rem);
-            --space-l: clamp(3rem, 5vw, 4rem);
-
-            /* Animation */
-            --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
-            --duration-fast: 0.4s;
-            --duration-normal: 0.8s;
-
-            /* Borders & Shadows */
-            --radius-md: 16px;
-            --shadow-glow: 0 0 30px -5px var(--color-glow);
+            --color-primary: #db00ff;
+            --color-secondary: #00f2ff;
+            --color-background: #05020a;
+            --color-surface: rgba(16, 10, 28, 0.5);
+            --color-text: #e1dff8;
+            --color-text-muted: #827e99;
+            --font-main: 'Manrope', sans-serif;
+            --font-heading: 'Inter', sans-serif;
         }
 
-        /* * -------------------------------------------
-         * Section II: GLOBAL RESETS & SCENE
-         * ------------------------------------------- */
         *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: fixed; /* Prevents any scrolling */
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--color-background);
-            font-family: var(--font-body);
-            font-size: var(--font-size-base);
-            color: var(--color-text-primary);
-            -webkit-font-smoothing: antialiased;
-            cursor: none; /* Custom cursor will be implemented */
+            color: var(--color-text);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            cursor: none; /* Hide default cursor */
         }
         
-        .loading-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--color-background);
-            z-index: 9999;
-            display: flex; justify-content: center; align-items: center;
-            color: var(--color-text-secondary);
-            transition: opacity 0.5s;
-        }
-
-        #fluid-canvas {
+        /* --- CUSTOM CURSOR & SPOTLIGHT EFFECT --- */
+        .cursor-dot, .cursor-outline {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .lightbox-world {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            perspective: 1500px;
-        }
-
-        /* * -------------------------------------------
-         * Section III: UI LAYER & CUSTOM CURSOR
-         * ------------------------------------------- */
-        .ui-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* Allows interaction with elements behind it */
-            z-index: 100;
-        }
-
-        .custom-cursor {
-            position: fixed;
-            width: 24px;
-            height: 24px;
-            border: 1px solid var(--color-glow);
-            border-radius: 50%;
             transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
-            will-change: width, height, transform;
-            mix-blend-mode: difference; /* Ensures visibility on all colors */
+            border-radius: 50%;
+            pointer-events: none;
             z-index: 9999;
+            transition: transform 0.15s ease-out, width 0.15s ease-out, height 0.15s ease-out;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--color-primary);
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--color-primary);
+            opacity: 0.5;
         }
 
-        .custom-cursor.is-interacting {
-            width: 48px;
-            height: 48px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: transparent;
+        .spotlight {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, rgba(219, 0, 255, 0.08), transparent 25%);
         }
 
-        .instructions {
-            position: absolute;
-            bottom: var(--space-s);
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--color-text-secondary);
-            font-size: var(--text-sm);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            opacity: 0; /* JS will fade it in */
-            transition: opacity var(--duration-normal);
+        /* --- LAYOUT & SECTIONS --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
-        .back-button {
-            position: absolute;
-            top: var(--space-s);
-            left: var(--space-s);
-            font-size: var(--text-sm);
-            color: var(--color-text-secondary);
-            text-transform: uppercase;
-            padding: var(--space-xs);
-            cursor: none;
-            pointer-events: all;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity var(--duration-fast), color var(--duration-fast);
-        }
-
-        .back-button:hover {
-            color: var(--color-text-primary);
-        }
-
-        .back-button.is-visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* * -------------------------------------------
-         * Section IV: GLOBAL TYPOGRAPHY & COMPONENTS
-         * ------------------------------------------- */
-        h1, h2, h3 {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-style: italic;
-            color: var(--color-text-primary);
-            line-height: 1.2;
-        }
-
-        h1 { font-size: var(--text-xxl); }
-        h2 { font-size: var(--text-xl); margin-top: var(--space-m); }
-        h3 { font-size: var(--text-lg); margin-top: var(--space-m); }
-
-        p {
-            font-size: var(--text-md);
-            margin-bottom: var(--space-s);
-        }
-
-        blockquote {
-            padding-left: var(--space-s);
-            border-left: 2px solid var(--color-accent-1);
-            margin: var(--space-s) 0;
-            font-style: italic;
-            color: var(--color-text-secondary);
-        }
-
-        .panel-button {
-            display: inline-block;
-            font-family: var(--font-body);
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--color-background);
-            background-color: var(--color-accent-1);
-            padding: var(--space-xs) var(--space-s);
-            border-radius: 30px;
-            margin-top: var(--space-s);
-            transition: transform var(--duration-fast) var(--ease-out-quart), background-color var(--duration-fast);
-        }
-
-        .panel-button:hover {
-            background-color: var(--color-accent-2);
-            transform: scale(1.05);
-        }
-        
-        /* * -------------------------------------------
-         * Section V: LIGHTBOX CONTAINER
-         * ------------------------------------------- */
-        .lightbox {
-            position: absolute;
-            width: clamp(320px, 40vw, 600px); /* Adaptive width */
-            height: 60vh;
-            max-height: 650px;
-            z-index: 10;
-            
-            /* GSAP will control top, left, and transform */
-            will-change: transform, opacity;
-
-            /* Glassmorphism effect */
-            background: var(--color-glass-bg);
-            border: 1px solid var(--color-glass-border);
-            border-radius: var(--radius-md);
-            backdrop-filter: blur(25px) saturate(150%);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-
+        .section {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
-
-            opacity: 0; /* Hidden by default, JS will reveal */
-            transition: opacity var(--duration-normal) var(--ease-out-quart);
-        }
-
-        .lightbox.is-visible {
-            opacity: 1;
-        }
-
-        /* * -------------------------------------------
-         * Section VI: LIGHTBOX HEADER & HANDLE
-         * ------------------------------------------- */
-        .lightbox-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: var(--space-xs) var(--space-s);
-            background: rgba(0,0,0,0.2);
-            flex-shrink: 0;
-        }
-
-        .header-title {
-            font-size: var(--text-sm);
-            color: var(--color-text-secondary);
-            font-weight: 500;
-        }
-
-        .header-handle {
-            width: 100px;
-            height: 20px;
+            justify-content: center;
+            padding: 100px 0;
             position: relative;
-            cursor: none; /* Already using a custom cursor */
         }
 
-        .header-handle::before {
-            content: '';
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        #hero-video-bg {
             position: absolute;
             top: 50%;
             left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transform: translate(-50%, -50%);
-            width: 40px;
-            height: 4px;
-            background: var(--color-glass-border);
-            border-radius: 4px;
+            z-index: -2;
+            opacity: 0.15;
+            filter: blur(8px);
         }
-
-        /* * -------------------------------------------
-         * Section VII: LIGHTBOX CONTENT AREA
-         * ------------------------------------------- */
-        .lightbox-content {
-            padding: var(--space-s) var(--space-l);
-            overflow-y: auto;
-            flex-grow: 1;
-            opacity: 0; /* Hidden initially */
-            transform: translateY(20px);
-            transition: opacity var(--duration-normal) var(--ease-out-quart), transform var(--duration-normal) var(--ease-out-quart);
-            transition-delay: 0.2s; /* Delay to animate after lightbox appears */
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 24px;
+            animation: text-float 5s ease-in-out infinite;
         }
-
-        .lightbox.is-focused .lightbox-content {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .lightbox-content::-webkit-scrollbar {
-            width: 6px;
-        }
-        .lightbox-content::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .lightbox-content::-webkit-scrollbar-thumb {
-            background-color: var(--color-glass-border);
-            border-radius: 6px;
-        }
-
-    </style>
-</head>
-<body class="is-loading">
-
-    <div class="loading-screen">Loading Experience...</div>
-
-    <canvas id="fluid-canvas"></canvas>
-
-    <div class="lightbox-world">
-
-        <div class="lightbox is-interactive" id="lightbox-acquaintance" data-view-id="acquaintance">
-            <div class="lightbox-header">
-                <div class="header-title">The Acquaintance</div>
-                <div class="header-handle"></div>
-            </div>
-            <div class="lightbox-content">
-                <h1>Let’s get acquainted!</h1>
-                <p>Hi! Let’s get to know each other better. I have something to surprise and delight you with. Don’t believe it? Just take a look at least for 5–10 seconds of my real live stream and see for yourself. 😉</p>
-                
-                <h2>Who I am and my experience</h2>
-                <p>I am a webcam model with 9 years of experience. With me you don’t just watch a broadcast — you dive into a special world. I love to experiment and delight you with new emotions every time.</p>
-                
-                <h2>What you will get</h2>
-                <p>In my Telegram channel you will get access to: Free videos, Fun streams with other models, and an Open fan chat (coming soon). And this is just the beginning...</p>
-                
-                <h2>Social proof: 13,000+</h2>
-                <p>Thousands of people have already become part of our private club. Don’t miss your chance — join and feel yourself in the company of like-minded people!</p>
-                 <a href="#" target="_blank" class="panel-button">Join Telegram</a>
-            </div>
-        </div>
-
-        <div class="lightbox is-interactive" id="lightbox-rumors" data-view-id="rumors">
-             <div class="lightbox-header">
-                <div class="header-title">The Rumors</div>
-                <div class="header-handle"></div>
-            </div>
-            <div class="lightbox-content">
-                <h1>Rumors About Me</h1>
-                <p>On the internet, there is a whole sect of amateur detectives who invent incredible stories about me. Here’s a brief overview:</p>
-                
-                <h3>[RUMOR_01]: I am a prisoner.</h3>
-                <p>Yes, according to the forum “experts,” I’m a hostage, kept by force and starved. <blockquote>“Is ehotlovea a hostage and is she being starved?”</blockquote></p>
-
-                <h3>[RUMOR_02]: I am “controlled by a monster.”</h3>
-                <p>According to the rumors, there’s some villain who forces me to work on camera against my will.</p>
-
-                <h3>And now – to the facts.</h3>
-                <p><strong>There is no villain, no captivity, and no drama whatsoever.</strong> There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved is the result of my own effort, a well-thought-out strategy, and hard work. 🎓</p>
-                <p>No one controls me. I want to mention the Chaturbate support team. These guys are true pros. 💙</p>
-                <p>We have already uncovered the identity of that very storyteller (thanks to my clever Eric 😉). Legal steps will not take long.</p>
-                <p>So what’s the bottom line? I continue to do my work and reach new heights. Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
-                <a href="#" target="_blank" class="panel-button">Join The Real World</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="ui-layer">
-        <div class="custom-cursor"></div>
-        <div class="instructions">Click and Drag to Interact</div>
-        <div class="back-button">← BACK</div>
-    </div>
-
-    <script>
-    /* ==========================================================================
-       THE LIQUID LIGHTBOX - FULL JAVASCRIPT
-       Analysis: This file contains the complete, structured JavaScript for the
-       entire experience, including the fluid simulation, object interaction,
-       state management, and content animations.
-    ========================================================================== */
-
-    document.addEventListener('DOMContentLoaded', () => {
-
-        // --- PART 4: FLUID SIMULATION ENGINE ---
-        function initializeFluidSimulation() {
-            const canvas = document.getElementById('fluid-canvas');
-            if (!canvas.getContext) return;
-            const gl = canvas.getContext('webgl');
-            if (!gl) {
-                console.warn("WebGL not supported. Fluid simulation disabled.");
-                return;
-            }
-
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            const vertexShaderSource = `
-                attribute vec2 a_position;
-                void main() {
-                    gl_Position = vec4(a_position, 0.0, 1.0);
-                }
-            `;
-            const fragmentShaderSource = `
-                precision highp float;
-                uniform float u_time;
-                uniform vec2 u_mouse;
-                uniform vec2 u_resolution;
-
-                void main() {
-                    vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-                    float t = u_time * 0.1;
-                    
-                    vec2 mouse_norm = u_mouse / u_resolution.xy;
-                    float dist = distance(uv, mouse_norm);
-                    
-                    float color_wave = sin(uv.x * 10.0 + t) + cos(uv.y * 10.0 + t);
-                    float mouse_effect = 1.0 - smoothstep(0.0, 0.1, dist);
-                    
-                    float r = 0.05 + 0.05 * sin(color_wave * 2.0 + t);
-                    float g = 0.05 + 0.05 * cos(uv.y * 5.0 - t);
-                    float b = 0.15 + 0.1 * sin(dist * 10.0 - t);
-                    
-                    gl_FragColor = vec4(r + mouse_effect * 0.5, g + mouse_effect * 0.3, b + mouse_effect * 1.0, 1.0);
-                }
-            `;
-
-            function compileShader(type, source) {
-                const shader = gl.createShader(type);
-                gl.shaderSource(shader, source);
-                gl.compileShader(shader);
-                if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-                    console.error('Shader compile error: ' + gl.getShaderInfoLog(shader));
-                    gl.deleteShader(shader);
-                    return null;
-                }
-                return shader;
-            }
-            
-            function createProgram(vertexShader, fragmentShader) {
-                const program = gl.createProgram();
-                gl.attachShader(program, vertexShader);
-                gl.attachShader(program, fragmentShader);
-                gl.linkProgram(program);
-                if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-                    console.error('Program link error: ' + gl.getProgramInfoLog(program));
-                    return null;
-                }
-                return program;
-            }
-
-            const vertexShader = compileShader(gl.VERTEX_SHADER, vertexShaderSource);
-            const fragmentShader = compileShader(gl.FRAGMENT_SHADER, fragmentShaderSource);
-            const program = createProgram(vertexShader, fragmentShader);
-            
-            const positionAttributeLocation = gl.getAttribLocation(program, "a_position");
-            const timeUniformLocation = gl.getUniformLocation(program, "u_time");
-            const mouseUniformLocation = gl.getUniformLocation(program, "u_mouse");
-            const resolutionUniformLocation = gl.getUniformLocation(program, "u_resolution");
-
-            const positionBuffer = gl.createBuffer();
-            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
-            
-            let mousePos = { x: window.innerWidth/2, y: window.innerHeight/2 };
-            window.addEventListener('mousemove', e => {
-                mousePos.x = e.clientX;
-                mousePos.y = window.innerHeight - e.clientY; // Y is inverted in WebGL
-            });
-
-            function render(time) {
-                gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-                gl.useProgram(program);
-                gl.enableVertexAttribArray(positionAttributeLocation);
-                gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-                gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
-                gl.uniform1f(timeUniformLocation, time * 0.001);
-                gl.uniform2f(mouseUniformLocation, mousePos.x, mousePos.y);
-                gl.uniform2f(resolutionUniformLocation, gl.canvas.width, gl.canvas.height);
-                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-                requestAnimationFrame(render);
-            }
-            requestAnimationFrame(render);
-        }
-
-        // --- PART 5: DRAGGABLE & ROTATABLE INTERACTION ---
-        function initializeLightboxInteraction() {
-            const lightboxes = document.querySelectorAll('.lightbox.is-interactive');
-            const cursor = document.querySelector('.custom-cursor');
-            let highestZ = 10;
-
-            lightboxes.forEach((lightbox) => {
-                gsap.set(lightbox, {
-                    x: (Math.random() - 0.5) * (window.innerWidth * 0.4),
-                    y: (Math.random() - 0.5) * (window.innerHeight * 0.2),
-                    rotationY: (Math.random() - 0.5) * 40,
-                    rotationX: (Math.random() - 0.5) * 20
-                });
-
-                const header = lightbox.querySelector('.lightbox-header');
-                let isDragging = false;
-                let startX, startY, startMouseX, startMouseY;
-
-                function onMouseDown(e) {
-                    isDragging = true;
-                    highestZ++;
-                    gsap.set(lightbox, { zIndex: highestZ });
-                    startX = gsap.getProperty(lightbox, "x");
-                    startY = gsap.getProperty(lightbox, "y");
-                    startMouseX = e.clientX || e.touches[0].clientX;
-                    startMouseY = e.clientY || e.touches[0].clientY;
-                    gsap.to(lightbox, { scale: 1.05, duration: 0.3 });
-                    cursor.classList.add('is-interacting');
-                    window.addEventListener('mousemove', onMouseMove);
-                    window.addEventListener('mouseup', onMouseUp);
-                }
-
-                function onMouseMove(e) {
-                    if (!isDragging) return;
-                    const newX = startX + (e.clientX - startMouseX);
-                    const newY = startY + (e.clientY - startMouseY);
-                    const rotY = gsap.utils.clamp(-45, 45, (e.clientX - startMouseX) * 0.1);
-                    gsap.to(lightbox, { x: newX, y: newY, rotationY: rotY, duration: 0.8, ease: 'power3.out' });
-                }
-
-                function onMouseUp() {
-                    isDragging = false;
-                    gsap.to(lightbox, { scale: 1, duration: 0.3 });
-                    cursor.classList.remove('is-interacting');
-                    window.removeEventListener('mousemove', onMouseMove);
-                    window.removeEventListener('mouseup', onMouseUp);
-                }
-                
-                header.addEventListener('mousedown', onMouseDown);
-                lightbox.addEventListener('mousedown', () => {
-                    if (!isDragging) {
-                        highestZ++;
-                        gsap.set(lightbox, { zIndex: highestZ });
-                        if (!lightbox.classList.contains('is-focused')) {
-                            lightboxes.forEach(lb => lb.classList.remove('is-focused'));
-                            lightbox.classList.add('is-focused');
-                        }
-                    }
-                });
-            });
+        .hero-content p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
         }
         
-        // --- PART 6: STATE & "CAMERA" LOGIC ---
-        function initializeCameraAndState() {
-            const lightboxes = document.querySelectorAll('.lightbox.is-interactive');
-            const backButton = document.querySelector('.back-button');
-            const instructions = document.querySelector('.instructions');
-            let isZoomed = false;
-
-            function focusOnView(viewId) {
-                isZoomed = true;
-                const targetLightbox = document.getElementById(`lightbox-${viewId}`);
-                lightboxes.forEach(lb => {
-                    if (lb.dataset.viewId === viewId) {
-                        gsap.to(lb, { x: 0, y: 0, rotationY: 0, rotationX: 0, z: 200, scale: 1.1, duration: 0.8, ease: 'power2.inOut' });
-                        lb.classList.add('is-focused');
-                    } else {
-                        gsap.to(lb, { z: -1000, opacity: 0.5, scale: 0.8, duration: 0.8, ease: 'power2.inOut' });
-                    }
-                });
-                backButton.classList.add('is-visible');
-                gsap.to(instructions, { opacity: 0, duration: 0.4 });
-            }
-
-            function resetView() {
-                isZoomed = false;
-                lightboxes.forEach((lb, index) => {
-                    gsap.to(lb, {
-                        x: (Math.random() - 0.5) * (window.innerWidth * 0.4),
-                        y: (Math.random() - 0.5) * (window.innerHeight * 0.2),
-                        rotationY: (Math.random() - 0.5) * 40,
-                        rotationX: (Math.random() - 0.5) * 20,
-                        z: 0, opacity: 1, scale: 1,
-                        duration: 0.8, ease: 'power2.inOut'
-                    });
-                    lb.classList.remove('is-focused');
-                });
-                backButton.classList.remove('is-visible');
-                gsap.to(instructions, { opacity: 1, duration: 0.4, delay: 0.5 });
-            }
-
-            lightboxes.forEach(lightbox => {
-                lightbox.addEventListener('dblclick', () => { if (!isZoomed) focusOnView(lightbox.dataset.viewId); });
-            });
-            backButton.addEventListener('click', () => { if (isZoomed) resetView(); });
+        @keyframes text-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        // --- PART 7: CONTENT LOADING & ANIMATIONS ---
-        function initializeContentAnimations() {
-            const loadingScreen = document.querySelector('.loading-screen');
-            const lightboxes = document.querySelectorAll('.lightbox');
-            const instructions = document.querySelector('.instructions');
+        /* --- VIDEO GALLERY (BENTO GRID) --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            height: 500px; /* Fixed height for the grid */
+            perspective: 1500px;
+        }
+        .bento-item {
+            background-color: var(--color-surface);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .bento-item img, .bento-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .bento-item:hover img, .bento-item:hover video {
+            transform: scale(1.1);
+        }
+        .bento-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; } /* Main item */
+        .bento-item:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 2; }
+        .bento-item:nth-child(3) { grid-column: 3 / 4; grid-row: 2 / 3; }
+        
+        .bento-item .play-icon {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 60px; height: 60px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .bento-item:hover .play-icon { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .play-icon svg { width: 24px; height: 24px; fill: white; }
+
+        /* --- RUMORS SECTION --- */
+        #rumors h2 {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 80px;
+            font-weight: 900;
+        }
+        .rumor-card {
+            background: var(--color-surface);
+            padding: 32px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            opacity: 0; /* Initially hidden for scroll animation */
+            animation: fade-in-up linear forwards;
+            animation-timeline: view();
+            animation-range-start: entry 10%;
+            animation-range-end: entry 40%;
+        }
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .rumor-card p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        .rumor-card::before {
+            content: '“';
+            font-size: 5rem;
+            color: var(--color-primary);
+            position: absolute;
+            opacity: 0.1;
+            font-weight: 900;
+            transform: translate(-50px, -40px);
+        }
+
+        /* --- CTA BUTTON --- */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            color: #fff;
+            text-decoration: none;
+            padding: 18px 36px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-align: center;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(219, 0, 255, 0.3);
+            border: none;
+            cursor: none;
+            position: relative; /* For magnetic effect */
+        }
+        .cta-center {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 50px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="spotlight"></div>
+
+    <section class="hero section">
+        <video id="hero-video-bg" src="path/to/your/video-bg.mp4" autoplay muted loop playsinline></video>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Они говорят. Я работаю.</h1>
+                <p>В интернете полно слухов. Готов узнать правду, а не выдумки? Прокрути вниз, чтобы увидеть все своими глазами.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section">
+        <div class="container">
+            <div class="bento-grid">
+                <div class="bento-item main-player">
+                    <video id="main-video-player" src="path/to/your/video1.mp4" autoplay muted loop playsinline></video>
+                </div>
+                <div class="bento-item video-thumb" data-video-src="path/to/your/video2.mp4">
+                    <img src="path/to/your/preview2.jpg" alt="Превью видео 2">
+                    <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+                </div>
+                <div class="bento-item video-thumb" data-video-src="path/to/your/video3.mp4">
+                    <img src="path/to/your/preview3.jpg" alt="Превью видео 3">
+                    <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rumors" class="section">
+        <div class="container">
+            <h2>Что обо мне говорят?</h2>
+            <div class="rumor-card">
+                <p><strong>Слух #1: Я в заложниках.</strong> Форумные "эксперты" считают, что меня держат силой и морят голодом. Кто-то даже всерьез спрашивал: "Она заложница, ее морят голодом?" Похоже, кто-то пересмотрел триллеров.</p>
+            </div>
+            <div class="rumor-card">
+                <p><strong>Слух #2: Мной управляет "монстр".</strong> По слухам, есть некий злодей, который заставляет меня работать на камеру. Пишут, что мои стримы для меня — пытка на потеху кукловоду.</p>
+            </div>
             
-            function revealScene() {
-                gsap.to(loadingScreen, { opacity: 0, duration: 1, onComplete: () => loadingScreen.style.display = 'none' });
-                gsap.fromTo(lightboxes, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 1.5, ease: 'power3.out', stagger: 0.1, delay: 0.5, onStart: () => lightboxes.forEach(lb => lb.classList.add('is-visible')) });
-                gsap.to(instructions, { opacity: 1, duration: 1, delay: 2 });
-            }
+            <div class="cta-center">
+                <a href="https://t.me/your_channel_link" target="_blank" class="cta-button" data-magnetic>Это лишь малая часть...</a>
+            </div>
+            
+            <div class="rumor-card">
+                <p><strong>Слух #3: У меня нет своих денег.</strong> Естественно, по их логике, откуда у меня независимость? Якобы я не вижу ни цента — "рабыню используют как вещь". Все мои достижения приписываются мифическому "хозяину".</p>
+            </div>
+             <div class="rumor-card">
+                <p><strong>Реальность?</strong> Вся эта драма — фантазия одного навязчивого зрителя. Днем он пишет посты о моем "спасении", а вечером... просится в приват, чтобы заняться самоудовлетворением на камеру. Герой-извращенец, не иначе.</p>
+            </div>
+        </div>
+    </section>
 
-            window.addEventListener('load', () => setTimeout(revealScene, 500));
-        }
+    <section id="truth" class="section">
+        <div class="container">
+            <div class="rumor-card" style="text-align: center;">
+                 <h2>А вот и правда</h2>
+                 <p>Нет никакого злодея, плена и драмы. Есть я — девушка, которая поставила цель и много работает. Всё, чего я добилась — результат моего труда, стратегии и упорства. Меня никто не контролирует. За мной стоит только команда друзей и профессионалов, которые помогают мне расти.</p>
+                 <p style="margin-top:20px; color: var(--color-text-muted);">Хватит верить слухам. Узнай настоящую меня.</p>
+                 <div class="cta-center">
+                     <a href="https://t.me/your_channel_link" target="_blank" class="cta-button" data-magnetic>Вступить в закрытый Telegram-канал</a>
+                 </div>
+            </div>
+        </div>
+    </section>
 
-        // --- PART 8: FINAL POLISH & MOBILE ADAPTATION ---
-        function initializeMobileAdaptation() {
-            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-                document.querySelector('.instructions').textContent = "Double Tap to Focus";
-                document.querySelector('.custom-cursor').style.display = 'none';
-                document.body.style.cursor = 'default';
+    <footer>
+        <p>&copy; 2025 Имя Модели. Все права защищены.</p>
+        <p><strong>18+</strong> | Контент предназначен для взрослой аудитории.</p>
+    </footer>
 
-                lightboxes.forEach(lightbox => {
-                    let tapCount = 0;
-                    lightbox.addEventListener('touchend', () => {
-                        tapCount++;
-                        setTimeout(() => {
-                            if (tapCount === 2) { // Double tap
-                                 const viewId = lightbox.dataset.viewId;
-                                 const backButton = document.querySelector('.back-button');
-                                 if(!backButton.classList.contains('is-visible')) {
-                                     document.querySelectorAll('.lightbox.is-interactive').forEach(lb => lb.classList.remove('is-focused'));
-                                     lightbox.classList.add('is-focused');
-                                     gsap.to(lightbox, { x: 0, y: 0, scale: 1, rotationX: 0, rotationY: 0, z: 0, duration: 0.5, ease: 'power2.out'});
-                                     backButton.classList.add('is-visible');
-                                 }
-                            }
-                            tapCount = 0;
-                        }, 300);
-                    });
-                });
-            }
-        }
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- 1. CUSTOM CURSOR & SPOTLIGHT ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const spotlight = document.querySelector('.spotlight');
 
-        // --- RUN ALL INITIALIZERS ---
-        try {
-            initializeFluidSimulation();
-            initializeLightboxInteraction();
-            initializeCameraAndState();
-            initializeContentAnimations();
-            initializeMobileAdaptation();
-        } catch (e) {
-            console.error("An error occurred during initialization:", e);
-            document.body.innerHTML = '<div style="color:white;padding:2rem;">An error occurred. Please refresh.</div>';
-        }
+        window.addEventListener('mousemove', function(e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.style.left = `${posX}px`;
+            cursorOutline.style.top = `${posY}px`;
+
+            spotlight.style.background = `radial-gradient(circle at ${posX}px ${posY}px, rgba(219, 0, 255, 0.08), transparent 25%)`;
+            
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // --- 2. 3D BENTO ITEMS EFFECT ---
+        const bentoItems = document.querySelectorAll('.bento-item');
+        bentoItems.forEach(item => {
+            item.addEventListener('mousemove', e => {
+                const rect = item.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                const rotateX = -y / (rect.height / 2) * 10; // Max rotation 10deg
+                const rotateY = x / (rect.width / 2) * 10;
+
+                item.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+
+        // --- 3. VIDEO GALLERY LOGIC ---
+        const mainVideoPlayer = document.getElementById('main-video-player');
+        const videoThumbs = document.querySelectorAll('.video-thumb');
+
+        videoThumbs.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                const newVideoSrc = thumb.dataset.videoSrc;
+                mainVideoPlayer.src = newVideoSrc;
+                mainVideoPlayer.play();
+            });
+        });
+        
+        // --- 4. MAGNETIC BUTTONS ---
+        const magneticButtons = document.querySelectorAll('[data-magnetic]');
+        magneticButtons.forEach(button => {
+            let rect = button.getBoundingClientRect();
+            
+            button.addEventListener('mousemove', function(e) {
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+
+            button.addEventListener('mouseleave', function() {
+                button.style.transform = 'translate(0,0)';
+            });
+            
+            window.addEventListener('resize', () => rect = button.getBoundingClientRect());
+        });
+
+        // --- 5. CURSOR STYLE ON INTERACTIVE ELEMENTS ---
+        const interactiveElements = document.querySelectorAll('a, .bento-item');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(0)';
+                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursorOutline.style.borderColor = 'var(--color-secondary)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorOutline.style.borderColor = 'var(--color-primary)';
+            });
+        });
     });
     </script>
 </body>
