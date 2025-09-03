@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Manrope:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* --- CORE SETUP & DESIGN TOKENS --- */
         :root {
             --color-primary: #db00ff;
             --color-secondary: #00f2ff;
@@ -19,241 +18,98 @@
             --font-main: 'Manrope', sans-serif;
             --font-heading: 'Inter', sans-serif;
         }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
             background-color: var(--color-background);
             color: var(--color-text);
             font-family: var(--font-main);
             overflow-x: hidden;
-            cursor: none; /* Hide default cursor */
+            cursor: none;
         }
-        
-        /* --- CUSTOM CURSOR & SPOTLIGHT EFFECT --- */
         .cursor-dot, .cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; z-index: 9999;
             transition: transform 0.15s ease-out, width 0.15s ease-out, height 0.15s ease-out;
         }
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--color-primary);
-        }
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--color-primary);
-            opacity: 0.5;
-        }
-
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--color-primary); }
+        .cursor-outline { width: 40px; height: 40px; border: 2px solid var(--color-primary); opacity: 0.5; }
         .spotlight {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;
             background: radial-gradient(circle at 50% 50%, rgba(219, 0, 255, 0.08), transparent 25%);
         }
-
-        /* --- LAYOUT & SECTIONS --- */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 100px 0;
-            position: relative;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        #hero-video-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: translate(-50%, -50%);
-            z-index: -2;
-            opacity: 0.15;
-            filter: blur(8px);
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 100px 0; position: relative; }
+        .hero { text-align: center; position: relative; overflow: hidden; }
+        #hero-video-bg { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%); z-index: -2; opacity: 0.15; filter: blur(8px); }
         .hero-content h1 {
-            font-family: var(--font-heading);
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            font-weight: 900;
-            letter-spacing: -0.04em;
-            line-height: 1.1;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 24px;
-            animation: text-float 5s ease-in-out infinite;
+            font-family: var(--font-heading); font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1.1;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 24px; animation: text-float 5s ease-in-out infinite;
         }
-        .hero-content p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        .hero-content p { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--color-text-muted); max-width: 600px; margin: 0 auto; }
+        @keyframes text-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         
-        @keyframes text-float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* --- VIDEO GALLERY (BENTO GRID) --- */
-        .bento-grid {
+        /* --- NEW TWO-COLUMN LAYOUT FOR CONTENT --- */
+        .content-section { padding: 100px 0; }
+        .content-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 20px;
-            width: 100%;
-            height: 500px;
-            perspective: 1500px;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 60px;
+            align-items: flex-start;
         }
-        .bento-item {
-            background-color: var(--color-surface);
+        .text-column { /* This column will scroll */ }
+        .image-column { /* This column will have a sticky element inside */ height: 100%; }
+        .image-sticky-container {
+            position: sticky;
+            top: 120px;
+        }
+        #sticky-image {
+            width: 100%;
+            height: auto;
             border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .bento-item img, .bento-item video {
-            width: 100%;
-            height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            aspect-ratio: 3/4;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
         }
-        .bento-item:hover img, .bento-item:hover video {
-            transform: scale(1.1);
-        }
-        .bento-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
-        .bento-item:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 2; }
-        .bento-item:nth-child(3) { grid-column: 3 / 4; grid-row: 2 / 3; }
-        .bento-item:nth-child(4) { grid-column: 1 / 2; grid-row: 3 / 4; }
-        
-        .bento-item .play-icon {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            width: 60px; height: 60px;
-            background: rgba(0,0,0,0.4);
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        .bento-item:hover .play-icon { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        .play-icon svg { width: 24px; height: 24px; fill: white; }
 
-        /* --- CONTENT SECTION --- */
-        .content-section {
-             padding: 100px 0;
-        }
-        .content-section h2 {
-            text-align: center;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: 80px;
-            font-weight: 900;
-        }
+        .content-section h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 60px; font-weight: 900; text-align: left; }
         .text-card {
-            background: var(--color-surface);
-            padding: 32px;
-            border-radius: 16px;
-            margin-bottom: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            opacity: 0; /* Initially hidden for scroll animation */
+            background: transparent;
+            padding: 16px 0;
+            margin-bottom: 80px; /* Increased margin to give images time to switch */
+            border: none;
+            backdrop-filter: none;
+            opacity: 0;
             animation: fade-in-up linear forwards;
             animation-timeline: view();
             animation-range-start: entry 10%;
-            animation-range-end: entry 40%;
+            animation-range-end: entry 50%;
         }
-        @keyframes fade-in-up {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .text-card p, .text-card li {
-            line-height: 1.8;
-            font-size: 1.1rem;
-            margin-bottom: 1em;
-        }
-        .text-card p:last-child, .text-card li:last-child {
-            margin-bottom: 0;
-        }
-        .text-card strong {
-             color: #fff;
-             font-weight: bold;
-        }
-        .text-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .text-card li::before {
-             content: '⚡';
-             margin-right: 15px;
-             color: var(--color-primary);
-        }
-
-        /* --- CTA BUTTON --- */
+        @keyframes fade-in-up { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        .text-card p, .text-card li { line-height: 1.8; font-size: 1.1rem; margin-bottom: 1em; }
+        .text-card p:last-child, .text-card li:last-child { margin-bottom: 0; }
+        .text-card strong { color: #fff; font-weight: bold; }
+        .text-card ul { list-style: none; padding-left: 0; }
+        .text-card li::before { content: '⚡'; margin-right: 15px; color: var(--color-primary); }
+        
         .cta-button {
-            display: inline-block;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-            color: #fff;
-            text-decoration: none;
-            padding: 18px 36px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-align: center;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(219, 0, 255, 0.3);
-            border: none;
-            cursor: none;
-            position: relative; /* For magnetic effect */
+            display: inline-block; background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)); color: #fff; text-decoration: none;
+            padding: 18px 36px; border-radius: 50px; font-weight: 700; text-align: center;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 30px rgba(219, 0, 255, 0.3);
+            border: none; cursor: none; position: relative;
         }
-        .cta-center {
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 50px 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--color-text-muted);
+        .cta-center { text-align: center; margin: 40px 0; }
+        footer { text-align: center; padding: 50px 24px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: var(--color-text-muted); }
+        
+        /* Responsive adjustment */
+        @media (max-width: 900px) {
+            .content-grid {
+                grid-template-columns: 1fr; /* Stack columns on smaller screens */
+            }
+            .image-column {
+                display: none; /* Hide sticky image on mobile to save space */
+            }
         }
     </style>
 </head>
@@ -273,74 +129,55 @@
         </div>
     </section>
 
-    <section id="gallery" class="section">
-        <div class="container">
-            <div class="bento-grid">
-                <div class="bento-item main-player">
-                    <video id="main-video-player" src="path/to/your/video1.mp4" autoplay muted loop playsinline></video>
-                </div>
-                <div class="bento-item video-thumb" data-video-src="path/to/your/video2.mp4">
-                    <img src="path/to/your/preview2.jpg" alt="Video Preview 2">
-                    <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
-                </div>
-                <div class="bento-item video-thumb" data-video-src="path/to/your/video3.mp4">
-                    <img src="path/to/your/preview3.jpg" alt="Video Preview 3">
-                    <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
-                </div>
-                 <div class="bento-item video-thumb" data-video-src="path/to/your/video4.mp4">
-                    <img src="path/to/your/preview4.jpg" alt="Video Preview 4">
-                    <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <main class="content-section">
         <div class="container">
-            <h2>The Rumors</h2>
+            <div class="content-grid">
+                <div class="text-column">
+                    <h2>The Rumors</h2>
 
-            <div class="text-card">
-                <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around me there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:</p>
-            </div>
+                    <div class="text-card" data-image-src="https://storage.googleapis.com/prompt-engineering-sandbox/8a716766-3d66-41f2-8c10-8fa8d1487627.png">
+                        <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around me there is an entire series unfolding with a thrilling (though absurd) plot.</p>
+                    </div>
+                    
+                    <div class="text-card" data-image-src="https://storage.googleapis.com/prompt-engineering-sandbox/9c7161b7-1c64-445a-a309-952467d0180d.png">
+                         <ul>
+                            <li><strong>I am a prisoner.</strong> Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout.</li>
+                            <li><strong>I am “controlled by a monster.”</strong> According to the rumors, there’s some villain who forces me to work on camera against my will.</li>
+                            <li><strong>I am constantly on the run.</strong> Forum conspiracists are convinced that I am being moved from city to city, hiding from justice.</li>
+                            <li><strong>I have no money or success of my own.</strong> Allegedly, I don’t see a cent – all my achievements are credited to a mythical “master.”</li>
+                        </ul>
+                    </div>
+
+                    <div class="text-card" data-image-src="https://storage.googleapis.com/prompt-engineering-sandbox/48733221-a0fc-4202-b258-3d149021e8d4.png">
+                        <p><strong>Sounds insane? That’s because it is pure madness.</strong> But let’s see who the author is. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. And you know why? <strong>Simply to masturbate on camera.</strong> 🤦‍♀️</p>
+                         <p>One commenter directly wrote that the behavior of this “savior” is very similar to that of a typical “simp” who is desperately seeking attention. Exactly right!</p>
+                    </div>
+                    
+                    <div class="cta-center">
+                        <a href="https://t.me/your_channel_link" target="_blank" class="cta-button" data-magnetic>Tired of the drama? Get the truth.</a>
+                    </div>
+
+                    <h2>And now – to the facts.</h2>
             
-            <div class="text-card">
-                 <ul>
-                    <li><strong>I am a prisoner.</strong> Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: “Is ehotlovea a hostage and is she being starved?” Looks like someone has been watching too many thrillers.</li>
-                    <li><strong>I am “controlled by a monster.”</strong> According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</li>
-                    <li><strong>I am constantly on the run in different countries.</strong> Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. It creates the impression that I change location every couple of weeks.</li>
-                    <li><strong>Secret services and human rights defenders are watching me.</strong> Seriously, they went even further. They released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone hopes that “investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.”</li>
-                    <li><strong>I have no money or success of my own.</strong> Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent – “the slave is used like an object, what kind of reward could she get.” All my achievements are credited to a mythical “master.”</li>
-                </ul>
-            </div>
+                     <div class="text-card" data-image-src="https://storage.googleapis.com/prompt-engineering-sandbox/f4129598-a578-430c-87d2-97216a6907d7.png">
+                        <p>Ready to know the truth, not the fairy tale? It is very simple: <strong>there is no villain, no captivity, and no drama whatsoever.</strong></p>
+                        <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved is the result of my own effort, a well-thought-out strategy, and hard work. No one controls me.</p>
+                     </div>
+                     
+                     <div class="text-card">
+                        <p><strong>So what’s the bottom line?</strong> The bottom line is – I continue to do my work and reach new heights. Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉</p>
+                        <p>Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
+                         <div class="cta-center">
+                             <a href="https://t.me/your_channel_link" target="_blank" class="cta-button" data-magnetic>Join the Private Channel</a>
+                         </div>
+                    </div>
+                </div>
 
-            <div class="text-card">
-                <p><strong>Sounds insane? That’s because it is pure madness.</strong> But let’s see who the author of all this phantasmagoria is. Here comes one especially persistent viewer. He is the one who creates most of these threads on the forums, typing “exposés” under different nicknames and fueling the drama. He positions himself as some sort of knight-savior.</p>
-                <p>However, reality is far more banal. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. <strong>And you know why? Simply to masturbate on camera.</strong> 🤦‍♀️</p>
-                <p>This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. Even other forum users are already rolling their eyes. One commenter directly wrote that the behavior of this “savior” is very similar to that of a typical “simp” who is desperately seeking attention. Exactly right!</p>
-            </div>
-
-            <div class="cta-center">
-                <a href="https://t.me/your_channel_link" target="_blank" class="cta-button" data-magnetic>Tired of the drama? Get the truth.</a>
-            </div>
-
-            <h2 style="margin-top: 100px;">And now – to the facts.</h2>
-            
-             <div class="text-card">
-                <p>Ready to know the truth, not the fairy tale? It is very simple and, perhaps, will disappoint some: <strong>there is no villain, no captivity, and no drama whatsoever.</strong></p>
-                <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result of my own effort, a well-thought-out strategy, and hard work. Yes, sometimes I work many hours in a row, travel, try new things – but I do it by choice, because I have a dream and a clear plan on how to achieve it.</p>
-             </div>
-
-             <div class="text-card">
-                <p>No one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow. By the way, speaking of professionals: I especially want to mention the Chaturbate support team. These guys are true pros, always ready to help. Do you think that if something really bad were happening to me, it would go unnoticed? Not a chance.</p>
-                <p>And one last thing worth mentioning. We have already uncovered the identity of that very storyteller. Legal steps will not take long.</p>
-             </div>
-             
-             <div class="text-card">
-                <p><strong>So what’s the bottom line?</strong> The bottom line is – I continue to do my work and reach new heights. Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉</p>
-                <p>Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
-                 <div class="cta-center">
-                     <a href="https://t.me/your_channel_link" target="_blank" class="cta-button" data-magnetic>Join the Private Channel</a>
-                 </div>
+                <div class="image-column">
+                    <div class="image-sticky-container">
+                        <img id="sticky-image" src="https://storage.googleapis.com/prompt-engineering-sandbox/8a716766-3d66-41f2-8c10-8fa8d1487627.png" alt="Model Image">
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -352,46 +189,20 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // --- CURSOR AND SPOTLIGHT ---
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
         const spotlight = document.querySelector('.spotlight');
 
         window.addEventListener('mousemove', function(e) {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            cursorOutline.style.left = `${posX}px`;
-            cursorOutline.style.top = `${posY}px`;
+            const posX = e.clientX; const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`; cursorDot.style.top = `${posY}px`;
+            cursorOutline.style.left = `${posX}px`; cursorOutline.style.top = `${posY}px`;
             spotlight.style.background = `radial-gradient(circle at ${posX}px ${posY}px, rgba(219, 0, 255, 0.08), transparent 25%)`;
             cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
         });
 
-        const bentoItems = document.querySelectorAll('.bento-item');
-        bentoItems.forEach(item => {
-            item.addEventListener('mousemove', e => {
-                const rect = item.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                const rotateX = -y / (rect.height / 2) * 8;
-                const rotateY = x / (rect.width / 2) * 8;
-                item.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-            });
-            item.addEventListener('mouseleave', () => {
-                item.style.transform = 'rotateX(0) rotateY(0) scale(1)';
-            });
-        });
-
-        const mainVideoPlayer = document.getElementById('main-video-player');
-        const videoThumbs = document.querySelectorAll('.video-thumb');
-        videoThumbs.forEach(thumb => {
-            thumb.addEventListener('click', () => {
-                const newVideoSrc = thumb.dataset.videoSrc;
-                mainVideoPlayer.src = newVideoSrc;
-                mainVideoPlayer.play();
-            });
-        });
-
+        // --- MAGNETIC BUTTONS ---
         const magneticButtons = document.querySelectorAll('[data-magnetic]');
         magneticButtons.forEach(button => {
             let rect = button.getBoundingClientRect();
@@ -400,12 +211,11 @@
                 const y = e.clientY - rect.top - rect.height / 2;
                 button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
             });
-            button.addEventListener('mouseleave', function() {
-                button.style.transform = 'translate(0,0)';
-            });
+            button.addEventListener('mouseleave', function() { button.style.transform = 'translate(0,0)'; });
             window.addEventListener('resize', () => rect = button.getBoundingClientRect());
         });
 
+        // --- CURSOR STYLE ON HOVER ---
         const interactiveElements = document.querySelectorAll('a, .bento-item');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -419,6 +229,33 @@
                 cursorOutline.style.borderColor = 'var(--color-primary)';
             });
         });
+
+        // --- NEW: DYNAMIC IMAGE SWITCH ON SCROLL ---
+        const stickyImage = document.getElementById('sticky-image');
+        const imageTriggers = document.querySelectorAll('[data-image-src]');
+
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const newImageSrc = entry.target.dataset.imageSrc;
+                    if (stickyImage && stickyImage.src !== newImageSrc) {
+                         stickyImage.style.opacity = 0;
+                         setTimeout(() => {
+                            stickyImage.src = newImageSrc;
+                            stickyImage.onload = () => {
+                                 stickyImage.style.opacity = 1;
+                            }
+                         }, 400); // Wait for fade-out before changing src
+                    }
+                }
+            });
+        }, { 
+            // Trigger when the text card is near the vertical center of the screen
+            threshold: 0.5, 
+            rootMargin: "-40% 0px -40% 0px" 
+        });
+
+        imageTriggers.forEach(trigger => imageObserver.observe(trigger));
     });
     </script>
 </body>
