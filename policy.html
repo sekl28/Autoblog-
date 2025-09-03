@@ -1,58 +1,54 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Политика конфиденциальности</title>
-  <meta name="description" content="Политика конфиденциальности: какие данные собираем, как используем и как защищаем." />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Join my Telegram — VIP content & live alerts</title>
+  <meta name="robots" content="noindex,nofollow">
   <style>
-    :root{
-      --bg:#0b0c0f; --card:#14161b; --text:#e6e8eb; --muted:#a7adb7; --accent:#58c4a8;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b0c0f 0%,#0e1116 100%);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
-    .wrap{max-width:880px;margin:0 auto;padding:32px 20px 56px}
-    .card{background:var(--card);border:1px solid #1f232b;border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-    h1{margin:0 0 10px;font-size:32px}
-    h2{margin:28px 0 8px;font-size:20px}
-    p{margin:8px 0;color:var(--text)}
-    .muted{color:var(--muted)}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{opacity:.9}
-    .back{display:inline-block;margin-top:18px;color:var(--muted)}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#0b0f14;color:#fff}
+    .wrap{min-height:100dvh;display:grid;place-items:center;padding:24px}
+    h1{font-size:clamp(28px,4.5vw,44px);line-height:1.1;margin:0 0 12px}
+    p{opacity:.88;margin:0 0 16px;font-size:clamp(16px,2.6vw,18px)}
+    .card{max-width:680px;text-align:center}
+    .hero{border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.4);margin:0 auto 18px;width:min(100%,680px)}
+    .cta{position:sticky;bottom:16px;display:inline-block;padding:16px 22px;border-radius:999px;
+      font-weight:700;text-decoration:none;background:#229ED9;color:#fff; /* Telegram blue */
+      box-shadow:0 0 24px rgba(255,215,0,.65), 0 0 60px rgba(255,215,0,.35); /* золотое свечение */
+      filter:saturate(1.1);transition:transform .12s ease, box-shadow .12s ease}
+    .cta:hover{transform:translateY(-1px);box-shadow:0 0 30px rgba(255,215,0,.85), 0 0 80px rgba(255,215,0,.45)}
+    .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;opacity:.9;margin-top:10px}
+    .badge{background:#11191f;border:1px solid #1d2a33;color:#a7c7da;padding:6px 10px;border-radius:999px;font-size:13px}
+    .legal{opacity:.6;font-size:12px;margin-top:14px}
   </style>
+  <script>
+    // deep link opener with fallback
+    function openTG(){
+      const app = 'tg://resolve?domain=YOUR_CHANNEL';
+      const web = 'https://t.me/YOUR_CHANNEL' + window.location.search;
+      const start = Date.now();
+      let jumped = false;
+      const t = setTimeout(()=>{ if(!jumped) location.href = web; }, 900);
+      const iframe = document.createElement('iframe');
+      iframe.style.display='none'; iframe.src = app; document.body.appendChild(iframe);
+      setTimeout(()=>{ jumped = true; clearTimeout(t); }, 1500);
+    }
+  </script>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
-      <h1>Политика конфиденциальности</h1>
-      <p class="muted">Дата вступления в силу: <strong>08.08.2025</strong></p>
-
-      <p>Мы уважаем вашу конфиденциальность и обязуемся защищать предоставленную вами информацию. Эта политика описывает, какие данные мы собираем, как используем и какие меры безопасности применяем.</p>
-
-      <h2>1. Какие данные мы собираем</h2>
-      <p>При заполнении формы вы можете указать: имя/никнейм, контакт для связи (например, Telegram-аккаунт или email), возраст, а также дополнительную информацию, необходимую для оценки вашей заявки.</p>
-
-      <h2>2. Цели использования данных</h2>
-      <p>Мы используем данные исключительно для: (a) связи с вами по поводу участия в проекте; (b) предоставления информации об условиях и этапах работы; (c) оценки соответствия минимальным требованиям для участия.</p>
-      <p>Мы не используем ваши данные для рекламы сторонних продуктов/услуг и не передаём их третьим лицам без вашего согласия, за исключением случаев, предусмотренных законом.</p>
-
-      <h2>3. Хранение и защита</h2>
-      <p>Данные хранятся в защищённых системах с ограниченным доступом. Мы применяем технические и организационные меры безопасности для предотвращения несанкционированного доступа, изменения или утраты информации.</p>
-
-      <h2>4. Передача третьим лицам</h2>
-      <p>Мы не передаём ваши персональные данные третьим лицам, кроме случаев, когда это необходимо для выполнения условий проекта или если этого требует законодательство.</p>
-
-      <h2>5. Ваши права</h2>
-      <p>Вы вправе запросить доступ, исправление или удаление своих данных. Напишите нам по адресу <a href="mailto:aseee4923@gmail.com">aseee4923@gmail.com</a>, и мы обработаем ваш запрос в разумный срок.</p>
-
-      <h2>6. Контакты</h2>
-      <p>По вопросам, связанным с обработкой ваших персональных данных, свяжитесь с нами: <a href="mailto:aseee4923@gmail.com">aseee4923@gmail.com</a>.</p>
-
-      <h2>7. Обновления политики</h2>
-      <p>Мы можем периодически обновлять настоящую политику. Актуальная версия всегда доступна на этой странице. Дата последнего изменения указана вверху.</p>
-
-      <a class="back" href="./">← Вернуться на сайт</a>
+      <h1>ehotlovea — top webcam model for 9 years</h1>
+      <p>Free exclusive clips weekly + live stream alerts. Be first to join & take part in giveaways.</p>
+      <video class="hero" autoplay muted playsinline loop poster="poster.jpg">
+        <source src="teaser.webm" type="video/webm"/>
+        <source src="teaser.mp4" type="video/mp4"/>
+      </video>
+      <a class="cta" href="https://t.me/YOUR_CHANNEL" onclick="openTG();return false;">Join on Telegram</a>
+      <div class="badges">
+        <span class="badge">18+ only</span><span class="badge">No spam</span><span class="badge">VIP perks</span>
+      </div>
+      <div class="legal">By joining you confirm you are 18+ and agree to see adult content. © 2025</div>
     </div>
   </div>
 </body>
