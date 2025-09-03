@@ -1,130 +1,252 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой Лендинг с Изображением</title>
+    <title>The Unveiling | My Truth Exposed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Manrope:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* Общие стили для лендинга */
+        :root {
+            --color-primary: #db00ff;
+            --color-secondary: #00f2ff;
+            --color-background: #0a041c;
+            --color-surface: rgba(25, 15, 40, 0.7);
+            --color-text: #e1dff8;
+            --color-text-muted: #a099b3;
+            --font-main: 'Manrope', sans-serif;
+            --font-heading: 'Inter', sans-serif;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            cursor: none;
         }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px 0;
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; z-index: 9999;
+            transition: transform 0.15s ease-out, width 0.15s ease-out, height 0.15s ease-out;
         }
-        header {
-            background: #333;
-            color: #fff;
-            padding-top: 20px;
-            min-height: 70px;
-            border-bottom: #77aaff 3px solid;
-            text-align: center;
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--color-primary); }
+        .cursor-outline { width: 40px; height: 40px; border: 2px solid var(--color-primary); opacity: 0.5; }
+        .spotlight {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;
+            background: radial-gradient(circle at 50% 50%, rgba(219, 0, 255, 0.08), transparent 25%);
         }
-        header h1 {
-            margin: 0;
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .section {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; padding: 100px 0; position: relative;
         }
-        .hero {
-            background: #e2e2e2;
-            color: #333;
-            text-align: center;
-            padding: 50px 0;
+        .hero { text-align: center; position: relative; overflow: hidden; }
+        #hero-video-bg {
+            position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: cover;
+            transform: translate(-50%, -50%); z-index: -2; opacity: 0.15; filter: blur(8px);
         }
-        .hero h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
+        .hero-content h1 {
+            font-family: var(--font-heading); font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1.1;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 24px; animation: text-float 5s ease-in-out infinite;
         }
-        .hero p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
+        .hero-content p {
+            font-size: clamp(1rem, 2vw, 1.25rem); color: var(--color-text-muted); max-width: 600px; margin: 0 auto;
         }
+        @keyframes text-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .content-section { padding: 100px 0; }
+        .content-grid {
+            display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 60px; align-items: flex-start;
+        }
+        .image-column { height: 100%; }
+        .image-sticky-container {
+            position: sticky; top: 80px; padding: 20px; background-color: var(--color-surface);
+            border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px); box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        #sticky-image {
+            width: 100%; height: auto; border-radius: 12px; object-fit: cover;
+            aspect-ratio: 3/4; opacity: 1; transition: opacity 0.5s ease-in-out;
+        }
+        .content-section h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 60px; font-weight: 900;
+            background: linear-gradient(90deg, var(--color-secondary), var(--color-primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        .text-card {
+            background: var(--color-surface); padding: 32px; border-radius: 16px;
+            margin-bottom: 60px; border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px); box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            opacity: 0; animation: fade-in-up linear forwards;
+            animation-timeline: view(); animation-range-start: entry 10%; animation-range-end: entry 50%;
+        }
+        @keyframes fade-in-up { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        .text-card p, .text-card li { line-height: 1.8; font-size: 1.1rem; margin-bottom: 1em; }
+        .text-card p:last-child, .text-card li:last-child { margin-bottom: 0; }
+        .text-card strong { color: var(--color-primary); font-weight: bold; }
+        .text-card i { color: var(--color-secondary); font-style: italic;}
+        .text-card ul { list-style: none; padding-left: 0; }
+        .text-card li::before { content: '⚡'; margin-right: 15px; color: var(--color-primary); }
         .cta-button {
-            display: inline-block;
-            background: #77aaff;
-            color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            transition: background 0.3s ease;
+            display: inline-block; background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)); color: #fff; text-decoration: none;
+            padding: 18px 36px; border-radius: 50px; font-weight: 700; text-align: center;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; box-shadow: 0 10px 30px rgba(219, 0, 255, 0.3);
+            border: none; cursor: none; position: relative;
         }
-        .cta-button:hover {
-            background: #5588cc;
-        }
-        .image-section {
-            text-align: center;
-            padding: 40px 0;
-            background: #fff;
-        }
-        .image-section img {
-            max-width: 100%; /* Изображение будет адаптивным */
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .content-section {
-            padding: 40px 0;
-            background: #f9f9f9;
-            text-align: center;
-        }
-        .content-section h3 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
+        .cta-center { text-align: center; margin: 40px 0; }
+        footer { text-align: center; padding: 50px 24px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: var(--color-text-muted); }
+        @media (max-width: 900px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .image-column { display: none; }
+            .content-section h2 { text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1>Наш Заголовок Лендинга</h1>
-        </div>
-    </header>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="spotlight"></div>
 
-    <section class="hero">
+    <section class="hero section">
+        <video id="hero-video-bg" src="path/to/your/video-bg.mp4" autoplay muted loop playsinline></video>
         <div class="container">
-            <h2>Добро пожаловать на наш удивительный продукт!</h2>
-            <p>Мы предлагаем лучшие решения для ваших задач. Узнайте больше, прокрутив страницу вниз.</p>
-            <a href="#" class="cta-button">Узнать больше</a>
+            <div class="hero-content">
+                <h1>The Unveiling</h1>
+                <p>They write the fiction. I'll give you the facts. Scroll down to uncover the truth about me.</p>
+            </div>
         </div>
     </section>
 
-    <section class="image-section">
+    <main class="content-section">
         <div class="container">
-            <h3>Посмотрите на наш продукт в действии!</h3>
-            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4S... (здесь ваша полная длинная строка)" alt="Описание продукта или услуги">
-            <p>Это изображение демонстрирует ключевые особенности.</p>
-        </div>
-    </section>
+            <div class="content-grid">
+                <div class="text-column">
+                    <h2>The Rumors</h2>
 
-    <section class="content-section">
-        <div class="container">
-            <h3>Почему выбирают нас?</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <p>Дополнительная информация о наших преимуществах и особенностях.</p>
+                    <div class="text-card" data-image-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgAQMAAAAPPx67AAAABlBMVEXo4c7l2sEAAADlSURBVHic7c3BDQAgAMPAgP+eFwk26aEd3UAAAAAAAACAeQGY3wAB21yVGAAAAABJRU5ErkJggg==" data-image-alt="Model in black lingerie, looking down">
+                        <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around <i style="color:var(--color-secondary);">ehotlovea</i> there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:</p>
+                    </div>
+                    
+                    <div class="text-card" data-image-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgAQMAAAAPPx67AAAABlBMVEVudX5ucXgAAADpSURBVHic7c3BDQAgAMPAgP+eFwk26aEd3UAAAAAAAACAeQGY3wAB21yVGAAAAABJRU5ErkJggg==" data-image-alt="Model in jeans and pink top, sitting">
+                         <ul>
+                            <li><strong>I am a prisoner.</strong> Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: <i>“Is ehotlovea a hostage and is she being starved?”</i> Looks like someone has been watching too many thrillers.</li>
+                            <li><strong>I am “controlled by a monster.”</strong> According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</li>
+                            <li><strong>I am constantly on the run in different countries.</strong> Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. It creates the impression that I change location every couple of weeks. Someone even claimed that I was “transported through a dozen places in half a dozen countries” – as if Interpol can’t keep up with me!</li>
+                            <li><strong>Secret services and human rights defenders are watching me.</strong> Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.” At this point, you might as well grab popcorn – the plot is worthy of a thriller!</li>
+                            <li><strong>I have no money or success of my own.</strong> Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent – “the slave is used like an object, what kind of reward could she get.” All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-card" data-image-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgAQMAAAAPPx67AAAABlBMVEXm4crf1bgAAADeSURBVHic7c3BDQAgAMPAgP+eFwk26aEd3UAAAAAAAACAeQGY3wAB21yVGAAAAABJRU5ErkJggg==" data-image-alt="Model in yellow slip, laying on marble">
+                        <p><strong>Sounds insane? That’s because it is pure madness.</strong> But let’s see who the author of all this phantasmagoria is. Here comes one especially persistent viewer. He is the one who creates most of these threads on the forums, typing “exposés” under different nicknames and fueling the drama. He positions himself as some sort of knight-savior: supposedly he alone has seen the truth and exposed everyone. 🎭</p>
+                        <p>However, reality is far more banal. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. <strong>And you know why? Simply to masturbate on camera.</strong> 🤦‍♀️ That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing. I’m not even offended anymore – it just makes me laugh.</p>
+                        <p>This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. He invented me a new name, a biography, a villain-“kidnapper” – and fell in love with his own fairy tale. Even other forum users are already rolling their eyes: many have noticed that our author is not in search of truth at all but simply obsessed with me. One commenter directly wrote that the behavior of this “savior” is very similar to that of a typical “simp” who doesn’t actually want to expose anything but is head over heels in love with Alice and is desperately seeking attention. <strong>Exactly right!</strong> Our would-be knight doesn’t so much want to save me as he dreams, apparently, that I will appreciate his “heroism.” Well, dreams don’t cost anything.</p>
+                    </div>
+                    
+                    <div class="cta-center">
+                        <a href="https://t.me/your_channel_link" target="_blank" class="cta-button" data-magnetic>Tired of the drama? Get the truth.</a>
+                    </div>
+
+                    <h2 style="margin-top: 100px;">The Truth Revealed.</h2>
+            
+                    <div class="text-card" data-image-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgAQMAAAAPPx67AAAABlBMVEVudX5ucXgAAADpSURBVHic7c3BDQAgAMPAgP+eFwk26aEd3UAAAAAAAACAeQGY3wAB21yVGAAAAABJRU5ErkJggg==" data-image-alt="Model in black corset, looking forward">
+                        <p>I can already foresee the next move of this conspiracist. As soon as I publish a rebuttal (like this text), he will surely pop up with a new conspiracy theory. He will probably cry out into the internet void: “Wake up, don’t believe her! All of this was written on the orders of that very villain, it’s part of the plan!” 😀 Well, we’ve already figured you out too, my paranoid friend. Your scenario is clear in advance, and it is just as ridiculous as all the previous ones.</p>
+                        <p><strong>And now – to the facts. Ready to know the truth, not the fairy tale? It is very simple and, perhaps, will disappoint some: there is no villain, no captivity, and no drama whatsoever.</strong></p>
+                        <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result of my own effort, a well-thought-out strategy, and hard work. Yes, sometimes I work many hours in a row, travel, try new things – but I do it by choice, because I have a dream and a clear plan on how to achieve it. Want to succeed in life? You’ll have to work hard and be persistent – that’s the whole secret. 🎓</p>
+                     </div>
+
+                     <div class="text-card">
+                        <p>Of course, it’s much more convenient to believe that behind someone’s success stands a mysterious “kidnapper” or a “rich sponsor” than to acknowledge the role of effort and talent. But the reality is this: <strong>no one controls me.</strong> There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow. By the way, speaking of professionals: I especially want to mention the Chaturbate support team. These guys are true pros, always ready to help and solving every issue quickly. 💙 This really is the best platform, where they take care of the safety and comfort of models properly. Do you think that if something really bad were happening to me, it would go unnoticed? Not a chance – not by my team, nor by the platform.</p>
+                        <p>And one last thing worth mentioning. I do not intend to let this situation with dirty slander go unchecked. We have already uncovered the identity of that very storyteller (thanks to my clever Eric, who helped to trace this character through his own broadcasts). 😉 Legal steps will not take long. Right now, I have other projects and ideas as a priority, but in the near future we will prepare all the necessary materials and file a complaint with the appropriate authorities. Believe me, we have enough evidence – his entire forum “creativity” is saved, along with many other actions that I cannot reveal so as not to alarm him. We’ll all laugh together later, when this person has to answer for his words to the full extent of the law.</p>
+                     </div>
+                     
+                     <div class="text-card">
+                        <p><strong>So what’s the bottom line?</strong> The bottom line is – I continue to do my work and reach new heights, which I wish for you as well. ✨ Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 More is coming soon, there are many interesting things ahead! Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
+                         <div class="cta-center">
+                             <a href="https://t.me/your_channel_link" target="_blank" class="cta-button" data-magnetic>Join the Private Channel</a>
+                         </div>
+                    </div>
+                </div>
+
+                <div class="image-column">
+                    <div class="image-sticky-container">
+                        <img id="sticky-image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgAQMAAAAPPx67AAAABlBMVEXo4c7l2sEAAADlSURBVHic7c3BDQAgAMPAgP+eFwk26aEd3UAAAAAAAACAeQGY3wAB21yVGAAAAABJRU5ErkJggg==" alt="Model in black lingerie, looking down">
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2023 Ваш Лендинг. Все права защищены.</p>
-        </div>
+        <p>&copy; 2025 Model's Name. All rights reserved.</p>
+        <p><strong>18+</strong> | This website contains adult content and is intended for individuals 18 years of age or older.</p>
     </footer>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const spotlight = document.querySelector('.spotlight');
+        window.addEventListener('mousemove', function(e) {
+            const posX = e.clientX; const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`; cursorDot.style.top = `${posY}px`;
+            cursorOutline.style.left = `${posX}px`; cursorOutline.style.top = `${posY}px`;
+            spotlight.style.background = `radial-gradient(circle at ${posX}px ${posY}px, rgba(219, 0, 255, 0.08), transparent 25%)`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        });
+        const magneticButtons = document.querySelectorAll('[data-magnetic]');
+        magneticButtons.forEach(button => {
+            let rect = button.getBoundingClientRect();
+            button.addEventListener('mousemove', function(e) {
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+            button.addEventListener('mouseleave', function() { button.style.transform = 'translate(0,0)'; });
+            window.addEventListener('resize', () => rect = button.getBoundingClientRect());
+        });
+        const interactiveElements = document.querySelectorAll('a, [data-magnetic]');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(0)';
+                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursorOutline.style.borderColor = 'var(--color-secondary)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorOutline.style.borderColor = 'var(--color-primary)';
+            });
+        });
+        const stickyImage = document.getElementById('sticky-image');
+        const imageTriggers = document.querySelectorAll('[data-image-src]');
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const newImageSrc = entry.target.dataset.imageSrc;
+                    const newImageAlt = entry.target.dataset.imageAlt;
+                    if (stickyImage && stickyImage.src !== newImageSrc) {
+                         stickyImage.style.opacity = 0;
+                         setTimeout(() => {
+                            stickyImage.src = newImageSrc;
+                            stickyImage.alt = newImageAlt;
+                            stickyImage.onload = () => {
+                                 stickyImage.style.opacity = 1;
+                            }
+                         }, 400);
+                    }
+                }
+            });
+        }, { 
+            threshold: 0.5,
+            rootMargin: "-40% 0px -40% 0px" 
+        });
+        imageTriggers.forEach(trigger => imageObserver.observe(trigger));
+    });
+    </script>
 </body>
 </html>
