@@ -11,7 +11,146 @@
 
     <style>
         /* ==========================================================================
-           /* ==========================================================================
+           THE DIGITAL SOUL - A REFINED 3D EXPERIENCE
+           PART 1/3: HTML Structure & Core CSS Foundation
+           Analysis: This foundational code sets up the 3D environment,
+           defines a comprehensive design system via CSS variables, and
+           establishes the base styles for a high-performance, quality experience.
+           Total Estimated Lines (all parts): 1500+
+        ========================================================================== */
+
+        /* * -------------------------------------------
+         * Section I: DESIGN SYSTEM (CSS VARIABLES)
+         * Every aspect of the design is controlled from here for consistency
+         * and quality.
+         * -------------------------------------------
+        */
+        :root {
+            /* Color Palette */
+            --color-background: #05020D;
+            --color-text-primary: #b0b0c0;
+            --color-text-secondary: #707080;
+            --color-heading-primary: #ffffff;
+            --color-accent-primary: #FF0055; /* A deeper, more confident pink */
+            --color-accent-secondary: #00F0FF; /* A vibrant cyan for highlights */
+            --color-glass-background: rgba(10, 8, 20, 0.5);
+            --color-glass-border: rgba(255, 255, 255, 0.08);
+
+            /* Typography */
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --font-size-base: 17px;
+            --line-height-base: 1.8;
+
+            /* Spacing (Modular Scale) */
+            --space-xs: 8px;
+            --space-s: 16px;
+            --space-m: 32px;
+            --space-l: 64px;
+            --space-xl: 128px;
+
+            /* 3D Scene Properties */
+            --perspective: 1000px;
+            --camera-speed: 2s;
+            --camera-ease: cubic-bezier(0.77, 0, 0.175, 1);
+
+            /* Borders & Shadows */
+            --border-radius: 12px;
+            --glow-shadow: 0 0 24px -4px var(--color-accent-primary);
+        }
+
+        /* * -------------------------------------------
+         * Section II: GLOBAL RESETS & BASE STYLES
+         * Normalizing browser styles for a consistent canvas.
+         * -------------------------------------------
+        */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: fixed;
+        }
+
+        body {
+            background: var(--color-background);
+            color: var(--color-text-primary);
+            font-family: var(--font-body);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-base);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Loading state to prevent FOUC (Flash of Unstyled Content) */
+        body.is-loading {
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        /* * -------------------------------------------
+         * Section III: 3D SCENE SETUP
+         * The foundational containers that create our 3D world.
+         * -------------------------------------------
+        */
+        .scene-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            perspective: var(--perspective);
+            overflow: hidden;
+        }
+
+        .scene {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform var(--camera-speed) var(--camera-ease);
+            will-change: transform;
+        }
+        
+        /* * -------------------------------------------
+         * Section IV: BACKGROUND & AMBIENT EFFECTS
+         * Creating depth and atmosphere for the scene.
+         * -------------------------------------------
+        */
+        .scene-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateZ(-2500px); /* Pushed far back */
+            background-image:
+                radial-gradient(ellipse at 20% 80%, var(--color-accent-primary), transparent 50%),
+                radial-gradient(ellipse at 80% 30%, var(--color-accent-secondary), transparent 50%);
+            opacity: 0.15;
+            filter: blur(100px);
+        }
+
+        .scene-vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 250px rgba(0,0,0,0.8);
+            pointer-events: none;
+            z-index: 100;
+        }
+    </style>
+
+    <!-- PART 2/3: Detailed CSS (inserted as-is in a separate <style>) -->
+    <style>
+/* ==========================================================================
    THE DIGITAL SOUL - A REFINED 3D EXPERIENCE
    PART 2/3: Detailed CSS for Components, Animations, and Interactions
    Analysis: This section contains the bulk of the visual styling. It's
@@ -331,142 +470,6 @@ body.is-ready .custom-cursor {
 .is-zoomed-rumors .scene {
     transform: translateX(1000px) translateZ(-500px) rotateY(-20deg);
 }
-
-THE DIGITAL SOUL - A REFINED 3D EXPERIENCE
-           PART 1/3: HTML Structure & Core CSS Foundation
-           Analysis: This foundational code sets up the 3D environment,
-           defines a comprehensive design system via CSS variables, and
-           establishes the base styles for a high-performance, quality experience.
-           Total Estimated Lines (all parts): 1500+
-        ========================================================================== */
-
-        /* * -------------------------------------------
-         * Section I: DESIGN SYSTEM (CSS VARIABLES)
-         * Every aspect of the design is controlled from here for consistency
-         * and quality.
-         * -------------------------------------------
-        */
-        :root {
-            /* Color Palette */
-            --color-background: #05020D;
-            --color-text-primary: #b0b0c0;
-            --color-text-secondary: #707080;
-            --color-heading-primary: #ffffff;
-            --color-accent-primary: #FF0055; /* A deeper, more confident pink */
-            --color-accent-secondary: #00F0FF; /* A vibrant cyan for highlights */
-            --color-glass-background: rgba(10, 8, 20, 0.5);
-            --color-glass-border: rgba(255, 255, 255, 0.08);
-
-            /* Typography */
-            --font-display: 'Playfair Display', serif;
-            --font-body: 'Montserrat', sans-serif;
-            --font-size-base: 17px;
-            --line-height-base: 1.8;
-
-            /* Spacing (Modular Scale) */
-            --space-xs: 8px;
-            --space-s: 16px;
-            --space-m: 32px;
-            --space-l: 64px;
-            --space-xl: 128px;
-
-            /* 3D Scene Properties */
-            --perspective: 1000px;
-            --camera-speed: 2s;
-            --camera-ease: cubic-bezier(0.77, 0, 0.175, 1);
-
-            /* Borders & Shadows */
-            --border-radius: 12px;
-            --glow-shadow: 0 0 24px -4px var(--color-accent-primary);
-        }
-
-        /* * -------------------------------------------
-         * Section II: GLOBAL RESETS & BASE STYLES
-         * Normalizing browser styles for a consistent canvas.
-         * -------------------------------------------
-        */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: fixed;
-        }
-
-        body {
-            background: var(--color-background);
-            color: var(--color-text-primary);
-            font-family: var(--font-body);
-            font-size: var(--font-size-base);
-            line-height: var(--line-height-base);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
-        /* Loading state to prevent FOUC (Flash of Unstyled Content) */
-        body.is-loading {
-            opacity: 0;
-            transition: opacity 1s;
-        }
-
-        /* * -------------------------------------------
-         * Section III: 3D SCENE SETUP
-         * The foundational containers that create our 3D world.
-         * -------------------------------------------
-        */
-        .scene-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            perspective: var(--perspective);
-            overflow: hidden;
-        }
-
-        .scene {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            transform-style: preserve-3d;
-            transition: transform var(--camera-speed) var(--camera-ease);
-            will-change: transform;
-        }
-        
-        /* * -------------------------------------------
-         * Section IV: BACKGROUND & AMBIENT EFFECTS
-         * Creating depth and atmosphere for the scene.
-         * -------------------------------------------
-        */
-        .scene-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            transform: translateZ(-2500px); /* Pushed far back */
-            background-image:
-                radial-gradient(ellipse at 20% 80%, var(--color-accent-primary), transparent 50%),
-                radial-gradient(ellipse at 80% 30%, var(--color-accent-secondary), transparent 50%);
-            opacity: 0.15;
-            filter: blur(100px);
-        }
-
-        .scene-vignette {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            box-shadow: inset 0 0 250px rgba(0,0,0,0.8);
-            pointer-events: none;
-            z-index: 100;
-        }
     </style>
 </head>
 <body class="is-loading">
@@ -547,5 +550,164 @@ THE DIGITAL SOUL - A REFINED 3D EXPERIENCE
         <span>&larr;</span> Back to The Void
     </div>
 
-    </body>
+    <!-- PART 3/3: JavaScript (inserted before </body>) -->
+    <script>
+/* ==========================================================================
+   THE DIGITAL SOUL - A REFINED 3D EXPERIENCE
+   PART 3/3: JavaScript Logic for Interaction, Animation, and State Management
+   Analysis: This script orchestrates the entire 3D experience. It uses
+   performant requestAnimationFrame loops for smooth animations and manages
+   the application's state (e.g., which view is active) to create a
+   seamless, interactive journey for the user.
+========================================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 1. ELEMENT SELECTORS ---
+    // Caching all necessary DOM elements for performance.
+    const body = document.body;
+    const scene = document.querySelector('.scene');
+    const tesseractWrapper = document.querySelector('.tesseract-wrapper');
+    const cursor = document.querySelector('.custom-cursor');
+    const cursorText = document.querySelector('.cursor-text');
+    const navPoints = document.querySelectorAll('.nav-point');
+    const backButton = document.querySelector('.back-button');
+
+    // --- 2. STATE MANAGEMENT ---
+    // A simple object to hold the application's current state.
+    const state = {
+        isReady: false,
+        isZoomed: false,
+        mouse: {
+            x: window.innerWidth / 2,
+            y: window.innerHeight / 2,
+            targetX: 0, // For scene rotation
+            targetY: 0,
+        },
+        tesseract: {
+            targetX: 0, // For interaction rotation
+            targetY: 0,
+            currentX: 0,
+            currentY: 0,
+            lerpFactor: 0.05, // Smoothing factor for tesseract movement
+        }
+    };
+
+    // --- 3. CORE ANIMATION LOOP (PERFORMANCE CRITICAL) ---
+    // A single requestAnimationFrame loop handles all continuous animations.
+    function animationLoop() {
+        if (state.isReady) {
+            // Update Scene rotation based on mouse position (subtle parallax)
+            const sceneX = (state.mouse.targetX * 0.002);
+            const sceneY = (state.mouse.targetY * 0.005);
+            if (!state.isZoomed) {
+                scene.style.transform = `rotateY(${sceneX}deg) rotateX(${-sceneY}deg)`;
+            }
+
+            // Smoothly interpolate Tesseract rotation towards the mouse
+            state.tesseract.currentX += (state.tesseract.targetX - state.tesseract.currentX) * state.tesseract.lerpFactor;
+            state.tesseract.currentY += (state.tesseract.targetY - state.tesseract.currentY) * state.tesseract.lerpFactor;
+            tesseractWrapper.style.transform = `translate(-50%, -50%) rotateY(${state.tesseract.currentX}deg) rotateX(${-state.tesseract.currentY}deg)`;
+
+            // Update custom cursor position
+            cursor.style.transform = `translate(${state.mouse.x}px, ${state.mouse.y}px)`;
+        }
+        requestAnimationFrame(animationLoop);
+    }
+
+    // --- 4. EVENT LISTENERS ---
+    
+    /**
+     * Handles mouse movement to update cursor position and
+     * calculate rotation targets for interactive elements.
+     * @param {MouseEvent} event
+     */
+    function onMouseMove(event) {
+        state.mouse.x = event.clientX;
+        state.mouse.y = event.clientY;
+
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+        
+        // Used for the main scene's subtle parallax
+        state.mouse.targetX = (event.clientX - windowHalfX);
+        state.mouse.targetY = (event.clientY - windowHalfY);
+        
+        // Used for the tesseract's direct interaction
+        state.tesseract.targetX = (event.clientX - windowHalfX) * 0.1;
+        state.tesseract.targetY = (event.clientY - windowHalfY) * 0.1;
+    }
+
+    /**
+     * Attaches mouseover/mouseout listeners to elements to trigger
+     * a specific class on the main cursor element for visual feedback.
+     * @param {NodeListOf<Element>} elements - The elements to make interactive.
+     * @param {string} hoverText - The text to display on the cursor.
+     */
+    function setupInteractiveCursor(elements, hoverText) {
+        elements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                body.classList.add('is-interactive');
+                cursorText.textContent = hoverText || `View ${el.dataset.targetView}`;
+            });
+            el.addEventListener('mouseleave', () => {
+                body.classList.remove('is-interactive');
+            });
+        });
+    }
+
+    /**
+     * Handles clicks on navigation points to change the camera view
+     * and application state.
+     * @param {MouseEvent} event
+     */
+    function handleNavClick(event) {
+        const targetView = event.currentTarget.dataset.targetView;
+
+        // Reset all states and classes first
+        body.className = 'is-ready'; // Keep the ready class
+        document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('is-active'));
+        
+        if (targetView === 'home') {
+            state.isZoomed = false;
+        } else {
+            state.isZoomed = true;
+            body.classList.add(`is-zoomed`);
+            body.classList.add(`is-zoomed-${targetView}`);
+            document.querySelector(`#panel-${targetView}`).classList.add('is-active');
+        }
+    }
+
+    // --- 5. INITIALIZATION ---
+    
+    /**
+     * The main function to set up and start the experience.
+     */
+    function initializeExperience() {
+        // Setup cursor interactivity for navigation points
+        setupInteractiveCursor(navPoints);
+        setupInteractiveCursor([backButton], 'Return');
+
+        // Attach click handlers
+        navPoints.forEach(point => point.addEventListener('click', handleNavClick));
+        backButton.addEventListener('click', handleNavClick);
+        
+        // Attach the main mouse move listener
+        document.addEventListener('mousemove', onMouseMove);
+
+        // Start the animation loop
+        animationLoop();
+        
+        // Fade in the body once everything is ready
+        setTimeout(() => {
+            body.classList.remove('is-loading');
+            body.classList.add('is-ready');
+        }, 500); // A small delay to ensure assets are loaded
+    }
+
+    // Run the initialization
+    initializeExperience();
+});
+    </script>
+</body>
 </html>
