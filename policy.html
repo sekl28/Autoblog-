@@ -3,412 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Разоблачение | Вся правда здесь</title>
+    <title>Машина 'Почему?'</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Manrope:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
     <style>
-        /* --- CORE SETUP & DESIGN TOKENS --- */
-        :root {
-            --color-primary: #db00ff;
-            --color-secondary: #00f2ff;
-            --color-background: #05020a;
-            --color-surface: rgba(16, 10, 28, 0.5);
-            --color-text: #e1dff8;
-            --color-text-muted: #827e99;
-            --font-main: 'Manrope', sans-serif;
-            --font-heading: 'Inter', sans-serif;
-        }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            background-color: var(--color-background);
-            color: var(--color-text);
-            font-family: var(--font-main);
-            overflow-x: hidden;
-            cursor: none; /* Hide default cursor */
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Скрыть прокрутку */
         }
-        
-        /* --- CUSTOM CURSOR & SPOTLIGHT EFFECT --- */
-        .cursor-dot, .cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.15s ease-out, width 0.15s ease-out, height 0.15s ease-out;
-        }
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--color-primary);
-        }
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--color-primary);
-            opacity: 0.5;
-        }
-
-        .spotlight {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, rgba(219, 0, 255, 0.08), transparent 25%);
-        }
-
-        /* --- LAYOUT & SECTIONS --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 100px 0;
-            position: relative;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        #hero-video-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: translate(-50%, -50%);
-            z-index: -2;
-            opacity: 0.15;
-            filter: blur(8px);
-        }
-        .hero-content h1 {
-            font-family: var(--font-heading);
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            font-weight: 900;
-            letter-spacing: -0.04em;
-            line-height: 1.1;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 24px;
-            animation: text-float 5s ease-in-out infinite;
-        }
-        .hero-content p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        @keyframes text-float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* --- VIDEO GALLERY (BENTO GRID) --- */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 20px;
-            width: 100%;
-            height: 500px; /* Fixed height for the grid */
-            perspective: 1500px;
-        }
-        .bento-item {
-            background-color: var(--color-surface);
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .bento-item img, .bento-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .bento-item:hover img, .bento-item:hover video {
-            transform: scale(1.1);
-        }
-        .bento-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; } /* Main item */
-        .bento-item:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 2; }
-        .bento-item:nth-child(3) { grid-column: 3 / 4; grid-row: 2 / 3; }
-        
-        .bento-item .play-icon {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            width: 60px; height: 60px;
-            background: rgba(0,0,0,0.4);
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        .bento-item:hover .play-icon { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        .play-icon svg { width: 24px; height: 24px; fill: white; }
-
-        /* --- RUMORS SECTION --- */
-        #rumors h2 {
-            text-align: center;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: 80px;
-            font-weight: 900;
-        }
-        .rumor-card {
-            background: var(--color-surface);
-            padding: 32px;
-            border-radius: 16px;
-            margin-bottom: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            opacity: 0; /* Initially hidden for scroll animation */
-            animation: fade-in-up linear forwards;
-            animation-timeline: view();
-            animation-range-start: entry 10%;
-            animation-range-end: entry 40%;
-        }
-        @keyframes fade-in-up {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .rumor-card p {
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-        .rumor-card::before {
-            content: '“';
-            font-size: 5rem;
-            color: var(--color-primary);
-            position: absolute;
-            opacity: 0.1;
-            font-weight: 900;
-            transform: translate(-50px, -40px);
-        }
-
-        /* --- CTA BUTTON --- */
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-            color: #fff;
-            text-decoration: none;
-            padding: 18px 36px;
-            border-radius: 50px;
+        .playfair-italic {
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            text-align: center;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(219, 0, 255, 0.3);
-            border: none;
-            cursor: none;
-            position: relative; /* For magnetic effect */
+            font-style: italic;
         }
-        .cta-center {
-            text-align: center;
-            margin: 40px 0;
+        .answer-container {
+            transition: opacity 0.5s ease-in-out;
         }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 50px 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--color-text-muted);
+        .fade-out {
+            opacity: 0;
+        }
+        .fade-in {
+            opacity: 1;
+        }
+        /* Анимация фона */
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animated-gradient {
+            background: linear-gradient(-45deg, #1b2735, #090a0f, #2c3e50, #000000);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
         }
     </style>
 </head>
-<body>
+<body class="animated-gradient text-white flex items-center justify-center min-h-screen p-4">
 
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-    <div class="spotlight"></div>
-
-    <section class="hero section">
-        <video id="hero-video-bg" src="path/to/your/video-bg.mp4" autoplay muted loop playsinline></video>
-        <div class="container">
-            <div class="hero-content">
-                <h1>Они говорят. Я работаю.</h1>
-                <p>В интернете полно слухов. Готов узнать правду, а не выдумки? Прокрути вниз, чтобы увидеть все своими глазами.</p>
-            </div>
+    <!-- Основной контейнер -->
+    <div class="text-center w-full max-w-2xl mx-auto">
+        <h1 class="text-5xl md:text-7xl font-bold mb-4 playfair-italic">Почему?</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-8">Иногда у самых больших вопросов самые творческие ответы.</p>
+        
+        <!-- Контейнер для ответа -->
+        <div id="answer-container" class="answer-container fade-in min-h-[100px] md:min-h-[120px] flex items-center justify-center mb-10 p-4">
+            <p id="answer" class="text-2xl md:text-3xl font-light text-cyan-200">Нажмите на кнопку, чтобы начать...</p>
         </div>
-    </section>
 
-    <section id="gallery" class="section">
-        <div class="container">
-            <div class="bento-grid">
-                <div class="bento-item main-player">
-                    <video id="main-video-player" src="path/to/your/video1.mp4" autoplay muted loop playsinline></video>
-                </div>
-                <div class="bento-item video-thumb" data-video-src="path/to/your/video2.mp4">
-                    <img src="path/to/your/preview2.jpg" alt="Превью видео 2">
-                    <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
-                </div>
-                <div class="bento-item video-thumb" data-video-src="path/to/your/video3.mp4">
-                    <img src="path/to/your/preview3.jpg" alt="Превью видео 3">
-                    <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="rumors" class="section">
-        <div class="container">
-            <h2>Что обо мне говорят?</h2>
-            <div class="rumor-card">
-                <p><strong>Слух #1: Я в заложниках.</strong> Форумные "эксперты" считают, что меня держат силой и морят голодом. Кто-то даже всерьез спрашивал: "Она заложница, ее морят голодом?" Похоже, кто-то пересмотрел триллеров.</p>
-            </div>
-            <div class="rumor-card">
-                <p><strong>Слух #2: Мной управляет "монстр".</strong> По слухам, есть некий злодей, который заставляет меня работать на камеру. Пишут, что мои стримы для меня — пытка на потеху кукловоду.</p>
-            </div>
-            
-            <div class="cta-center">
-                <a href="https://t.me/your_channel_link" target="_blank" class="cta-button" data-magnetic>Это лишь малая часть...</a>
-            </div>
-            
-            <div class="rumor-card">
-                <p><strong>Слух #3: У меня нет своих денег.</strong> Естественно, по их логике, откуда у меня независимость? Якобы я не вижу ни цента — "рабыню используют как вещь". Все мои достижения приписываются мифическому "хозяину".</p>
-            </div>
-             <div class="rumor-card">
-                <p><strong>Реальность?</strong> Вся эта драма — фантазия одного навязчивого зрителя. Днем он пишет посты о моем "спасении", а вечером... просится в приват, чтобы заняться самоудовлетворением на камеру. Герой-извращенец, не иначе.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="truth" class="section">
-        <div class="container">
-            <div class="rumor-card" style="text-align: center;">
-                 <h2>А вот и правда</h2>
-                 <p>Нет никакого злодея, плена и драмы. Есть я — девушка, которая поставила цель и много работает. Всё, чего я добилась — результат моего труда, стратегии и упорства. Меня никто не контролирует. За мной стоит только команда друзей и профессионалов, которые помогают мне расти.</p>
-                 <p style="margin-top:20px; color: var(--color-text-muted);">Хватит верить слухам. Узнай настоящую меня.</p>
-                 <div class="cta-center">
-                     <a href="https://t.me/your_channel_link" target="_blank" class="cta-button" data-magnetic>Вступить в закрытый Telegram-канал</a>
-                 </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Имя Модели. Все права защищены.</p>
-        <p><strong>18+</strong> | Контент предназначен для взрослой аудитории.</p>
-    </footer>
+        <!-- Кнопка генерации -->
+        <button id="generate-button" class="bg-cyan-500 hover:bg-cyan-400 text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg shadow-cyan-500/30 transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-cyan-300">
+            Найти другой ответ
+        </button>
+    </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // --- 1. CUSTOM CURSOR & SPOTLIGHT ---
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-        const spotlight = document.querySelector('.spotlight');
+        document.addEventListener('DOMContentLoaded', () => {
+            const generateButton = document.getElementById('generate-button');
+            const answerContainer = document.getElementById('answer-container');
+            const answerEl = document.getElementById('answer');
 
-        window.addEventListener('mousemove', function(e) {
-            const posX = e.clientX;
-            const posY = e.clientY;
+            // Массив творческих ответов
+            const answers = [
+                "Чтобы звёзды могли танцевать.",
+                "Потому что кошки мурлычут в унисон со вселенной.",
+                "Для симметрии хаоса.",
+                "Ради песни, которую ещё никто не слышал.",
+                "Чтобы найти ответ, который породит новый вопрос.",
+                "Это секрет, который шёпотом рассказывает ветер.",
+                "Потому что эхо ищет свой источник.",
+                "Чтобы у тишины был свой голос.",
+                "Потому что даже у тени есть свой свет.",
+                "Для момента, когда случайность становится судьбой.",
+                "Чтобы в палитре были все цвета, даже невидимые.",
+                "Просто так. И в этом вся прелесть."
+            ];
 
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
+            let isFirstClick = true;
 
-            cursorOutline.style.left = `${posX}px`;
-            cursorOutline.style.top = `${posY}px`;
+            // Функция для получения случайного ответа
+            function getNewAnswer() {
+                // Плавное исчезновение
+                answerContainer.classList.remove('fade-in');
+                answerContainer.classList.add('fade-out');
 
-            spotlight.style.background = `radial-gradient(circle at ${posX}px ${posY}px, rgba(219, 0, 255, 0.08), transparent 25%)`;
-            
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
-        });
+                setTimeout(() => {
+                    const randomIndex = Math.floor(Math.random() * answers.length);
+                    answerEl.textContent = answers[randomIndex];
 
-        // --- 2. 3D BENTO ITEMS EFFECT ---
-        const bentoItems = document.querySelectorAll('.bento-item');
-        bentoItems.forEach(item => {
-            item.addEventListener('mousemove', e => {
-                const rect = item.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
+                    // Плавное появление
+                    answerContainer.classList.remove('fade-out');
+                    answerContainer.classList.add('fade-in');
+                }, 500); // Задержка соответствует времени анимации
+            }
 
-                const rotateX = -y / (rect.height / 2) * 10; // Max rotation 10deg
-                const rotateY = x / (rect.width / 2) * 10;
-
-                item.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-            });
-            item.addEventListener('mouseleave', () => {
-                item.style.transform = 'rotateX(0) rotateY(0) scale(1)';
-            });
-        });
-
-        // --- 3. VIDEO GALLERY LOGIC ---
-        const mainVideoPlayer = document.getElementById('main-video-player');
-        const videoThumbs = document.querySelectorAll('.video-thumb');
-
-        videoThumbs.forEach(thumb => {
-            thumb.addEventListener('click', () => {
-                const newVideoSrc = thumb.dataset.videoSrc;
-                mainVideoPlayer.src = newVideoSrc;
-                mainVideoPlayer.play();
+            generateButton.addEventListener('click', () => {
+                if (isFirstClick) {
+                    generateButton.textContent = 'Найти ещё один';
+                    isFirstClick = false;
+                }
+                getNewAnswer();
             });
         });
-        
-        // --- 4. MAGNETIC BUTTONS ---
-        const magneticButtons = document.querySelectorAll('[data-magnetic]');
-        magneticButtons.forEach(button => {
-            let rect = button.getBoundingClientRect();
-            
-            button.addEventListener('mousemove', function(e) {
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-
-                button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-            });
-
-            button.addEventListener('mouseleave', function() {
-                button.style.transform = 'translate(0,0)';
-            });
-            
-            window.addEventListener('resize', () => rect = button.getBoundingClientRect());
-        });
-
-        // --- 5. CURSOR STYLE ON INTERACTIVE ELEMENTS ---
-        const interactiveElements = document.querySelectorAll('a, .bento-item');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorDot.style.transform = 'translate(-50%, -50%) scale(0)';
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursorOutline.style.borderColor = 'var(--color-secondary)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorOutline.style.borderColor = 'var(--color-primary)';
-            });
-        });
-    });
     </script>
 </body>
 </html>
