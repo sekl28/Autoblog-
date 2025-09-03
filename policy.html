@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exposé: The Unfiltered Narrative</title>
+    <title>The Mirror: Reflection of Truth</title>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- Global Styles & Variables (Amethyst Noir Palette) --- */
+        /* --- Global Styles & Variables (Obsidian Mirror Palette) --- */
         :root {
-            --bg-dark: #121212; /* Deep Charcoal */
-            --text-light: #F9F9F9; /* Soft White */
-            --text-dim: #aaaaaa;
-            /* NEW ACCENT: Amethyst Purple (Luxury, Mystery, Intimacy) */
-            --accent-amethyst: #9966CC;
-            --accent-amethyst-dark: #7a52a3;
-            --card-bg: #1e1e1e;
+            --bg-obsidian: #0B0B0B;
+            --text-main: #FDFDFD; /* Pure white for high contrast */
+            --text-dim: #888888;
+            /* Spectral Gradient (Hypnotic Accent) */
+            --spectral-violet: #6a0dad;
+            --spectral-blue: #00ffff;
             --font-display: 'Bodoni Moda', serif;
             --font-body: 'Manrope', sans-serif;
         }
@@ -30,218 +29,217 @@
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            background-color: var(--bg-obsidian);
+            color: var(--text-main);
             font-family: var(--font-body);
-            line-height: 1.6;
+            line-height: 1.7;
             font-weight: 300;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            /* Hide default cursor on desktop */
+            /* Hide default cursor (Crucial for Innovation 2) */
             cursor: none;
         }
 
-        /* --- Cinematic Texture/Grain --- */
-        #grain-overlay {
+        /* --- Innovation 1: Hypnotic Background (The Vortex) --- */
+        #vortex-bg {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9000;
-            pointer-events: none;
-            opacity: 0.06;
-            /* Optimized SVG noise filter */
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            animation: grain-flicker 0.5s steps(1) infinite;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
         }
-        
-        @keyframes grain-flicker {
-            0%, 100% { transform: translate(0,0); }
-            25% { transform: translate(-1%, 1%); }
-            50% { transform: translate(1%, -1%); }
-            75% { transform: translate(-1%, -1%); }
+
+        .vortex-layer {
+            position: absolute;
+            /* Center the layer */
+            top: 50%;
+            left: 50%;
+            width: 200vmax; /* Ensure it covers the whole screen even when rotated */
+            height: 200vmax;
+            transform: translate(-50%, -50%);
+            /* Complex radial gradient simulating depth and light */
+            background: radial-gradient(circle at center, 
+                rgba(106, 13, 173, 0.2) 0%, 
+                rgba(0, 0, 0, 0) 40%, 
+                rgba(0, 255, 255, 0.1) 60%, 
+                rgba(0, 0, 0, 0) 70%);
+            /* Slow, mesmerizing rotation and pulse */
+            animation: vortex-spin 120s linear infinite, vortex-pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes vortex-spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes vortex-pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
 
         .container {
-            max-width: 1300px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 30px;
+        }
+
+        /* Centered text content for focus */
+        .text-content {
+            max-width: 750px;
+            margin: 0 auto;
         }
 
         h1, h2, h3 {
             font-family: var(--font-display);
-            font-weight: 400;
-            /* Optical sizing for Bodoni Moda */
+            font-weight: 700;
             font-optical-sizing: auto;
         }
 
-        /* --- Utility & Animations (Polished Micro-interactions) --- */
+        /* --- Utility & Animations --- */
 
-        /* CTA Button (Premium Feel) */
+        /* Innovation 4: The "Magnetic" CTA (The Singularity) */
         .cta-button {
             display: inline-block;
-            background-color: var(--accent-amethyst);
-            color: var(--text-light);
-            padding: 15px 40px;
+            padding: 15px 50px;
             text-decoration: none;
             font-weight: 600;
-            /* Elegant rounded corners */
-            border-radius: 5px;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: 50px; /* Smooth shape */
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            font-size: 0.9rem;
+            font-size: 1rem;
             position: relative;
             overflow: hidden;
             z-index: 1;
-            box-shadow: 0 5px 15px rgba(153, 102, 204, 0.3);
+            color: var(--text-main);
+            /* Spectral gradient background */
+            background: linear-gradient(90deg, var(--spectral-violet), var(--spectral-blue), var(--spectral-violet));
+            background-size: 200% 100%;
+            /* Slow, magnetic flow animation */
+            animation: gradient-flow 8s linear infinite;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
         .cta-button:hover {
-            background-color: var(--accent-amethyst-dark);
-            box-shadow: 0 10px 30px rgba(153, 102, 204, 0.5);
-            transform: translateY(-2px);
+            transform: scale(1.05);
+            /* Brighter shadow on hover */
+            box-shadow: 0 0 40px rgba(106, 13, 173, 0.8);
         }
 
 
-        /* Scroll Animations (Polished Reveal) */
+        /* Scroll Animations (Smooth Reveal) */
         .reveal {
             opacity: 0;
-            transform: translateY(60px);
-            /* Using cubic-bezier for a smooth, premium feel */
+            transform: translateY(40px);
             transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-            will-change: opacity, transform; /* Performance optimization */
+            will-change: opacity, transform;
         }
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Cinematic Text Reveal (With subtle blur effect) */
-        .char-reveal {
-            display: inline-block;
-            opacity: 0;
-            /* Initial state: shifted down and slightly blurred */
-            transform: translateY(30px);
-            filter: blur(5px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out;
-        }
-
-        /* --- NEW Custom Cursor: Diamond Prism (Unique & Zero Lag) --- */
-        #cursor-diamond {
-            width: 18px;
-            height: 18px;
-            border: 1px solid var(--accent-amethyst);
-            /* Create diamond shape */
-            transform: rotate(45deg);
+        /* --- Innovation 2: The "Focus-Lock" Cursor (The Guiding Light) --- */
+        #cursor-light {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            /* Ensure it starts hidden until mouse moves */
-            display: none;
-            /* Smooth transitions for hover effects (NOT movement) */
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-            /* Subtle pulsing glow */
-            animation: pulse-glow 3s infinite;
+            /* The core innovation: Invert colors underneath the cursor */
+            mix-blend-mode: difference;
+            /* The "light source" - a bright white radial gradient */
+            background: radial-gradient(circle at center, 
+                rgba(255, 255, 255, 1) 0%, 
+                rgba(255, 255, 255, 0.8) 40%,
+                rgba(255, 255, 255, 0) 70%);
+            display: none; /* Hidden until mouse movement */
             will-change: transform;
+            transition: width 0.3s ease, height 0.3s ease;
         }
 
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 5px rgba(153, 102, 204, 0.2); }
-            50% { box-shadow: 0 0 20px rgba(153, 102, 204, 0.6); }
-            100% { box-shadow: 0 0 5px rgba(153, 102, 204, 0.2); }
-        }
-
-        /* Cursor Hover State (Applied via JS) - Prism effect */
-        .cursor-hover #cursor-diamond {
-            /* Note: Scale is applied via JS transform string, this is for CSS fallback/transition sync */
-             background-color: rgba(153, 102, 204, 0.2);
-            /* Color shift (Prism effect) */
-            border-color: #cc6699;
-            box-shadow: 0 0 30px rgba(204, 102, 153, 0.8);
+        /* Cursor Hover State (Applied via JS) - Focused beam */
+        .cursor-hover #cursor-light {
+            width: 60px;
+            height: 60px;
         }
 
 
-        /* --- Hero Section (Asymmetry & Dynamic Typography) --- */
+        /* --- Hero Section (Cinematic Intro) --- */
         #hero {
-            min-height: 80vh;
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding-top: 100px;
-            padding-bottom: 100px;
-            /* Subtle background gradient for depth */
-            background: radial-gradient(circle at top left, rgba(153, 102, 204, 0.1) 0%, var(--bg-dark) 50%);
-        }
-
-        .hero-content {
-            /* Constraining width for editorial feel */
-            max-width: 75%;
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 50px;
         }
 
         #hero h1 {
-            font-size: 5.5rem;
+            font-size: 6rem;
             line-height: 1.1;
             margin-bottom: 30px;
-            font-weight: 700;
+            max-width: 900px;
         }
 
         #hero p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--text-dim);
             max-width: 600px;
             margin-bottom: 50px;
         }
 
-        /* --- Video Section (3D Interaction & Asymmetry) --- */
+        /* --- Video Section (Reflective UI) --- */
         #videos {
             padding: 150px 0;
-        }
-
-        .video-layout {
-            display: flex;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .video-info {
-            flex: 1;
-            /* Aligning text to the right for asymmetry */
-            text-align: right;
-        }
-
-        .video-info h2 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+            text-align: center;
         }
 
         .flirt-message {
-            font-size: 1.2rem;
-            color: var(--accent-amethyst);
+            font-size: 1.5rem;
+            color: var(--text-main);
             /* Using italic Bodoni for the flirt message */
             font-family: var(--font-display);
             font-style: italic;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
-        /* 3D Tilt Container */
-        .video-tilt-container {
-            flex: 1.5;
-            /* Perspective defines the depth of the 3D effect */
-            perspective: 1000px;
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         #main-video-wrapper {
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-            /* Ensures the element is ready for 3D transforms */
-            transform-style: preserve-3d;
-            transition: transform 0.1s ease-out; /* Smooth movement */
-            will-change: transform; /* Performance optimization */
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        /* Glossy Overlay Effect */
+        #main-video-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            pointer-events: none;
+            /* High gloss reflection gradient */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.2) 100%);
         }
 
         #mainVideo {
@@ -254,19 +252,19 @@
 
         .video-thumbnails {
             display: flex;
-            justify-content: flex-end;
-            gap: 15px;
-            margin-top: 20px;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
         }
 
         .thumbnail {
-            width: 120px;
-            height: 70px;
+            width: 140px;
+            height: 80px;
             cursor: pointer;
             transition: all 0.3s ease;
-            opacity: 0.6;
+            opacity: 0.5;
             border: 2px solid transparent;
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
         }
 
@@ -276,91 +274,93 @@
              object-fit: cover;
         }
 
-        /* Polished Thumbnail Hover (Micro-interaction) */
         .thumbnail:hover {
             opacity: 1;
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .thumbnail.active {
             opacity: 1;
-            border-color: var(--accent-amethyst);
-            box-shadow: 0 0 15px rgba(153, 102, 204, 0.5);
+            border-color: var(--spectral-violet);
         }
 
-        /* --- Rumors Section (Readability & Structure) --- */
+        /* --- Rumors Section (Kinetic Typography Implementation) --- */
         #rumors {
             padding: 100px 0;
-            background-color: #181818; /* Slightly different tone for contrast */
         }
 
-        /* Structured Layout for long text (Editorial style) */
-        .rumors-layout {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 100px;
-        }
-
-        .rumors-sidebar h2 {
+        #rumors h2 {
             font-size: 4rem;
-            /* Sticky sidebar keeps the title visible while scrolling content */
-            position: sticky;
-            top: 100px;
-            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 80px;
         }
 
-        .rumors-content h3 {
+        #rumors h3 {
             font-size: 2.5rem;
             margin-top: 80px;
             margin-bottom: 30px;
-            color: var(--accent-amethyst);
+            color: var(--text-main);
+            text-align: center;
         }
 
-        .rumors-content p {
-            margin-bottom: 25px;
-            color: var(--text-dim);
+        /* Innovation 3: Kinetic Typography Container */
+        .kinetic-text {
+            /* This class is applied to paragraphs/text blocks */
+            margin-bottom: 20px;
         }
+
+        /* The individual words/spans animated via JS */
+        .k-word {
+            display: inline-block;
+            opacity: 0;
+            /* Initial state: Rotated back and slightly down */
+            transform: translateY(20px) rotateX(-90deg);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform-origin: top center;
+        }
+
 
         .rumor-list {
             margin: 50px 0;
         }
 
-        /* Card styling for the rumors list */
+        /* Card styling (Reflective UI) */
         .rumor-card {
-            background-color: var(--card-bg);
-            padding: 35px;
-            margin-bottom: 25px;
-            border-radius: 8px;
-            /* Accent border */
-            border-left: 4px solid var(--accent-amethyst);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            /* Glass/Obsidian effect */
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Micro-interaction: Shift on hover */
         .rumor-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            background-color: #242424;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
         .rumor-card strong {
-            color: var(--text-light);
-            font-size: 1.1rem;
+            color: var(--text-main);
+            font-size: 1.2rem;
             font-weight: 600;
             display: block;
             margin-bottom: 15px;
         }
 
         .highlight {
-            font-weight: 400;
-            color: var(--accent-amethyst);
-            background-color: rgba(153, 102, 204, 0.1);
-            padding: 2px 5px;
+            font-weight: 600;
+            color: var(--text-main);
+            /* Subtle underline instead of background color */
+            text-decoration: underline wavy var(--spectral-violet) 2px;
         }
 
         .cta-center {
             text-align: center;
-            margin: 80px 0;
+            margin: 100px 0;
         }
 
         /* --- Footer --- */
@@ -369,65 +369,29 @@
             padding: 80px 0 40px 0;
             font-size: 0.9rem;
             color: var(--text-dim);
-            background-color: var(--bg-dark);
         }
 
         .warning {
             display: inline-block;
             color: var(--text-dim);
-            border: 1px solid var(--text-dim);
             padding: 10px 30px;
             margin-bottom: 30px;
             font-weight: 400;
-            border-radius: 5px;
         }
 
         /* --- Responsive Design (Crucial Polish) --- */
         @media (max-width: 1024px) {
             body {
-                /* Re-enable default cursor on tablet/mobile */
+                /* Re-enable default cursor on tablet/mobile (mix-blend-mode is confusing on touch) */
                 cursor: auto;
             }
              /* Hide custom cursor elements */
-            #cursor-diamond {
+            #cursor-light {
                 display: none !important;
             }
 
             #hero h1 {
                 font-size: 4rem;
-            }
-            .hero-content {
-                max-width: 100%;
-            }
-
-            /* Stack video layout on tablet */
-            .video-layout {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 40px;
-            }
-            .video-info {
-                text-align: left;
-                margin-bottom: 20px;
-            }
-            .video-thumbnails {
-                justify-content: flex-start;
-            }
-             /* Disable 3D tilt on tablet/mobile */
-            .video-tilt-container {
-                perspective: none;
-            }
-            #main-video-wrapper {
-                transform: none !important;
-            }
-
-            /* Stack rumors layout */
-            .rumors-layout {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-            .rumors-sidebar h2 {
-                position: static;
             }
         }
 
@@ -439,11 +403,14 @@
                 font-size: 3rem;
             }
             .thumbnail {
-                width: 90px;
-                height: 55px;
+                width: 100px;
+                height: 60px;
             }
-            .rumors-sidebar h2 {
-                font-size: 3rem;
+            #rumors h2 {
+                font-size: 2.5rem;
+            }
+            .rumor-card {
+                padding: 25px;
             }
         }
 
@@ -451,51 +418,46 @@
 </head>
 <body>
 
-    <div id="grain-overlay"></div>
+    <div id="vortex-bg">
+        <div class="vortex-layer"></div>
+    </div>
 
-    <div id="cursor-diamond"></div>
+    <div id="cursor-light"></div>
 
     <section id="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1 id="main-headline">The Narrative They Created vs. The Life I Live.</h1>
-                <p class="reveal">In a digital world full of whispers and conspiracies, the truth is often the most exclusive content. Welcome to the source.</p>
-                <div class="reveal">
-                    <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">Access Private Channel</a>
-                </div>
+            <h1 class="reveal">Look Closer. The Truth Hides in the Shadows.</h1>
+            <p class="reveal">You've heard the whispers, the conspiracies, the fantasies. Now, discover the reality.</p>
+            <div class="reveal">
+                <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">Enter The Void</a>
             </div>
         </div>
     </section>
 
     <section id="videos">
-        <div class="container">
-            <div class="video-layout">
-                <div class="video-info reveal">
-                    <h2>Behind The Scenes</h2>
-                    <p class="flirt-message">Here are some clips from my streams, look how much fun we have 😇</p>
-                    
-                    <div class="video-thumbnails">
-                        <div class="thumbnail active" data-video="video1.mp4">
-                            <img src="thumb1.jpg" alt="Video preview 1">
-                        </div>
-                        <div class="thumbnail" data-video="video2.mp4">
-                             <img src="thumb2.jpg" alt="Video preview 2">
-                        </div>
-                        <div class="thumbnail" data-video="video3.mp4">
-                             <img src="thumb3.jpg" alt="Video preview 3">
-                        </div>
-                        <div class="thumbnail" data-video="video4.mp4">
-                             <img src="thumb4.jpg" alt="Video preview 4">
-                        </div>
-                    </div>
+        <div class="container reveal">
+            <p class="flirt-message">Here are some clips from my streams, look how much fun we have 😇</p>
+
+            <div class="video-container">
+                <div id="main-video-wrapper">
+                    <video id="mainVideo" controls autoplay muted loop playsinline>
+                        <source src="video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
 
-                <div class="video-tilt-container reveal" id="tilt-container">
-                    <div id="main-video-wrapper">
-                        <video id="mainVideo" controls autoplay muted loop playsinline>
-                            <source src="video1.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                <div class="video-thumbnails">
+                    <div class="thumbnail active" data-video="video1.mp4">
+                        <img src="thumb1.jpg" alt="Video preview 1">
+                    </div>
+                    <div class="thumbnail" data-video="video2.mp4">
+                         <img src="thumb2.jpg" alt="Video preview 2">
+                    </div>
+                    <div class="thumbnail" data-video="video3.mp4">
+                         <img src="thumb3.jpg" alt="Video preview 3">
+                    </div>
+                    <div class="thumbnail" data-video="video4.mp4">
+                         <img src="thumb4.jpg" alt="Video preview 4">
                     </div>
                 </div>
             </div>
@@ -503,83 +465,85 @@
     </section>
 
     <section id="rumors">
-        <div class="container">
-            <div class="rumors-layout">
-                <div class="rumors-sidebar reveal">
-                    <h2>Rumors About Me.</h2>
+        <div class="container text-content">
+            <h2 class="reveal">The Echo Chamber: Rumors About Me.</h2>
+
+            <div class="reveal kinetic-text">
+                <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around <span class="highlight">ehotlovea</span> there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:</p>
+            </div>
+
+            <div class="rumor-list">
+                <div class="rumor-card reveal">
+                    <strong>I am a prisoner.</strong>
+                    <div class="kinetic-text">Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: “Is ehotlovea a hostage and is she being starved?” Looks like someone has been watching too many thrillers.</div>
                 </div>
-                <div class="rumors-content">
-
-                    <div class="reveal">
-                        <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around <span class="highlight">ehotlovea</span> there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:</p>
-                    </div>
-
-                    <div class="rumor-list">
-                        <div class="rumor-card reveal">
-                            <strong>I am a prisoner.</strong>
-                            Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: “Is ehotlovea a hostage and is she being starved?” Looks like someone has been watching too many thrillers.
-                        </div>
-                        <div class="rumor-card reveal">
-                            <strong>I am “controlled by a monster.”</strong>
-                            According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.
-                        </div>
-                        <div class="rumor-card reveal">
-                            <strong>I am constantly on the run in different countries.</strong>
-                            Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. Someone even claimed that I was “transported through a dozen places in half a dozen countries”.
-                        </div>
-                        <div class="rumor-card reveal">
-                            <strong>Secret services and human rights defenders are watching me.</strong>
-                           Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.”
-                        </div>
-                        <div class="rumor-card reveal">
-                            <strong>I have no money or success of my own.</strong>
-                            Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent. All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?
-                        </div>
-                    </div>
-
-                    <h3 class="reveal">The Source of the Madness</h3>
-                    <div class="reveal">
-                        <p>Sounds insane? That’s because it is pure madness. But let’s see who the author of all this phantasmagoria is. Here comes one especially persistent viewer. He is the one who creates most of these threads on the forums, typing “exposés” under different nicknames and fueling the drama. He positions himself as some sort of knight-savior. 🎭</p>
-                    </div>
-
-                    <div class="reveal">
-                        <p>However, reality is far more banal. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. And you know why? <span class="highlight">Simply to masturbate on camera. 🤦‍♀️</span> That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing. I’m not even offended anymore – it just makes me laugh.</p>
-
-                        <p>This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. He invented me a new name, a biography, a villain-“kidnapper” – and fell in love with his own fairy tale. Our would-be knight doesn’t so much want to save me as he dreams, apparently, that I will appreciate his “heroism.”</p>
-
-                        <p>I can already foresee the next move of this conspiracist. He will probably cry out: “Wake up, don’t believe her! All of this was written on the orders of that very villain, it’s part of the plan!” 😀 Well, we’ve already figured you out too, my paranoid friend.</p>
-                    </div>
-
-                    <div class="cta-center reveal">
-                        <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">See The Reality on Telegram</a>
-                    </div>
-
-                    <h3 class="reveal">The Facts</h3>
-
-                    <div class="reveal">
-                        <p>And now – to the facts. Ready to know the truth, not the fairy tale? It is very simple: there is no villain, no captivity, and no drama whatsoever.</p>
-
-                        <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result of my own effort, a well-thought-out strategy, and hard work. Yes, sometimes I work many hours in a row, travel, try new things – but I do it by choice, because I have a dream and a clear plan on how to achieve it. 🎓</p>
-
-                        <p>The reality is this: no one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow. By the way, speaking of professionals: I especially want to mention the Chaturbate support team. These guys are true pros, always ready to help and solving every issue quickly. 💙 This really is the best platform.</p>
-                    </div>
-
-                    <h3 class="reveal">The Consequences</h3>
-
-                    <div class="reveal">
-                        <p>And one last thing worth mentioning. I do not intend to let this situation with dirty slander go unchecked. We have already uncovered the identity of that very storyteller (thanks to my clever Eric 😉). Legal steps will not take long. Believe me, we have enough evidence. We’ll all laugh together later, when this person has to answer for his words to the full extent of the law.</p>
-                    </div>
-
-                    <h3 class="reveal">The Bottom Line</h3>
-
-                    <div class="reveal">
-                        <p>So what’s the bottom line? The bottom line is – I continue to do my work and reach new heights, which I wish for you as well. ✨ Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
-                    </div>
-
-                     <div class="cta-center reveal">
-                         <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">Join Me Now 🔥</a>
-                    </div>
+                <div class="rumor-card reveal">
+                    <strong>I am “controlled by a monster.”</strong>
+                     <div class="kinetic-text">According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</div>
                 </div>
+                <div class="rumor-card reveal">
+                    <strong>I am constantly on the run in different countries.</strong>
+                     <div class="kinetic-text">Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. Someone even claimed that I was “transported through a dozen places in half a dozen countries”.</div>
+                </div>
+                <div class="rumor-card reveal">
+                    <strong>Secret services and human rights defenders are watching me.</strong>
+                    <div class="kinetic-text">Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.”</div>
+                </div>
+                <div class="rumor-card reveal">
+                    <strong>I have no money or success of my own.</strong>
+                     <div class="kinetic-text">Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent. All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?</div>
+                </div>
+            </div>
+
+            <h3 class="reveal">The Source of the Madness</h3>
+            <div class="reveal kinetic-text">
+                <p>Sounds insane? That’s because it is pure madness. But let’s see who the author of all this phantasmagoria is. Here comes one especially persistent viewer. He is the one who creates most of these threads on the forums, typing “exposés” under different nicknames and fueling the drama. He positions himself as some sort of knight-savior. 🎭</p>
+            </div>
+
+            <div class="reveal kinetic-text">
+                <p>However, reality is far more banal. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. And you know why? <span class="highlight">Simply to masturbate on camera. 🤦‍♀️</span> That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing. I’m not even offended anymore – it just makes me laugh.</p>
+            </div>
+
+            <div class="reveal kinetic-text">
+                <p>This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. He invented me a new name, a biography, a villain-“kidnapper” – and fell in love with his own fairy tale. Our would-be knight doesn’t so much want to save me as he dreams, apparently, that I will appreciate his “heroism.”</p>
+            </div>
+            
+             <div class="reveal kinetic-text">
+                <p>I can already foresee the next move of this conspiracist. He will probably cry out: “Wake up, don’t believe her! All of this was written on the orders of that very villain, it’s part of the plan!” 😀 Well, we’ve already figured you out too, my paranoid friend.</p>
+            </div>
+
+            <div class="cta-center reveal">
+                <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">See The Reality</a>
+            </div>
+
+            <h3 class="reveal">The Facts</h3>
+
+            <div class="reveal kinetic-text">
+                <p>And now – to the facts. Ready to know the truth, not the fairy tale? It is very simple: there is no villain, no captivity, and no drama whatsoever.</p>
+            </div>
+
+            <div class="reveal kinetic-text">
+                <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result of my own effort, a well-thought-out strategy, and hard work. Yes, sometimes I work many hours in a row, travel, try new things – but I do it by choice, because I have a dream and a clear plan on how to achieve it. 🎓</p>
+            </div>
+            
+            <div class="reveal kinetic-text">
+                <p>The reality is this: no one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow. By the way, speaking of professionals: I especially want to mention the Chaturbate support team. These guys are true pros, always ready to help and solving every issue quickly. 💙 This really is the best platform.</p>
+            </div>
+
+            <h3 class="reveal">The Consequences</h3>
+
+            <div class="reveal kinetic-text">
+                <p>And one last thing worth mentioning. I do not intend to let this situation with dirty slander go unchecked. We have already uncovered the identity of that very storyteller (thanks to my clever Eric 😉). Legal steps will not take long. Believe me, we have enough evidence. We’ll all laugh together later, when this person has to answer for his words to the full extent of the law.</p>
+            </div>
+
+            <h3 class="reveal">The Bottom Line</h3>
+
+            <div class="reveal kinetic-text">
+                <p>So what’s the bottom line? The bottom line is – I continue to do my work and reach new heights, which I wish for you as well. ✨ Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
+            </div>
+
+             <div class="cta-center reveal">
+                 <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">Join The Private Channel 🔥</a>
             </div>
         </div>
     </section>
@@ -592,83 +556,144 @@
     </footer>
 
     <script>
-        // Determine if the device is desktop (for enabling complex interactions)
-        // Use pointer media query for more accurate detection of mouse input
+        // Determine if the device supports fine pointer input (mouse)
         const IS_DESKTOP = window.matchMedia("(pointer: fine)").matches && window.innerWidth > 1024;
 
-        // --- 1. Cinematic Text Reveal ---
+        // --- 1. Innovation 2: The "Focus-Lock" Cursor (Zero Lag, Optimized) ---
         document.addEventListener('DOMContentLoaded', () => {
-            const headline = document.getElementById('main-headline');
-            if (!headline) return;
+            const cursorLight = document.getElementById('cursor-light');
+            const body = document.body;
 
-            const text = headline.textContent;
-            headline.textContent = ''; // Clear the text initially
+            if (!IS_DESKTOP) return;
 
-            // Wrap each character in a span
-            for (let i = 0; i < text.length; i++) {
-                const span = document.createElement('span');
-                // Handle spaces appropriately
-                if (text[i] === ' ') {
-                    span.innerHTML = '&nbsp;';
-                } else {
-                    span.textContent = text[i];
-                    span.classList.add('char-reveal');
+            let mouseX = 0;
+            let mouseY = 0;
+            let initialized = false;
+            let isHovering = false;
+
+            // Update mouse coordinates
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                if (!initialized) {
+                    initialized = true;
+                    cursorLight.style.display = 'block';
                 }
-                headline.appendChild(span);
+            });
+
+            // Function to animate the cursor using requestAnimationFrame (Syncs with refresh rate)
+            function updateCursor() {
+                // Move instantly (No Delay)
+                // Using translate3d for hardware acceleration
+                cursorLight.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
+                requestAnimationFrame(updateCursor);
             }
 
-            const chars = document.querySelectorAll('.char-reveal');
-            let delay = 0.5; // Initial delay (0.5s)
+            updateCursor();
 
-            // Animate characters sequentially
-            chars.forEach((char, index) => {
-                setTimeout(() => {
-                    char.style.opacity = '1';
-                    char.style.transform = 'translateY(0)';
-                    char.style.filter = 'blur(0)';
-                }, (delay * 1000) + (index * 30)); // 30ms stagger between letters
+            // Add hover interactions (Event Delegation for performance)
+            // When hovering interactive elements, the cursor focuses (shrinks)
+            document.addEventListener('mouseover', (e) => {
+                if (e.target.closest('a, button, .thumbnail, video')) {
+                    if (!isHovering) {
+                        body.classList.add('cursor-hover');
+                        isHovering = true;
+                    }
+                }
+            });
+
+            document.addEventListener('mouseout', (e) => {
+                 if (e.target.closest('a, button, .thumbnail, video')) {
+                     if (isHovering) {
+                        body.classList.remove('cursor-hover');
+                        isHovering = false;
+                     }
+                 }
+            });
+            
+            // Hide custom cursor when leaving the viewport
+            document.addEventListener('mouseleave', () => {
+                cursorLight.style.display = 'none';
+                initialized = false;
+            });
+             document.addEventListener('mouseenter', () => {
+                if (IS_DESKTOP) {
+                    cursorLight.style.display = 'block';
+                }
             });
         });
 
-
-        // --- 2. 3D Tilt Effect ---
+        // --- 2. Innovation 3: Kinetic Typography (Whispering Text) ---
         document.addEventListener('DOMContentLoaded', () => {
-            const tiltContainer = document.getElementById('tilt-container');
-            const videoWrapper = document.getElementById('main-video-wrapper');
+            const kineticTexts = document.querySelectorAll('.kinetic-text');
+
+            // Step 1: Split text into words wrapped in spans
+            kineticTexts.forEach(element => {
+                // We need to handle nested elements (like <span class="highlight">) correctly
+                const nodes = Array.from(element.childNodes);
+                element.innerHTML = ''; // Clear the element
+
+                nodes.forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        // Split text node content by space
+                        const words = node.textContent.split(' ');
+                        words.forEach((word, index) => {
+                            if (word) {
+                                const span = document.createElement('span');
+                                span.classList.add('k-word');
+                                span.textContent = word;
+                                element.appendChild(span);
+                            }
+                            // Add space back if not the last word and the word wasn't empty
+                            if (index < words.length - 1 && word) {
+                                element.appendChild(document.createTextNode(' '));
+                            }
+                        });
+                    } else if (node.nodeType === Node.ELEMENT_NODE) {
+                        // If it's an element, wrap the whole element in k-word
+                         const wrapper = document.createElement('span');
+                         wrapper.classList.add('k-word');
+                         wrapper.appendChild(node.cloneNode(true));
+                         element.appendChild(wrapper);
+                         element.appendChild(document.createTextNode(' ')); // Add space after element
+                    }
+                });
+                 // Mark the element as processed
+                element.classList.add('kinetic-processed');
+            });
+
+            // Step 2: Use Intersection Observer to trigger animation on scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5 // Trigger when 50% of the text block is visible
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const words = entry.target.querySelectorAll('.k-word');
+                        
+                        // Animate words sequentially (The "Whisper" effect)
+                        words.forEach((word, index) => {
+                            setTimeout(() => {
+                                word.style.opacity = '1';
+                                word.style.transform = 'translateY(0) rotateX(0deg)';
+                            }, index * 25); // 25ms stagger between words for a fluid effect
+                        });
+
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            };
+
+            const kineticObserver = new IntersectionObserver(observerCallback, observerOptions);
             
-            // Optimization: Only enable on Desktop
-            if (!IS_DESKTOP || !tiltContainer) return;
-
-            const maxTilt = 10; 
-
-            tiltContainer.addEventListener('mousemove', (e) => {
-                const rect = tiltContainer.getBoundingClientRect();
-                const width = rect.width;
-                const height = rect.height;
-
-                // Calculate cursor position relative to the center
-                const x = e.clientX - rect.left - width / 2;
-                const y = e.clientY - rect.top - height / 2;
-
-                // Calculate rotation angles
-                const rotateY = (x / (width / 2)) * maxTilt;
-                const rotateX = -(y / (height / 2)) * maxTilt;
-
-                // Apply the 3D transformation
-                // Using perspective() function in transform for clarity
-                videoWrapper.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            // Observe the processed containers
+            document.querySelectorAll('.kinetic-processed').forEach(el => {
+                kineticObserver.observe(el);
             });
 
-            // Reset the tilt when the mouse leaves
-            tiltContainer.addEventListener('mouseleave', () => {
-                // Smooth return to center
-                videoWrapper.style.transition = 'transform 0.5s ease';
-                videoWrapper.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-                // Restore the quick transition for active tracking
-                setTimeout(() => {
-                    videoWrapper.style.transition = 'transform 0.1s ease-out';
-                }, 500);
-            });
         });
 
 
@@ -696,14 +721,13 @@
             });
         });
 
-        // --- 4. Scroll Animation (Intersection Observer - Polished) ---
+        // --- 4. Scroll Animation (Standard Reveals) ---
         document.addEventListener('DOMContentLoaded', () => {
             const revealElements = document.querySelectorAll('.reveal');
 
-            // Advanced configuration for smoother reveals
             const observerOptions = {
                 root: null,
-                rootMargin: '0px 0px -100px 0px', // Trigger 100px before element reaches bottom of viewport
+                rootMargin: '0px 0px -100px 0px',
                 threshold: 0.1
             };
 
@@ -711,7 +735,10 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Stop observing once visible
+                        // We don't unobserve kinetic parents here, as the kinetic observer handles them separately
+                        if (!entry.target.classList.contains('kinetic-text')) {
+                             observer.unobserve(entry.target);
+                        }
                     }
                 });
             };
@@ -719,81 +746,9 @@
             const observer = new IntersectionObserver(observerCallback, observerOptions);
 
             revealElements.forEach(el => {
-                observer.observe(el);
-            });
-        });
-
-        // --- 5. NEW Custom Cursor Logic (Zero Lag, Optimized) ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const cursorDiamond = document.getElementById('cursor-diamond');
-            const body = document.body;
-
-            if (!IS_DESKTOP) return;
-
-            let mouseX = 0;
-            let mouseY = 0;
-            let initialized = false;
-            let isHovering = false;
-
-            // Update mouse coordinates
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                if (!initialized) {
-                    initialized = true;
-                    // Ensure cursor is visible once mouse moves
-                    cursorDiamond.style.display = 'block';
-                }
-            });
-
-            // Function to animate the cursor using requestAnimationFrame (Syncs with refresh rate)
-            function updateCursor() {
-                // Move instantly (No Lerp/Delay)
-                // We center the diamond on the cursor point AND account for the 45deg rotation
-                // Using translate3d for hardware acceleration
-                let transformString = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0) rotate(45deg)`;
-                
-                // Apply scale if hovering
-                if (isHovering) {
-                    transformString += ' scale(1.5)';
-                }
-
-                cursorDiamond.style.transform = transformString;
-
-                requestAnimationFrame(updateCursor);
-            }
-
-            updateCursor();
-
-            // Add hover interactions
-            // Optimized using Event Delegation
-            document.addEventListener('mouseover', (e) => {
-                // Check if the hovered element or its parent is interactive
-                if (e.target.closest('a, button, .thumbnail, .rumor-card, input, textarea, video')) {
-                    if (!isHovering) {
-                        body.classList.add('cursor-hover');
-                        isHovering = true;
-                    }
-                }
-            });
-
-            document.addEventListener('mouseout', (e) => {
-                 if (e.target.closest('a, button, .thumbnail, .rumor-card, input, textarea, video')) {
-                     if (isHovering) {
-                        body.classList.remove('cursor-hover');
-                        isHovering = false;
-                     }
-                 }
-            });
-            
-            // Hide custom cursor when leaving the viewport
-            document.addEventListener('mouseleave', () => {
-                cursorDiamond.style.display = 'none';
-                initialized = false;
-            });
-             document.addEventListener('mouseenter', () => {
-                if (IS_DESKTOP) {
-                    cursorDiamond.style.display = 'block';
+                // Don't observe elements that are also kinetic text parents (to avoid conflict)
+                if (!el.classList.contains('kinetic-text')) {
+                     observer.observe(el);
                 }
             });
         });
