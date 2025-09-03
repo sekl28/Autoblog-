@@ -3,752 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BitStarz NEO-VELOCITY: Мгновенная Эйфория</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <title>Мой Лендинг с Изображением</title>
     <style>
-        /* --- Global Variables & Theme (Cyber-Luxe) --- */
-        :root {
-            --bg-dark: #05050f;
-            --bg-secondary: #1c1c3a;
-            --neon-gold: #ffd700;
-            --neon-cyan: #00ffff;
-            --neon-purple: #8a2be2;
-            --text-light: #e0e0e0;
-            --color-success: #4ade80;
-        }
-
-        * {
+        /* Общие стили для лендинга */
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
             line-height: 1.6;
-            overflow-x: hidden;
+            color: #333;
+            background-color: #f4f4f4;
         }
-
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
         }
-
-        h1, h2, h3 {
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 20px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .hero {
+            background: #e2e2e2;
+            color: #333;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .hero h2 {
+            font-size: 2.5em;
             margin-bottom: 20px;
         }
-
-        h2 {
-            font-size: 2.8rem;
-            text-align: center;
-            margin-bottom: 60px;
-            color: var(--neon-cyan);
-            /* Неоновый эффект заголовков */
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
         }
-
-        section {
-            padding: 100px 0;
-        }
-
-        /* --- CTA Button (Maximum Conversion) --- */
         .cta-button {
             display: inline-block;
-            background-color: var(--neon-gold);
-            color: var(--bg-dark);
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: 700;
+            background: #77aaff;
+            color: #fff;
+            padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            /* Эффект свечения для привлечения внимания */
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-            border: 2px solid var(--neon-gold);
-            font-family: 'Orbitron', sans-serif;
-            cursor: pointer;
+            font-size: 1.1em;
+            transition: background 0.3s ease;
         }
-
         .cta-button:hover {
-            /* Усиление эффекта при наведении (Глитч-эффект симулируется быстрым смещением тени) */
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9), 5px 0 0 rgba(0, 255, 255, 0.5), -5px 0 0 rgba(138, 43, 226, 0.5);
-            transform: translateY(-3px);
-            background-color: #ffeb3b;
+            background: #5588cc;
         }
-
-        /* --- Header/Nav --- */
-        header.nav-bar {
-            padding: 20px 0;
-            background-color: rgba(5, 5, 15, 0.95);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            color: var(--neon-gold);
-        }
-
-        /* --- 1. HERO SECTION (The Hook) --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .image-section {
             text-align: center;
-            /* Плейсхолдер для динамичного фона (WebGL или Видео). Используем симуляцию сетки данных. */
-            background: radial-gradient(ellipse at top, #1c1c3a 0%, #05050f 60%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(138, 43, 226, 0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-            background-blend-mode: overlay;
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
+            padding: 40px 0;
+            background: #fff;
         }
-
-        .hero-content {
-            max-width: 1000px;
+        .image-section img {
+            max-width: 100%; /* Изображение будет адаптивным */
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-
-        .hero-pretitle {
-            font-size: 1.2rem;
-            color: var(--neon-cyan);
-            margin-bottom: 20px;
-            letter-spacing: 3px;
-            text-shadow: 0 0 10px var(--neon-cyan);
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .text-gold {
-            color: var(--neon-gold);
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-        }
-
-        .hero-offer {
-            font-size: 3rem;
-            color: var(--neon-gold);
-            font-family: 'Orbitron', sans-serif;
-            margin-bottom: 40px;
-            display: inline-block;
-            padding: 20px 40px;
-            /* Рамка для выделения оффера */
-            border: 2px dashed var(--neon-gold);
-            background: rgba(255, 215, 0, 0.1);
-        }
-
-        .trust-badges {
-            margin-top: 40px;
-            opacity: 0.8;
-        }
-        .trust-badges span {
-            margin: 0 15px;
-            font-size: 1rem;
-        }
-
-        /* --- 2. SPEED SECTION (The Core USP) --- */
-        #speed {
-            background-color: var(--bg-secondary);
-        }
-
-        .live-timer {
-            background-color: var(--bg-dark);
-            padding: 40px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 60px;
-            /* Подсветка блока таймера */
-            border: 1px solid var(--neon-purple);
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .timer-value {
-            font-size: 4rem;
-            font-family: 'Orbitron', sans-serif;
-            color: var(--neon-cyan);
-            display: block;
-            margin-top: 10px;
-            text-shadow: 0 0 15px var(--neon-cyan);
-        }
-
-        .speed-comparison {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-        }
-
-        .comparison-box {
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            width: 45%;
-            transition: transform 0.3s ease;
-        }
-
-        .box-slow {
-            background-color: #333;
-            opacity: 0.5;
-        }
-        .box-slow:hover {
-            opacity: 0.8;
-        }
-
-        /* Визуальное превосходство BitStarz */
-        .box-fast {
-            background-color: var(--bg-dark);
-            border: 2px solid var(--neon-gold);
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-        }
-        .box-fast h3 {
-            color: var(--neon-gold);
-        }
-
-        /* --- 3. VICTORY ATMOSPHERE (FOMO) --- */
-        #atmosphere {
-            background-color: var(--bg-dark);
-        }
-        
-        .victory-wrapper {
-            display: flex;
-            gap: 30px;
-        }
-
-        .live-wins {
-            flex: 2;
-            background-color: var(--bg-secondary);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid var(--neon-cyan);
-            height: 450px;
-            overflow-y: hidden;
-        }
-
-        /* Симуляция прокрутки ленты */
-        .win-feed {
-            /* Требует JS для реальной реализации, CSS анимация - плейсхолдер */
-             animation: scrollFeed 30s linear infinite;
-        }
-
-        .win-item {
-            padding: 12px 15px;
-            margin-bottom: 8px;
-            background-color: var(--bg-dark);
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .win-amount {
-            color: var(--color-success);
-            font-weight: 700;
-        }
-        /* Выделение джекпота */
-        .win-item.jackpot {
-            background-color: rgba(255, 215, 0, 0.2);
-            border: 1px solid var(--neon-gold);
-        }
-        .win-item.jackpot .win-amount {
-            color: var(--neon-gold);
-            font-size: 1.1rem;
-        }
-
-        /* Placeholder animation keyframes */
-        @keyframes scrollFeed {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-50%); } /* Предполагается, что список продублирован */
-        }
-
-        .promo-banner {
-            flex: 1;
-            /* Градиент для привлечения внимания к промо */
-            background: linear-gradient(145deg, var(--neon-purple), var(--bg-secondary));
-            padding: 40px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .promo-banner h3 {
-            font-size: 2.5rem;
-            color: #fff;
-        }
-        .promo-icon {
-            font-size: 5rem;
-            margin: 20px 0;
-            color: var(--neon-gold);
-        }
-
-        /* --- 4. ARSENAL (Features) --- */
-        #features {
-            background-color: var(--bg-secondary);
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background-color: var(--bg-dark);
-            padding: 30px;
-            border-radius: 10px;
-            transition: transform 0.3s ease, border 0.3s ease;
-            border: 1px solid transparent;
+        .content-section {
+            padding: 40px 0;
+            background: #f9f9f9;
             text-align: center;
         }
-
-        /* Интерактивный эффект при наведении */
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border: 1px solid var(--neon-cyan);
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--neon-gold);
+        .content-section h3 {
+            font-size: 2em;
             margin-bottom: 20px;
         }
-        .feature-card h3 {
-            color: var(--neon-cyan);
-        }
-
-        /* --- 5. BONUS (The Offer) - Горизонтальный макет для лучшей видимости --- */
-        #bonus {
-            background-color: var(--bg-dark);
-        }
-        .bonus-steps {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 50px;
-        }
-
-        .bonus-step {
-            background-color: var(--bg-secondary);
-            padding: 30px 20px;
-            border-radius: 10px;
-            width: 260px;
-            text-align: center;
-            position: relative;
-        }
-
-        /* Метки для визуального разделения шагов */
-        .step-label {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--neon-purple);
-            color: #fff;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        /* Максимальное выделение бездепозитного бонуса */
-        .bonus-step.highlight {
-            border: 3px solid var(--neon-gold);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
-            transform: scale(1.05);
-        }
-        .bonus-step.highlight .step-label {
-            background-color: var(--neon-gold);
-            color: var(--bg-dark);
-        }
-
-        .bonus-step h3 {
-            margin-top: 20px;
-            color: var(--neon-cyan);
-            font-size: 1.5rem;
-        }
-
-        /* --- 6. TRUST (Social Proof) --- */
-        #trust {
-            background-color: var(--bg-secondary);
-        }
-        .testimonials {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        .testimonial-item {
-            flex: 1;
-            background-color: var(--bg-dark);
-            padding: 30px;
-            border-radius: 10px;
-            font-style: italic;
-        }
-        .testimonial-author {
-            margin-top: 15px;
-            font-style: normal;
-            font-weight: 700;
-            color: var(--neon-gold);
-        }
-        .ratings {
-            text-align: center;
-            font-size: 1.5rem;
-            font-family: 'Orbitron', sans-serif;
-            opacity: 0.9;
-        }
-
-        /* --- 7. FINAL CTA (The Closer) --- */
-        .final-cta {
-            text-align: center;
-            padding: 150px 0;
-            /* Радиальный градиент для фокусировки внимания в центре */
-            background: radial-gradient(ellipse at center, var(--bg-secondary) 0%, var(--bg-dark) 70%);
-            border-top: 3px solid var(--neon-gold);
-        }
-
-        .final-cta h2 {
-            font-size: 3.5rem;
-            margin-bottom: 30px;
-            color: #fff;
-            text-shadow: none;
-        }
-        
-        .cta-mega {
-            font-size: 1.5rem; 
-            padding: 25px 60px;
-            /* Анимация пульсации для финального призыва */
-            animation: pulseGlow 2s infinite alternate;
-        }
-
-        @keyframes pulseGlow {
-            from {
-                box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
-                transform: scale(1);
-            }
-            to {
-                box-shadow: 0 0 40px rgba(255, 215, 0, 0.9), 0 0 60px rgba(255, 215, 0, 0.5);
-                transform: scale(1.03);
-            }
-        }
-
-        .disclaimer {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            opacity: 0.6;
-        }
-
-        /* --- Footer --- */
         footer {
-            background-color: var(--bg-dark);
-            padding: 30px 0;
+            background: #333;
+            color: #fff;
             text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 4rem;
-            }
-            .victory-wrapper {
-                flex-direction: column;
-            }
-            .live-wins, .promo-banner {
-                width: 100%;
-            }
-            .live-wins {
-                height: 300px;
-            }
-            .bonus-step.highlight {
-                transform: scale(1);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            .hero-offer {
-                font-size: 2rem;
-                padding: 15px 20px;
-            }
-            h2 {
-                font-size: 2rem;
-            }
-            .timer-value {
-                font-size: 3rem;
-            }
-            .speed-comparison {
-                flex-direction: column;
-                align-items: center;
-                gap: 30px;
-            }
-            .comparison-box {
-                width: 90%;
-            }
-            .box-fast {
-                transform: scale(1);
-            }
-            .testimonials {
-                flex-direction: column;
-            }
-            .final-cta h2 {
-                font-size: 2.5rem;
-            }
-            .cta-mega {
-                font-size: 1.2rem;
-                padding: 20px 40px;
-            }
+            padding: 20px;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
 
-    <header class="nav-bar">
+    <header>
         <div class="container">
-            <nav>
-                <div class="logo">BITSTARZ</div>
-                <a href="#register" class="cta-button">Регистрация</a>
-            </nav>
+            <h1>Наш Заголовок Лендинга</h1>
         </div>
     </header>
 
-    <section class="hero" id="register">
-        <div class="container hero-content">
-            <div class="hero-pretitle">⚡ Получи 30 Фриспинов БЕЗ ДЕПОЗИТА прямо сейчас! ⚡</div>
-            <h1>ВЫИГРЫВАЙ ПО-КРУПНОМУ. <span class="text-gold">ВЫВОДИ МГНОВЕННО.</span></h1>
-            <p class="hero-subtitle">Присоединяйся к легендарному крипто-казино №1. Здесь твой выигрыш прилетает на счет в среднем за 8 минут!</p>
-            <div class="hero-offer">
-                ПАКЕТ ДО 5 BTC + 180 FS
-            </div>
-            <a href="#register" class="cta-button cta-mega">ИГРАТЬ СЕЙЧАС! →</a>
-            <div class="trust-badges">
-                <span>🏆 AskGamblers Best Casino</span>
-                <span>⭐ Casinomeister Accredited</span>
-                <span>₿ BTC | ETH | VISA | MC</span>
-            </div>
+    <section class="hero">
+        <div class="container">
+            <h2>Добро пожаловать на наш удивительный продукт!</h2>
+            <p>Мы предлагаем лучшие решения для ваших задач. Узнайте больше, прокрутив страницу вниз.</p>
+            <a href="#" class="cta-button">Узнать больше</a>
         </div>
     </section>
 
-    <section id="speed">
+    <section class="image-section">
         <div class="container">
-            <h2>УСТАЛ ЖДАТЬ СВОИ ДЕНЬГИ? МЫ ИЗМЕНИЛИ ПРАВИЛА.</h2>
-            
-            <div class="live-timer">
-                <p>Среднее время вывода за последние 24 часа:</p>
-                <span class="timer-value">[ 07 : 45 ]</span>
-            </div>
-
-            <div class="speed-comparison">
-                <div class="comparison-box box-slow">
-                    <h3>Обычные Казино</h3>
-                    <p>❌ Вывод до 72 часов</p>
-                    <p>❌ Бесконечные проверки документов</p>
-                    <p>❌ Стресс и ожидание</p>
-                </div>
-                <div class="comparison-box box-fast">
-                    <h3>BitStarz</h3>
-                    <p>✅ Кэшаут <10 минут</p>
-                    <p>✅ Автоматическая обработка 24/7</p>
-                    <p>✅ Мгновенная эйфория от победы</p>
-                </div>
-            </div>
+            <h3>Посмотрите на наш продукт в действии!</h3>
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4S... (здесь ваша полная длинная строка)" alt="Описание продукта или услуги">
+            <p>Это изображение демонстрирует ключевые особенности.</p>
         </div>
     </section>
 
-    <section id="atmosphere">
+    <section class="content-section">
         <div class="container">
-            <h2>ЗДЕСЬ ВЫИГРЫВАЮТ. ПРЯМО СЕЙЧАС.</h2>
-            
-            <div class="victory-wrapper">
-                <div class="live-wins">
-                    <h3>Последние Победители (Live):</h3>
-                    <div class="win-feed">
-                        <div class="win-item">
-                            <span>Alex K. в Gates of Olympus</span>
-                            <span class="win-amount">0.15 BTC</span>
-                        </div>
-                        <div class="win-item jackpot">
-                            <span>Maria_S в Mega Moolah</span>
-                            <span class="win-amount">ДЖЕКПОТ $50,000!</span>
-                        </div>
-                        <div class="win-item">
-                            <span>Crypto_God в Crazy Time</span>
-                            <span class="win-amount">3.5 ETH</span>
-                        </div>
-                        <div class="win-item">
-                            <span>Player777 в Book of Dead</span>
-                            <span class="win-amount">$1,200</span>
-                        </div>
-                        <div class="win-item">
-                            <span>Dmitry_V в BitStarz Originals</span>
-                            <span class="win-amount">$540</span>
-                        </div>
-                        <div class="win-item">
-                            <span>Alex K. в Gates of Olympus</span>
-                            <span class="win-amount">0.15 BTC</span>
-                        </div>
-                        <div class="win-item jackpot">
-                            <span>Maria_S в Mega Moolah</span>
-                            <span class="win-amount">ДЖЕКПОТ $50,000!</span>
-                        </div>
-                        <div class="win-item">
-                            <span>Crypto_God в Crazy Time</span>
-                            <span class="win-amount">3.5 ETH</span>
-                        </div>
-                        <div class="win-item">
-                            <span>Player777 в Book of Dead</span>
-                            <span class="win-amount">$1,200</span>
-                        </div>
-                        <div class="win-item">
-                            <span>Dmitry_V в BitStarz Originals</span>
-                            <span class="win-amount">$540</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="promo-banner">
-                    <div>
-                        <div class="promo-icon">🚗💨</div>
-                        <h3>ВЫИГРАЙ TESLA!</h3>
-                        <p>Участвуй в грандиозном розыгрыше до 2 Октября 2025. Твой следующий спин может стать победным!</p>
-                    </div>
-                    <a href="#register" class="cta-button" style="margin-top: 20px;">УЧАСТВОВАТЬ!</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="features">
-        <div class="container">
-            <h2>ПОЧЕМУ ЧЕМПИОНЫ ВЫБИРАЮТ BITSTARZ?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">₿</div>
-                    <h3>Крипто-Свобода</h3>
-                    <p>Мы были первыми с 2014 года. Играй анонимно и безопасно. Поддержка 500+ криптовалют и фиата.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎮</div>
-                    <h3>Вселенная Азарта</h3>
-                    <p>4000+ игр. От эксклюзивов (BitStarz Originals) и Provably Fair (доказуемо честных) игр до Live-шоу.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎧</div>
-                    <h3>Поддержка Супергероев</h3>
-                    <p>Никаких ботов. Только живые профессионалы 24/7. Признаны лучшими в индустрии.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏁</div>
-                    <h3>Турниры и Гонки</h3>
-                    <p>Еженедельные Slot Wars и Table Wars с призовыми фондами $10,000+.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="bonus">
-        <div class="container">
-            <h2>ВОРВИСЬ В ИГРУ С ПАКЕТОМ ДО 5 BTC</h2>
-            <div class="bonus-steps">
-                
-                <div class="bonus-step highlight">
-                    <div class="step-label">БЕСПЛАТНО!</div>
-                    <h3>ШАГ 0</h3>
-                    <p>30 Фриспинов БЕЗ ДЕПОЗИТА за регистрацию!</p>
-                </div>
-
-                <div class="bonus-step">
-                    <div class="step-label">БУСТ X2</div>
-                    <h3>ДЕПОЗИТ 1</h3>
-                    <p>100% Бонус до 1 BTC + 180 Фриспинов.</p>
-                </div>
-
-                <div class="bonus-step">
-                    <div class="step-label">МАКСИМУМ</div>
-                    <h3>ДЕПОЗИТ 2 и 3</h3>
-                    <p>До 3 BTC Бонусами для крупных ставок.</p>
-                </div>
-
-                <div class="bonus-step">
-                    <div class="step-label">ФИНАЛ</div>
-                    <h3>ДЕПОЗИТ 4</h3>
-                    <p>100% Бонус до 1 BTC.</p>
-                </div>
-
-            </div>
-            <div style="text-align: center;">
-                <a href="#register" class="cta-button">АКТИВИРОВАТЬ ПАКЕТ!</a>
-                <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.7;">Мин. депозит $20. Вейджер x40. Применяются правила и условия.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="trust">
-        <div class="container">
-            <h2>ЧТО ГОВОРЯТ ИГРОКИ И ЭКСПЕРТЫ</h2>
-            <div class="testimonials">
-                <div class="testimonial-item">
-                    <p>"Это безумие! Выиграл $5000 и через 10 минут уже тратил их. BitStarz – это другой уровень скорости! Никаких задержек, никаких нервов."</p>
-                    <div class="testimonial-author">– Игрок_Pro (Trustpilot)</div>
-                </div>
-                <div class="testimonial-item">
-                    <p>"Играю только в крипте. Такого быстрого и честного (Provably Fair) казино я не встречал. 1 BTC вывели без вопросов за 5 минут. Поддержка отвечает мгновенно."</p>
-                    <div class="testimonial-author">– CryptoLord77 (AskGamblers)</div>
-                </div>
-                 <div class="testimonial-item">
-                    <p>"Бонусы просто огромные. Начала с бездепозитных спинов, потом сделала депозит и получила еще 180. Очень щедро и интерфейс супер удобный."</p>
-                    <div class="testimonial-author">– Maria_Vegas</div>
-                </div>
-            </div>
-            <div class="ratings">
-                Trustpilot: 4.4/5 | AskGamblers: 9.8/10 | Casinomeister: Accredited
-            </div>
-        </div>
-    </section>
-
-    <section class="final-cta">
-        <div class="container">
-            <h2>ХВАТИТ СМОТРЕТЬ, КАК ВЫИГРЫВАЮТ ДРУГИЕ.</h2>
-            <p>Твой шанс здесь и сейчас. Регистрация займет 30 секунд. Получи 30 бездепозитных спинов и пакет до 5 BTC.</p>
-            <a href="#register" class="cta-button cta-mega">НАЧАТЬ ВЫИГРЫВАТЬ СЕЙЧАС! →</a>
-            <p class="disclaimer">Лицензировано и регулируется. Гарантия безопасности и честной игры. 18+</p>
+            <h3>Почему выбирают нас?</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Дополнительная информация о наших преимуществах и особенностях.</p>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 BitStarz. Все права защищены. Играйте ответственно.</p>
+            <p>&copy; 2023 Ваш Лендинг. Все права защищены.</p>
         </div>
     </footer>
 
