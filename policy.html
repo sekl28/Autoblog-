@@ -1,55 +1,309 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Join my Telegram — VIP content & live alerts</title>
-  <meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Шоу – бесплатный канал</title>
   <style>
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#0b0f14;color:#fff}
-    .wrap{min-height:100dvh;display:grid;place-items:center;padding:24px}
-    h1{font-size:clamp(28px,4.5vw,44px);line-height:1.1;margin:0 0 12px}
-    p{opacity:.88;margin:0 0 16px;font-size:clamp(16px,2.6vw,18px)}
-    .card{max-width:680px;text-align:center}
-    .hero{border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.4);margin:0 auto 18px;width:min(100%,680px)}
-    .cta{position:sticky;bottom:16px;display:inline-block;padding:16px 22px;border-radius:999px;
-      font-weight:700;text-decoration:none;background:#229ED9;color:#fff; /* Telegram blue */
-      box-shadow:0 0 24px rgba(255,215,0,.65), 0 0 60px rgba(255,215,0,.35); /* золотое свечение */
-      filter:saturate(1.1);transition:transform .12s ease, box-shadow .12s ease}
-    .cta:hover{transform:translateY(-1px);box-shadow:0 0 30px rgba(255,215,0,.85), 0 0 80px rgba(255,215,0,.45)}
-    .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;opacity:.9;margin-top:10px}
-    .badge{background:#11191f;border:1px solid #1d2a33;color:#a7c7da;padding:6px 10px;border-radius:999px;font-size:13px}
-    .legal{opacity:.6;font-size:12px;margin-top:14px}
-  </style>
-  <script>
-    // deep link opener with fallback
-    function openTG(){
-      const app = 'tg://resolve?domain=YOUR_CHANNEL';
-      const web = 'https://t.me/YOUR_CHANNEL' + window.location.search;
-      const start = Date.now();
-      let jumped = false;
-      const t = setTimeout(()=>{ if(!jumped) location.href = web; }, 900);
-      const iframe = document.createElement('iframe');
-      iframe.style.display='none'; iframe.src = app; document.body.appendChild(iframe);
-      setTimeout(()=>{ jumped = true; clearTimeout(t); }, 1500);
+    /* Base styles */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000; /* темный фон */
+      background: radial-gradient(circle at 50% 20%, rgba(142,45,226,0.2), #000 80%); /* легкое фиолетовое свечение */
+      color: #ddd;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
     }
-  </script>
+    h1, h2, h3, h4, h5, h6 {
+      margin: 0;
+      font-weight: 700;
+      color: #fff;
+    }
+    p {
+      margin: 0;
+      margin-bottom: 1em;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+    .hero h1 {
+      font-size: 1.8em;
+      margin-bottom: 0.5em;
+    }
+    .hero p {
+      font-size: 1.1em;
+      margin-bottom: 1.2em;
+      color: #ccc;
+    }
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      background: linear-gradient(45deg, #8e2de2, #4a00e0);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: linear-gradient(45deg, #9c37ef, #5219e5);
+    }
+    .btn:active {
+      background: linear-gradient(45deg, #7d23c9, #3e0fb3);
+    }
+    /* Features Section */
+    .features h2 {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .feature-list li {
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 25px; /* space for custom bullet */
+    }
+    .feature-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(45deg, #8e2de2, #4a00e0);
+      border-radius: 50%;
+    }
+    .feature-list strong {
+      color: #fff;
+    }
+    /* Screenshots/Teasers Section */
+    .teasers h2 {
+      text-align: center;
+      font-size: 1.4em;
+      margin-bottom: 20px;
+    }
+    .screenshots {
+      display: flex;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .screenshots img {
+      flex: 0 0 auto;
+      width: 250px;
+      height: 150px;
+      object-fit: cover;
+      margin-right: 10px;
+      border: 2px solid #333;
+      border-radius: 10px;
+      background: #222;
+    }
+    .screenshots img:last-child {
+      margin-right: 0;
+    }
+    /* FAQ Section */
+    .faq h2 {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+    details {
+      background: #111;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      padding: 0;
+    }
+    details summary {
+      padding: 15px;
+      cursor: pointer;
+      position: relative;
+      outline: none;
+      font-weight: 600;
+      background: #222;
+      border-radius: 8px;
+      color: #fff;
+    }
+    details[open] summary {
+      background: linear-gradient(45deg, #8e2de2, #4a00e0);
+      color: #fff;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    details summary::after {
+      content: "⯆";
+      position: absolute;
+      right: 15px;
+      font-size: 1.2em;
+      transition: transform 0.3s;
+    }
+    details[open] summary::after {
+      transform: rotate(-180deg);
+    }
+    details p {
+      padding: 15px;
+      margin: 0;
+      color: #ccc;
+      font-size: 0.95em;
+      border-top: 1px solid #333;
+      line-height: 1.5;
+    }
+    /* CTA Section */
+    .cta {
+      text-align: center;
+      background: #111;
+      border-radius: 10px;
+      padding: 40px 20px;
+      margin: 40px 20px;
+    }
+    .cta h2 {
+      font-size: 1.3em;
+      margin-bottom: 1em;
+      color: #fff;
+    }
+    .cta .btn {
+      font-size: 1.1em;
+      padding: 15px 30px;
+    }
+    /* Contact Section */
+    .contact-card {
+      background: #111;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(142,45,226,0.3);
+    }
+    .contact-card h3 {
+      font-size: 1.4em;
+      margin-bottom: 0.5em;
+      color: #fff;
+    }
+    .contact-card p {
+      font-style: italic;
+      color: #ccc;
+      margin-bottom: 1em;
+    }
+    .contact-info {
+      margin-bottom: 1em;
+    }
+    .contact-name {
+      font-weight: 700;
+      color: #fff;
+      margin-right: 5px;
+    }
+    .contact-handle {
+      color: #8e2de2;
+    }
+    .contact-card .btn {
+      display: inline-block;
+      margin-top: 5px;
+      font-size: 0.95em;
+      padding: 12px 20px;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #555;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <h1>ehotlovea — top webcam model for 9 years</h1>
-      <p>Free exclusive clips weekly + live stream alerts. Be first to join & take part in giveaways.</p>
-      <video class="hero" autoplay muted playsinline loop poster="poster.jpg">
-        <source src="teaser.webm" type="video/webm"/>
-        <source src="teaser.mp4" type="video/mp4"/>
-      </video>
-      <a class="cta" href="https://t.me/YOUR_CHANNEL" onclick="openTG();return false;">Join on Telegram</a>
-      <div class="badges">
-        <span class="badge">18+ only</span><span class="badge">No spam</span><span class="badge">VIP perks</span>
-      </div>
-      <div class="legal">By joining you confirm you are 18+ and agree to see adult content. © 2025</div>
+
+  <!-- Block 1: Hero / UTP -->
+  <section class="hero">
+    <h1>Настоящее шоу в Telegram</h1>
+    <p>Зрители становятся участниками! Весёлые стримы, эксклюзивный контент, VIP-чат – и всё это бесплатно.</p>
+    <a href="https://t.me/yourchannel" class="btn">Подписаться на канал</a>
+  </section>
+
+  <!-- Block 2: Advantages / Features -->
+  <section class="features">
+    <h2>Почему стоит подписаться?</h2>
+    <ul class="feature-list">
+      <li><strong>Весёлые стримы.</strong> Куча позитива и живого общения каждую неделю – получите заряд хорошего настроения в прямом эфире!</li>
+      <li><strong>Эксклюзивный контент.</strong> Только для наших подписчиков: закулисные материалы и публикации, которых больше нигде не найти.</li>
+      <li><strong>VIP-чат с фанатами.</strong> Присоединяйтесь к приватному чату, где мы общаемся с подписчиками, обсуждаем идеи и делимся инсайдами шоу.</li>
+      <li><strong>Интерактив.</strong> Участвуйте в опросах и конкурсах, предлагайте темы для стримов и вливайте свои идеи – ваш голос повлияет на ход шоу.</li>
+      <li><strong>И многое другое...</strong> Мы постоянно придумываем что-то новенькое, скучно не будет. <em>В разработке: общий чат для всех подписчиков, специальные выпуски и закрытый VIP-доступ!</em></li>
+    </ul>
+  </section>
+
+  <!-- Block 3: Screenshots/Teasers -->
+  <section class="teasers">
+    <h2>Смотри, что тебя ждёт</h2>
+    <div class="screenshots">
+      <img src="https://via.placeholder.com/250x150?text=Stream+Preview" alt="Превью стрима">
+      <img src="https://via.placeholder.com/250x150?text=Exclusive+Post" alt="Эксклюзивный контент">
+      <img src="https://via.placeholder.com/250x150?text=VIP+Chat" alt="Общение в чате">
     </div>
-  </div>
+  </section>
+
+  <!-- Block 4: FAQ -->
+  <section class="faq">
+    <h2>Частые вопросы</h2>
+    <details>
+      <summary>Это правда бесплатно?</summary>
+      <p>Да! Подписка на канал ничего не стоит – все шоу и материалы доступны абсолютно бесплатно для всех подписчиков.</p>
+    </details>
+    <details>
+      <summary>Как часто выходит новый контент?</summary>
+      <p>Мы проводим стримы каждую неделю и регулярно выкладываем новые посты с эксклюзивами несколько раз в неделю. Контент появляется постоянно, так что скучно не будет!</p>
+    </details>
+    <details>
+      <summary>Что такое VIP-чат и как туда попасть?</summary>
+      <p>VIP-чат – это наш закрытый чат для самых преданных фанатов. Все подписчики канала получают приглашение и могут присоединиться бесплатно. В чате мы общаемся, обсуждаем выпуски и устраиваем эксклюзивные активности.</p>
+    </details>
+    <details>
+      <summary>Где смотреть стримы?</summary>
+      <p>Прямо в Telegram! Мы проводим трансляции непосредственно в нашем канале – не нужно никаких сторонних приложений. Просто заходите в канал во время эфира и смотрите шоу в удобном формате.</p>
+    </details>
+    <details>
+      <summary>Что если я пропущу стрим?</summary>
+      <p>Не волнуйтесь, записи всех стримов остаются в канале. Вы сможете пересмотреть пропущенные эфиры в любое удобное время.</p>
+    </details>
+  </section>
+
+  <!-- Block 5: Final Call-to-Action -->
+  <section class="cta">
+    <h2>Готовы стать частью шоу? Присоединяйтесь прямо сейчас!</h2>
+    <a href="https://t.me/yourchannel" class="btn">Подписаться бесплатно</a>
+  </section>
+
+  <!-- Block 6: Contact -->
+  <section class="contact">
+    <div class="contact-card">
+      <h3>Контакты</h3>
+      <p>“Привет! Есть вопросы или идеи? Пиши нам в Telegram – всегда открыты для общения.”</p>
+      <div class="contact-info">
+        <span class="contact-name">ALEX</span>
+        <span class="contact-handle">@show_manager</span>
+      </div>
+      <a href="https://t.me/show_manager" class="btn">Написать в Telegram</a>
+    </div>
+  </section>
+
+  <!-- Block 7: Footer -->
+  <footer>
+    Шоу-канал в Telegram © 2025
+  </footer>
+
 </body>
 </html>
