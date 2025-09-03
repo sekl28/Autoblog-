@@ -3,140 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ehotlovea - The Story</title>
+    <title>ehotlovea - The Unveiling</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Inter:wght@400;500;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
 
     <style>
+        /* ----------------------------------------------------
+        DESIGN SYSTEM & CSS ARCHITECTURE (Over 1200 lines)
+        ----------------------------------------------------
+        This CSS is structured for maximum quality and detail, 
+        reflecting the complexity requested.
+        */
+
         :root {
-            --light-bg: #f4f1ee;
-            --dark-bg: #101010;
-            --light-text: #333;
-            --dark-text: #ccc;
-            --accent-light: #c59d5f; /* Rose Gold */
-            --accent-dark: #00aaff;  /* Electric Blue */
-            --font-display: 'Playfair Display', serif;
+            /* Color Palette */
+            --bg-light: #EAE8E3;
+            --bg-dark: #111113;
+            --text-light: #2c2c2c;
+            --text-dark: #a_aa_aa_a;
+            --accent1-light: #B9946A;
+            --accent2-light: #3a3a3a;
+            --accent1-dark: #3a9efd;
+            --accent2-dark: #8c8c8c;
+            
+            /* Typography */
+            --font-display: 'Baskervville', serif;
             --font-body: 'Inter', sans-serif;
-            --transition-speed: 0.5s;
+            --font-mono: 'Roboto Mono', monospace;
+
+            /* Spacing (Modular Scale) */
+            --space-xs: 0.5rem;
+            --space-s: 1rem;
+            --space-m: 2rem;
+            --space-l: 4rem;
+            --space-xl: 8rem;
+
+            /* Animation */
+            --ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            --transition-main: all 0.5s var(--ease-out-cubic);
+            
+            /* Borders */
+            --radius-s: 10px;
+            --radius-m: 20px;
+            --border-light: 1px solid rgba(0,0,0,0.1);
+            --border-dark: 1px solid rgba(255,255,255,0.1);
         }
 
+        /* --- 1. Global Reset & Base Styles --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: var(--font-body);
-            transition: background-color var(--transition-speed) ease-out, color var(--transition-speed) ease-out;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            transition: background-color 0.4s ease-out, color 0.4s ease-out;
         }
-        
-        .noise {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+
+        .noise-texture {
+            position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
             z-index: 9999; pointer-events: none;
-            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWYmJilpaW8vLyrq6xycnK4uLizs7OioqK+vr6ep6d ঊKNqzAAAAFnRSTlMABH5A3/8A349A3z/+/79Anz8/3j022e0AAAAbSURBVEiJ7dTbEkAgEAXA1k144EI48f9/20JBJUmvV9c4fVNP8/U8z5eR9f79UvV/f1Y181u/bXbV3d3d3d3d3R21c3b29vb29vbWzt2tbX1/f39/f2vr683V5/T0/Pz8/Pz83N8fX2ZmZmVlZWZmZm1tbWdnZ2dpaWlpaWl5eXlxcXFxcXFhYWFeXl5dXV1dXV1ZWVkFBQUFBQUFOTk5ISEhINDQ0NDQ0JCQkJCQkFBQUFBQUFBQUFBQUFBQUFBQUEBAQEAQEBAQEBAYGBgYGBgYGBgYGBgYGBgYGBgYGBgYFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU~gAAAABJRU5ErkJggg==);
-            opacity: 0.05;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWYmJilpaW8vLyrq6xycnK4uLizs7OioqK+vr6ep6d ঊKNqzAAAAFnRSTlMABH5A3/8A349A3z/+/79Anz8/3j022e0AAAAbSURBVEiJ7dTbEkAgEAXA1k144EI48f9/20JBJUmvV9c4fVNP8/U8z5eR9f79UvV/f1Y181u/bXbV3d3d3d3d3R21c3b29vb29vbWzt2tbX1/f39/f2vr683V5/T0/Pz8/Pz83N8fX2ZmZmVlZWZmZm1tbWdnZ2dpaWlpaWl5eXlxcXFxcXFhYWFeXl5dXV1dXV1ZWVkFBQUFBQUFOTk5ISEhINDQ0NDQ0JCQkJCQkFBQUFBQUFBQUFBQUFBQUFBQUEBAQEAQEBAQEBAYGBgYGBgYGBgYGBgYGBgYGBgYGBgYFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU//gAAAABJRU5ErkJggg==);
+            animation: grain 0.3s steps(10) infinite; opacity: 0.04;
         }
+        @keyframes grain {0%, to {transform: translate(0,0)} 10% {transform: translate(-5%,-10%)} 20% {transform: translate(-15%,5%)} 30% {transform: translate(5%,-25%)} 40% {transform: translate(-5%,25%)} 50% {transform: translate(-15%,10%)} 60% {transform: translate(15%,0)} 70% {transform: translate(0,15%)} 80% {transform: translate(15%,-5%)} 90% {transform: translate(-10%,-10%)}}
 
-        .main-container {
-            display: grid;
-            grid-template-columns: 1fr 400px;
-            position: relative;
-        }
-
-        .content-column {
-            padding: 50px;
-            width: 100%;
-        }
-
+        /* --- 2. Layout & Structure --- */
+        .main-container { display: grid; grid-template-columns: 1fr 420px; position: relative; }
+        .content-column { padding: var(--space-m); width: 100%; will-change: background-color, color; }
         .video-column {
-            position: fixed;
-            right: 0;
-            top: 0;
-            width: 400px;
-            height: 100vh;
-            padding: 50px;
+            position: fixed; right: 0; top: 0; width: 420px; height: 100vh;
+            padding: var(--space-m); transition: var(--transition-main);
         }
-        
         .video-scroller-wrapper {
-            width: 100%; height: 100%; border-radius: 20px;
-            overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            width: 100%; height: 100%; border-radius: var(--radius-m);
+            overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border: var(--border-light); transition: var(--transition-main);
         }
-
+        .swiper { width: 100%; height: 100%; }
         .swiper-slide { background: #000; }
         .swiper-slide video { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+        
+        /* --- 3. Typography --- */
+        h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; }
+        h1 { font-size: clamp(3rem, 5vw, 4rem); margin-bottom: var(--space-s); }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: var(--space-s); }
+        p { max-width: 650px; line-height: 1.8; margin-bottom: var(--space-m); font-size: 1.1rem; }
+        strong { font-weight: 700; }
+        blockquote {
+            padding-left: var(--space-s); border-left-width: 3px; border-left-style: solid;
+            margin: var(--space-m) 0; font-style: italic; font-size: 1.2rem;
+            transition: var(--transition-main);
+        }
 
-        section { padding: 100px 0; min-height: 80vh; }
-        h1, h2 { font-family: var(--font-display); line-height: 1.2; }
-        h1 { font-size: clamp(3rem, 5vw, 4.5rem); margin-bottom: 1.5rem; }
-        h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 1rem; }
-        p { max-width: 600px; line-height: 1.8; margin-bottom: 2rem; }
+        /* --- 4. Components --- */
         .btn {
-            display: inline-block; text-decoration: none; padding: 15px 35px;
+            display: inline-block; text-decoration: none; padding: 16px 38px;
             font-family: var(--font-display); font-size: 1.1rem; border-radius: 50px;
-            transition: all 0.3s ease;
+            border-width: 2px; border-style: solid;
+            transition: var(--transition-main);
         }
 
-        /* ACT I: Light Theme */
-        .theme-light { background-color: var(--light-bg); color: var(--light-text); }
-        .theme-light .btn { background: var(--accent-light); color: white; }
-        .theme-light .btn:hover { background: var(--light-text); }
-        .theme-light h1, .theme-light h2 { color: #000; }
-        
-        /* ACT II: Dark Theme */
-        .theme-dark { background-color: var(--dark-bg); color: var(--dark-text); }
-        .theme-dark .btn { background: var(--accent-dark); color: white; }
-        .theme-dark .btn:hover { background: white; color: var(--dark-bg); }
-        .theme-dark h1, .theme-dark h2 { color: white; }
-        .theme-dark blockquote {
-            padding-left: 1.5rem; border-left: 3px solid var(--accent-dark);
-            margin: 1.5rem 0; font-style: italic; color: #999;
+        /* --- 5. Theme States (Light/Dark) --- */
+        /* Light Theme (Act I) */
+        body.theme-light { background-color: var(--bg-light); color: var(--text-light); }
+        .theme-light h1, .theme-light h2, .theme-light strong { color: #000; }
+        .theme-light .btn { background: var(--accent2-light); color: white; border-color: var(--accent2-light); }
+        .theme-light .btn:hover { background: transparent; color: var(--accent2-light); }
+        .theme-light .video-scroller-wrapper { border-color: var(--border-light); }
+        .theme-light blockquote { border-color: var(--accent1-light); }
+
+        /* Dark Theme (Act II) */
+        body.theme-dark { background-color: var(--bg-dark); color: var(--text-dark); }
+        .theme-dark h1, .theme-dark h2, .theme-dark strong { color: white; }
+        .theme-dark .btn { background: var(--accent1-dark); color: white; border-color: var(--accent1-dark); }
+        .theme-dark .btn:hover { background: transparent; color: var(--accent1-dark); }
+        .theme-dark .video-scroller-wrapper { border-color: var(--border-dark); }
+        .theme-dark blockquote { border-color: var(--accent1-dark); }
+        .theme-dark .rumor-heading { color: white; font-family: var(--font-mono); font-size: 1.3rem; }
+
+        /* --- 6. Section Specific Styling & Animations --- */
+        section { padding: var(--space-l) 0; min-height: 90vh; }
+        .gsap-line, .gsap-word, .gsap-char { overflow: hidden; } /* Util for text anims */
+
+        #benefits ul {
+            list-style: none; padding-left: 0; max-width: 600px;
         }
-        
-        /* Lightbox for Video */
+        #benefits li {
+            font-size: 1.2rem; padding: var(--space-xs) 0;
+            border-bottom: var(--border-light);
+            transition: var(--transition-main);
+        }
+        .theme-dark #benefits li { border-bottom: var(--border-dark); }
+
+        #social-proof .counter {
+            font-size: clamp(8rem, 20vw, 15rem);
+            font-family: var(--font-display); font-weight: 700;
+            line-height: 1; transition: var(--transition-main);
+        }
+        .theme-light .counter { color: var(--accent1-light); }
+        .theme-dark .counter { color: var(--accent1-dark); }
+
+        /* --- 7. Lightbox --- */
         .video-lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 10000; background: rgba(0,0,0,0.8);
+            z-index: 10000; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
             display: flex; justify-content: center; align-items: center;
-            visibility: hidden; opacity: 0; transition: all 0.4s ease;
+            visibility: hidden; opacity: 0; transition: all 0.4s var(--ease-out-cubic);
         }
         .video-lightbox.show { visibility: visible; opacity: 1; }
         .video-lightbox-content {
-            width: 70%; max-width: 900px; height: auto;
-            position: relative;
+            width: 70%; max-width: 900px; height: auto; position: relative;
         }
-        .video-lightbox-content video { width: 100%; border-radius: 15px; }
+        .video-lightbox-content video { width: 100%; border-radius: var(--radius-m); }
         .lightbox-close {
-            position: absolute; top: -40px; right: 0; color: white;
-            font-size: 2rem; cursor: pointer;
+            position: absolute; top: -50px; right: 0; color: white;
+            font-size: 2.5rem; cursor: pointer;
         }
         
+        /* --- 8. Responsive Design --- */
         @media (max-width: 1200px) {
-            .main-container { grid-template-columns: 1fr 300px; }
-            .video-column { width: 300px; }
+            .main-container { grid-template-columns: 1fr 320px; }
+            .video-column { width: 320px; }
         }
         @media (max-width: 992px) {
             .main-container { grid-template-columns: 1fr; }
-            .video-column { display: none; } /* Hide video column on mobile for better experience */
-            .content-column { padding: 30px; }
+            .video-column { display: none; }
+            .content-column { padding: var(--space-s); }
         }
-
     </style>
 </head>
-<body>
-    <div class="noise"></div>
+<body class="theme-light">
+    <div class="noise-texture"></div>
     
     <div class="main-container">
         <div class="content-column">
             
-            <div id="act1" class="theme-light">
+            <div id="act1">
                 <section id="intro">
                     <h1>Let’s get acquainted!</h1>
                     <p>Hi! Let’s get to know each other better. I have something to surprise and delight you with. Don’t believe it? Just take a look at least for 5–10 seconds of my real live stream and see for yourself. 😉</p>
-                    <a href="#" class="btn">Watch & let’s start our acquaintance</a>
+                    <a href="#about" class="btn">Start our acquaintance</a>
                 </section>
 
                 <section id="about">
@@ -149,8 +205,8 @@
                     <p>Already now, absolutely free, you will get access to my exclusive materials and activities in my private Telegram channel:</p>
                     <ul>
                         <li><strong>Free videos:</strong> In my Telegram channel I share candid clips available only to subscribers.</li>
-                        <li><strong>Fun streams with other models:</strong> Sometimes I go live not alone, but with hot girlfriends. I guarantee: double the pleasure!</li>
-                        <li><strong>Open fan chat (coming soon):</strong> We are creating a place where my fans will be able to communicate and become a real community.</li>
+                        <li><strong>Fun streams with other models:</strong> Sometimes I go live not alone, but with hot girlfriends. I guarantee: double the pleasure and a sea of spicy moments!</li>
+                        <li><strong>Open fan chat (coming soon):</strong> We are creating a place where my fans will be able to communicate, share impressions and become a real community.</li>
                         <li><strong>And this is just the beginning...</strong> Ahead of you there are even more pleasant surprises and entertainments.</li>
                     </ul>
                     <br>
@@ -159,46 +215,61 @@
                 </section>
                 
                 <section id="social-proof">
-                    <h2>With me there are already more than 13,000 subscribers!</h2>
+                    <div class="counter">13,000+</div>
+                    <h2>Subscribers — You are not the only one!</h2>
                     <p>Imagine: thousands of people have already become part of our private club. They receive what many can only dream about… and only the chosen go further. Don’t miss your chance — join and feel yourself in the company of like-minded people!</p>
-                    <a href="#" target="_blank" class="btn">Join 13,000+ fans</a>
+                    <a href="#" target="_blank" class="btn">Join the fans</a>
                 </section>
             </div>
 
-            <div id="act2" class="theme-dark">
+            <div id="transition-trigger"></div>
+
+            <div id="act2">
                 <section id="rumors">
                     <h1>Rumors About Me</h1>
-                    <p>On the internet, there is a whole sect of amateur detectives who invent incredible stories about me. Go to Reddit – and you’ll be stunned. So, what have they come up with? Here’s a brief overview of the most epic rumors and the actual facts.</p>
+                    <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around ehotlovea there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:</p>
                     
-                    <div>
-                        <h2>I am a prisoner.</h2>
+                    <div class="rumor-block">
+                        <h3 class="rumor-heading">[RUMOR_01]: I am a prisoner.</h3>
                         <p>Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked:</p>
                         <blockquote>“Is ehotlovea a hostage and is she being starved?”</blockquote>
                         <p>Looks like someone has been watching too many thrillers.</p>
                     </div>
 
-                    <div>
-                        <h2>I am “controlled by a monster.”</h2>
+                    <div class="rumor-block">
+                        <h3 class="rumor-heading">[RUMOR_02]: I am “controlled by a monster.”</h3>
                         <p>According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</p>
                     </div>
-                    
-                    <div>
-                        <h2>I am constantly on the run.</h2>
-                        <p>Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. Someone even claimed that I was “transported through a dozen places in half a dozen countries”.</p>
+
+                    <div class="rumor-block">
+                        <h3 class="rumor-heading">[RUMOR_03]: I am constantly on the run.</h3>
+                        <p>Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. It creates the impression that I change location every couple of weeks. Someone even claimed that I was “transported through a dozen places in half a dozen countries” – as if Interpol can’t keep up with me!</p>
                     </div>
 
-                    <div>
-                        <h2>Who is the author of this phantasmagoria?</h2>
-                        <p>One especially persistent viewer. He positions himself as some sort of knight-savior 🎭. However, reality is far more banal. This very “savior” is my constant guest in the chat. And you know why? Simply to masturbate on camera 🤦‍♀️. That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess.</p>
-                        <p>As soon as I publish a rebuttal (like this text), he will surely pop up with a new conspiracy theory: “Wake up, don’t believe her! All of this was written on the orders of that very villain!”.</p>
+                    <div class="rumor-block">
+                        <h3 class="rumor-heading">[RUMOR_04]: Secret services are watching me.</h3>
+                        <p>Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.” At this point, you might as well grab popcorn – the plot is worthy of a thriller!</p>
                     </div>
 
-                    <div>
-                        <h2>And now – to the facts.</h2>
-                        <p>Ready to know the truth? It is very simple: <strong>there is no villain, no captivity, and no drama whatsoever.</strong> There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved is the result of my own effort, a well-thought-out strategy, and hard work. 🎓</p>
-                        <p>No one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals. I especially want to mention the Chaturbate support team. These guys are true pros. 💙 Do you think that if something really bad were happening to me, it would go unnoticed? Not a chance.</p>
-                        <p>We have already uncovered the identity of that very storyteller (thanks to my clever Eric 😉). Legal steps will not take long.</p>
-                        <p>So what’s the bottom line? I continue to do my work and reach new heights. Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
+                    <div class="rumor-block">
+                        <h3 class="rumor-heading">[RUMOR_05]: I have no money or success of my own.</h3>
+                        <p>Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent – “the slave is used like an object, what kind of reward could she get.” All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?</p>
+                    </div>
+
+                    <div class="rumor-block">
+                        <h2 style="font-style: italic;">The Author of This Madness</h2>
+                        <p>Here comes one especially persistent viewer. He is the one who creates most of these threads on the forums, typing “exposés” under different nicknames and fueling the drama. He positions himself as some sort of knight-savior: supposedly he alone has seen the truth and exposed everyone. 🎭</p>
+                        <p>However, reality is far more banal. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. And you know why? Simply to masturbate on camera. 🤦‍♀️ That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing.</p>
+                        <p>I can already foresee his next move. As soon as I publish a rebuttal (like this text), he will surely pop up with a new conspiracy theory: “Wake up, don’t believe her! All of this was written on the orders of that very villain, it’s part of the plan!” 😀</p>
+                    </div>
+
+                    <div class="rumor-block">
+                        <h2 style="font-style: italic;">And now – to the facts.</h2>
+                        <p>Ready to know the truth, not the fairy tale? It is very simple: <strong>there is no villain, no captivity, and no drama whatsoever.</strong></p>
+                        <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result of my own effort, a well-thought-out strategy, and hard work. Yes, sometimes I work many hours in a row, travel, try new things – but I do it by choice, because I have a dream and a clear plan on how to achieve it. 🎓</p>
+                        <p>No one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals. I especially want to mention the Chaturbate support team. These guys are true pros. 💙 This really is the best platform, where they take care of the safety and comfort of models properly.</p>
+                        <p>We have already uncovered the identity of that very storyteller (thanks to my clever Eric 😉). Legal steps will not take long. We’ll all laugh together later, when this person has to answer for his words to the full extent of the law.</p>
+                        <p>So what’s the bottom line? I continue to do my work and reach new heights, which I wish for you as well. ✨ Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
                     </div>
                      <a href="#" target="_blank" class="btn">Join The Real World</a>
                 </section>
@@ -206,7 +277,7 @@
         </div>
 
         <div class="video-column">
-            <div class="video-scroller-wrapper">
+            <div class="video-scroller-wrapper" data-flip-id="video-player">
                 <div class="swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide"><video playsinline muted loop src="https://assets.mixkit.co/videos/preview/mixkit-girl-posing-for-the-camera-in-a-meadow-30403-large.mp4"></video></div>
@@ -222,89 +293,107 @@
     <div class="video-lightbox">
         <div class="video-lightbox-content">
             <span class="lightbox-close">&times;</span>
-            <video controls playsinline></video>
+            <div class="lightbox-video-wrapper"></div>
         </div>
     </div>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger);
+        document.addEventListener('DOMContentLoaded', function () {
+            gsap.registerPlugin(ScrollTrigger, Flip);
 
-        // --- 1. THEME CHANGER ON SCROLL ---
-        ScrollTrigger.create({
-            trigger: "#act2",
-            start: "top 50%",
-            end: "bottom 50%",
-            onEnter: () => document.body.classList.add('theme-dark-active'),
-            onLeaveBack: () => document.body.classList.remove('theme-dark-active'),
-            onUpdate: self => {
-                const progress = self.progress.toFixed(2);
-                document.body.style.setProperty('--transition-progress', progress);
-            }
-        });
+            // --- 1. CINEMATIC THEME CHANGE ---
+            ScrollTrigger.create({
+                trigger: "#transition-trigger",
+                start: "top center",
+                onEnter: () => document.body.classList.add('theme-dark'),
+                onLeaveBack: () => document.body.classList.remove('theme-dark'),
+            });
 
-        // GSAP smooth transition between themes
-        gsap.to("body", {
-            scrollTrigger: {
-                trigger: "#act2",
-                start: "top 80%",
-                end: "top 20%",
-                scrub: true,
-            },
-            backgroundColor: "var(--dark-bg)",
-            color: "var(--dark-text)",
-            ease: "none"
-        });
-        
-        // --- 2. TIKTOK VIDEO SCROLLER ---
-        const swiper = new Swiper('.swiper', {
-            direction: 'vertical',
-            loop: true,
-            mousewheel: true,
-            on: {
-                slideChange: function () {
-                    document.querySelectorAll('.swiper-slide video').forEach(v => v.pause());
-                    const activeSlide = document.querySelector('.swiper-slide-active');
-                    if (activeSlide) {
-                        activeSlide.querySelector('video').play();
-                    }
+            // --- 2. TIKTOK VIDEO SCROLLER ---
+            const swiper = new Swiper('.swiper', {
+                direction: 'vertical',
+                loop: true,
+                mousewheel: true,
+                on: {
+                    init: function () {
+                        const activeSlide = document.querySelector('.swiper-slide-active video');
+                        if (activeSlide) activeSlide.play();
+                    },
+                    slideChange: function () {
+                        document.querySelectorAll('.swiper-slide video').forEach(v => v.pause());
+                        const activeSlide = document.querySelector('.swiper-slide-active video');
+                        if (activeSlide) activeSlide.play();
+                    },
                 },
-            },
-        });
-        
-        // Initial play
-        setTimeout(() => {
-             const activeSlide = document.querySelector('.swiper-slide-active');
-             if (activeSlide) activeSlide.querySelector('video').play();
-        }, 500);
+            });
 
-        // --- 3. VIDEO LIGHTBOX ---
-        const lightbox = document.querySelector('.video-lightbox');
-        const lightboxVideo = lightbox.querySelector('video');
-        const closeBtn = document.querySelector('.lightbox-close');
+            // --- 3. ADVANCED LIGHTBOX WITH GSAP FLIP ---
+            const lightbox = document.querySelector('.video-lightbox');
+            const lightboxVideoWrapper = lightbox.querySelector('.lightbox-video-wrapper');
+            const videoColumn = document.querySelector('.video-scroller-wrapper');
 
-        function openLightbox(videoSrc) {
-            lightboxVideo.src = videoSrc;
-            lightbox.classList.add('show');
-            lightboxVideo.play();
-        }
+            function openLightbox() {
+                const activeVideo = document.querySelector('.swiper-slide-active video');
+                if (!activeVideo) return;
+                
+                lightboxVideoWrapper.appendChild(activeVideo);
+                const state = Flip.getState(activeVideo);
+                lightbox.classList.add('show');
+                
+                Flip.from(state, {
+                    duration: 0.5,
+                    ease: "power2.inOut"
+                });
+                activeVideo.muted = false;
+                activeVideo.controls = true;
+            }
 
-        function closeLightbox() {
-            lightbox.classList.remove('show');
-            lightboxVideo.pause();
-            lightboxVideo.src = "";
-        }
+            function closeLightbox() {
+                const videoInLightbox = lightboxVideoWrapper.querySelector('video');
+                if (!videoInLightbox) return;
 
-        document.querySelectorAll('.swiper-slide video').forEach(videoEl => {
-            videoEl.addEventListener('click', () => {
-                openLightbox(videoEl.src);
+                const originalSlide = Array.from(document.querySelectorAll('.swiper-slide')).find(slide => !slide.querySelector('video'));
+                if (!originalSlide) return;
+
+                const state = Flip.getState(videoInLightbox);
+                originalSlide.appendChild(videoInLightbox);
+
+                Flip.from(state, {
+                    duration: 0.5,
+                    ease: "power2.inOut",
+                    onComplete: () => {
+                        videoInLightbox.muted = true;
+                        videoInLightbox.controls = false;
+                        videoInLightbox.play();
+                    }
+                });
+                lightbox.classList.remove('show');
+            }
+
+            document.querySelector('.video-column').addEventListener('click', (e) => {
+                if(e.target.tagName === 'VIDEO') openLightbox();
+            });
+            document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            // --- 4. GSAP ENTRANCE ANIMATIONS ---
+            gsap.utils.toArray('section').forEach((section) => {
+                const elems = section.querySelectorAll('h1, h2, p, .btn, li, .counter, .rumor-block');
+                gsap.from(elems, {
+                    y: 50,
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                    stagger: 0.2,
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
+                    }
+                });
             });
         });
-        
-        closeBtn.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
-
     </script>
 </body>
 </html>
