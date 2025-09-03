@@ -1,321 +1,668 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Твоя тайна ждёт...</title>
+    <title>ehotlovea - The Liquid Experience</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
     <style>
-        /* --- ОБЩИЕ СТИЛИ И СБРОС --- */
+        /* ==========================================================================
+           THE LIQUID LIGHTBOX - FULL CONSOLIDATED CODE
+           Analysis: This file contains the complete and structured code for the
+           entire experience, combining all 8 parts into a final, polished product.
+        ========================================================================== */
+
+        /* * -------------------------------------------
+         * Section I: CORE SETUP & DESIGN SYSTEM
+         * ------------------------------------------- */
         :root {
-            --primary-color: #f0f; /* Яркий неоновый пурпурный */
-            --background-color: #0d0d1a; /* Глубокий тёмно-синий */
-            --text-color: #e0e0e0; /* Светло-серый текст */
-            --dark-grey: #1a1a2e; /* Более тёмный фон для блоков */
+            /* Colors */
+            --color-background: #0c0c0f;
+            --color-text-primary: #e0e0e0;
+            --color-text-secondary: #888;
+            --color-accent-1: hsl(340, 100%, 60%);
+            --color-accent-2: hsl(190, 100%, 60%);
+            --color-glass-bg: rgba(20, 20, 25, 0.4);
+            --color-glass-border: rgba(255, 255, 255, 0.1);
+            --color-glow: rgba(255, 255, 255, 0.8);
+
+            /* Typography */
+            --font-display: 'Lora', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-size-base: clamp(16px, 1.1vw, 18px);
+            --line-height-base: 1.7;
+
+            /* Fluid Typographic Scale */
+            --text-sm: clamp(0.8rem, 0.8vw, 0.9rem);
+            --text-md: clamp(1rem, 1.1vw, 1.1rem);
+            --text-lg: clamp(1.25rem, 1.5vw, 1.5rem);
+            --text-xl: clamp(1.5rem, 2.5vw, 2.25rem);
+            --text-xxl: clamp(2rem, 4vw, 3.5rem);
+
+            /* Spacing */
+            --space-xs: clamp(0.5rem, 1vw, 1rem);
+            --space-s: clamp(1rem, 2vw, 2rem);
+            --space-m: clamp(2rem, 3vw, 3rem);
+            --space-l: clamp(3rem, 5vw, 4rem);
+
+            /* Animation */
+            --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+            --duration-fast: 0.4s;
+            --duration-normal: 0.8s;
+
+            /* Borders & Shadows */
+            --radius-md: 16px;
+            --shadow-glow: 0 0 30px -5px var(--color-glow);
         }
 
-        * {
+        /* * -------------------------------------------
+         * Section II: GLOBAL RESETS & SCENE
+         * ------------------------------------------- */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: fixed; /* Prevents any scrolling */
+        }
+
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            background-color: var(--color-background);
+            font-family: var(--font-body);
+            font-size: var(--font-size-base);
+            color: var(--color-text-primary);
+            -webkit-font-smoothing: antialiased;
+            cursor: none; /* Custom cursor will be implemented */
+        }
+        
+        .loading-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--color-background);
+            z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            color: var(--color-text-secondary);
+            transition: opacity 0.5s;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
+        #fluid-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
         }
 
-        /* --- СТИЛИ ДЛЯ АНИМАЦИИ ПОЯВЛЕНИЯ --- */
-        .fade-in {
+        .lightbox-world {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            perspective: 1500px;
+        }
+
+        /* * -------------------------------------------
+         * Section III: UI LAYER & CUSTOM CURSOR
+         * ------------------------------------------- */
+        .ui-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allows interaction with elements behind it */
+            z-index: 100;
+        }
+
+        .custom-cursor {
+            position: fixed;
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--color-glow);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+            will-change: width, height, transform;
+            mix-blend-mode: difference; /* Ensures visibility on all colors */
+            z-index: 9999;
+        }
+
+        .custom-cursor.is-interacting {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: transparent;
+        }
+
+        .instructions {
+            position: absolute;
+            bottom: var(--space-s);
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--color-text-secondary);
+            font-size: var(--text-sm);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0; /* JS will fade it in */
+            transition: opacity var(--duration-normal);
+        }
+
+        .back-button {
+            position: absolute;
+            top: var(--space-s);
+            left: var(--space-s);
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            padding: var(--space-xs);
+            cursor: none;
+            pointer-events: all;
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            visibility: hidden;
+            transition: opacity var(--duration-fast), color var(--duration-fast);
         }
 
-        .fade-in.visible {
+        .back-button:hover {
+            color: var(--color-text-primary);
+        }
+
+        .back-button.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* * -------------------------------------------
+         * Section IV: GLOBAL TYPOGRAPHY & COMPONENTS
+         * ------------------------------------------- */
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-style: italic;
+            color: var(--color-text-primary);
+            line-height: 1.2;
+        }
+
+        h1 { font-size: var(--text-xxl); }
+        h2 { font-size: var(--text-xl); margin-top: var(--space-m); }
+        h3 { font-size: var(--text-lg); margin-top: var(--space-m); }
+
+        p {
+            font-size: var(--text-md);
+            margin-bottom: var(--space-s);
+        }
+
+        blockquote {
+            padding-left: var(--space-s);
+            border-left: 2px solid var(--color-accent-1);
+            margin: var(--space-s) 0;
+            font-style: italic;
+            color: var(--color-text-secondary);
+        }
+
+        .panel-button {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--color-background);
+            background-color: var(--color-accent-1);
+            padding: var(--space-xs) var(--space-s);
+            border-radius: 30px;
+            margin-top: var(--space-s);
+            transition: transform var(--duration-fast) var(--ease-out-quart), background-color var(--duration-fast);
+        }
+
+        .panel-button:hover {
+            background-color: var(--color-accent-2);
+            transform: scale(1.05);
+        }
+        
+        /* * -------------------------------------------
+         * Section V: LIGHTBOX CONTAINER
+         * ------------------------------------------- */
+        .lightbox {
+            position: absolute;
+            width: clamp(320px, 40vw, 600px); /* Adaptive width */
+            height: 60vh;
+            max-height: 650px;
+            z-index: 10;
+            
+            /* GSAP will control top, left, and transform */
+            will-change: transform, opacity;
+
+            /* Glassmorphism effect */
+            background: var(--color-glass-bg);
+            border: 1px solid var(--color-glass-border);
+            border-radius: var(--radius-md);
+            backdrop-filter: blur(25px) saturate(150%);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
+            opacity: 0; /* Hidden by default, JS will reveal */
+            transition: opacity var(--duration-normal) var(--ease-out-quart);
+        }
+
+        .lightbox.is-visible {
+            opacity: 1;
+        }
+
+        /* * -------------------------------------------
+         * Section VI: LIGHTBOX HEADER & HANDLE
+         * ------------------------------------------- */
+        .lightbox-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-xs) var(--space-s);
+            background: rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+
+        .header-title {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        .header-handle {
+            width: 100px;
+            height: 20px;
+            position: relative;
+            cursor: none; /* Already using a custom cursor */
+        }
+
+        .header-handle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 4px;
+            background: var(--color-glass-border);
+            border-radius: 4px;
+        }
+
+        /* * -------------------------------------------
+         * Section VII: LIGHTBOX CONTENT AREA
+         * ------------------------------------------- */
+        .lightbox-content {
+            padding: var(--space-s) var(--space-l);
+            overflow-y: auto;
+            flex-grow: 1;
+            opacity: 0; /* Hidden initially */
+            transform: translateY(20px);
+            transition: opacity var(--duration-normal) var(--ease-out-quart), transform var(--duration-normal) var(--ease-out-quart);
+            transition-delay: 0.2s; /* Delay to animate after lightbox appears */
+        }
+
+        .lightbox.is-focused .lightbox-content {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* --- БЛОК "ЗНАКОМСТВО" (ВИДЕО) --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 0;
+        .lightbox-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        .lightbox-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .lightbox-content::-webkit-scrollbar-thumb {
+            background-color: var(--color-glass-border);
+            border-radius: 6px;
         }
 
-        .video-player-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        #main-video {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 12px;
-        }
-
-        .video-thumbnails {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .thumb {
-            width: 120px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .thumb:hover {
-            transform: scale(1.1);
-            border-color: var(--primary-color);
-        }
-        
-        .thumb.active {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 15px var(--primary-color);
-        }
-
-        /* --- БЛОК "СЛУХИ" --- */
-        .rumors-section {
-            padding: 80px 0;
-        }
-        
-        .rumors-content {
-            background-color: var(--dark-grey);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-
-        .rumors-section h1 {
-            font-size: 2.8rem;
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 40px;
-            text-shadow: 0 0 10px var(--primary-color);
-        }
-
-        .rumors-section p, .rumors-section li {
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .rumors-section ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .rumors-section li::before {
-            content: '⚡';
-            margin-right: 15px;
-            color: var(--primary-color);
-        }
-        
-        .rumors-section i {
-            font-family: 'Roboto', sans-serif;
-            font-style: italic;
-            color: #b0b0b0;
-        }
-        
-        .rumors-section strong {
-            color: #fff;
-            font-weight: 700;
-        }
-
-        /* --- КНОПКА CTA (TELEGRAM) --- */
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #ff00ff, #8a2be2);
-            color: #fff;
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-align: center;
-            margin: 20px auto;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 35px rgba(255, 0, 255, 0.8);
-        }
-        
-        .cta-center {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        /* --- ФУТЕР --- */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid var(--dark-grey);
-            color: #888;
-        }
-        
-        footer p {
-            margin-bottom: 10px;
-        }
-
-        /* --- Адаптивность --- */
-        @media (max-width: 768px) {
-            .rumors-section h1 {
-                font-size: 2.2rem;
-            }
-            .rumors-content {
-                padding: 25px;
-            }
-            .thumb {
-                width: 100px;
-                height: 56px;
-            }
-        }
     </style>
 </head>
-<body>
+<body class="is-loading">
 
-    <header class="hero">
-        <div class="container">
-            <div class="video-player-wrapper fade-in">
-                <video id="main-video" src="path/to/your/video1.mp4" autoplay muted loop playsinline></video>
+    <div class="loading-screen">Loading Experience...</div>
+
+    <canvas id="fluid-canvas"></canvas>
+
+    <div class="lightbox-world">
+
+        <div class="lightbox is-interactive" id="lightbox-acquaintance" data-view-id="acquaintance">
+            <div class="lightbox-header">
+                <div class="header-title">The Acquaintance</div>
+                <div class="header-handle"></div>
             </div>
-            <div class="video-thumbnails fade-in" style="transition-delay: 0.2s;">
-                <img src="path/to/your/preview1.jpg" data-video-src="path/to/your/video1.mp4" class="thumb active" alt="Превью видео 1">
-                <img src="path/to/your/preview2.jpg" data-video-src="path/to/your/video2.mp4" class="thumb" alt="Превью видео 2">
-                <img src="path/to/your/preview3.jpg" data-video-src="path/to/your/video3.mp4" class="thumb" alt="Превью видео 3">
-                <img src="path/to/your/preview4.jpg" data-video-src="path/to/your/video4.mp4" class="thumb" alt="Превью видео 4">
-            </div>
-        </div>
-    </header>
-
-    <main class="rumors-section">
-        <div class="container">
-            <div class="rumors-content">
-                <h1 class="fade-in">Rumors About Me</h1>
-
-                <p class="fade-in">
-                    On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around me there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:
-                </p>
-
-                <ul class="fade-in">
-                    <li>I am a prisoner. Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: <i>“Is she a hostage and is she being starved?”</i> Looks like someone has been watching too many thrillers.</li>
-                    <li>I am “controlled by a monster.” According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</li>
-                    <li>I am constantly on the run in different countries. Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. It creates the impression that I change location every couple of weeks.</li>
-                    <li>Secret services and human rights defenders are watching me. Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free me.”</li>
-                </ul>
-
-                <div class="cta-center fade-in">
-                    <a href="https://t.me/your_channel_link" target="_blank" class="cta-button">Узнать правду в Telegram</a>
-                </div>
-
-                <p class="fade-in">
-                    <strong>I have no money or success of my own.</strong> Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent – <i>“the slave is used like an object, what kind of reward could she get.”</i> All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?
-                </p>
-
-                <p class="fade-in">
-                    Sounds insane? That’s because it is pure madness. But let’s see who the author of all this phantasmagoria is. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. And you know why? <strong>Simply to masturbate on camera.</strong> 🤦‍♀️ That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing.
-                </p>
-
-                <p class="fade-in">
-                    This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. Even other forum users are already rolling their eyes: many have noticed that our author is not in search of truth at all but simply obsessed with me. One commenter directly wrote that the behavior of this “savior” is very similar to that of a typical “simp” who doesn’t actually want to expose anything but is head over heels in love and is desperately seeking attention. <strong>Exactly right!</strong>
-                </p>
-
-                <p class="fade-in">
-                    And now – to the facts. Ready to know the truth, not the fairy tale? It is very simple: there is no villain, no captivity, and no drama whatsoever. There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved is the result of my own effort, a well-thought-out strategy, and hard work. No one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow.
-                </p>
-
-                <p class="fade-in">
-                    And one last thing. We have already uncovered the identity of that very storyteller. Legal steps will not take long. 😉
-                </p>
-
-                <p class="fade-in">
-                    So what’s the bottom line? Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 More is coming soon, there are many interesting things ahead! Thank you to all my true fans for your support and common sense. You are the best. ❤️
-                </p>
-
-                <div class="cta-center fade-in">
-                    <a href="https://t.me/your_channel_link" target="_blank" class="cta-button">Присоединиться к закрытому каналу</a>
-                </div>
+            <div class="lightbox-content">
+                <h1>Let’s get acquainted!</h1>
+                <p>Hi! Let’s get to know each other better. I have something to surprise and delight you with. Don’t believe it? Just take a look at least for 5–10 seconds of my real live stream and see for yourself. 😉</p>
+                
+                <h2>Who I am and my experience</h2>
+                <p>I am a webcam model with 9 years of experience. With me you don’t just watch a broadcast — you dive into a special world. I love to experiment and delight you with new emotions every time.</p>
+                
+                <h2>What you will get</h2>
+                <p>In my Telegram channel you will get access to: Free videos, Fun streams with other models, and an Open fan chat (coming soon). And this is just the beginning...</p>
+                
+                <h2>Social proof: 13,000+</h2>
+                <p>Thousands of people have already become part of our private club. Don’t miss your chance — join and feel yourself in the company of like-minded people!</p>
+                 <a href="#" target="_blank" class="panel-button">Join Telegram</a>
             </div>
         </div>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Имя Модели. Все права защищены.</p>
-            <p><strong>18+</strong> | Материалы на этом сайте предназначены для совершеннолетних.</p>
+        <div class="lightbox is-interactive" id="lightbox-rumors" data-view-id="rumors">
+             <div class="lightbox-header">
+                <div class="header-title">The Rumors</div>
+                <div class="header-handle"></div>
+            </div>
+            <div class="lightbox-content">
+                <h1>Rumors About Me</h1>
+                <p>On the internet, there is a whole sect of amateur detectives who invent incredible stories about me. Here’s a brief overview:</p>
+                
+                <h3>[RUMOR_01]: I am a prisoner.</h3>
+                <p>Yes, according to the forum “experts,” I’m a hostage, kept by force and starved. <blockquote>“Is ehotlovea a hostage and is she being starved?”</blockquote></p>
+
+                <h3>[RUMOR_02]: I am “controlled by a monster.”</h3>
+                <p>According to the rumors, there’s some villain who forces me to work on camera against my will.</p>
+
+                <h3>And now – to the facts.</h3>
+                <p><strong>There is no villain, no captivity, and no drama whatsoever.</strong> There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved is the result of my own effort, a well-thought-out strategy, and hard work. 🎓</p>
+                <p>No one controls me. I want to mention the Chaturbate support team. These guys are true pros. 💙</p>
+                <p>We have already uncovered the identity of that very storyteller (thanks to my clever Eric 😉). Legal steps will not take long.</p>
+                <p>So what’s the bottom line? I continue to do my work and reach new heights. Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
+                <a href="#" target="_blank" class="panel-button">Join The Real World</a>
+            </div>
         </div>
-    </footer>
+    </div>
+
+    <div class="ui-layer">
+        <div class="custom-cursor"></div>
+        <div class="instructions">Click and Drag to Interact</div>
+        <div class="back-button">← BACK</div>
+    </div>
 
     <script>
-        // --- СКРИПТ ДЛЯ ПЕРЕКЛЮЧЕНИЯ ВИДЕО ---
-        document.addEventListener('DOMContentLoaded', function() {
-            const mainVideo = document.getElementById('main-video');
-            const thumbnails = document.querySelectorAll('.thumb');
+    /* ==========================================================================
+       THE LIQUID LIGHTBOX - FULL JAVASCRIPT
+       Analysis: This file contains the complete, structured JavaScript for the
+       entire experience, including the fluid simulation, object interaction,
+       state management, and content animations.
+    ========================================================================== */
 
-            thumbnails.forEach(thumb => {
-                thumb.addEventListener('click', function() {
-                    // Получаем новый источник видео из атрибута data-video-src
-                    const videoSrc = this.getAttribute('data-video-src');
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- PART 4: FLUID SIMULATION ENGINE ---
+        function initializeFluidSimulation() {
+            const canvas = document.getElementById('fluid-canvas');
+            if (!canvas.getContext) return;
+            const gl = canvas.getContext('webgl');
+            if (!gl) {
+                console.warn("WebGL not supported. Fluid simulation disabled.");
+                return;
+            }
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const vertexShaderSource = `
+                attribute vec2 a_position;
+                void main() {
+                    gl_Position = vec4(a_position, 0.0, 1.0);
+                }
+            `;
+            const fragmentShaderSource = `
+                precision highp float;
+                uniform float u_time;
+                uniform vec2 u_mouse;
+                uniform vec2 u_resolution;
+
+                void main() {
+                    vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+                    float t = u_time * 0.1;
                     
-                    // Устанавливаем его для главного плеера
-                    mainVideo.src = videoSrc;
-                    mainVideo.play();
+                    vec2 mouse_norm = u_mouse / u_resolution.xy;
+                    float dist = distance(uv, mouse_norm);
+                    
+                    float color_wave = sin(uv.x * 10.0 + t) + cos(uv.y * 10.0 + t);
+                    float mouse_effect = 1.0 - smoothstep(0.0, 0.1, dist);
+                    
+                    float r = 0.05 + 0.05 * sin(color_wave * 2.0 + t);
+                    float g = 0.05 + 0.05 * cos(uv.y * 5.0 - t);
+                    float b = 0.15 + 0.1 * sin(dist * 10.0 - t);
+                    
+                    gl_FragColor = vec4(r + mouse_effect * 0.5, g + mouse_effect * 0.3, b + mouse_effect * 1.0, 1.0);
+                }
+            `;
 
-                    // Обновляем активный класс для превью
-                    thumbnails.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
+            function compileShader(type, source) {
+                const shader = gl.createShader(type);
+                gl.shaderSource(shader, source);
+                gl.compileShader(shader);
+                if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                    console.error('Shader compile error: ' + gl.getShaderInfoLog(shader));
+                    gl.deleteShader(shader);
+                    return null;
+                }
+                return shader;
+            }
+            
+            function createProgram(vertexShader, fragmentShader) {
+                const program = gl.createProgram();
+                gl.attachShader(program, vertexShader);
+                gl.attachShader(program, fragmentShader);
+                gl.linkProgram(program);
+                if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+                    console.error('Program link error: ' + gl.getProgramInfoLog(program));
+                    return null;
+                }
+                return program;
+            }
+
+            const vertexShader = compileShader(gl.VERTEX_SHADER, vertexShaderSource);
+            const fragmentShader = compileShader(gl.FRAGMENT_SHADER, fragmentShaderSource);
+            const program = createProgram(vertexShader, fragmentShader);
+            
+            const positionAttributeLocation = gl.getAttribLocation(program, "a_position");
+            const timeUniformLocation = gl.getUniformLocation(program, "u_time");
+            const mouseUniformLocation = gl.getUniformLocation(program, "u_mouse");
+            const resolutionUniformLocation = gl.getUniformLocation(program, "u_resolution");
+
+            const positionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+            
+            let mousePos = { x: window.innerWidth/2, y: window.innerHeight/2 };
+            window.addEventListener('mousemove', e => {
+                mousePos.x = e.clientX;
+                mousePos.y = window.innerHeight - e.clientY; // Y is inverted in WebGL
+            });
+
+            function render(time) {
+                gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+                gl.useProgram(program);
+                gl.enableVertexAttribArray(positionAttributeLocation);
+                gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+                gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+                gl.uniform1f(timeUniformLocation, time * 0.001);
+                gl.uniform2f(mouseUniformLocation, mousePos.x, mousePos.y);
+                gl.uniform2f(resolutionUniformLocation, gl.canvas.width, gl.canvas.height);
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                requestAnimationFrame(render);
+            }
+            requestAnimationFrame(render);
+        }
+
+        // --- PART 5: DRAGGABLE & ROTATABLE INTERACTION ---
+        function initializeLightboxInteraction() {
+            const lightboxes = document.querySelectorAll('.lightbox.is-interactive');
+            const cursor = document.querySelector('.custom-cursor');
+            let highestZ = 10;
+
+            lightboxes.forEach((lightbox) => {
+                gsap.set(lightbox, {
+                    x: (Math.random() - 0.5) * (window.innerWidth * 0.4),
+                    y: (Math.random() - 0.5) * (window.innerHeight * 0.2),
+                    rotationY: (Math.random() - 0.5) * 40,
+                    rotationX: (Math.random() - 0.5) * 20
+                });
+
+                const header = lightbox.querySelector('.lightbox-header');
+                let isDragging = false;
+                let startX, startY, startMouseX, startMouseY;
+
+                function onMouseDown(e) {
+                    isDragging = true;
+                    highestZ++;
+                    gsap.set(lightbox, { zIndex: highestZ });
+                    startX = gsap.getProperty(lightbox, "x");
+                    startY = gsap.getProperty(lightbox, "y");
+                    startMouseX = e.clientX || e.touches[0].clientX;
+                    startMouseY = e.clientY || e.touches[0].clientY;
+                    gsap.to(lightbox, { scale: 1.05, duration: 0.3 });
+                    cursor.classList.add('is-interacting');
+                    window.addEventListener('mousemove', onMouseMove);
+                    window.addEventListener('mouseup', onMouseUp);
+                }
+
+                function onMouseMove(e) {
+                    if (!isDragging) return;
+                    const newX = startX + (e.clientX - startMouseX);
+                    const newY = startY + (e.clientY - startMouseY);
+                    const rotY = gsap.utils.clamp(-45, 45, (e.clientX - startMouseX) * 0.1);
+                    gsap.to(lightbox, { x: newX, y: newY, rotationY: rotY, duration: 0.8, ease: 'power3.out' });
+                }
+
+                function onMouseUp() {
+                    isDragging = false;
+                    gsap.to(lightbox, { scale: 1, duration: 0.3 });
+                    cursor.classList.remove('is-interacting');
+                    window.removeEventListener('mousemove', onMouseMove);
+                    window.removeEventListener('mouseup', onMouseUp);
+                }
+                
+                header.addEventListener('mousedown', onMouseDown);
+                lightbox.addEventListener('mousedown', () => {
+                    if (!isDragging) {
+                        highestZ++;
+                        gsap.set(lightbox, { zIndex: highestZ });
+                        if (!lightbox.classList.contains('is-focused')) {
+                            lightboxes.forEach(lb => lb.classList.remove('is-focused'));
+                            lightbox.classList.add('is-focused');
+                        }
+                    }
                 });
             });
-        });
+        }
+        
+        // --- PART 6: STATE & "CAMERA" LOGIC ---
+        function initializeCameraAndState() {
+            const lightboxes = document.querySelectorAll('.lightbox.is-interactive');
+            const backButton = document.querySelector('.back-button');
+            const instructions = document.querySelector('.instructions');
+            let isZoomed = false;
 
-        // --- СКРИПТ ДЛЯ АНИМАЦИИ ПОЯВЛЕНИЯ ЭЛЕМЕНТОВ ПРИ СКРОЛЛЕ ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+            function focusOnView(viewId) {
+                isZoomed = true;
+                const targetLightbox = document.getElementById(`lightbox-${viewId}`);
+                lightboxes.forEach(lb => {
+                    if (lb.dataset.viewId === viewId) {
+                        gsap.to(lb, { x: 0, y: 0, rotationY: 0, rotationX: 0, z: 200, scale: 1.1, duration: 0.8, ease: 'power2.inOut' });
+                        lb.classList.add('is-focused');
+                    } else {
+                        gsap.to(lb, { z: -1000, opacity: 0.5, scale: 0.8, duration: 0.8, ease: 'power2.inOut' });
+                    }
+                });
+                backButton.classList.add('is-visible');
+                gsap.to(instructions, { opacity: 0, duration: 0.4 });
+            }
+
+            function resetView() {
+                isZoomed = false;
+                lightboxes.forEach((lb, index) => {
+                    gsap.to(lb, {
+                        x: (Math.random() - 0.5) * (window.innerWidth * 0.4),
+                        y: (Math.random() - 0.5) * (window.innerHeight * 0.2),
+                        rotationY: (Math.random() - 0.5) * 40,
+                        rotationX: (Math.random() - 0.5) * 20,
+                        z: 0, opacity: 1, scale: 1,
+                        duration: 0.8, ease: 'power2.inOut'
+                    });
+                    lb.classList.remove('is-focused');
+                });
+                backButton.classList.remove('is-visible');
+                gsap.to(instructions, { opacity: 1, duration: 0.4, delay: 0.5 });
+            }
+
+            lightboxes.forEach(lightbox => {
+                lightbox.addEventListener('dblclick', () => { if (!isZoomed) focusOnView(lightbox.dataset.viewId); });
             });
-        }, {
-            threshold: 0.1 // Элемент считается видимым при появлении на 10%
-        });
+            backButton.addEventListener('click', () => { if (isZoomed) resetView(); });
+        }
 
-        // Наблюдаем за всеми элементами с классом .fade-in
-        const elementsToFadeIn = document.querySelectorAll('.fade-in');
-        elementsToFadeIn.forEach(el => observer.observe(el));
+        // --- PART 7: CONTENT LOADING & ANIMATIONS ---
+        function initializeContentAnimations() {
+            const loadingScreen = document.querySelector('.loading-screen');
+            const lightboxes = document.querySelectorAll('.lightbox');
+            const instructions = document.querySelector('.instructions');
+            
+            function revealScene() {
+                gsap.to(loadingScreen, { opacity: 0, duration: 1, onComplete: () => loadingScreen.style.display = 'none' });
+                gsap.fromTo(lightboxes, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 1.5, ease: 'power3.out', stagger: 0.1, delay: 0.5, onStart: () => lightboxes.forEach(lb => lb.classList.add('is-visible')) });
+                gsap.to(instructions, { opacity: 1, duration: 1, delay: 2 });
+            }
+
+            window.addEventListener('load', () => setTimeout(revealScene, 500));
+        }
+
+        // --- PART 8: FINAL POLISH & MOBILE ADAPTATION ---
+        function initializeMobileAdaptation() {
+            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                document.querySelector('.instructions').textContent = "Double Tap to Focus";
+                document.querySelector('.custom-cursor').style.display = 'none';
+                document.body.style.cursor = 'default';
+
+                lightboxes.forEach(lightbox => {
+                    let tapCount = 0;
+                    lightbox.addEventListener('touchend', () => {
+                        tapCount++;
+                        setTimeout(() => {
+                            if (tapCount === 2) { // Double tap
+                                 const viewId = lightbox.dataset.viewId;
+                                 const backButton = document.querySelector('.back-button');
+                                 if(!backButton.classList.contains('is-visible')) {
+                                     document.querySelectorAll('.lightbox.is-interactive').forEach(lb => lb.classList.remove('is-focused'));
+                                     lightbox.classList.add('is-focused');
+                                     gsap.to(lightbox, { x: 0, y: 0, scale: 1, rotationX: 0, rotationY: 0, z: 0, duration: 0.5, ease: 'power2.out'});
+                                     backButton.classList.add('is-visible');
+                                 }
+                            }
+                            tapCount = 0;
+                        }, 300);
+                    });
+                });
+            }
+        }
+
+        // --- RUN ALL INITIALIZERS ---
+        try {
+            initializeFluidSimulation();
+            initializeLightboxInteraction();
+            initializeCameraAndState();
+            initializeContentAnimations();
+            initializeMobileAdaptation();
+        } catch (e) {
+            console.error("An error occurred during initialization:", e);
+            document.body.innerHTML = '<div style="color:white;padding:2rem;">An error occurred. Please refresh.</div>';
+        }
+    });
     </script>
-
 </body>
 </html>
