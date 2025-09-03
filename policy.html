@@ -9,12 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Manrope:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-primary: #db00ff;
-            --color-secondary: #00f2ff;
-            --color-background: #0a041c;
-            --color-surface: rgba(25, 15, 40, 0.7);
-            --color-text: #e1dff8;
-            --color-text-muted: #a099b3;
+            --color-primary: #db00ff; /* Neon Purple */
+            --color-secondary: #00f2ff; /* Neon Cyan */
+            --color-background: #0a041c; /* Deep Dark Purple */
+            --color-surface: rgba(25, 15, 40, 0.7); /* Translucent dark surface */
+            --color-text: #e1dff8; /* Off-white text */
+            --color-text-muted: #a099b3; /* Muted grey-purple text */
             --font-main: 'Manrope', sans-serif;
             --font-heading: 'Inter', sans-serif;
         }
@@ -25,7 +25,7 @@
             color: var(--color-text);
             font-family: var(--font-main);
             overflow-x: hidden;
-            cursor: none;
+            cursor: none; /* Hide default cursor */
         }
         .cursor-dot, .cursor-outline {
             position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; z-index: 9999;
@@ -58,7 +58,7 @@
         @keyframes text-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         .content-section { padding: 100px 0; }
         .content-grid {
-            display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); /* Text column slightly wider */
             gap: 60px; align-items: flex-start;
         }
         .image-column { height: 100%; }
@@ -69,7 +69,8 @@
         }
         #sticky-image {
             width: 100%; height: auto; border-radius: 12px; object-fit: cover;
-            aspect-ratio: 3/4; opacity: 1; transition: opacity 0.5s ease-in-out;
+            aspect-ratio: 3/4; /* Maintain aspect ratio */
+            opacity: 1; transition: opacity 0.5s ease-in-out;
         }
         .content-section h2 {
             font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 60px; font-weight: 900;
@@ -127,126 +128,4 @@
                 <div class="text-column">
                     <h2>The Rumors</h2>
 
-                    <div class="text-card" data-image-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgAQMAAAAPPx67AAAABlBMVEXo4c7l2sEAAADlSURBVHic7c3BDQAgAMPAgP+eFwk26aEd3UAAAAAAAACAeQGY3wAB21yVGAAAAABJRU5ErkJggg==" data-image-alt="Model in black lingerie, looking down">
-                        <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around <i style="color:var(--color-secondary);">ehotlovea</i> there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:</p>
-                    </div>
-                    
-                    <div class="text-card" data-image-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgAQMAAAAPPx67AAAABlBMVEVudX5ucXgAAADpSURBVHic7c3BDQAgAMPAgP+eFwk26aEd3UAAAAAAAACAeQGY3wAB21yVGAAAAABJRU5ErkJggg==" data-image-alt="Model in jeans and pink top, sitting">
-                         <ul>
-                            <li><strong>I am a prisoner.</strong> Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: <i>“Is ehotlovea a hostage and is she being starved?”</i> Looks like someone has been watching too many thrillers.</li>
-                            <li><strong>I am “controlled by a monster.”</strong> According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</li>
-                            <li><strong>I am constantly on the run in different countries.</strong> Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. It creates the impression that I change location every couple of weeks. Someone even claimed that I was “transported through a dozen places in half a dozen countries” – as if Interpol can’t keep up with me!</li>
-                            <li><strong>Secret services and human rights defenders are watching me.</strong> Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.” At this point, you might as well grab popcorn – the plot is worthy of a thriller!</li>
-                            <li><strong>I have no money or success of my own.</strong> Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent – “the slave is used like an object, what kind of reward could she get.” All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="text-card" data-image-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgAQMAAAAPPx67AAAABlBMVEXm4crf1bgAAADeSURBVHic7c3BDQAgAMPAgP+eFwk26aEd3UAAAAAAAACAeQGY3wAB21yVGAAAAABJRU5ErkJggg==" data-image-alt="Model in yellow slip, laying on marble">
-                        <p><strong>Sounds insane? That’s because it is pure madness.</strong> But let’s see who the author of all this phantasmagoria is. Here comes one especially persistent viewer. He is the one who creates most of these threads on the forums, typing “exposés” under different nicknames and fueling the drama. He positions himself as some sort of knight-savior: supposedly he alone has seen the truth and exposed everyone. 🎭</p>
-                        <p>However, reality is far more banal. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. <strong>And you know why? Simply to masturbate on camera.</strong> 🤦‍♀️ That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing. I’m not even offended anymore – it just makes me laugh.</p>
-                        <p>This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. He invented me a new name, a biography, a villain-“kidnapper” – and fell in love with his own fairy tale. Even other forum users are already rolling their eyes: many have noticed that our author is not in search of truth at all but simply obsessed with me. One commenter directly wrote that the behavior of this “savior” is very similar to that of a typical “simp” who doesn’t actually want to expose anything but is head over heels in love with Alice and is desperately seeking attention. <strong>Exactly right!</strong> Our would-be knight doesn’t so much want to save me as he dreams, apparently, that I will appreciate his “heroism.” Well, dreams don’t cost anything.</p>
-                    </div>
-                    
-                    <div class="cta-center">
-                        <a href="https://t.me/your_channel_link" target="_blank" class="cta-button" data-magnetic>Tired of the drama? Get the truth.</a>
-                    </div>
-
-                    <h2 style="margin-top: 100px;">The Truth Revealed.</h2>
-            
-                    <div class="text-card" data-image-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgAQMAAAAPPx67AAAABlBMVEVudX5ucXgAAADpSURBVHic7c3BDQAgAMPAgP+eFwk26aEd3UAAAAAAAACAeQGY3wAB21yVGAAAAABJRU5ErkJggg==" data-image-alt="Model in black corset, looking forward">
-                        <p>I can already foresee the next move of this conspiracist. As soon as I publish a rebuttal (like this text), he will surely pop up with a new conspiracy theory. He will probably cry out into the internet void: “Wake up, don’t believe her! All of this was written on the orders of that very villain, it’s part of the plan!” 😀 Well, we’ve already figured you out too, my paranoid friend. Your scenario is clear in advance, and it is just as ridiculous as all the previous ones.</p>
-                        <p><strong>And now – to the facts. Ready to know the truth, not the fairy tale? It is very simple and, perhaps, will disappoint some: there is no villain, no captivity, and no drama whatsoever.</strong></p>
-                        <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result of my own effort, a well-thought-out strategy, and hard work. Yes, sometimes I work many hours in a row, travel, try new things – but I do it by choice, because I have a dream and a clear plan on how to achieve it. Want to succeed in life? You’ll have to work hard and be persistent – that’s the whole secret. 🎓</p>
-                     </div>
-
-                     <div class="text-card">
-                        <p>Of course, it’s much more convenient to believe that behind someone’s success stands a mysterious “kidnapper” or a “rich sponsor” than to acknowledge the role of effort and talent. But the reality is this: <strong>no one controls me.</strong> There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow. By the way, speaking of professionals: I especially want to mention the Chaturbate support team. These guys are true pros, always ready to help and solving every issue quickly. 💙 This really is the best platform, where they take care of the safety and comfort of models properly. Do you think that if something really bad were happening to me, it would go unnoticed? Not a chance – not by my team, nor by the platform.</p>
-                        <p>And one last thing worth mentioning. I do not intend to let this situation with dirty slander go unchecked. We have already uncovered the identity of that very storyteller (thanks to my clever Eric, who helped to trace this character through his own broadcasts). 😉 Legal steps will not take long. Right now, I have other projects and ideas as a priority, but in the near future we will prepare all the necessary materials and file a complaint with the appropriate authorities. Believe me, we have enough evidence – his entire forum “creativity” is saved, along with many other actions that I cannot reveal so as not to alarm him. We’ll all laugh together later, when this person has to answer for his words to the full extent of the law.</p>
-                     </div>
-                     
-                     <div class="text-card">
-                        <p><strong>So what’s the bottom line?</strong> The bottom line is – I continue to do my work and reach new heights, which I wish for you as well. ✨ Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 More is coming soon, there are many interesting things ahead! Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
-                         <div class="cta-center">
-                             <a href="https://t.me/your_channel_link" target="_blank" class="cta-button" data-magnetic>Join the Private Channel</a>
-                         </div>
-                    </div>
-                </div>
-
-                <div class="image-column">
-                    <div class="image-sticky-container">
-                        <img id="sticky-image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgAQMAAAAPPx67AAAABlBMVEXo4c7l2sEAAADlSURBVHic7c3BDQAgAMPAgP+eFwk26aEd3UAAAAAAAACAeQGY3wAB21yVGAAAAABJRU5ErkJggg==" alt="Model in black lingerie, looking down">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Model's Name. All rights reserved.</p>
-        <p><strong>18+</strong> | This website contains adult content and is intended for individuals 18 years of age or older.</p>
-    </footer>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-        const spotlight = document.querySelector('.spotlight');
-        window.addEventListener('mousemove', function(e) {
-            const posX = e.clientX; const posY = e.clientY;
-            cursorDot.style.left = `${posX}px`; cursorDot.style.top = `${posY}px`;
-            cursorOutline.style.left = `${posX}px`; cursorOutline.style.top = `${posY}px`;
-            spotlight.style.background = `radial-gradient(circle at ${posX}px ${posY}px, rgba(219, 0, 255, 0.08), transparent 25%)`;
-            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
-        });
-        const magneticButtons = document.querySelectorAll('[data-magnetic]');
-        magneticButtons.forEach(button => {
-            let rect = button.getBoundingClientRect();
-            button.addEventListener('mousemove', function(e) {
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-            });
-            button.addEventListener('mouseleave', function() { button.style.transform = 'translate(0,0)'; });
-            window.addEventListener('resize', () => rect = button.getBoundingClientRect());
-        });
-        const interactiveElements = document.querySelectorAll('a, [data-magnetic]');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorDot.style.transform = 'translate(-50%, -50%) scale(0)';
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursorOutline.style.borderColor = 'var(--color-secondary)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorOutline.style.borderColor = 'var(--color-primary)';
-            });
-        });
-        const stickyImage = document.getElementById('sticky-image');
-        const imageTriggers = document.querySelectorAll('[data-image-src]');
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const newImageSrc = entry.target.dataset.imageSrc;
-                    const newImageAlt = entry.target.dataset.imageAlt;
-                    if (stickyImage && stickyImage.src !== newImageSrc) {
-                         stickyImage.style.opacity = 0;
-                         setTimeout(() => {
-                            stickyImage.src = newImageSrc;
-                            stickyImage.alt = newImageAlt;
-                            stickyImage.onload = () => {
-                                 stickyImage.style.opacity = 1;
-                            }
-                         }, 400);
-                    }
-                }
-            });
-        }, { 
-            threshold: 0.5,
-            rootMargin: "-40% 0px -40% 0px" 
-        });
-        imageTriggers.forEach(trigger => imageObserver.observe(trigger));
-    });
-    </script>
-</body>
-</html>
+                    <div class="text-card" data-image-src="data:image/jpeg;base64,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
