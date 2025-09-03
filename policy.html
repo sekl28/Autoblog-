@@ -3,402 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ehotlovea - The Experience</title>
-    <meta name="description" content="This is not just a website. This is a universe of pleasures.">
+    <title>ehotlovea - The Story</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Roboto:wght@400&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-color: #000000;
-            --text-color: #ffffff;
-            --primary-color: #ff005d;
-            --secondary-color: #a600ff;
-            --font-display: 'Orbitron', sans-serif;
-            --font-body: 'Roboto', sans-serif;
+            --light-bg: #f4f1ee;
+            --dark-bg: #101010;
+            --light-text: #333;
+            --dark-text: #ccc;
+            --accent-light: #c59d5f; /* Rose Gold */
+            --accent-dark: #00aaff;  /* Electric Blue */
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition-speed: 0.5s;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html { scroll-behavior: smooth; }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
             font-family: var(--font-body);
-            line-height: 1.6;
-            overflow-x: hidden;
-            overflow-y: scroll;
+            transition: background-color var(--transition-speed) ease-out, color var(--transition-speed) ease-out;
+        }
+        
+        .noise {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 9999; pointer-events: none;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWYmJilpaW8vLyrq6xycnK4uLizs7OioqK+vr6ep6d ঊKNqzAAAAFnRSTlMABH5A3/8A349A3z/+/79Anz8/3j022e0AAAAbSURBVEiJ7dTbEkAgEAXA1k144EI48f9/20JBJUmvV9c4fVNP8/U8z5eR9f79UvV/f1Y181u/bXbV3d3d3d3d3R21c3b29vb29vbWzt2tbX1/f39/f2vr683V5/T0/Pz8/Pz83N8fX2ZmZmVlZWZmZm1tbWdnZ2dpaWlpaWl5eXlxcXFxcXFhYWFeXl5dXV1dXV1ZWVkFBQUFBQUFOTk5ISEhINDQ0NDQ0JCQkJCQkFBQUFBQUFBQUFBQUFBQUFBQUEBAQEAQEBAQEBAYGBgYGBgYGBgYGBgYGBgYGBgYGBgYFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU~gAAAABJRU5ErkJggg==);
+            opacity: 0.05;
         }
 
-        #interactive-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            position: relative;
+        }
+
+        .content-column {
+            padding: 50px;
             width: 100%;
-            height: 100%;
-            z-index: -1;
         }
 
-        .content-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
-        
-        section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-        }
-
-        h1, h2 { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; }
-        h1 { font-size: clamp(4rem, 12vw, 10rem); line-height: 1; }
-        h2 { font-size: clamp(3rem, 8vw, 6rem); line-height: 1.1; }
-        p { font-size: 1.1rem; max-width: 600px; margin-bottom: 2rem; }
-
-        .btn {
-            display: inline-block; background: transparent; color: #fff;
-            font-family: var(--font-display); text-decoration: none;
-            padding: 18px 45px; border: 2px solid var(--primary-color);
-            border-radius: 50px; transition: all 0.3s ease;
-        }
-        .btn:hover { background: var(--primary-color); box-shadow: 0 0 30px var(--primary-color); }
-        
-        /* --- BLOCK 1: INTRO --- */
-        #intro { text-align: center; }
-        #intro h1 {
-            color: white;
-            mix-blend-mode: difference;
-        }
-
-        /* --- BLOCK 2: HORIZONTAL SCROLL --- */
-        #horizontal-scroll-section {
+        .video-column {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 400px;
             height: 100vh;
-            overflow: hidden;
+            padding: 50px;
         }
-        .horizontal-scroll-wrapper {
-            height: 100%;
-            width: 400vw; /* 4 slides */
-            display: flex;
+        
+        .video-scroller-wrapper {
+            width: 100%; height: 100%; border-radius: 20px;
+            overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
-        .horizontal-slide {
-            height: 100%;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-        }
-        .slide-content { max-width: 800px; text-align: center; }
 
-        /* --- BLOCK 3: BENEFITS --- */
-        #benefits { text-align: center; }
-        .benefits-triggers {
-            display: flex; justify-content: center; gap: 5rem;
-            margin-bottom: 3rem;
+        .swiper-slide { background: #000; }
+        .swiper-slide video { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+
+        section { padding: 100px 0; min-height: 80vh; }
+        h1, h2 { font-family: var(--font-display); line-height: 1.2; }
+        h1 { font-size: clamp(3rem, 5vw, 4.5rem); margin-bottom: 1.5rem; }
+        h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 1rem; }
+        p { max-width: 600px; line-height: 1.8; margin-bottom: 2rem; }
+        .btn {
+            display: inline-block; text-decoration: none; padding: 15px 35px;
+            font-family: var(--font-display); font-size: 1.1rem; border-radius: 50px;
+            transition: all 0.3s ease;
         }
-        .trigger {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 4rem);
-            color: rgba(255,255,255,0.3);
-            cursor: pointer;
-            transition: color 0.4s;
-        }
-        .trigger.active, .trigger:hover { color: white; }
-        .benefit-content { display: none; }
-        .benefit-content.active { display: block; }
+
+        /* ACT I: Light Theme */
+        .theme-light { background-color: var(--light-bg); color: var(--light-text); }
+        .theme-light .btn { background: var(--accent-light); color: white; }
+        .theme-light .btn:hover { background: var(--light-text); }
+        .theme-light h1, .theme-light h2 { color: #000; }
         
-        /* --- BLOCK 4: SOCIAL PROOF --- */
-        #social-proof {
-            display: block;
-            height: 120vh; /* Extra space for animation */
-            padding-top: 10vh;
-            text-align: center;
+        /* ACT II: Dark Theme */
+        .theme-dark { background-color: var(--dark-bg); color: var(--dark-text); }
+        .theme-dark .btn { background: var(--accent-dark); color: white; }
+        .theme-dark .btn:hover { background: white; color: var(--dark-bg); }
+        .theme-dark h1, .theme-dark h2 { color: white; }
+        .theme-dark blockquote {
+            padding-left: 1.5rem; border-left: 3px solid var(--accent-dark);
+            margin: 1.5rem 0; font-style: italic; color: #999;
         }
-        #social-proof h2 { color: white; margin-bottom: 2rem; }
-        #text-canvas { display: block; margin: 0 auto; }
         
-        /* --- BLOCK 5: FINAL --- */
-        #final {
-            background: #000;
-            text-align: center;
+        /* Lightbox for Video */
+        .video-lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10000; background: rgba(0,0,0,0.8);
+            display: flex; justify-content: center; align-items: center;
+            visibility: hidden; opacity: 0; transition: all 0.4s ease;
         }
-        #final .container {
-             max-width: 800px;
+        .video-lightbox.show { visibility: visible; opacity: 1; }
+        .video-lightbox-content {
+            width: 70%; max-width: 900px; height: auto;
+            position: relative;
         }
+        .video-lightbox-content video { width: 100%; border-radius: 15px; }
+        .lightbox-close {
+            position: absolute; top: -40px; right: 0; color: white;
+            font-size: 2rem; cursor: pointer;
+        }
+        
+        @media (max-width: 1200px) {
+            .main-container { grid-template-columns: 1fr 300px; }
+            .video-column { width: 300px; }
+        }
+        @media (max-width: 992px) {
+            .main-container { grid-template-columns: 1fr; }
+            .video-column { display: none; } /* Hide video column on mobile for better experience */
+            .content-column { padding: 30px; }
+        }
+
     </style>
 </head>
 <body>
+    <div class="noise"></div>
+    
+    <div class="main-container">
+        <div class="content-column">
+            
+            <div id="act1" class="theme-light">
+                <section id="intro">
+                    <h1>Let’s get acquainted!</h1>
+                    <p>Hi! Let’s get to know each other better. I have something to surprise and delight you with. Don’t believe it? Just take a look at least for 5–10 seconds of my real live stream and see for yourself. 😉</p>
+                    <a href="#" class="btn">Watch & let’s start our acquaintance</a>
+                </section>
 
-    <canvas id="interactive-canvas"></canvas>
+                <section id="about">
+                    <h2>Who I am and my experience</h2>
+                    <p>I am a webcam model with 9 years of experience. Over these years I have learned everything about how to give real pleasure to my viewers. I’ve seen a lot and I know exactly what my fans like. Each of my streams is not just a video, but a real show. With me you don’t just watch a broadcast — you dive into a special world where every moment is created for your pleasure. I love to experiment and delight you with new emotions every time.</p>
+                </section>
 
-    <div class="content-wrapper">
-        <section id="intro">
-            <div class="container">
-                <h1>UNIVERSE OF PLEASURES</h1>
-                <p>This is not a website. This is an experience. Are you ready?</p>
-                <a href="#horizontal-scroll-section" class="btn">Start The Journey</a>
+                <section id="benefits">
+                    <h2>What you will get (free and right away)</h2>
+                    <p>Already now, absolutely free, you will get access to my exclusive materials and activities in my private Telegram channel:</p>
+                    <ul>
+                        <li><strong>Free videos:</strong> In my Telegram channel I share candid clips available only to subscribers.</li>
+                        <li><strong>Fun streams with other models:</strong> Sometimes I go live not alone, but with hot girlfriends. I guarantee: double the pleasure!</li>
+                        <li><strong>Open fan chat (coming soon):</strong> We are creating a place where my fans will be able to communicate and become a real community.</li>
+                        <li><strong>And this is just the beginning...</strong> Ahead of you there are even more pleasant surprises and entertainments.</li>
+                    </ul>
+                    <br>
+                    <p>All this is already ready for you for free — just click the button and take your access.</p>
+                    <a href="#" target="_blank" class="btn">Join Telegram</a>
+                </section>
+                
+                <section id="social-proof">
+                    <h2>With me there are already more than 13,000 subscribers!</h2>
+                    <p>Imagine: thousands of people have already become part of our private club. They receive what many can only dream about… and only the chosen go further. Don’t miss your chance — join and feel yourself in the company of like-minded people!</p>
+                    <a href="#" target="_blank" class="btn">Join 13,000+ fans</a>
+                </section>
             </div>
-        </section>
 
-        <section id="horizontal-scroll-section">
-            <div class="horizontal-scroll-wrapper">
-                <div class="horizontal-slide">
-                    <div class="slide-content">
-                        <h2>Who I am</h2>
-                        <p>I am a webcam model with 9 years of experience. With me you don’t just watch a broadcast — you dive into a special world where every moment is created for your pleasure.</p>
+            <div id="act2" class="theme-dark">
+                <section id="rumors">
+                    <h1>Rumors About Me</h1>
+                    <p>On the internet, there is a whole sect of amateur detectives who invent incredible stories about me. Go to Reddit – and you’ll be stunned. So, what have they come up with? Here’s a brief overview of the most epic rumors and the actual facts.</p>
+                    
+                    <div>
+                        <h2>I am a prisoner.</h2>
+                        <p>Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked:</p>
+                        <blockquote>“Is ehotlovea a hostage and is she being starved?”</blockquote>
+                        <p>Looks like someone has been watching too many thrillers.</p>
+                    </div>
+
+                    <div>
+                        <h2>I am “controlled by a monster.”</h2>
+                        <p>According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</p>
+                    </div>
+                    
+                    <div>
+                        <h2>I am constantly on the run.</h2>
+                        <p>Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. Someone even claimed that I was “transported through a dozen places in half a dozen countries”.</p>
+                    </div>
+
+                    <div>
+                        <h2>Who is the author of this phantasmagoria?</h2>
+                        <p>One especially persistent viewer. He positions himself as some sort of knight-savior 🎭. However, reality is far more banal. This very “savior” is my constant guest in the chat. And you know why? Simply to masturbate on camera 🤦‍♀️. That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess.</p>
+                        <p>As soon as I publish a rebuttal (like this text), he will surely pop up with a new conspiracy theory: “Wake up, don’t believe her! All of this was written on the orders of that very villain!”.</p>
+                    </div>
+
+                    <div>
+                        <h2>And now – to the facts.</h2>
+                        <p>Ready to know the truth? It is very simple: <strong>there is no villain, no captivity, and no drama whatsoever.</strong> There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved is the result of my own effort, a well-thought-out strategy, and hard work. 🎓</p>
+                        <p>No one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals. I especially want to mention the Chaturbate support team. These guys are true pros. 💙 Do you think that if something really bad were happening to me, it would go unnoticed? Not a chance.</p>
+                        <p>We have already uncovered the identity of that very storyteller (thanks to my clever Eric 😉). Legal steps will not take long.</p>
+                        <p>So what’s the bottom line? I continue to do my work and reach new heights. Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
+                    </div>
+                     <a href="#" target="_blank" class="btn">Join The Real World</a>
+                </section>
+            </div>
+        </div>
+
+        <div class="video-column">
+            <div class="video-scroller-wrapper">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><video playsinline muted loop src="https://assets.mixkit.co/videos/preview/mixkit-girl-posing-for-the-camera-in-a-meadow-30403-large.mp4"></video></div>
+                        <div class="swiper-slide"><video playsinline muted loop src="https://assets.mixkit.co/videos/preview/mixkit-woman-in-a-field-of-wild-flowers-30402-large.mp4"></video></div>
+                        <div class="swiper-slide"><video playsinline muted loop src="https://assets.mixkit.co/videos/preview/mixkit-beautiful-woman-in-a-bikini-with-a-hat-on-a-yacht-30407-large.mp4"></video></div>
+                        <div class="swiper-slide"><video playsinline muted loop src="https://assets.mixkit.co/videos/preview/mixkit-woman-dancing-in-a-boat-30408-large.mp4"></video></div>
                     </div>
                 </div>
-                <div class="horizontal-slide">
-                     <div class="slide-content">
-                        <h2>A Real Show</h2>
-                        <p>Each of my streams is not just a video, but a real show. I love to experiment and delight you with new emotions every time.</p>
-                    </div>
-                </div>
-                <div class="horizontal-slide">
-                     <div class="slide-content">
-                        <h2>The Truth</h2>
-                        <p>On the internet, there is a whole sect of amateur detectives who invent incredible stories about me. I will tell you the truth. </p>
-                    </div>
-                </div>
-                 <div class="horizontal-slide">
-                     <div class="slide-content">
-                        <h2>Ready to Join?</h2>
-                        <p>The world where fans become closer to me is already waiting for you.</p>
-                        <a href="#" target="_blank" class="btn">Join Telegram</a>
-                    </div>
-                </div>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <section id="benefits">
-            <div class="container">
-                <h2>What You Get</h2>
-                <div class="benefits-triggers">
-                    <div class="trigger active" data-target="b1">VIDEOS</div>
-                    <div class="trigger" data-target="b2">STREAMS</div>
-                    <div class="trigger" data-target="b3">COMMUNITY</div>
-                </div>
-                <div id="b1" class="benefit-content active">
-                    <p>In my Telegram channel I share candid clips and exclusive videos available only to subscribers.</p>
-                </div>
-                <div id="b2" class="benefit-content">
-                    <p>Sometimes I go live not alone, but with hot girlfriends. I guarantee: double the pleasure!</p>
-                </div>
-                 <div id="b3" class="benefit-content">
-                    <p>We are creating a place where my fans can communicate, share impressions and become a real community.</p>
-                </div>
-            </div>
-        </section>
-        
-        <section id="social-proof">
-            <div class="container">
-                <h2>Join The 13,000+</h2>
-                <p>You are not alone. Thousands of people have already become part of our private club.</p>
-                <canvas id="text-canvas"></canvas>
-            </div>
-        </section>
-        
-        <section id="final">
-            <div class="container">
-                <h2>Stop Fantasizing — It's Time To Act!</h2>
-                <p>There is no villain, no captivity, and no drama. There is me – and a universe of pleasures waiting for you. Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
-                <a href="#" target="_blank" class="btn">Enter The Universe</a>
-            </div>
-        </section>
+    <div class="video-lightbox">
+        <div class="video-lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <video controls playsinline></video>
+        </div>
     </div>
 
     <script>
-    class Particle {
-        constructor(effect, x, y) {
-            this.effect = effect;
-            this.x = Math.random() * this.effect.width;
-            this.y = Math.random() * this.effect.height;
-            this.originX = Math.floor(x);
-            this.originY = Math.floor(y);
-            this.size = this.effect.gap;
-            this.dx = 0;
-            this.dy = 0;
-            this.vx = 0;
-            this.vy = 0;
-            this.force = 0;
-            this.angle = 0;
-            this.distance = 0;
-            this.friction = Math.random() * 0.2 + 0.15;
-            this.ease = Math.random() * 0.1 + 0.005;
-            this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        }
+        gsap.registerPlugin(ScrollTrigger);
 
-        draw() {
-            this.effect.context.fillStyle = this.color;
-            this.effect.context.fillRect(this.x, this.y, this.size, this.size);
-        }
-
-        update() {
-            this.dx = this.effect.mouse.x - this.x;
-            this.dy = this.effect.mouse.y - this.y;
-            this.distance = this.dx * this.dx + this.dy * this.dy;
-            this.force = -this.effect.mouse.radius / this.distance;
-
-            if (this.distance < this.effect.mouse.radius) {
-                this.angle = Math.atan2(this.dy, this.dx);
-                this.vx += this.force * Math.cos(this.angle);
-                this.vy += this.force * Math.sin(this.angle);
+        // --- 1. THEME CHANGER ON SCROLL ---
+        ScrollTrigger.create({
+            trigger: "#act2",
+            start: "top 50%",
+            end: "bottom 50%",
+            onEnter: () => document.body.classList.add('theme-dark-active'),
+            onLeaveBack: () => document.body.classList.remove('theme-dark-active'),
+            onUpdate: self => {
+                const progress = self.progress.toFixed(2);
+                document.body.style.setProperty('--transition-progress', progress);
             }
-
-            if (this.effect.textCoordinates) {
-                 this.x += (this.vx *= this.friction) + (this.originX - this.x) * this.ease;
-                 this.y += (this.vy *= this.friction) + (this.originY - this.y) * this.ease;
-            } else {
-                 this.x += (this.vx *= this.friction);
-                 this.y += (this.vy *= this.friction);
-            }
-        }
-    }
-
-    class Effect {
-        constructor(context, canvasWidth, canvasHeight) {
-            this.context = context;
-            this.canvasWidth = canvasWidth;
-            this.canvasHeight = canvasHeight;
-            this.particles = [];
-            this.gap = 2;
-            this.mouse = {
-                radius: 3000,
-                x: undefined,
-                y: undefined
-            };
-            this.textCoordinates = null;
-            window.addEventListener('mousemove', e => {
-                this.mouse.x = e.clientX;
-                this.mouse.y = e.clientY;
-            });
-        }
-
-        render() {
-            this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-            this.particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-        }
-        
-        setTextCoordinates(coordinates) {
-            this.textCoordinates = coordinates;
-            this.particles = [];
-             for(let y = 0; y < this.canvasHeight; y += this.gap) {
-                for (let x = 0; x < this.canvasWidth; x += this.gap) {
-                    const index = (y * this.canvasWidth + x) * 4;
-                    const alpha = coordinates.data[index + 3];
-                    if (alpha > 0) {
-                       this.particles.push(new Particle(this, x, y));
-                    }
-                }
-            }
-        }
-        
-        clearText() {
-            this.textCoordinates = null;
-            this.particles = [];
-            for (let i = 0; i < 2000; i++) {
-                 this.particles.push(new Particle(this));
-            }
-        }
-    }
-
-    // Main script execution
-    document.addEventListener('DOMContentLoaded', () => {
-        const canvas = document.getElementById('interactive-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const effect = new Effect(ctx, canvas.width, canvas.height);
-        effect.clearText();
-
-        function animate() {
-            effect.render();
-            requestAnimationFrame(animate);
-        }
-        animate();
-        
-        window.addEventListener('resize', () => {
-             canvas.width = window.innerWidth;
-             canvas.height = window.innerHeight;
-             // re-init effect on resize
         });
 
-        // Horizontal Scroll
-        const wrapper = document.querySelector('.horizontal-scroll-wrapper');
-        const section = document.querySelector('#horizontal-scroll-section');
-        gsap.to(wrapper, {
-            x: () => -(wrapper.scrollWidth - document.documentElement.clientWidth) + "px",
-            ease: "none",
+        // GSAP smooth transition between themes
+        gsap.to("body", {
             scrollTrigger: {
-                trigger: section,
-                pin: true,
-                scrub: 1,
-                end: () => "+=" + (wrapper.scrollWidth - document.documentElement.clientWidth),
-            }
+                trigger: "#act2",
+                start: "top 80%",
+                end: "top 20%",
+                scrub: true,
+            },
+            backgroundColor: "var(--dark-bg)",
+            color: "var(--dark-text)",
+            ease: "none"
         });
+        
+        // --- 2. TIKTOK VIDEO SCROLLER ---
+        const swiper = new Swiper('.swiper', {
+            direction: 'vertical',
+            loop: true,
+            mousewheel: true,
+            on: {
+                slideChange: function () {
+                    document.querySelectorAll('.swiper-slide video').forEach(v => v.pause());
+                    const activeSlide = document.querySelector('.swiper-slide-active');
+                    if (activeSlide) {
+                        activeSlide.querySelector('video').play();
+                    }
+                },
+            },
+        });
+        
+        // Initial play
+        setTimeout(() => {
+             const activeSlide = document.querySelector('.swiper-slide-active');
+             if (activeSlide) activeSlide.querySelector('video').play();
+        }, 500);
 
-        // Benefits Triggers
-        const triggers = document.querySelectorAll('.trigger');
-        const contents = document.querySelectorAll('.benefit-content');
-        triggers.forEach(trigger => {
-            trigger.addEventListener('click', () => {
-                triggers.forEach(t => t.classList.remove('active'));
-                contents.forEach(c => c.classList.remove('active'));
-                trigger.classList.add('active');
-                document.getElementById(trigger.dataset.target).classList.add('active');
+        // --- 3. VIDEO LIGHTBOX ---
+        const lightbox = document.querySelector('.video-lightbox');
+        const lightboxVideo = lightbox.querySelector('video');
+        const closeBtn = document.querySelector('.lightbox-close');
+
+        function openLightbox(videoSrc) {
+            lightboxVideo.src = videoSrc;
+            lightbox.classList.add('show');
+            lightboxVideo.play();
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('show');
+            lightboxVideo.pause();
+            lightboxVideo.src = "";
+        }
+
+        document.querySelectorAll('.swiper-slide video').forEach(videoEl => {
+            videoEl.addEventListener('click', () => {
+                openLightbox(videoEl.src);
             });
         });
         
-        // Text to Particle
-        const textCanvas = document.getElementById('text-canvas');
-        const textCtx = textCanvas.getContext('2d');
-        const socialProofSection = document.getElementById('social-proof');
-        
-        function drawText() {
-            const size = Math.min(window.innerWidth * 0.8, 800);
-            textCanvas.width = size;
-            textCanvas.height = size * 0.3;
-            textCtx.clearRect(0, 0, textCanvas.width, textCanvas.height);
-            
-            const gradient = textCtx.createLinearGradient(0, 0, textCanvas.width, textCanvas.height);
-            gradient.addColorStop(0.3, 'red');
-            gradient.addColorStop(0.5, 'orange');
-            gradient.addColorStop(0.7, 'purple');
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
 
-            textCtx.fillStyle = gradient;
-            textCtx.textAlign = 'center';
-            textCtx.textBaseline = 'middle';
-            const fontSize = Math.floor(textCanvas.width / 5);
-            textCtx.font = `bold ${fontSize}px ${getComputedStyle(document.body).getPropertyValue('--font-display')}`;
-            textCtx.fillText('13,000+', textCanvas.width / 2, textCanvas.height / 2);
-            
-            return textCtx.getImageData(0, 0, textCanvas.width, textCanvas.height);
-        }
-
-        const textObserver = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting) {
-                 effect.setTextCoordinates(drawText());
-            } else {
-                 effect.clearText();
-            }
-        }, { threshold: 0.1 });
-        
-        textObserver.observe(socialProofSection);
-
-    });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </body>
 </html>
-
