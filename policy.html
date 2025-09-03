@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ehotlovea - Слухи обо мне</title>
-    
+    <title>ehotlovea - Let's get acquainted</title>
+    <meta name="description" content="I am a webcam model with 9 years of experience. With me you don’t just watch a broadcast — you dive into a special world.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
-        /* --- ИСПОЛЬЗУЕМ ТЕ ЖЕ ОСНОВНЫЕ СТИЛИ, ЧТО И НА ГЛАВНОЙ --- */
         :root {
-            --color-background: #0d0a14;
-            --color-text: #e0e0e0;
-            --color-primary: #f955c7;
-            --color-secondary: #6d55f9;
-            --color-telegram: #0088cc;
-            --font-main: 'Inter', sans-serif;
-            --font-display: 'Playfair+Display', serif;
+            --background-color: #000000;
+            --text-color: #f0f0f0;
+            --primary-color: #e60073; /* Vivid Pink */
+            --spotlight-size: 400px; /* Size of the spotlight effect */
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Inter', sans-serif;
         }
 
         * {
@@ -33,238 +33,418 @@
         }
 
         body {
-            font-family: var(--font-main);
-            background-color: var(--color-background);
-            color: var(--color-text);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
             line-height: 1.7;
-            font-size: 1.1rem;
+            cursor: none; /* Hide the default cursor */
+            overflow-x: hidden;
         }
 
+        /* --- Custom Cursor & Spotlight --- */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease-out;
+        }
+        
+        .background-media {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            
+            -webkit-mask-image: radial-gradient(
+                circle var(--spotlight-size) at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                black 10%, 
+                transparent 100%
+            );
+            mask-image: radial-gradient(
+                circle var(--spotlight-size) at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                black 10%, 
+                transparent 100%
+            );
+            transition: -webkit-mask-size 0.3s ease, mask-size 0.3s ease;
+        }
+        
+        .background-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8; /* Make video slightly muted */
+        }
+        
+        /* --- General Layout & Typography --- */
         .container {
-            max-width: 800px; /* Делаем контейнер уже для лучшей читаемости */
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
         }
         
-        .btn {
-            display: inline-block;
-            padding: 15px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            font-weight: 800;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 2rem;
+            color: white;
+        }
+        
+        h3 {
+             font-size: clamp(1.5rem, 4vw, 2rem);
+             color: var(--primary-color);
+             margin-bottom: 1rem;
+        }
+
+        p {
             font-size: 1.1rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 1.5rem;
+            color: rgba(240, 240, 240, 0.8);
         }
 
-        .btn-primary {
-            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+        /* --- Buttons & Links --- */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
             color: white;
-            box-shadow: 0 5px 15px rgba(249, 85, 199, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(249, 85, 199, 0.6);
-        }
-        
-        /* --- HEADER --- */
-        .header {
-            width: 100%;
-            z-index: 100;
-            padding: 20px 0;
-            background-color: rgba(13, 10, 20, 0.8);
-            backdrop-filter: blur(10px);
-        }
-        
-        .header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1100px;
-        }
-        
-        .logo {
             font-family: var(--font-display);
-            font-size: 1.8rem;
-            color: white;
-            text-decoration: none;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 30px;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--color-primary);
-        }
-        
-        /* --- СТИЛИ СТРАНИЦЫ СЛУХОВ --- */
-        .rumors-page {
-            padding: 80px 0;
-        }
-        
-        .rumors-page h1 {
-            font-family: var(--font-display);
-            font-size: 3.5rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--color-primary);
-        }
-        
-        .rumors-page .subtitle {
-            text-align: center;
+            font-weight: 700;
             font-size: 1.2rem;
-            opacity: 0.8;
-            margin-bottom: 4rem;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            border: 2px solid var(--primary-color);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
-        .rumor-block {
+        .cta-button.secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        /* --- Scroll Animations --- */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- SPECIFIC SECTIONS --- */
+        
+        /* Block 2: Who I am */
+        #about p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        /* Block 3: Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-top: 3rem;
             margin-bottom: 3rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        
-        .rumor-block:last-child {
-            border-bottom: none;
+        .benefit-item {
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(5px);
         }
-        
-        .rumor-block h2 {
-            font-family: var(--font-display);
-            font-size: 2.2rem;
-            color: var(--color-secondary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .rumor-block h2 .icon {
-            margin-right: 15px;
+        .benefit-item .icon {
             font-size: 2rem;
-        }
-        
-        blockquote {
-            background-color: rgba(255,255,255,0.05);
-            border-left: 4px solid var(--color-primary);
-            padding: 20px;
-            margin: 1.5rem 0;
-            font-style: italic;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        strong {
-            color: var(--color-primary);
-        }
-        
-        .final-call {
-            margin-top: 4rem;
-            padding: 40px;
-            background: linear-gradient(45deg, rgba(249, 85, 199, 0.1), rgba(109, 85, 249, 0.1));
-            border-radius: 20px;
-            text-align: center;
-        }
-        
-        .final-call h2 {
-            font-size: 2.5rem;
+            color: var(--primary-color);
             margin-bottom: 1rem;
         }
+        .benefit-item h4 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
         
-        /* --- FOOTER --- */
+        /* Block 4: Social Proof */
+        .counter {
+            font-family: var(--font-display);
+            font-size: clamp(5rem, 15vw, 10rem);
+            font-weight: 800;
+            line-height: 1;
+            color: var(--primary-color);
+        }
+
+        /* Rumors Section */
+        #rumors {
+            text-align: left;
+        }
+        #rumors article {
+            margin-top: 4rem;
+        }
+        .rumor-point {
+            margin-bottom: 3rem;
+        }
+        blockquote {
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--primary-color);
+            margin: 1rem 0;
+            font-style: italic;
+            color: rgba(240, 240, 240, 0.7);
+        }
+        
+        /* Footer */
         .footer {
-            padding: 30px 0;
+            padding: 40px 20px;
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
-        
-        .footer p { margin: 0; font-size: 0.9rem; opacity: 0.6; }
-        .footer a { color: var(--color-primary); text-decoration: none; }
-        
-        @media (max-width: 768px) {
-            body { font-size: 1rem; }
-            .rumors-page h1 { font-size: 2.8rem; }
-            .rumor-block h2 { font-size: 1.8rem; }
-            .header .nav-links { display: none; }
+        .footer p {
+            font-size: 0.9rem;
+            color: rgba(240, 240, 240, 0.5);
+            margin: 0;
         }
-
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo">ehotlovea</a>
-            <nav class="nav-links">
-                <a href="index.html">← Назад на главную</a>
-                <a href="#">В Telegram</a>
-            </nav>
-        </div>
-    </header>
 
-    <main class="rumors-page">
-        <div class="container">
-            <h1>Слухи обо мне</h1>
-            <p class="subtitle">Что говорят в интернете и где на самом деле правда</p>
+    <div class="cursor-dot"></div>
 
-            <div class="intro">
-                <p>В интернете существует целая секта детективов-любителей с Reddit, которые сочиняют обо мне самые невероятные истории. Давайте разберём самые популярные из них.</p>
+    <div class="background-media">
+        <video playsinline autoplay muted loop poster="https://via.placeholder.com/1920x1080/000000/FFFFFF?text=Loading...">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-girl-in-a-leather-jacket-with-a-smoky-background-40614-large.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <main>
+
+        <section id="intro">
+            <div class="container scroll-reveal">
+                <h1>Let's Get Acquainted</h1>
+                <p>
+                    Hi! Let’s get to know each other better. I have something to surprise and delight you with.
+                    Don’t believe it? Just take a look at least for 5–10 seconds of my real live stream and see for yourself. 😉
+                </p>
+                <a href="#about" class="cta-button">Watch & Start Our Acquaintance</a>
             </div>
+        </section>
 
-            <article>
-                <div class="rumor-block">
-                    <h2><span class="icon">🔗</span>Слух 1: "Я – пленница"</h2>
-                    <p>Да-да, по версии форумных экспертов, меня держат в заложниках, морят голодом и заставляют работать. Кажется, кто-то насмотрелся триллеров.</p>
-                    <blockquote>"Is ehotlovea a hostage and is she being starved?"</blockquote>
-                    <p>На самом деле, я просто люблю свою работу и иногда так увлекаюсь, что забываю поесть. Никакой драмы.</p>
-                </div>
-                
-                <div class="rumor-block">
-                    <h2><span class="icon">👹</span>Слух 2: "Меня контролирует монстр"</h2>
-                    <p>Говорят, за кадром стоит некий «кукловод», который всем управляет. Звучит как сюжет для плохого фильма, правда?</p>
-                    <p>На самом деле, я сама себе хозяйка. Все решения, идеи для шоу и эксперименты – это <strong>моя инициатива</strong>. Я работаю с командой, но финальное слово всегда за мной.</p>
-                </div>
-                
-                <div class="rumor-block">
-                    <h2><span class="icon">✈️</span>Слух 3: "Я постоянно в бегах"</h2>
-                    <p>Теория гласит, что я постоянно переезжаю, скрываясь от этого самого «монстра». Очень драматично!</p>
-                    <p>Я действительно люблю путешествовать и менять обстановку. Это вдохновляет меня и делает мои шоу разнообразнее. Но я делаю это по своей воле, а не потому что от кого-то бегу.</p>
-                </div>
+        <section id="about">
+            <div class="container scroll-reveal">
+                <h2>Who I am</h2>
+                <p>
+                    I am a webcam model with 9 years of experience. With me you don’t just watch a broadcast — you dive into a special world where every moment is created for your pleasure. Each of my streams is not just a video, but a real show. I love to experiment and delight you with new emotions every time.
+                </p>
+                <a href="#rumors" class="cta-button secondary">Learn more about me</a>
+            </div>
+        </section>
+        
+        <section id="benefits">
+            <div class="container scroll-reveal">
+                 <h2>What you get for free</h2>
+                 <p>Join my private Telegram channel and get instant access to exclusive materials and activities:</p>
+                 <div class="benefits-grid">
+                     <div class="benefit-item">
+                         <div class="icon"><i class="fas fa-video"></i></div>
+                         <h4>Free Videos</h4>
+                         <p>Candid clips available only to my subscribers.</p>
+                     </div>
+                     <div class="benefit-item">
+                         <div class="icon"><i class="fas fa-users"></i></div>
+                         <h4>Fun Streams</h4>
+                         <p>Sometimes I go live with hot girlfriends. Double the pleasure!</p>
+                     </div>
+                     <div class="benefit-item">
+                         <div class="icon"><i class="fas fa-comments"></i></div>
+                         <h4>Fan Chat (Soon)</h4>
+                         <p>A real community where we can communicate and share impressions.</p>
+                     </div>
+                 </div>
+                 <a href="https://t.me/your_channel_name" target="_blank" class="cta-button">Join Telegram</a>
+            </div>
+        </section>
 
-                <div class="rumor-block">
-                    <h2><span class="icon">🕵️</span>Слух 4: "За мной следят спецслужбы"</h2>
-                    <p>Это уже совсем из области фантастики. Видимо, моя жизнь кажется кому-то настолько интересной, что в неё решили вписать шпионские интриги. Увы, всё гораздо прозаичнее.</p>
-                </div>
-                
-                <div class="rumor-block">
-                    <h2><span class="icon">💰</span>Слух 5: "У меня нет денег и успеха"</h2>
-                    <p>Некоторые считают, что все мои доходы забирает тот самый мифический «злодей». Это самая смешная теория. Моя работа приносит мне отличный доход, и я полностью финансово независима. Я успешна, потому что люблю то, что делаю, и вы это чувствуете.</p>
-                </div>
-                
-                <div class="rumor-block">
-                    <h2>Кто распускает эти слухи?</h2>
-                    <p>Автор всей этой фантазии — один настырный зритель, который вообразил себя моим рыцарем-спасителем 🎭. Сначала он пытался добиться моего внимания, а получив отказ, решил создать вокруг меня драму. Иронично, что этот же «спаситель» был пойман за тем, что мастурбировал на моих стримах 🤦‍♀️.</p>
-                    <blockquote>"Очнитесь, не верьте ей! Всё это написано по приказу того самого злодея…"</blockquote>
-                    <p>Да, именно так он пытается убедить всех в своей правоте. Не ведитесь на провокации.</p>
-                </div>
+        <section id="social-proof">
+            <div class="container scroll-reveal">
+                <h2>Join The Club</h2>
+                <div class="counter" data-target="13000">0</div>
+                <p>
+                    Thousands of people have already become part of our private club. They receive what many can only dream about. Don’t miss your chance — join and feel yourself in the company of like-minded people!
+                </p>
+                <a href="https://t.me/your_channel_name" target="_blank" class="cta-button">Join 13,000+ Fans</a>
+            </div>
+        </section>
+        
+        <section id="rumors">
+            <div class="container scroll-reveal">
+                <h2>The Truth Behind The Rumors</h2>
+                <p>
+                    On the internet, there is a whole sect of amateur detectives who invent incredible stories about me. Go to Reddit – and you’ll be stunned. Here’s a brief overview of the most epic rumors and the actual facts.
+                </p>
+                <article>
+                    <div class="rumor-point">
+                        <h3>Rumor: I am a prisoner.</h3>
+                        <p>According to forum “experts,” I’m a hostage, kept by force and starved. One user even seriously asked:</p>
+                        <blockquote>“Is ehotlovea a hostage and is she being starved?”</blockquote>
+                        <p><strong>Fact:</strong> It looks like someone has been watching too many thrillers. I'm independent and in perfect health.</p>
+                    </div>
+                    
+                    <div class="rumor-point">
+                        <h3>Rumor: I am "controlled by a monster."</h3>
+                        <p>They write that my streams are not pleasure for me at all, but sheer torture for the delight of some puppeteer.</p>
+                        <p><strong>Fact:</strong> No one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow. Everything I have achieved is the result of my own effort, strategy, and hard work.</p>
+                    </div>
 
-                <div class="final-call">
-                    <h2>А теперь – к фактам</h2>
-                    <p>Правда в том, что никакого злодея, плена и драмы нет. Есть только я, моя любовь к своему делу и вы, мои дорогие зрители. Хочешь лично убедиться, что всё это лишь выдумки?</p>
-                    <p>Приходи в мой закрытый клуб. Там ты увидишь настоящую меня.</p>
-                    <a href="#" class="btn btn-primary">Вступить и увидеть правду</a>
-                </div>
-            </article>
-        </div>
+                    <div class="rumor-point">
+                        <h3>Rumor: I have no money or success of my own.</h3>
+                        <p>Allegedly, I don’t see a cent because a girl cannot succeed on her own – there must be some sinister puppet master behind her.</p>
+                        <p><strong>Fact:</strong> I am a successful and financially independent professional. It’s more convenient for some to believe in a mysterious "kidnapper" than to acknowledge the role of a woman's effort and talent.</p>
+                    </div>
+
+                    <div class="rumor-point">
+                        <h3>The Author of This Madness?</h3>
+                        <p>It's one especially persistent viewer who positions himself as a knight-savior 🎭. With one hand he writes posts about my “rescue,” and with the other hand… well, he sends daily requests for a private chat to masturbate on camera 🤦‍♀️. We have already uncovered his identity and legal steps will not take long.</p>
+                    </div>
+                    
+                    <div class="rumor-point">
+                        <h3>So what’s the bottom line?</h3>
+                        <p>I continue to do my work and reach new heights. Thank you to all my true fans for your support and common sense. You are the best ❤️. Immerse yourself in my real universe of pleasures — click the button and join right now!</p>
+                    </div>
+                </article>
+                 <a href="https://t.me/your_channel_name" target="_blank" class="cta-button">Join and See for Yourself</a>
+            </div>
+        </section>
+        
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 ehotlovea. Все права защищены. 18+</p>
-            <p><a href="#">Политика конфиденциальности</a></p>
-        </div>
+        <p>&copy; 2025 ehotlovea. All rights reserved. 18+</p>
     </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cursorDot = document.querySelector('.cursor-dot');
+        const backgroundMedia = document.querySelector('.background-media');
+        
+        // --- Custom Cursor & Spotlight Effect ---
+        window.addEventListener('mousemove', e => {
+            const { clientX, clientY } = e;
+            
+            // Update CSS variables for the spotlight mask
+            document.documentElement.style.setProperty('--mouse-x', `${clientX}px`);
+            document.documentElement.style.setProperty('--mouse-y', `${clientY}px`);
+            
+            // Move the custom cursor dot
+            cursorDot.style.transform = `translate(${clientX - 4}px, ${clientY - 4}px)`;
+        });
+
+        // Enlarge spotlight on interactive elements
+        const interactiveElements = document.querySelectorAll('a, button');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.documentElement.style.setProperty('--spotlight-size', '500px');
+                cursorDot.style.transform = `translate(-50%, -50%) scale(0)`; // Hide dot
+            });
+            el.addEventListener('mouseleave', () => {
+                document.documentElement.style.setProperty('--spotlight-size', '400px');
+                cursorDot.style.transform = `translate(-50%, -50%) scale(1)`; // Show dot
+            });
+        });
+
+
+        // --- Scroll Reveal Animations ---
+        const scrollElements = document.querySelectorAll('.scroll-reveal');
+        
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.25)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        // Trigger on load for the first element
+        handleScrollAnimation();
+
+        // --- Counter Animation ---
+        const counter = document.querySelector('.counter');
+        if (counter) {
+             const animateCounter = () => {
+                const target = +counter.getAttribute('data-target');
+                let current = +counter.innerText;
+                const increment = target / 100;
+
+                if (current < target) {
+                    current += increment;
+                    counter.innerText = Math.ceil(current);
+                    requestAnimationFrame(animateCounter);
+                } else {
+                    counter.innerText = new Intl.NumberFormat('en-US').format(target) + '+';
+                }
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !counter.classList.contains('animated')) {
+                        animateCounter();
+                        counter.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(counter);
+        }
+    });
+    </script>
 </body>
 </html>
