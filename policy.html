@@ -16,8 +16,8 @@
         :root {
             --background-color: #000000;
             --text-color: #f0f0f0;
-            --primary-color: #e60073; /* Vivid Pink */
-            --spotlight-size: 400px; /* Size of the spotlight effect */
+            --primary-color: #e60073;
+            --spotlight-size: 400px;
             --font-display: 'Syne', sans-serif;
             --font-body: 'Inter', sans-serif;
         }
@@ -37,25 +37,45 @@
             color: var(--text-color);
             font-family: var(--font-body);
             line-height: 1.7;
-            cursor: none; /* Hide the default cursor */
             overflow-x: hidden;
         }
-
+        
         /* --- Custom Cursor & Spotlight --- */
+        .custom-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
         .cursor-dot {
             width: 8px;
             height: 8px;
             background-color: var(--primary-color);
             border-radius: 50%;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease-out;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            transform: translate(-16px, -16px); /* Center the outline around the dot */
+            transition: transform 0.2s ease-out;
         }
         
+        body.cursor-visible .custom-cursor {
+            opacity: 1;
+        }
+        
+        /* Cursor hover effects */
+        .cursor-hover-active .cursor-dot {
+             opacity: 0;
+        }
+        .cursor-hover-active .cursor-outline {
+            transform: translate(-16px, -16px) scale(1.5);
+            background-color: rgba(230, 0, 115, 0.2);
+        }
+
         .background-media {
             position: fixed;
             top: 0;
@@ -63,32 +83,40 @@
             width: 100vw;
             height: 100vh;
             z-index: -1;
-            
-            -webkit-mask-image: radial-gradient(
-                circle var(--spotlight-size) at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-                black 10%, 
-                transparent 100%
-            );
-            mask-image: radial-gradient(
-                circle var(--spotlight-size) at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-                black 10%, 
-                transparent 100%
-            );
-            transition: -webkit-mask-size 0.3s ease, mask-size 0.3s ease;
         }
         
         .background-media video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.8; /* Make video slightly muted */
+            opacity: 0.7;
+        }
+
+        /* Spotlight effect for desktop with hover capabilities */
+        @media (hover: hover) and (pointer: fine) {
+            body {
+                cursor: none;
+            }
+            .background-media {
+                -webkit-mask-image: radial-gradient(
+                    circle var(--spotlight-size) at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                    black 40%, 
+                    transparent 70%
+                );
+                mask-image: radial-gradient(
+                    circle var(--spotlight-size) at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                    black 40%, 
+                    transparent 70%
+                );
+                transition: -webkit-mask-size 0.4s ease, mask-size 0.4s ease;
+            }
         }
         
         /* --- General Layout & Typography --- */
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 30px;
         }
         
         section {
@@ -96,7 +124,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 120px 20px;
+            padding: 140px 0;
             text-align: center;
         }
 
@@ -106,32 +134,40 @@
             line-height: 1.1;
             text-transform: uppercase;
         }
-
-        h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        h2 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            margin-bottom: 2rem;
-            color: white;
-        }
-        
-        h3 {
-             font-size: clamp(1.5rem, 4vw, 2rem);
-             color: var(--primary-color);
-             margin-bottom: 1rem;
-        }
+        h1 { font-size: clamp(3rem, 10vw, 6rem); color: white; margin-bottom: 1.5rem; }
+        h2 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 2.5rem; color: white; }
+        h3 { font-size: clamp(1.5rem, 4vw, 2rem); color: var(--primary-color); margin-bottom: 1rem; }
 
         p {
             font-size: 1.1rem;
-            max-width: 650px;
+            max-width: 680px;
             margin: 0 auto 1.5rem;
             color: rgba(240, 240, 240, 0.8);
         }
 
+        /* --- Header --- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+        }
+        
         /* --- Buttons & Links --- */
         .cta-button {
             display: inline-block;
@@ -139,19 +175,22 @@
             color: white;
             font-family: var(--font-display);
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-decoration: none;
-            padding: 18px 40px;
+            padding: 16px 35px;
             border-radius: 50px;
             border: 2px solid var(--primary-color);
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        
         .cta-button.secondary {
             background-color: transparent;
             color: var(--primary-color);
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(230, 0, 115, 0.5);
         }
 
         /* --- Scroll Animations --- */
@@ -166,84 +205,51 @@
         }
 
         /* --- SPECIFIC SECTIONS --- */
+        #about p { font-size: 1.2rem; line-height: 1.8; }
         
-        /* Block 2: Who I am */
-        #about p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-        }
-        
-        /* Block 3: Benefits */
         .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: left;
-            margin-top: 3rem;
-            margin-bottom: 3rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem; text-align: left; margin: 3rem auto;
         }
         .benefit-item {
-            padding: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            background: rgba(255,255,255,0.02);
-            backdrop-filter: blur(5px);
+            padding: 2rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 15px;
+            background: rgba(255,255,255,0.02); backdrop-filter: blur(5px);
         }
-        .benefit-item .icon {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        .benefit-item h4 {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            color: white;
-        }
+        .benefit-item .icon { font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .benefit-item h4 { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 0.5rem; color: white; }
         
-        /* Block 4: Social Proof */
         .counter {
-            font-family: var(--font-display);
-            font-size: clamp(5rem, 15vw, 10rem);
-            font-weight: 800;
-            line-height: 1;
-            color: var(--primary-color);
+            font-family: var(--font-display); font-size: clamp(5rem, 15vw, 10rem);
+            font-weight: 800; line-height: 1; color: var(--primary-color);
         }
 
-        /* Rumors Section */
-        #rumors {
-            text-align: left;
-        }
-        #rumors article {
-            margin-top: 4rem;
-        }
-        .rumor-point {
-            margin-bottom: 3rem;
-        }
+        #rumors { text-align: left; }
+        #rumors article { margin-top: 4rem; }
+        .rumor-point { margin-bottom: 3.5rem; }
+        .rumor-point strong { color: var(--primary-color); font-weight: 500; }
         blockquote {
-            padding-left: 1.5rem;
-            border-left: 3px solid var(--primary-color);
-            margin: 1rem 0;
-            font-style: italic;
-            color: rgba(240, 240, 240, 0.7);
+            padding-left: 1.5rem; border-left: 3px solid var(--primary-color);
+            margin: 1.5rem 0; font-style: italic; color: rgba(240, 240, 240, 0.7);
         }
         
-        /* Footer */
         .footer {
-            padding: 40px 20px;
-            text-align: center;
+            padding: 50px 30px; text-align: center;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
-        .footer p {
-            font-size: 0.9rem;
-            color: rgba(240, 240, 240, 0.5);
-            margin: 0;
-        }
+        .footer p { font-size: 0.9rem; color: rgba(240, 240, 240, 0.5); margin: 0; }
     </style>
 </head>
 <body>
+    
+    <div class="custom-cursor cursor-dot"></div>
+    <div class="custom-cursor cursor-outline"></div>
 
-    <div class="cursor-dot"></div>
+    <header class="header">
+        <div class="container">
+            <a href="#intro" class="logo">ehotlovea</a>
+            <a href="https://t.me/your_channel_name" target="_blank" class="cta-button">Join</a>
+        </div>
+    </header>
 
     <div class="background-media">
         <video playsinline autoplay muted loop poster="https://via.placeholder.com/1920x1080/000000/FFFFFF?text=Loading...">
@@ -282,19 +288,20 @@
                      <div class="benefit-item">
                          <div class="icon"><i class="fas fa-video"></i></div>
                          <h4>Free Videos</h4>
-                         <p>Candid clips available only to my subscribers.</p>
+                         <p>In my Telegram channel I share candid clips available only to subscribers.</p>
                      </div>
                      <div class="benefit-item">
                          <div class="icon"><i class="fas fa-users"></i></div>
                          <h4>Fun Streams</h4>
-                         <p>Sometimes I go live with hot girlfriends. Double the pleasure!</p>
+                         <p>Sometimes I go live not alone, but with hot girlfriends. Double the pleasure!</p>
                      </div>
                      <div class="benefit-item">
                          <div class="icon"><i class="fas fa-comments"></i></div>
                          <h4>Fan Chat (Soon)</h4>
-                         <p>A real community where we can communicate and share impressions.</p>
+                         <p>A place where my fans will be able to communicate and become a real community.</p>
                      </div>
                  </div>
+                 <p>All this is already ready for you for free — just click the button and take your access.</p>
                  <a href="https://t.me/your_channel_name" target="_blank" class="cta-button">Join Telegram</a>
             </div>
         </section>
@@ -304,7 +311,7 @@
                 <h2>Join The Club</h2>
                 <div class="counter" data-target="13000">0</div>
                 <p>
-                    Thousands of people have already become part of our private club. They receive what many can only dream about. Don’t miss your chance — join and feel yourself in the company of like-minded people!
+                    Imagine: thousands of people have already become part of our private club. They receive what many can only dream about… and only the chosen go further. Don’t miss your chance — join and feel yourself in the company of like-minded people!
                 </p>
                 <a href="https://t.me/your_channel_name" target="_blank" class="cta-button">Join 13,000+ Fans</a>
             </div>
@@ -319,33 +326,37 @@
                 <article>
                     <div class="rumor-point">
                         <h3>Rumor: I am a prisoner.</h3>
-                        <p>According to forum “experts,” I’m a hostage, kept by force and starved. One user even seriously asked:</p>
+                        <p>Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked:</p>
                         <blockquote>“Is ehotlovea a hostage and is she being starved?”</blockquote>
-                        <p><strong>Fact:</strong> It looks like someone has been watching too many thrillers. I'm independent and in perfect health.</p>
-                    </div>
-                    
-                    <div class="rumor-point">
-                        <h3>Rumor: I am "controlled by a monster."</h3>
-                        <p>They write that my streams are not pleasure for me at all, but sheer torture for the delight of some puppeteer.</p>
-                        <p><strong>Fact:</strong> No one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow. Everything I have achieved is the result of my own effort, strategy, and hard work.</p>
+                        <p><strong>Fact:</strong> Looks like someone has been watching too many thrillers.</p>
                     </div>
 
                     <div class="rumor-point">
-                        <h3>Rumor: I have no money or success of my own.</h3>
-                        <p>Allegedly, I don’t see a cent because a girl cannot succeed on her own – there must be some sinister puppet master behind her.</p>
-                        <p><strong>Fact:</strong> I am a successful and financially independent professional. It’s more convenient for some to believe in a mysterious "kidnapper" than to acknowledge the role of a woman's effort and talent.</p>
+                        <h3>Rumor: I am “controlled by a monster.”</h3>
+                        <p>According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</p>
+                        <p><strong>Fact:</strong> No one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow.</p>
+                    </div>
+
+                    <div class="rumor-point">
+                        <h3>Rumor: I am constantly on the run.</h3>
+                        <p>Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. Someone even claimed that I was “transported through a dozen places in half a dozen countries”.</p>
+                         <p><strong>Fact:</strong> I simply love to travel. It inspires me and makes my shows more diverse.</p>
                     </div>
 
                     <div class="rumor-point">
                         <h3>The Author of This Madness?</h3>
-                        <p>It's one especially persistent viewer who positions himself as a knight-savior 🎭. With one hand he writes posts about my “rescue,” and with the other hand… well, he sends daily requests for a private chat to masturbate on camera 🤦‍♀️. We have already uncovered his identity and legal steps will not take long.</p>
+                        <p>One especially persistent viewer positions himself as some sort of knight-savior 🎭. However, reality is far more banal. This very “savior” is my constant guest in the chat, who simply wants to masturbate on camera 🤦‍♀️. That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing.</p>
                     </div>
                     
                     <div class="rumor-point">
-                        <h3>So what’s the bottom line?</h3>
-                        <p>I continue to do my work and reach new heights. Thank you to all my true fans for your support and common sense. You are the best ❤️. Immerse yourself in my real universe of pleasures — click the button and join right now!</p>
+                        <h3>And now – to the facts.</h3>
+                        <p>Ready to know the truth, not the fairy tale? It is very simple: there is no villain, no captivity, and no drama whatsoever. There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved is the result of my own effort, a well-thought-out strategy, and hard work. 🎓</p>
+                        <p>Of course, it’s much more convenient to believe that behind someone’s success stands a mysterious “kidnapper” than to acknowledge the role of effort and talent. But the reality is this: no one controls me. I especially want to mention the Chaturbate support team. These guys are true pros, always ready to help. 💙 Do you think that if something really bad were happening to me, it would go unnoticed? Not a chance.</p>
+                        <p>We have already uncovered the identity of that very storyteller (thanks to my clever Eric 😉). Legal steps will not take long. We’ll all laugh together later, when this person has to answer for his words to the full extent of the law.</p>
+                        <p><strong>The bottom line is – I continue to do my work and reach new heights.</strong> ✨ And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me. Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
                     </div>
                 </article>
+                <p>Immerse yourself in my universe of pleasures — click the button and join right now!</p>
                  <a href="https://t.me/your_channel_name" target="_blank" class="cta-button">Join and See for Yourself</a>
             </div>
         </section>
@@ -358,91 +369,110 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const cursorDot = document.querySelector('.cursor-dot');
-        const backgroundMedia = document.querySelector('.background-media');
         
-        // --- Custom Cursor & Spotlight Effect ---
-        window.addEventListener('mousemove', e => {
-            const { clientX, clientY } = e;
-            
-            // Update CSS variables for the spotlight mask
-            document.documentElement.style.setProperty('--mouse-x', `${clientX}px`);
-            document.documentElement.style.setProperty('--mouse-y', `${clientY}px`);
-            
-            // Move the custom cursor dot
-            cursorDot.style.transform = `translate(${clientX - 4}px, ${clientY - 4}px)`;
-        });
+        // --- Custom Cursor & Spotlight Logic ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const body = document.body;
 
-        // Enlarge spotlight on interactive elements
-        const interactiveElements = document.querySelectorAll('a, button');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                document.documentElement.style.setProperty('--spotlight-size', '500px');
-                cursorDot.style.transform = `translate(-50%, -50%) scale(0)`; // Hide dot
+        const mouse = { x: -100, y: -100 }; // Current mouse position
+        const pos = { x: 0, y: 0 }; // Smoothed cursor position
+        const speed = 0.1;
+        let isCursorVisible = false;
+
+        // Check for touch device to disable custom cursor
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        if (!isTouchDevice) {
+            window.addEventListener('mousemove', e => {
+                if (!isCursorVisible) {
+                    isCursorVisible = true;
+                    body.classList.add('cursor-visible');
+                }
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
             });
-            el.addEventListener('mouseleave', () => {
-                document.documentElement.style.setProperty('--spotlight-size', '400px');
-                cursorDot.style.transform = `translate(-50%, -50%) scale(1)`; // Show dot
+            
+            const updateCursor = () => {
+                const diffX = mouse.x - pos.x;
+                const diffY = mouse.y - pos.y;
+                pos.x += diffX * speed;
+                pos.y += diffY * speed;
+
+                cursorDot.style.transform = `translate(${mouse.x - 4}px, ${mouse.y - 4}px)`;
+                cursorOutline.style.transform = `translate(${pos.x - 20}px, ${pos.y - 20}px)`;
+
+                // Update CSS variables for the spotlight mask
+                document.documentElement.style.setProperty('--mouse-x', `${mouse.x}px`);
+                document.documentElement.style.setProperty('--mouse-y', `${mouse.y}px`);
+
+                requestAnimationFrame(updateCursor);
+            };
+            updateCursor();
+
+            // Handle cursor hover effects
+            const interactiveElements = document.querySelectorAll('a, button');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    body.classList.add('cursor-hover-active');
+                    document.documentElement.style.setProperty('--spotlight-size', '500px');
+                });
+                el.addEventListener('mouseleave', () => {
+                    body.classList.remove('cursor-hover-active');
+                    document.documentElement.style.setProperty('--spotlight-size', '400px');
+                });
             });
-        });
+             body.addEventListener('mouseleave', () => {
+                isCursorVisible = false;
+                body.classList.remove('cursor-visible');
+            });
+        }
 
 
         // --- Scroll Reveal Animations ---
         const scrollElements = document.querySelectorAll('.scroll-reveal');
-        
-        const elementInView = (el, dividend = 1) => {
-            const elementTop = el.getBoundingClientRect().top;
-            return (
-                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
-            );
-        };
-        
-        const displayScrollElement = (element) => {
-            element.classList.add('visible');
-        };
-        
-        const handleScrollAnimation = () => {
-            scrollElements.forEach((el) => {
-                if (elementInView(el, 1.25)) {
-                    displayScrollElement(el);
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    scrollObserver.unobserve(entry.target);
                 }
             });
-        };
-        
-        window.addEventListener('scroll', () => {
-            handleScrollAnimation();
-        });
-        // Trigger on load for the first element
-        handleScrollAnimation();
+        }, { threshold: 0.1 });
+
+        scrollElements.forEach(el => scrollObserver.observe(el));
 
         // --- Counter Animation ---
         const counter = document.querySelector('.counter');
         if (counter) {
              const animateCounter = () => {
                 const target = +counter.getAttribute('data-target');
-                let current = +counter.innerText;
-                const increment = target / 100;
-
-                if (current < target) {
-                    current += increment;
-                    counter.innerText = Math.ceil(current);
-                    requestAnimationFrame(animateCounter);
-                } else {
-                    counter.innerText = new Intl.NumberFormat('en-US').format(target) + '+';
-                }
+                let current = 0;
+                const duration = 2000; // 2 seconds
+                const stepTime = Math.abs(Math.floor(duration / target));
+                
+                const timer = setInterval(() => {
+                    current += Math.ceil(target/100);
+                    if (current >= target) {
+                        clearInterval(timer);
+                        counter.innerText = new Intl.NumberFormat('en-US').format(target) + '+';
+                        return;
+                    }
+                    counter.innerText = new Intl.NumberFormat('en-US').format(current);
+                }, stepTime > 0 ? stepTime : 1);
             };
             
-            const observer = new IntersectionObserver((entries) => {
+            const counterObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && !counter.classList.contains('animated')) {
                         animateCounter();
                         counter.classList.add('animated');
-                        observer.unobserve(entry.target);
+                        counterObserver.unobserve(entry.target);
                     }
                 });
             }, { threshold: 0.5 });
             
-            observer.observe(counter);
+            counterObserver.observe(counter);
         }
     });
     </script>
