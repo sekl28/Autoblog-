@@ -3,129 +3,610 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Unveiling | My Truth Exposed</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Manrope:wght@300;400&display=swap" rel="stylesheet">
+    <title>Exclusive Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
+        /* --- Global Styles & Variables (Neon Noir Palette) --- */
         :root {
-            --color-primary: #db00ff; /* Neon Purple */
-            --color-secondary: #00f2ff; /* Neon Cyan */
-            --color-background: #0a041c; /* Deep Dark Purple */
-            --color-surface: rgba(25, 15, 40, 0.7); /* Translucent dark surface */
-            --color-text: #e1dff8; /* Off-white text */
-            --color-text-muted: #a099b3; /* Muted grey-purple text */
-            --font-main: 'Manrope', sans-serif;
-            --font-heading: 'Inter', sans-serif;
+            --bg-main: #05050f;
+            --bg-card: #1a1a2e;
+            --neon-pink: #ff0077;
+            --neon-cyan: #00ffff;
+            --text-color: #f0f0f0;
+            --text-dim: #aaaaaa;
+            --font-main: 'Inter', sans-serif;
+            --font-display: 'Orbitron', sans-serif;
         }
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: var(--color-background);
-            color: var(--color-text);
+            background-color: var(--bg-main);
+            color: var(--text-color);
             font-family: var(--font-main);
+            line-height: 1.6;
             overflow-x: hidden;
-            cursor: none; /* Hide default cursor */
         }
-        .cursor-dot, .cursor-outline {
-            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; z-index: 9999;
-            transition: transform 0.15s ease-out, width 0.15s ease-out, height 0.15s ease-out;
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .cursor-dot { width: 8px; height: 8px; background-color: var(--color-primary); }
-        .cursor-outline { width: 40px; height: 40px; border: 2px solid var(--color-primary); opacity: 0.5; }
-        .spotlight {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;
-            background: radial-gradient(circle at 50% 50%, rgba(219, 0, 255, 0.08), transparent 25%);
+
+        .text-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-        .section {
-            min-height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; padding: 100px 0; position: relative;
-        }
-        .hero { text-align: center; position: relative; overflow: hidden; }
-        #hero-video-bg {
-            position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: cover;
-            transform: translate(-50%, -50%); z-index: -2; opacity: 0.15; filter: blur(8px);
-        }
-        .hero-content h1 {
-            font-family: var(--font-heading); font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 900; letter-spacing: -0.04em; line-height: 1.1;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 24px; animation: text-float 5s ease-in-out infinite;
-        }
-        .hero-content p {
-            font-size: clamp(1rem, 2vw, 1.25rem); color: var(--color-text-muted); max-width: 600px; margin: 0 auto;
-        }
-        @keyframes text-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .content-section { padding: 100px 0; }
-        .content-grid {
-            display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); /* Text column slightly wider */
-            gap: 60px; align-items: flex-start;
-        }
-        .image-column { height: 100%; }
-        .image-sticky-container {
-            position: sticky; top: 80px; padding: 20px; background-color: var(--color-surface);
-            border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px); box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-        #sticky-image {
-            width: 100%; height: auto; border-radius: 12px; object-fit: cover;
-            aspect-ratio: 3/4; /* Maintain aspect ratio */
-            opacity: 1; transition: opacity 0.5s ease-in-out;
-        }
-        .content-section h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 60px; font-weight: 900;
-            background: linear-gradient(90deg, var(--color-secondary), var(--color-primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-align: left;
-        }
-        .text-card {
-            background: var(--color-surface); padding: 32px; border-radius: 16px;
-            margin-bottom: 60px; border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px); box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            opacity: 0; animation: fade-in-up linear forwards;
-            animation-timeline: view(); animation-range-start: entry 10%; animation-range-end: entry 50%;
-        }
-        @keyframes fade-in-up { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
-        .text-card p, .text-card li { line-height: 1.8; font-size: 1.1rem; margin-bottom: 1em; }
-        .text-card p:last-child, .text-card li:last-child { margin-bottom: 0; }
-        .text-card strong { color: var(--color-primary); font-weight: bold; }
-        .text-card i { color: var(--color-secondary); font-style: italic;}
-        .text-card ul { list-style: none; padding-left: 0; }
-        .text-card li::before { content: '⚡'; margin-right: 15px; color: var(--color-primary); }
+
+        /* --- Utility & Animations --- */
+
+        /* Standard CTA Button */
         .cta-button {
-            display: inline-block; background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)); color: #fff; text-decoration: none;
-            padding: 18px 36px; border-radius: 50px; font-weight: 700; text-align: center;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; box-shadow: 0 10px 30px rgba(219, 0, 255, 0.3);
-            border: none; cursor: none; position: relative;
+            display: inline-block;
+            background-color: var(--neon-pink);
+            color: var(--bg-main);
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 0, 119, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .cta-center { text-align: center; margin: 40px 0; }
-        footer { text-align: center; padding: 50px 24px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: var(--color-text-muted); }
-        @media (max-width: 900px) {
-            .content-grid { grid-template-columns: 1fr; }
-            .image-column { display: none; }
-            .content-section h2 { text-align: center; }
+
+        .cta-button:hover {
+            box-shadow: 0 0 20px var(--neon-pink), 0 0 40px rgba(255, 0, 119, 0.7);
+            transform: scale(1.05);
         }
+
+        /* Floating Fixed CTA Button */
+        .cta-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 20px;
+            background-color: var(--neon-pink);
+            color: #fff;
+            font-weight: 700;
+            border-radius: 10px;
+            z-index: 900;
+            text-decoration: none;
+            /* Pulsating animation */
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 5px var(--neon-pink); }
+            50% { box-shadow: 0 0 25px var(--neon-pink), 0 0 50px rgba(255, 0, 119, 0.7); }
+            100% { box-shadow: 0 0 5px var(--neon-pink); }
+        }
+
+
+        /* Advanced Glitch Effect (Using clip-path for modern look) */
+        .glitch {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            position: relative;
+            color: white;
+            animation: glitch-skew 1s infinite linear alternate-reverse;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            overflow: hidden;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--neon-cyan);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--neon-pink);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-skew { 10% { transform: skew(2deg); } }
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(40% 0 60% 0); }
+            20% { clip-path: inset(80% 0 10% 0); }
+            40% { clip-path: inset(10% 0 85% 0); }
+            60% { clip-path: inset(50% 0 50% 0); }
+            80% { clip-path: inset(5% 0 90% 0); }
+            100% { clip-path: inset(90% 0 5% 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(70% 0 30% 0); }
+            20% { clip-path: inset(20% 0 75% 0); }
+            40% { clip-path: inset(60% 0 30% 0); }
+            60% { clip-path: inset(15% 0 80% 0); }
+            80% { clip-path: inset(85% 0 10% 0); }
+            100% { clip-path: inset(30% 0 65% 0); }
+        }
+
+        /* Scroll Animations (Fade-in) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- 18+ Modal --- */
+        #age-verification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            /* Modern blur effect */
+            backdrop-filter: blur(15px);
+            transition: opacity 0.5s ease;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--neon-pink);
+            box-shadow: 0 0 50px rgba(255, 0, 119, 0.3);
+            max-width: 500px;
+        }
+        .modal-content h2 {
+            font-family: var(--font-display);
+            color: var(--neon-pink);
+            margin-bottom: 20px;
+        }
+        .modal-buttons button {
+            padding: 10px 25px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+        #confirm-age { background-color: var(--neon-pink); color: var(--bg-main); }
+        #exit-site { background-color: transparent; color: var(--text-dim); border: 1px solid var(--text-dim); }
+
+
+        /* --- Hero/Intro Section (Знакомство) --- */
+        #intro {
+            padding: 80px 0;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* Background gradient for depth */
+            background: radial-gradient(circle at center, rgba(255, 0, 119, 0.1) 0%, var(--bg-main) 70%);
+        }
+
+        #intro p {
+            color: var(--text-dim);
+            margin-bottom: 40px;
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto 30px;
+        }
+
+        #main-video-wrapper {
+            border: 1px solid var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Scanline effect overlay */
+        #main-video-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.2) 0px,
+                rgba(0, 0, 0, 0.2) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        #mainVideo {
+            width: 100%;
+            display: block;
+            /* Modern way to handle aspect ratio */
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background-color: #000; /* Fallback color */
+        }
+
+        .video-thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .thumbnail {
+            width: 120px;
+            height: 70px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            overflow: hidden;
+            opacity: 0.7;
+        }
+
+        .thumbnail img {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+        }
+
+        .thumbnail:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--neon-pink);
+        }
+
+        .thumbnail.active {
+            opacity: 1;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        /* --- Rumors Section (Слухи обо мне) --- */
+        #rumors {
+            padding: 100px 0;
+            background-color: #0a0a1a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #rumors h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px rgba(255, 0, 119, 0.5);
+        }
+
+        #rumors h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--neon-cyan);
+        }
+
+        #rumors p {
+            margin-bottom: 20px;
+        }
+
+        .rumor-list {
+            margin: 30px 0;
+        }
+
+        /* Card styling for the rumors list */
+        .rumor-card {
+            background-color: var(--bg-card);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            /* Accent border */
+            border-left: 4px solid var(--neon-cyan);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .rumor-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .rumor-card strong {
+            color: var(--text-color);
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            background-color: rgba(255, 0, 119, 0.2);
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: var(--neon-pink);
+            font-weight: bold;
+        }
+
+        .cta-center {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            background-color: var(--bg-main);
+        }
+
+        .warning {
+            display: inline-block;
+            color: #ffcc00;
+            border: 1px solid #ffcc00;
+            padding: 10px 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .glitch {
+                font-size: 2.5rem;
+            }
+            #rumors h2 {
+                font-size: 2rem;
+            }
+            .video-thumbnails {
+                flex-wrap: wrap;
+            }
+            .thumbnail {
+                width: 100px;
+                height: 60px;
+            }
+            .cta-float {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-    <div class="spotlight"></div>
+    <a href="YOUR_TELEGRAM_LINK" target="_blank" class="cta-float">
+        🔞 Join Private TG
+    </a>
 
-    <section class="hero section">
-        <video id="hero-video-bg" src="path/to/your/video-bg.mp4" autoplay muted loop playsinline></video>
-        <div class="container">
-            <div class="hero-content">
-                <h1>The Unveiling</h1>
-                <p>They write the fiction. I'll give you the facts. Scroll down to uncover the truth about me.</p>
+    <div id="age-verification">
+        <div class="modal-content">
+            <h2>WARNING: 18+</h2>
+            <p>This site contains adult material. You must be 18 years or older to enter.</p>
+            <div class="modal-buttons">
+                <button id="confirm-age">I am 18+</button>
+                <button id="exit-site">Exit</button>
+            </div>
+        </div>
+    </div>
+
+    <section id="intro" class="container reveal">
+        <h1 class="glitch" data-text="Welcome">Welcome</h1>
+        <p>You found the place where the rumors end and reality begins.</p>
+
+        <div class="video-container">
+            <div id="main-video-wrapper">
+                <video id="mainVideo" controls autoplay muted loop playsinline>
+                    <source src="video1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="video-thumbnails">
+                <div class="thumbnail active" data-video="video1.mp4">
+                    <img src="thumb1.jpg" alt="Video preview 1">
+                </div>
+                <div class="thumbnail" data-video="video2.mp4">
+                     <img src="thumb2.jpg" alt="Video preview 2">
+                </div>
+                <div class="thumbnail" data-video="video3.mp4">
+                     <img src="thumb3.jpg" alt="Video preview 3">
+                </div>
+                <div class="thumbnail" data-video="video4.mp4">
+                     <img src="thumb4.jpg" alt="Video preview 4">
+                </div>
+                 <div class="thumbnail" data-video="video5.mp4">
+                     <img src="thumb5.jpg" alt="Video preview 5">
+                </div>
+            </div>
+        </div>
+        
+        <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">Get Full Access Now</a>
+    </section>
+
+    <section id="rumors">
+        <div class="container text-content">
+            <h2 class="reveal">Rumors About Me</h2>
+
+            <div class="reveal">
+                <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around <span class="highlight">ehotlovea</span> there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:</p>
+            </div>
+
+            <div class="rumor-list reveal">
+                <div class="rumor-card">
+                    <strong>I am a prisoner.</strong> Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: “Is ehotlovea a hostage and is she being starved?” Looks like someone has been watching too many thrillers.
+                </div>
+                <div class="rumor-card">
+                    <strong>I am “controlled by a monster.”</strong> According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.
+                </div>
+                <div class="rumor-card">
+                    <strong>I am constantly on the run in different countries.</strong> Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. Someone even claimed that I was “transported through a dozen places in half a dozen countries” – as if Interpol can’t keep up with me!
+                </div>
+                <div class="rumor-card">
+                    <strong>Secret services and human rights defenders are watching me.</strong> Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.” At this point, you might as well grab popcorn!
+                </div>
+                <div class="rumor-card">
+                    <strong>I have no money or success of my own.</strong> Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent. All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?
+                </div>
+            </div>
+
+            <div class="reveal">
+                <p>Sounds insane? That’s because it is pure madness. But let’s see who the author of all this phantasmagoria is. Here comes one especially persistent viewer. He is the one who creates most of these threads on the forums, typing “exposés” under different nicknames and fueling the drama. He positions himself as some sort of knight-savior: supposedly he alone has seen the truth and exposed everyone. 🎭</p>
+            </div>
+
+            <div class="cta-center reveal">
+                <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">Get the Real Story on Telegram</a>
+            </div>
+
+            <div class="reveal">
+                <p>However, reality is far more banal. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. And you know why? <span class="highlight">Simply to masturbate on camera. 🤦‍♀️</span> That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing. I’m not even offended anymore – it just makes me laugh.</p>
+
+                <p>This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. He invented me a new name, a biography, a villain-“kidnapper” – and fell in love with his own fairy tale. Even other forum users are already rolling their eyes: many have noticed that our author is not in search of truth at all but simply obsessed with me. One commenter directly wrote that the behavior of this “savior” is very similar to that of a typical “simp” who doesn’t actually want to expose anything but is head over heels in love with Alice and is desperately seeking attention. Exactly right! Our would-be knight doesn’t so much want to save me as he dreams, apparently, that I will appreciate his “heroism.” Well, dreams don’t cost anything.</p>
+
+                <p>I can already foresee the next move of this conspiracist. As soon as I publish a rebuttal (like this text), he will surely pop up with a new conspiracy theory. He will probably cry out into the internet void: “Wake up, don’t believe her! All of this was written on the orders of that very villain, it’s part of the plan!” 😀 Well, we’ve already figured you out too, my paranoid friend. Your scenario is clear in advance, and it is just as ridiculous as all the previous ones.</p>
+            </div>
+
+            <h3 class="reveal">The Facts</h3>
+
+            <div class="reveal">
+                <p>And now – to the facts. Ready to know the truth, not the fairy tale? It is very simple and, perhaps, will disappoint some: there is no villain, no captivity, and no drama whatsoever.</p>
+
+                <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result of my own effort, a well-thought-out strategy, and hard work. Yes, sometimes I work many hours in a row, travel, try new things – but I do it by choice, because I have a dream and a clear plan on how to achieve it. Want to succeed in life? You’ll have to work hard and be persistent – that’s the whole secret. 🎓</p>
+
+                <p>Of course, it’s much more convenient to believe that behind someone’s success stands a mysterious “kidnapper” or a “rich sponsor” than to acknowledge the role of effort and talent. But the reality is this: no one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow. By the way, speaking of professionals: I especially want to mention the Chaturbate support team. These guys are true pros, always ready to help and solving every issue quickly. 💙 This really is the best platform, where they take care of the safety and comfort of models properly. Do you think that if something really bad were happening to me, it would go unnoticed? Not a chance – not by my team, nor by the platform.</p>
+            </div>
+
+            <h3 class="reveal">The Consequences</h3>
+
+            <div class="reveal">
+                <p>And one last thing worth mentioning. I do not intend to let this situation with dirty slander go unchecked. We have already uncovered the identity of that very storyteller (thanks to my clever Eric, who helped to trace this character through his own broadcasts). 😉 Legal steps will not take long. Right now, I have other projects and ideas as a priority, but in the near future we will prepare all the necessary materials and file a complaint with the appropriate authorities. Believe me, we have enough evidence – his entire forum “creativity” is saved, along with many other actions that I cannot reveal so as not to alarm him. We’ll all laugh together later, when this person has to answer for his words to the full extent of the law.</p>
+            </div>
+
+            <h3 class="reveal">The Bottom Line</h3>
+
+            <div class="reveal">
+                <p>So what’s the bottom line? The bottom line is – I continue to do my work and reach new heights, which I wish for you as well. ✨ Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 More is coming soon, there are many interesting things ahead! Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
+            </div>
+
+             <div class="cta-center reveal">
+                 <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">Join Me Now 🔥</a>
             </div>
         </div>
     </section>
 
-    <main class="content-section">
+    <footer>
         <div class="container">
-            <div class="content-grid">
-                <div class="text-column">
-                    <h2>The Rumors</h2>
+            <div class="warning">18+ ADULTS ONLY</div>
+            <p>&copy; 2025 [Your Model Name/Brand]. All Rights Reserved.</p>
+        </div>
+    </footer>
 
-                    <div class="text-card" data-image-src="data:image/jpeg;base64,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
+    <script>
+        // --- 1. Age Verification Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const ageModal = document.getElementById('age-verification');
+            const confirmButton = document.getElementById('confirm-age');
+            const exitButton = document.getElementById('exit-site');
+
+            // Check if age was previously verified (using sessionStorage for the session)
+            if (sessionStorage.getItem('ageVerified') === 'true') {
+                ageModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            } else {
+                // Prevent scrolling behind modal if not verified
+                document.body.style.overflow = 'hidden';
+            }
+
+            confirmButton.addEventListener('click', () => {
+                sessionStorage.setItem('ageVerified', 'true');
+                ageModal.style.opacity = '0'; // Start fade out
+                document.body.style.overflow = 'auto';
+                // Hide modal completely after animation
+                setTimeout(() => {
+                    ageModal.style.display = 'none';
+                }, 500);
+            });
+
+            exitButton.addEventListener('click', () => {
+                // Redirect user away if they don't confirm
+                window.location.href = 'https://www.google.com';
+            });
+        });
+
+        // --- 2. Video Switching Functionality ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainVideo = document.getElementById('mainVideo');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', () => {
+                    // Prevent reloading if the same video is clicked
+                    if (thumb.classList.contains('active')) return;
+
+                    const videoUrl = thumb.getAttribute('data-video');
+
+                    // Update active classes
+                    document.querySelector('.thumbnail.active').classList.remove('active');
+                    thumb.classList.add('active');
+
+                    // Change the video source and play it smoothly
+                    mainVideo.src = videoUrl;
+                    mainVideo.play().catch(error => {
+                        console.error("Error playing video:", error);
+                    });
+                });
+            });
+        });
+
+        // --- 3. Scroll Animation (Intersection Observer) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Element appears when 10% of it is visible
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            revealElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+</body>
+</html>
