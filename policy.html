@@ -15,16 +15,12 @@
 
     <style>
         /* ==========================================================================
-           THE KINETIC & ADAPTIVE GRID
-           PART 1/5: HTML Structure & Core CSS Foundation
-           Analysis: This part establishes the complete HTML with all final text.
-           The CSS section defines an extensive design system in :root, covering
-           a full typographic scale, spacing system, color palette, and animation
-           variables for a high-fidelity, adaptive result.
+           THE UNFILTERED EXPERIENCE - Brutalist Collage Concept
+           FINAL CORRECTED VERSION
         ========================================================================== */
 
         /* * -------------------------------------------
-         * Section I: COMPREHENSIVE DESIGN SYSTEM
+         * Section I: DESIGN SYSTEM
          * ------------------------------------------- */
         :root {
             /* Colors */
@@ -40,6 +36,9 @@
             --font-mono: 'Roboto Mono', monospace;
 
             /* Spacing */
+            --space-m: 2rem;
+            --space-l: 4rem;
+            --space-xl: 8rem;
             --padding-container: 4vw;
         }
 
@@ -62,7 +61,6 @@
             overflow-x: hidden;
         }
 
-        /* Texture Overlay */
         body::before {
             content: '';
             position: fixed;
@@ -77,510 +75,135 @@
         /* * -------------------------------------------
          * Section III: LAYOUT & STRUCTURE
          * ------------------------------------------- */
-        .main-wrapper {
-            width: 100%;
-            /* The JavaScript will handle complex animations */
-        }
-        
+        .main-wrapper { width: 100%; }
         .section {
-            position: relative;
-            width: 100%;
-            padding: 10vh var(--padding-container);
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            grid-gap: 20px;
-            align-content: center;
+            position: relative; width: 100%; padding: 10vh var(--padding-container);
+            display: grid; grid-template-columns: repeat(12, 1fr);
+            grid-gap: 20px; align-content: center;
         }
-
-        .section-full-height {
-            min-height: 100vh;
-        }
-
+        .section-full-height { min-height: 100vh; }
         .background-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: var(--font-display);
-            font-size: 25vw;
-            color: #000;
-            opacity: 0.05;
-            z-index: 1;
-            pointer-events: none;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-family: var(--font-display); font-size: 25vw; color: #000;
+            opacity: 0.05; z-index: 1; pointer-events: none;
         }
-
-        /* --- Typography Helpers --- */
         .heading-display {
-            font-family: var(--font-display);
-            font-size: clamp(4rem, 10vw, 9rem);
-            line-height: 0.9;
-            text-transform: uppercase;
-            grid-column: 1 / -1;
-            z-index: 3;
+            font-family: var(--font-display); font-size: clamp(4rem, 10vw, 9rem);
+            line-height: 0.9; text-transform: uppercase; grid-column: 1 / -1; z-index: 3;
         }
-
-        .body-text {
-            font-size: 1.2rem;
-            line-height: 1.7;
-            z-index: 3;
-        }
-
+        .body-text { font-size: 1.2rem; line-height: 1.7; z-index: 3; }
         .button {
-            display: inline-block;
-            font-family: var(--font-mono);
-            text-transform: uppercase;
-            text-decoration: none;
-            color: var(--color-text);
-            background: var(--color-accent);
-            padding: 1rem 2rem;
-            z-index: 5;
-            transition: all 0.3s;
+            display: inline-block; font-family: var(--font-mono); text-transform: uppercase;
+            text-decoration: none; color: var(--color-text); background: var(--color-accent);
+            padding: 1rem 2rem; z-index: 5; transition: all 0.3s;
         }
-        .button:hover {
-            transform: scale(1.05);
-        }
-
-        /* ==========================================================================
-           THE UNFILTERED EXPERIENCE - Brutalist Collage Concept
-           PART 2/3: Detailed CSS for Collage Layout, Components, and Themes.
-           Analysis: This CSS brings the raw, energetic aesthetic to life. It uses
-           CSS Grid for the "broken" layout, styles all components, and sets up
-           the dramatic theme change for Act II.
-        ========================================================================== */
+        .button:hover { transform: scale(1.05); }
 
         /* * -------------------------------------------
          * Section IV: COLLAGE & MEDIA ELEMENTS
-         * Styling for the core visual components of the collage.
          * ------------------------------------------- */
         .collage-element {
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative; z-index: 2; overflow: hidden;
+            border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-
-        .collage-element.media {
-            width: 100%;
-            height: 100%;
-            min-height: 400px;
+        .collage-element.media { width: 100%; height: 100%; min-height: 400px; }
+        .collage-element.media video, .collage-element.media img {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; object-fit: cover;
         }
-
-        .collage-element.media video,
-        .collage-element.media img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
 
         /* * -------------------------------------------
          * Section V: SPECIFIC SECTION STYLING
-         * Applying the collage logic to each block.
          * ------------------------------------------- */
-
-        /* --- Intro Section --- */
-        #intro .heading-display {
-            color: var(--color-text);
-            mix-blend-mode: exclusion; /* High-impact text effect */
-        }
-        #intro .body-text {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            background: var(--color-background);
-            padding: var(--space-s);
-        }
-
-        /* --- About Section --- */
-        #about {
-            padding-top: 20vh;
-            padding-bottom: 20vh;
-        }
-        #about h2 {
-            line-height: 1;
-        }
-
-        /* --- Marquee --- */
-        .marquee-section {
-            padding: var(--space-m) 0;
-            overflow: hidden;
-            background: var(--color-accent);
-            color: var(--color-background);
-        }
-        .marquee-wrapper {
-            display: flex;
-            width: fit-content;
-        }
+        #intro .heading-display { color: var(--color-text); mix-blend-mode: exclusion; }
+        #intro .body-text { font-size: clamp(1rem, 2vw, 1.5rem); background: var(--color-background); padding: 1rem; }
+        #about { padding-top: 20vh; padding-bottom: 20vh; }
+        #about h2 { line-height: 1; }
+        .marquee-section { padding: 2rem 0; overflow: hidden; background: var(--color-accent); color: var(--color-background); }
+        .marquee-wrapper { display: flex; width: fit-content; }
         .marquee {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 6vw, 5rem);
-            text-transform: uppercase;
-            white-space: nowrap;
-            animation: marquee-scroll 20s linear infinite;
+            font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem);
+            text-transform: uppercase; white-space: nowrap; animation: marquee-scroll 20s linear infinite;
         }
-        @keyframes marquee-scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        /* --- Benefits & Social Proof Section --- */
-        #benefits-social {
-            align-items: center;
-        }
-        .benefit-list {
-            list-style: none;
-            padding: 0;
-            margin: var(--space-m) 0;
-        }
-        .benefit-list li {
-            font-size: 1.2rem;
-            padding: var(--space-s) 0;
-            font-weight: 700;
-            border-bottom: 2px solid var(--color-text);
-        }
+        @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        #benefits-social { align-items: center; }
+        .benefit-list { list-style: none; padding: 0; margin: 2rem 0; }
+        .benefit-list li { font-size: 1.2rem; padding: 1rem 0; font-weight: 700; border-bottom: 2px solid var(--color-text); }
         .social-proof-number {
-            font-family: var(--font-display);
-            font-size: clamp(8rem, 20vw, 16rem);
-            line-height: 0.8;
-            color: var(--color-accent);
-            -webkit-text-stroke: 2px var(--color-text);
-            text-stroke: 2px var(--color-text);
-            color: transparent;
+            font-family: var(--font-display); font-size: clamp(8rem, 20vw, 16rem);
+            line-height: 0.8; color: var(--color-accent);
+            -webkit-text-stroke: 2px var(--color-text); color: transparent;
         }
-
 
         /* * -------------------------------------------
          * Section VI: ACT II - RUMORS STYLING
-         * A dramatic theme shift for the second part of the story.
          * ------------------------------------------- */
-        #act2 {
-            background: var(--color-dark-bg);
-            color: var(--color-dark-text);
-            position: relative;
-            z-index: 10; /* Ensure it layers on top during transition */
-        }
-        .rumor-block {
-            padding: var(--space-l) 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .rumor-title {
-            font-family: var(--font-mono);
-            font-size: 1.5rem;
-            color: var(--color-accent);
-            text-transform: uppercase;
-            margin-bottom: var(--space-m);
-        }
-        .rumor-block p {
-            font-size: 1.2rem;
-            max-width: 800px;
-        }
+        #act2 { background: var(--color-dark-bg); color: var(--color-dark-text); position: relative; z-index: 10; }
+        .rumor-block { padding: var(--space-l) 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .rumor-title { font-family: var(--font-mono); font-size: 1.5rem; color: var(--color-accent); text-transform: uppercase; margin-bottom: 2rem; }
+        .rumor-block p { font-size: 1.2rem; max-width: 800px; }
         .rumor-block blockquote {
-            font-family: var(--font-body);
-            font-style: italic;
-            font-size: 1.5rem;
-            color: white;
-            padding: var(--space-m);
-            border-left: 3px solid var(--color-accent);
-            background: rgba(0,0,0,0.1);
+            font-family: var(--font-body); font-style: italic; font-size: 1.5rem;
+            color: white; padding: 2rem; border-left: 3px solid var(--color-accent);
+            background: rgba(0,0,0,0.1); margin: 2rem 0;
         }
-        .full-width-text {
-            grid-column: 1 / -1 !important;
-            text-align: center;
-        }
-        .full-width-text h2 {
-            font-family: var(--font-display);
-            color: white;
-            font-size: clamp(3rem, 7vw, 6rem);
-            margin-bottom: var(--space-l);
-        }
-        .full-width-text p {
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .full-width-text .button {
-            margin-top: var(--space-m);
-            background-color: var(--color-accent);
-            color: var(--color-dark-bg);
-        }
-
-        /* ==========================================================================
-           THE KINETIC & ADAPTIVE GRID
-           PART 3/5: Component Styling CSS
-           Analysis: This section focuses on the fine details. It provides
-           explicit styling for every reusable component, ensuring a consistent
-           and polished look and feel throughout the experience. Each component
-           is styled for both light and dark themes.
-        ========================================================================== */
+        .full-width-text { grid-column: 1 / -1 !important; text-align: center; }
+        .full-width-text h2 { font-family: var(--font-display); color: white; font-size: clamp(3rem, 7vw, 6rem); margin-bottom: var(--space-l); }
+        .full-width-text p { margin-left: auto; margin-right: auto; }
+        .full-width-text .button { margin-top: 2rem; background-color: var(--color-accent); color: var(--color-dark-bg); }
 
         /* * -------------------------------------------
-         * Section VIII: MEDIA CONTAINERS (Images & Videos)
+         * Section VIII: MEDIA CONTAINERS & COMPONENTS
          * ------------------------------------------- */
-        .media-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            z-index: 1;
-            min-height: 500px; /* Base height */
-            height: 100%;
-            width: 100%;
-        }
-
-        .media-element {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform-origin: center;
-            /* GSAP will animate scale */
-            scale: 1.2;
-        }
-
-        /* The "curtain" that reveals media elements */
+        .media-container { min-height: 500px; height: 100%; width: 100%; }
+        .media-element { scale: 1.2; }
         .media-revealer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--color-light-accent);
-            z-index: 2;
-            transform-origin: left;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--color-accent); z-index: 2; transform-origin: left;
         }
-
-
-        /* * -------------------------------------------
-         * Section IX: BUTTON COMPONENT
-         * ------------------------------------------- */
         .button {
-            display: inline-block;
-            font-family: var(--font-mono);
-            text-transform: uppercase;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: var(--font-size-sm);
-            padding: var(--space-xs) var(--space-s);
-            z-index: 5;
-            position: relative;
-            border-width: var(--border-width);
-            border-style: solid;
-            transition: color var(--duration-fast), background-color var(--duration-fast);
+            border-width: 2px; border-style: solid;
+            position: relative; overflow: hidden; transform: translateZ(0);
         }
-
-        /* Light theme button styles */
-        #act1 .button {
-            color: var(--color-light-background);
-            background-color: var(--color-light-text);
-            border-color: var(--color-light-text);
-        }
-        #act1 .button:hover {
-            background-color: transparent;
-            color: var(--color-light-text);
-        }
-
-        /* Dark theme button styles */
-        #act2 .button {
-            color: var(--color-dark-background);
-            background-color: var(--color-dark-text);
-            border-color: var(--color-dark-text);
-        }
-        #act2 .button:hover {
-            background-color: transparent;
-            color: var(--color-dark-text);
-        }
-
-
-        /* * -------------------------------------------
-         * Section X: MARQUEE COMPONENT
-         * ------------------------------------------- */
-        .marquee-wrapper {
-            display: flex;
-            width: fit-content;
-        }
-
-        .marquee-text {
-            font-family: var(--font-display);
-            font-size: var(--font-size-xxl);
-            text-transform: uppercase;
-            white-space: nowrap;
-            animation: marquee-scroll 30s linear infinite;
-        }
-
-
-        /* * -------------------------------------------
-         * Section XI: BENEFIT LIST COMPONENT
-         * ------------------------------------------- */
-        .benefit-list {
-            list-style: none;
-            padding: 0;
-            margin: var(--space-m) 0;
-        }
-
-        .benefit-list li {
-            font-size: var(--font-size-lg);
-            font-weight: 500;
-            padding: var(--space-s) 0;
-            border-bottom: var(--border-width) solid var(--color-light-text);
-            transition: color var(--duration-fast);
-        }
-
-        .benefit-list li strong {
-            font-weight: 500;
-        }
-
-        .benefit-list li:hover {
-            color: var(--color-light-accent);
-        }
-
-        /* * -------------------------------------------
-         * Section XII: SOCIAL PROOF COMPONENT
-         * ------------------------------------------- */
-        .social-proof-number {
-            font-family: var(--font-display);
-            font-size: var(--font-size-display);
-            line-height: var(--line-height-tight);
-            color: var(--color-light-accent);
-            -webkit-text-stroke: var(--border-width) var(--color-light-text);
-            text-stroke: var(--border-width) var(--color-light-text);
-            color: transparent;
-        }
-
-
-        /* * -------------------------------------------
-         * Section XIII: RUMOR BLOCK COMPONENTS
-         * ------------------------------------------- */
-        .rumor-title {
-            font-family: var(--font-mono);
-            font-size: var(--font-size-md);
-            color: var(--color-dark-accent);
-            text-transform: uppercase;
-            margin-bottom: var(--space-m);
-        }
-
-        .rumor-block p {
-            font-size: var(--font-size-lg);
-            max-width: 65ch;
-            color: var(--color-dark-text);
-        }
-
-        .rumor-block blockquote {
-            font-family: var(--font-body);
-            font-style: italic;
-            font-size: var(--font-size-xl);
-            color: white;
-            padding-left: var(--space-m);
-            margin: var(--space-m) 0;
-            border-left: 3px solid var(--color-dark-accent);
-        }
-
-        /* Overriding heading styles for dark theme */
-        #act2 .heading-display {
-            color: white;
-        }
-
-        #act2 .full-width-text .body-text {
-            max-width: 60ch;
-        }
-        
-        /* ==========================================================================
-           THE KINETIC & ADAPTIVE GRID
-           PART 4/5: Animations, Transitions, and States CSS
-           Analysis: This section defines all keyframe animations and the initial
-           "before" states for elements that will be animated by GSAP. This
-           separation of animation styling from component styling keeps the
-           code organized and easy to manage.
-        ========================================================================== */
-
-        /* * -------------------------------------------
-         * Section XIV: GSAP INITIAL STATES
-         * Elements are set to be invisible by default, ready for GSAP to animate them in.
-         * ------------------------------------------- */
-        .heading-display,
-        .body-text,
-        .button,
-        .media-container,
-        .benefit-list li,
-        .social-proof-number,
-        .rumor-block,
-        .rumor-title {
-            /* GSAP will animate opacity and transform */
-            opacity: 0;
-            /* This prevents a quick flash of un-animated content before JS loads */
-            visibility: hidden;
-        }
-
-        /* Specific initial states for text animations */
-        .gsap-line, .gsap-word, .gsap-char {
-            overflow: hidden;
-            visibility: visible; /* The parent is hidden, children should be ready */
-        }
-
-
-        /* * -------------------------------------------
-         * Section XV: COMPONENT HOVER STATES & TRANSITIONS
-         * Defining how interactive elements respond to user input.
-         * ------------------------------------------- */
-
-        /* Button Hover Effects */
-        .button {
-            position: relative;
-            overflow: hidden;
-            transform: translateZ(0); /* Promotes to a new layer for better performance */
-        }
-
         .button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--color-light-accent);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform var(--duration-fast) var(--ease-in-out);
-            z-index: -1;
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; background-color: var(--color-accent);
+            transform: scaleX(0); transform-origin: right;
+            transition: transform 0.3s cubic-bezier(0.77, 0, 0.175, 1); z-index: -1;
         }
-
-        #act2 .button::before {
-            background-color: var(--color-dark-accent);
-        }
-
-        .button:hover::before {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        #act1 .button:hover {
-            color: white;
-        }
-        #act2 .button:hover {
-            color: var(--color-dark-background);
-        }
-
-
-        /* Benefit List Hover Effect */
-        .benefit-list li {
-            position: relative;
-            padding-left: var(--space-s);
-        }
-
+        #act2 .button::before { background-color: var(--color-accent); }
+        .button:hover::before { transform: scaleX(1); transform-origin: left; }
+        #act1 .button { color: var(--color-background); background-color: var(--color-text); border-color: var(--color-text); }
+        #act1 .button:hover { background-color: transparent; color: var(--color-text); }
+        #act2 .button { color: var(--color-dark-bg); background-color: var(--color-dark-text); border-color: var(--color-dark-text); }
+        #act2 .button:hover { background-color: transparent; color: var(--color-dark-text); }
+        .benefit-list li { transition: color 0.3s; }
+        .benefit-list li strong { font-weight: 700; }
+        .benefit-list li:hover { color: var(--color-accent); }
         .benefit-list li::before {
-            content: '✹';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--color-light-accent);
-            opacity: 0;
-            transition: opacity var(--duration-fast) var(--ease-in-out);
+            content: '✹'; position: absolute; left: 0; top: 50%;
+            transform: translateY(-50%); color: var(--color-accent);
+            opacity: 0; transition: opacity 0.3s;
         }
+        .benefit-list li:hover::before { opacity: 1; }
 
-        .benefit-list li:hover::before {
-            opacity: 1;
+        /* * -------------------------------------------
+         * Section IX: GSAP INITIAL STATES & ANIMATIONS
+         * ------------------------------------------- */
+        .heading-display, .body-text, .button, .media-container, .benefit-list li, .social-proof-number, .rumor-block {
+            opacity: 0; visibility: hidden;
+        }
+        .gsap-line, .gsap-word, .gsap-char { overflow: hidden; visibility: visible; }
+        
+        /* RESPONSIVE ADAPTATIONS */
+        @media (max-width: 900px) {
+            .heading-display, .body-text, .collage-element, .about__text-content, .benefits__content, .social-proof__content {
+                grid-column: 1 / -1 !important; grid-row: auto !important;
+            }
+            .body-text { font-size: 16px; }
+            #intro .body-text, .about__text-content, .benefits__content, .social-proof__content { text-align: left !important; }
+            #intro .media-container { min-height: 50vh; }
+            #benefits-social .grid-container { gap: var(--space-l); }
         }
 
     </style>
@@ -598,8 +221,7 @@
                     <p class="body-text" style="grid-column: 7 / -1; align-self: end; text-align: right;">
                         Hi! Let’s get to know each other better. I have something to surprise and delight you with. Don’t believe it? Just take a look at least for 5–10 seconds of my real live stream and see for yourself. 😉
                     </p>
-                    
-                    <div class="collage-element media media-container" style="grid-column: 2 / 6; grid-row: 1 / 3; transform: rotate(-5deg);">
+                    <div class="collage-element media media-container" style="grid-column: 2 / 7; grid-row: 1 / 3; transform: rotate(-5deg);">
                         <div class="media-revealer"></div>
                         <video loop muted playsinline src="https://assets.mixkit.co/videos/preview/mixkit-girl-posing-for-the-camera-in-a-meadow-30403-large.mp4" class="media-element"></video>
                     </div>
@@ -612,7 +234,7 @@
                         <div class="media-revealer"></div>
                         <img src="https://images.pexels.com/photos/1848565/pexels-photo-1848565.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Alice looking confident" class="media-element">
                     </div>
-                    <div class="about__text-content" style="grid-column: 1 / 8; grid-row: 1; z-index: 2;">
+                    <div class="about__text-content" style="grid-column: 1 / 8; grid-row: 1; z-index: 4;">
                         <h2 class="heading-display">9 Years of <br>Experience</h2>
                         <p class="body-text">
                             I am a webcam model with 9 years of experience. Over these years I have learned everything about how to give real pleasure to my viewers. I’ve seen a lot and I know exactly what my fans like. Each of my streams is not just a video, but a real show. With me you don’t just watch a broadcast — you dive into a special world where every moment is created for your pleasure. I love to experiment and delight you with new emotions every time.
@@ -623,22 +245,22 @@
             
             <section class="marquee-section">
                 <div class="marquee-wrapper">
-                    <div class="marquee-text">REAL SHOW ✹ EXCLUSIVE ✹ NEW EMOTIONS ✹ REAL SHOW ✹ EXCLUSIVE ✹ NEW EMOTIONS ✹ </div>
-                    <div class="marquee-text">REAL SHOW ✹ EXCLUSIVE ✹ NEW EMOTIONS ✹ REAL SHOW ✹ EXCLUSIVE ✹ NEW EMOTIONS ✹ </div>
+                    <div class="marquee">REAL SHOW ✹ EXCLUSIVE ✹ NEW EMOTIONS ✹ REAL SHOW ✹ EXCLUSIVE ✹ NEW EMOTIONS ✹</div>
+                    <div class="marquee">REAL SHOW ✹ EXCLUSIVE ✹ NEW EMOTIONS ✹ REAL SHOW ✹ EXCLUSIVE ✹ NEW EMOTIONS ✹</div>
                 </div>
             </section>
 
             <section id="benefits-social" class="section">
                 <div class="grid-container">
-                    <div class="benefits__content" style="grid-column: 1 / 8;">
+                    <div class="benefits__content" style="grid-column: 1 / 7;">
                         <h2 class="heading-display">What You Get</h2>
                         <ul class="benefit-list">
                             <li><strong>Free videos:</strong> In my Telegram channel I share candid clips available only to subscribers.</li>
                             <li><strong>Fun streams with other models:</strong> Sometimes I go live not alone, but with hot girlfriends. Double the pleasure!</li>
                             <li><strong>Open fan chat (coming soon):</strong> We are creating a place for a real community.</li>
-                            <li><strong>And this is just the beginning...</strong> Ahead of you there are even more pleasant surprises.</li>
+                            <li><strong>And this is just the beginning...</strong> Ahead of you there are even more pleasant surprises and entertainments.</li>
                         </ul>
-                        <a href="#" target="_blank" class="button">Join Telegram</a>
+                         <a href="#" target="_blank" class="button">Join Telegram</a>
                     </div>
                     <div class="social-proof__content" style="grid-column: 8 / -1;">
                         <div class="social-proof-number">13,000+</div>
@@ -658,23 +280,25 @@
                     </div>
 
                     <div class="rumor-block" style="grid-column: 2 / 12;">
-                        <h3 class="rumor-title">[RUMOR_01]: I am a prisoner.</h3>
+                        <h3 class="rumor-title">• I am a prisoner.</h3>
                         <p>Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: <blockquote>“Is ehotlovea a hostage and is she being starved?”</blockquote> Looks like someone has been watching too many thrillers.</p>
                     </div>
 
                     <div class="rumor-block" style="grid-column: 2 / 12;">
-                        <h3 class="rumor-title">[RUMOR_02]: I am “controlled by a monster.”</h3>
+                        <h3 class="rumor-title">• I am “controlled by a monster.”</h3>
                         <p>According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</p>
                     </div>
-
+                    
                      <div class="rumor-block" style="grid-column: 2 / 12;">
-                        <h3 class="rumor-title">[RUMOR_03-05]: I am on the run, watched by secret services, and have no money.</h3>
+                        <h3 class="rumor-title">• I am constantly on the run, watched by secret services, and have no money.</h3>
                         <p>Forum conspiracists are convinced that I am being moved from city to city, hiding from justice. They released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and that I don’t see a cent of my money. Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?</p>
                     </div>
-                    
+
                     <div class="full-width-text" style="grid-column: 1 / -1; padding: 5vh 0;">
                         <h2>The Author of This Madness?</h2>
                         <p class="body-text">One especially persistent viewer. He positions himself as some sort of knight-savior 🎭. However, reality is far more banal. This very “savior” is my constant guest in the chat... Simply to masturbate on camera. 🤦‍♀️ That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess.</p>
+                        <p class="body-text" style="font-size: 1rem; opacity: 0.8; margin-top: 2rem;">He seems to genuinely believe in the imaginary world he created. Even other forum users are already rolling their eyes: many have noticed that our author is not in search of truth at all but simply obsessed with me. One commenter directly wrote that the behavior of this “savior” is very similar to that of a typical “simp”. Exactly right!</p>
+                        <p class="body-text" style="font-size: 1rem; opacity: 0.8;">I can already foresee his next move. As soon as I publish a rebuttal (like this text), he will surely pop up with a new conspiracy theory: “Wake up, don’t believe her! All of this was written on the orders of that very villain, it’s part of the plan!” 😀</p>
                     </div>
 
                     <div class="full-width-text" style="grid-column: 1 / -1;">
@@ -689,44 +313,36 @@
             </section>
         </div>
     </main>
-
+    
     <script>
         /* ==========================================================================
-           THE UNFILTERED EXPERIENCE - Brutalist Collage Concept
-           PART 5/5: JavaScript Choreography with GSAP.
-           Analysis: This script is the heart of the experience. It uses GSAP and
-           the ScrollTrigger plugin to create a high-end, dynamic scroll experience.
-           Every animation is choreographed for maximum impact and quality.
+           THE KINETIC & ADAPTIVE GRID - FINAL SCRIPT
+           Analysis: This script uses GSAP and its plugins to create a high-end,
+           dynamic scroll experience with choreographed kinetic animations.
         ========================================================================== */
 
         document.addEventListener('DOMContentLoaded', () => {
 
-            // Initialize GSAP and its plugins
             gsap.registerPlugin(ScrollTrigger, SplitText);
 
             // --- 1. SMOOTH SCROLL (LENIS) ---
-            // Creates a smooth, "weighty" scroll feeling for a premium experience.
             const lenis = new Lenis({
                 duration: 1.2,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             });
-
             function raf(time) {
                 lenis.raf(time);
                 requestAnimationFrame(raf);
             }
             requestAnimationFrame(raf);
-
-            gsap.ticker.add((time) => {
+            gsap.ticker.add((time)=>{
                 lenis.raf(time * 1000);
             });
             
             // --- 2. AUTOMATIC VIDEO PLAYBACK ON SCROLL ---
             gsap.utils.toArray('.media-element[src$=".mp4"]').forEach(video => {
-                // Ensure videos are ready to play
                 video.muted = true;
                 video.playsInline = true;
-                
                 ScrollTrigger.create({
                     trigger: video,
                     start: "top 90%",
@@ -739,14 +355,6 @@
             });
 
             // --- 3. CINEMATIC THEME CHANGE (ACT I to ACT II) ---
-            ScrollTrigger.create({
-                trigger: "#act2",
-                start: "top 50%",
-                end: "top 50%",
-                toggleClass: { targets: "body", className: "is-dark-theme" }
-            });
-
-            // GSAP-driven smooth background color transition
             gsap.to('body', {
                 backgroundColor: 'var(--color-dark-bg)',
                 color: 'var(--color-dark-text)',
@@ -760,7 +368,6 @@
             });
 
             // --- 4. CHOREOGRAPHED ENTRANCE ANIMATIONS ---
-            // Headings with a character-by-character reveal
             gsap.utils.toArray('.heading-display').forEach(heading => {
                 const split = new SplitText(heading, { type: "lines,words,chars" });
                 gsap.from(split.chars, {
@@ -778,13 +385,10 @@
                 });
             });
 
-            // Body text with a line-by-line reveal
             gsap.utils.toArray('.body-text, .benefit-list li, .rumor-title').forEach(text => {
-                const split = new SplitText(text, { type: "lines" });
-                gsap.from(split.lines, {
+                gsap.from(text, {
                     opacity: 0,
                     y: 60,
-                    stagger: 0.1,
                     duration: 1,
                     ease: 'power3.out',
                     scrollTrigger: {
@@ -795,11 +399,9 @@
                 });
             });
 
-            // Media with a curtain reveal effect
             gsap.utils.toArray('.media-container').forEach(container => {
                 const revealer = container.querySelector('.media-revealer');
                 const media = container.querySelector('.media-element');
-                
                 const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: container,
@@ -807,7 +409,6 @@
                         toggleActions: 'play none none none',
                     }
                 });
-                
                 tl.to(revealer, {
                     scaleX: 0,
                     duration: 1.2,
@@ -820,7 +421,6 @@
                 }, "-=1.1");
             });
             
-            // Other singular elements
             gsap.from('.button, .social-proof-number', {
                 opacity: 0,
                 y: 50,
@@ -836,7 +436,7 @@
             // --- 5. SUBTLE PARALLAX & KINETIC SCROLL EFFECTS ---
             gsap.utils.toArray('.collage-element').forEach(container => {
                 gsap.to(container, {
-                    yPercent: gsap.utils.random(-15, 10), // Randomize parallax for a more organic feel
+                    yPercent: gsap.utils.random(-15, 10),
                     ease: 'none',
                     scrollTrigger: {
                         trigger: container,
@@ -846,7 +446,6 @@
                     }
                 });
             });
-
         });
     </script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
