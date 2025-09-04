@@ -14,6 +14,8 @@
             --color-text: #f0f0f0;
             --gradient-main: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
             --transition-speed: 0.4s;
+            /* NEW: Define Vertical Aspect Ratio */
+            --video-aspect-ratio: 9 / 16; 
         }
 
         * {
@@ -31,7 +33,6 @@
         }
 
         /* --- Noise/Grain Texture (Premium Feel) --- */
-        /* Adds subtle texture for a less sterile digital look */
         body::before {
             content: "";
             position: fixed;
@@ -39,7 +40,6 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            /* SVG Noise Filter */
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
             opacity: 0.05;
             pointer-events: none;
@@ -52,11 +52,10 @@
         }
 
         /* --- Utility: Glassmorphism --- */
-        /* Frosted glass effect */
         .glass {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px); /* Safari support */
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
@@ -74,7 +73,6 @@
             border: none;
             cursor: pointer;
             transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-            /* Neon Glow */
             box-shadow: 0 0 20px rgba(255, 0, 119, 0.4);
             text-align: center;
         }
@@ -84,56 +82,58 @@
             box-shadow: 0 10px 40px rgba(255, 0, 119, 0.6);
         }
 
-        /* --- Section 1: Hero & Introduction --- */
+        /* --- Section 1: Hero & Introduction (Redesigned Layout) --- */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 80px 20px;
+            padding: 40px 20px;
             position: relative;
             overflow: hidden;
         }
 
         /* Atmospheric Background Glow (Animated) */
-        .hero::before {
+        .hero::before, .hero::after {
             content: '';
             position: absolute;
+            z-index: 1;
+            animation: float 15s ease-in-out infinite alternate;
+        }
+        
+        .hero::before {
             width: 600px;
             height: 600px;
             background: radial-gradient(circle, rgba(157, 0, 255, 0.15) 0%, rgba(10, 10, 26, 0) 70%);
             top: 5%;
             left: 5%;
-            animation: float 15s infinite alternate;
-            z-index: 1;
         }
-
+        
         .hero::after {
-            content: '';
-            position: absolute;
             width: 500px;
             height: 500px;
             background: radial-gradient(circle, rgba(255, 0, 119, 0.1) 0%, rgba(10, 10, 26, 0) 70%);
             bottom: 5%;
             right: 5%;
-            animation: float 12s infinite alternate-reverse;
-            z-index: 1;
+            animation-duration: 12s;
         }
 
         @keyframes float {
             from { transform: translate(0, 0) scale(1); }
-            to { transform: translate(50px, -30px) scale(1.1); }
+            to { transform: translate(30px, -20px) scale(1.1); }
         }
 
         .hero-content {
             text-align: center;
             z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .hero-title {
-            font-size: 5rem;
-            margin-bottom: 10px;
-            /* Gradient Text */
+            font-size: 4.5rem;
+            margin-bottom: 5px;
             background: var(--gradient-main);
             -webkit-background-clip: text;
             background-clip: text;
@@ -141,61 +141,65 @@
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             opacity: 0.8;
         }
 
-        /* --- Video Hub Implementation (The Wow Factor) --- */
+        /* --- Video Hub Implementation (Vertical Video Support) --- */
         .video-hub {
             display: flex;
+            flex-direction: column; /* Stack player and thumbnails */
             align-items: center;
             justify-content: center;
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 30px;
         }
 
-        /* Main Player */
+        /* Main Player (Optimized for Vertical) */
         .video-main-wrapper {
             border-radius: 15px;
             padding: 10px;
-            width: 80vw;
-            max-width: 900px; /* Large size as requested */
-            aspect-ratio: 16 / 9;
             position: relative;
             overflow: hidden;
+            aspect-ratio: var(--video-aspect-ratio);
+
+            /* Desktop: Limit height, width adjusts automatically */
+            height: 70vh; 
+            max-height: 800px;
+            width: auto;
         }
 
         #mainVideoPlayer {
             width: 100%;
             height: 100%;
             border-radius: 10px;
-            transition: opacity 0.5s ease-in-out; /* Smooth transition for switching */
+            transition: opacity 0.5s ease-in-out;
             border: none;
         }
 
         /* Thumbnails (Stories style with Live Previews) */
         .video-thumbnails {
             display: flex;
-            flex-direction: column;
+            flex-direction: row; /* Horizontal layout for thumbnails */
             gap: 25px;
+            justify-content: center;
         }
 
         .thumbnail {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            /* Gradient border setup */
             background: var(--bg-dark);
             padding: 3px;
             position: relative;
         }
 
-        /* Creating the gradient border using mask composite */
+        /* Gradient border visualization */
         .thumbnail::before {
             content: '';
             position: absolute;
@@ -218,16 +222,17 @@
             position: relative;
         }
 
-        /* Embedding iframes in thumbnails for live previews */
+        /* Embedding iframes in thumbnails (UPDATED for Vertical Cropping/Cover) */
         .thumbnail iframe {
             position: absolute;
             top: 50%;
             left: 50%;
-            /* Cropping 16:9 video into a square container */
-            width: 160px; /* 16:9 ratio based on 90px height */
-            height: 90px;
-            transform: translate(-50%, -50%);
-            pointer-events: none; /* Prevent clicking on the iframe itself */
+            /* Cropping 9:16 video into a square container (Cover effect) */
+            /* Width matches container (80px), height is taller (80 * 16/9 = ~143px) */
+            width: 80px; 
+            height: 143px;
+            transform: translate(-50%, -50%); /* Centers the tall video in the circle */
+            pointer-events: none; 
             opacity: 0.6;
             transition: opacity 0.3s ease;
         }
@@ -236,15 +241,10 @@
             transform: scale(1.1);
         }
 
-        .thumbnail:hover iframe {
+        .thumbnail:hover iframe, .thumbnail.active iframe {
             opacity: 1;
         }
 
-        .thumbnail.active iframe {
-            opacity: 1;
-        }
-
-        /* Active state styling */
         .thumbnail.active::before {
             opacity: 1;
             box-shadow: 0 0 25px var(--color-primary);
@@ -256,13 +256,13 @@
 
 
         .hero-cta {
-            margin-top: 50px;
+            margin-top: 30px;
         }
 
         /* --- Section 2: Rumors (Storytelling) --- */
         .rumors-section {
             padding: 150px 0;
-            background-color: #12122b; /* Slightly different background for contrast */
+            background-color: #12122b;
         }
 
         .rumors-container {
@@ -281,13 +281,11 @@
         /* Content Blocks with Scroll Animation */
         .content-block {
             margin-bottom: 60px;
-            /* Setup for scroll animation */
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        /* Class added by JS when in view */
         .content-block.visible {
             opacity: 1;
             transform: translateY(0);
@@ -298,7 +296,6 @@
             font-size: 1.1rem;
         }
 
-        /* Styled List for the rumors (Glass effect on items) */
         .rumor-list {
             list-style: none;
             margin: 40px 0;
@@ -359,43 +356,61 @@
             border-radius: 5px;
         }
 
-        /* --- Responsive Design --- */
-        @media (max-width: 1024px) {
-            /* Stack video player and thumbnails on tablet/mobile */
-            .video-hub {
-                flex-direction: column-reverse;
-                gap: 30px;
-            }
-
-            .video-thumbnails {
-                flex-direction: row;
-                justify-content: center;
-                flex-wrap: wrap;
+        /* --- Responsive Design (Crucial Updates for Mobile) --- */
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 30px;
+                padding-bottom: 50px;
             }
             
-            .video-main-wrapper {
-                 width: 90vw;
-            }
-        }
-
-        @media (max-width: 768px) {
             .hero-title {
-                font-size: 3.5rem;
+                font-size: 3rem;
             }
 
             .rumors-title {
                 font-size: 2.5rem;
             }
 
-            /* Adjust thumbnail size and iframe cropping for mobile */
+            .video-hub {
+                gap: 20px;
+                margin-top: 25px;
+            }
+
+            /* Main Player Mobile Optimization */
+            .video-main-wrapper {
+                /* Mobile: Limit width to 95% of the screen, height adjusts automatically */
+                 width: 95vw;
+                 height: auto;
+                 max-height: 75vh; /* Prevent excessively tall videos from pushing CTA off screen */
+                 padding: 5px;
+            }
+
+            /* Adjust thumbnail size (60px) and iframe cropping for mobile */
             .thumbnail {
-                width: 70px;
-                height: 70px;
+                width: 60px;
+                height: 60px;
             }
+            /* 60px width * 16/9 ratio = ~107px height */
             .thumbnail iframe {
-                width: 124.44px; /* 16:9 ratio for 70px height */
-                height: 70px;
+                width: 60px; 
+                height: 107px;
             }
+            
+            .video-thumbnails {
+                gap: 15px;
+            }
+        }
+        
+        /* Fix for very short screens (e.g., landscape mobile) */
+        @media (max-height: 480px) and (orientation: landscape) {
+             .hero {
+                min-height: auto;
+                padding: 30px 20px;
+             }
+             .video-main-wrapper {
+                height: 60vh;
+                width: auto;
+             }
         }
     </style>
 </head>
@@ -404,9 +419,14 @@
     <header class="hero">
         <div class="hero-content">
             <h1 class="hero-title">ehotlovea</h1>
-            <p class="hero-subtitle">Welcome to my world. Let's get acquainted.</p>
+            <p class="hero-subtitle">Welcome to my world.</p>
 
             <div class="video-hub">
+                
+                <div class="video-main-wrapper glass">
+                    <iframe id="mainVideoPlayer" src="https://iframe.mediadelivery.net/play/490684/5324dc77-45c9-427c-b63d-e74aa4cfc445?autoplay=true&loop=true&muted=true&preload=true" loading="lazy" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>
+                </div>
+                
                 <div class="video-thumbnails">
                     
                     <div class="thumbnail active" data-video-url="https://iframe.mediadelivery.net/play/490684/5324dc77-45c9-427c-b63d-e74aa4cfc445?autoplay=true&loop=true&muted=true&preload=true">
@@ -428,19 +448,15 @@
                     </div>
                     
                     <div class="thumbnail" style="opacity: 0.5; cursor: default;">
-                        <div class="thumbnail-inner glass" style="display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                        <div class="thumbnail-inner glass" style="display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem;">
                             SOON
                         </div>
                     </div>
                 </div>
-
-                <div class="video-main-wrapper glass">
-                    <iframe id="mainVideoPlayer" src="https://iframe.mediadelivery.net/play/490684/5324dc77-45c9-427c-b63d-e74aa4cfc445?autoplay=true&loop=true&muted=true&preload=true" loading="lazy" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>
-                </div>
             </div>
             
             <div class="hero-cta">
-                <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" class="cta-button">Join My Private Telegram Channel</a>
+                <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" class="cta-button">Join My Private Telegram</a>
             </div>
         </div>
     </header>
@@ -551,16 +567,15 @@
                     mainPlayer.style.opacity = 0;
                     setTimeout(() => {
                         mainPlayer.src = videoUrl;
-                        // Fade in after a short delay to allow the iframe to start loading
+                        // Fade in after a short delay
                         setTimeout(() => {
                             mainPlayer.style.opacity = 1;
                         }, 100);
-                    }, 500);
+                    }, 400); // Matches the CSS transition time
                 });
             });
 
             // 2. Scroll Reveal Animation (Makes text appear smoothly on scroll)
-            // Uses the modern Intersection Observer API for performance.
             const revealElements = document.querySelectorAll('.content-block');
 
             const observerOptions = {
