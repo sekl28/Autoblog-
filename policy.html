@@ -87,7 +87,6 @@
             100% { box-shadow: 0 0 5px var(--neon-pink); }
         }
 
-
         /* Advanced Glitch Effect (Using clip-path for modern look) */
         .glitch {
             font-family: var(--font-display);
@@ -119,6 +118,10 @@
             animation: glitch-anim-2 3s infinite linear alternate-reverse;
         }
 
+        @media (prefers-reduced-motion: reduce){
+          .glitch, .glitch::before, .glitch::after { animation: none; }
+        }
+
         @keyframes glitch-skew { 10% { transform: skew(2deg); } }
         @keyframes glitch-anim-1 {
             0% { clip-path: inset(40% 0 60% 0); }
@@ -147,49 +150,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* --- 18+ Modal --- */
-        #age-verification {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            /* Modern blur effect */
-            backdrop-filter: blur(15px);
-            transition: opacity 0.5s ease;
-        }
-
-        .modal-content {
-            background-color: var(--bg-card);
-            padding: 40px;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid var(--neon-pink);
-            box-shadow: 0 0 50px rgba(255, 0, 119, 0.3);
-            max-width: 500px;
-        }
-        .modal-content h2 {
-            font-family: var(--font-display);
-            color: var(--neon-pink);
-            margin-bottom: 20px;
-        }
-        .modal-buttons button {
-            padding: 10px 25px;
-            margin: 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-weight: 700;
-        }
-        #confirm-age { background-color: var(--neon-pink); color: var(--bg-main); }
-        #exit-site { background-color: transparent; color: var(--text-dim); border: 1px solid var(--text-dim); }
-
 
         /* --- Hero/Intro Section (Знакомство) --- */
         #intro {
@@ -254,6 +214,7 @@
             justify-content: center;
             gap: 15px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .thumbnail {
@@ -265,6 +226,8 @@
             border-radius: 5px;
             overflow: hidden;
             opacity: 0.7;
+            outline: 2px solid transparent;
+            outline-offset: 2px;
         }
 
         .thumbnail img {
@@ -273,11 +236,15 @@
              object-fit: cover;
         }
 
-        .thumbnail:hover, .thumbnail:focus {
+        .thumbnail:hover {
             opacity: 1;
             transform: scale(1.1);
             box-shadow: 0 0 15px var(--neon-pink);
-            outline: none;
+        }
+
+        .thumbnail:focus{
+            outline: 2px solid var(--neon-cyan);
+            outline-offset: 2px;
         }
 
         .thumbnail.active {
@@ -394,43 +361,14 @@
                 font-size: 0.9rem;
             }
         }
-        
-        /* --- Accessibility: Reduced Motion --- */
-        @media (prefers-reduced-motion: reduce) {
-          .reveal {
-            transition: none;
-          }
-          .cta-float,
-          .glitch,
-          .glitch::before,
-          .glitch::after {
-            animation: none;
-          }
-          .rumor-card,
-          .thumbnail,
-          .cta-button {
-             transition: none;
-          }
-        }
 
     </style>
 </head>
 <body>
 
-    <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" rel="noopener noreferrer" class="cta-float">
+    <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" rel="noopener noreferrer" class="cta-float" aria-label="Join Private Telegram">
         🔞 Join Private TG
     </a>
-
-    <div id="age-verification" role="dialog" aria-modal="true" aria-labelledby="age-title" aria-describedby="age-desc">
-        <div class="modal-content">
-            <h2 id="age-title">WARNING: 18+</h2>
-            <p id="age-desc">This site contains adult material. You must be 18 years or older to enter.</p>
-            <div class="modal-buttons">
-                <button id="confirm-age">I am 18+</button>
-                <button id="exit-site">Exit</button>
-            </div>
-        </div>
-    </div>
 
     <section id="intro" class="container reveal">
         <h1 class="glitch" data-text="Welcome">Welcome</h1>
@@ -446,7 +384,7 @@
 
             <div class="video-thumbnails">
                 <div class="thumbnail active" data-video="video1.mp4" role="button" tabindex="0" aria-label="Play video 1">
-                    <img src="thumb1.jpg" alt="Video preview 1" loading="lazy">
+                    <img src="thumb1.jpg" alt="Video preview 1">
                 </div>
                 <div class="thumbnail" data-video="video2.mp4" role="button" tabindex="0" aria-label="Play video 2">
                      <img src="thumb2.jpg" alt="Video preview 2" loading="lazy">
@@ -544,147 +482,94 @@
     </footer>
 
     <script>
+        // --- Single init block ---
         document.addEventListener('DOMContentLoaded', () => {
-
-            /**
-             * --- 1. Age Verification with A11y & Focus Trap ---
-             */
-            function initAgeVerification() {
-                const ageModal = document.getElementById('age-verification');
-                if (!ageModal) return;
-
-                const confirmButton = document.getElementById('confirm-age');
-                const exitButton = document.getElementById('exit-site');
-                const focusableElements = [confirmButton, exitButton];
-
-                const closeModal = () => {
-                    sessionStorage.setItem('ageVerified', 'true');
-                    ageModal.style.opacity = '0';
-                    document.body.style.overflow = 'auto';
-                    setTimeout(() => ageModal.style.display = 'none', 500);
-                };
-
-                const exitSite = () => {
-                    window.location.href = 'https://www.google.com';
-                };
-
-                if (sessionStorage.getItem('ageVerified') === 'true') {
-                    ageModal.style.display = 'none';
-                } else {
-                    document.body.style.overflow = 'hidden';
-                    confirmButton.focus();
-                }
-
-                confirmButton.addEventListener('click', closeModal);
-                exitButton.addEventListener('click', exitSite);
-
-                // Focus trap and escape key handler
-                ageModal.addEventListener('keydown', (e) => {
-                    if (e.key === 'Tab') {
-                        e.preventDefault();
-                        const currentIndex = focusableElements.indexOf(document.activeElement);
-                        const nextIndex = e.shiftKey
-                            ? (currentIndex === 0 ? focusableElements.length - 1 : currentIndex - 1)
-                            : (currentIndex === focusableElements.length - 1 ? 0 : currentIndex + 1);
-                        focusableElements[nextIndex].focus();
-                    }
-                    if (e.key === 'Escape') {
-                        exitSite();
-                    }
-                });
-            }
-
-            /**
-             * --- 2. Video Switching with A11y & Robust Playback ---
-             */
-            function initVideoSwitcher() {
-                const mainVideo = document.getElementById('mainVideo');
-                const thumbnails = document.querySelectorAll('.thumbnail');
-                if (!mainVideo || thumbnails.length === 0) return;
-
-                const activateThumbnail = (thumb) => {
-                    if (thumb.classList.contains('active')) return;
-                    const videoUrl = thumb.getAttribute('data-video');
-
-                    document.querySelector('.thumbnail.active')?.classList.remove('active');
-                    thumb.classList.add('active');
-
-                    mainVideo.pause();
-                    mainVideo.src = videoUrl;
-                    mainVideo.load();
-                    mainVideo.play().catch(err => console.error('Error playing video:', err));
-                };
-
-                thumbnails.forEach(thumb => {
-                    thumb.addEventListener('click', () => activateThumbnail(thumb));
-                    thumb.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            activateThumbnail(thumb);
-                        }
-                    });
-                });
-            }
-
-            /**
-             * --- 3. Scroll Animation (Intersection Observer) ---
-             */
-            function initScrollAnimations() {
-                const revealElements = document.querySelectorAll('.reveal');
-                if (revealElements.length === 0) return;
-
-                const observerOptions = {
-                    root: null,
-                    rootMargin: '0px',
-                    threshold: 0.1
-                };
-
-                const observerCallback = (entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                };
-
-                const observer = new IntersectionObserver(observerCallback, observerOptions);
-                revealElements.forEach(el => observer.observe(el));
-            }
-            
-            /**
-             * --- 4. Autoplay Kick for Mobile Browsers ---
-             */
-            function initAutoplayKick() {
-                const video = document.getElementById('mainVideo');
-                if (!video) return;
-
-                const tryPlay = () => video.play().catch(() => {});
-                
-                if (video.paused) {
-                    tryPlay();
-                }
-
-                const kickstartPlayback = () => {
-                    tryPlay();
-                    cleanupListeners();
-                };
-                
-                const cleanupListeners = () => {
-                    document.removeEventListener('touchstart', kickstartPlayback, { passive: true });
-                    document.removeEventListener('click', kickstartPlayback);
-                };
-                
-                document.addEventListener('touchstart', kickstartPlayback, { passive: true });
-                document.addEventListener('click', kickstartPlayback);
-            }
-
-            // Initialize all modules
-            initAgeVerification();
-            initVideoSwitcher();
-            initScrollAnimations();
+            initRevealOnScroll();
+            initVideoSwitching();
             initAutoplayKick();
         });
+
+        // --- Scroll Animation (Intersection Observer) ---
+        function initRevealOnScroll() {
+            const revealElements = document.querySelectorAll('.reveal');
+            if (!revealElements.length) return;
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Element appears when 10% of it is visible
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            revealElements.forEach(el => observer.observe(el));
+        }
+
+        // --- Video Switching Functionality (robust) ---
+        function initVideoSwitching() {
+            const mainVideo = document.getElementById('mainVideo');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            if (!mainVideo || !thumbnails.length) return;
+
+            const activate = (thumb) => {
+                if (thumb.classList.contains('active')) return;
+
+                const videoUrl = thumb.getAttribute('data-video');
+
+                // Update active classes (safe optional chaining)
+                document.querySelector('.thumbnail.active')?.classList.remove('active');
+                thumb.classList.add('active');
+
+                // Swap and play robustly
+                mainVideo.pause();
+                mainVideo.src = videoUrl;
+                mainVideo.load();
+                mainVideo.play().catch(error => {
+                    console.error("Error playing video:", error);
+                });
+            };
+
+            thumbnails.forEach(thumb => {
+                // ensure a11y even if markup changes elsewhere
+                thumb.setAttribute('role','button');
+                thumb.setAttribute('tabindex','0');
+                if (!thumb.hasAttribute('aria-label')) {
+                    const v = thumb.getAttribute('data-video') || 'video';
+                    thumb.setAttribute('aria-label', `Play ${v}`);
+                }
+
+                thumb.addEventListener('click', () => activate(thumb));
+                thumb.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        activate(thumb);
+                    }
+                });
+            });
+        }
+
+        // --- Autoplay kick for iOS/permissions ---
+        function initAutoplayKick(){
+            const v = document.getElementById('mainVideo');
+            if (!v) return;
+            const tryPlay = () => v.play().catch(() => {});
+            if (v.paused) tryPlay();
+            const kick = () => { tryPlay(); cleanup(); };
+            const cleanup = () => {
+                document.removeEventListener('touchstart', kick, {passive:true});
+                document.removeEventListener('click', kick);
+            };
+            document.addEventListener('touchstart', kick, {passive:true});
+            document.addEventListener('click', kick);
+        }
     </script>
 
 </body>
