@@ -6,7 +6,6 @@
     <title>Exclusive Access</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* --- Global Styles & Variables (Neon Noir Palette) --- */
         :root {
             --bg-main: #05050f;
             --bg-card: #1a1a2e;
@@ -42,6 +41,41 @@
             max-width: 800px;
             margin: 0 auto;
         }
+
+        /* --- Fullscreen Background Video --- */
+        #background-video-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        #background-video-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+            z-index: -1;
+        }
+
+        #background-video-wrapper iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+        }
+
 
         /* --- Utility & Animations --- */
         .cta-button {
@@ -89,6 +123,7 @@
             position: relative;
             color: white;
             animation: glitch-skew 1s infinite linear alternate-reverse;
+            text-shadow: 0 0 10px rgba(0,0,0,0.7);
         }
         .glitch::before, .glitch::after {
             content: attr(data-text);
@@ -103,13 +138,11 @@
         .glitch::before {
             left: 2px;
             text-shadow: -2px 0 var(--neon-cyan);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
             animation: glitch-anim-1 2s infinite linear alternate-reverse;
         }
         .glitch::after {
             left: -2px;
             text-shadow: -2px 0 var(--neon-pink);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
             animation: glitch-anim-2 3s infinite linear alternate-reverse;
         }
 
@@ -135,63 +168,23 @@
             transform: translateY(0);
         }
         
-        /* --- 18+ Modal --- */
-        #age-verification {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(15px);
-            transition: opacity 0.5s ease;
-        }
-
-        .modal-content {
-            background-color: var(--bg-card); padding: 40px; border-radius: 10px;
-            text-align: center; border: 1px solid var(--neon-pink);
-            box-shadow: 0 0 50px rgba(255, 0, 119, 0.3); max-width: 500px;
-        }
-        .modal-content h2 {
-            font-family: var(--font-display); color: var(--neon-pink); margin-bottom: 20px;
-        }
-        .modal-buttons button {
-            padding: 10px 25px; margin: 10px; border: none;
-            cursor: pointer; border-radius: 5px; font-weight: 700;
-        }
-        #confirm-age { background-color: var(--neon-pink); color: var(--bg-main); }
-        #exit-site { background-color: transparent; color: var(--text-dim); border: 1px solid var(--text-dim); }
-
-        /* --- Hero/Intro Section --- */
         #intro {
             padding: 80px 0; text-align: center; min-height: 100vh;
             display: flex; flex-direction: column; justify-content: center;
-            background: radial-gradient(circle at center, rgba(255, 0, 119, 0.1) 0%, var(--bg-main) 70%);
+            position: relative;
+            z-index: 1;
         }
 
         #intro p {
             color: var(--text-dim); margin-bottom: 40px;
+             text-shadow: 0 0 8px rgba(0,0,0,0.7);
         }
 
-        .video-container {
-            max-width: 900px; margin: 0 auto 30px;
-        }
-
-        #main-video-wrapper {
-            border: 1px solid var(--neon-cyan);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-            border-radius: 10px; overflow: hidden; position: relative;
-            aspect-ratio: 16 / 9; background-color: #000;
-        }
-
-        #main-video-wrapper::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 1px, transparent 1px, transparent 3px);
-            pointer-events: none; opacity: 0.8;
-        }
-
-        /* --- Rumors Section --- */
         #rumors {
             padding: 100px 0; background-color: #0a0a1a;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative; /* Ensure it renders above the fixed video */
+            z-index: 1;
         }
 
         #rumors h2 {
@@ -225,10 +218,11 @@
 
         .cta-center { text-align: center; margin: 50px 0; }
 
-        /* --- Footer --- */
         footer {
             text-align: center; padding: 40px 0; font-size: 0.9rem;
             color: var(--text-dim); background-color: var(--bg-main);
+            position: relative;
+            z-index: 1;
         }
 
         .warning {
@@ -236,7 +230,6 @@
             padding: 10px 20px; font-weight: bold; margin-bottom: 15px; border-radius: 5px;
         }
         
-        /* --- Responsive & Accessibility --- */
         @media (max-width: 768px) {
             .glitch { font-size: 2.5rem; }
             #rumors h2 { font-size: 2rem; }
@@ -249,43 +242,29 @@
             transition: none; animation: none;
           }
         }
-
     </style>
 </head>
 <body>
+
+    <div id="background-video-wrapper">
+        <iframe
+            src="https://iframe.mediadelivery.net/play/490445/98f62147-2cef-4dca-943a-1104eae70811?autoplay=true&muted=true&loop=true&controls=false"
+            style="border: none;"
+            allow="autoplay; encrypted-media;"
+            title="Background Video"
+        ></iframe>
+    </div>
 
     <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" rel="noopener noreferrer" class="cta-float" aria-label="Join Private Telegram">
         🔞 Join Private TG
     </a>
 
-    <div id="age-verification" role="dialog" aria-modal="true" aria-labelledby="age-title" aria-describedby="age-desc">
-        <div class="modal-content">
-            <h2 id="age-title">WARNING: 18+</h2>
-            <p id="age-desc">This site contains adult material. You must be 18 years or older to enter.</p>
-            <div class="modal-buttons">
-                <button id="confirm-age">I am 18+</button>
-                <button id="exit-site">Exit</button>
-            </div>
+    <section id="intro">
+        <div class="container">
+            <h1 class="glitch" data-text="Welcome">Welcome</h1>
+            <p>You found the place where the rumors end and reality begins.</p>
+            <a href="https://t.me/+tVrljmvYwKFhZTg0" class="cta-button" target="_blank" rel="noopener noreferrer">Get Full Access Now</a>
         </div>
-    </div>
-
-    <section id="intro" class="container reveal">
-        <h1 class="glitch" data-text="Welcome">Welcome</h1>
-        <p>You found the place where the rumors end and reality begins.</p>
-
-        <div class="video-container">
-            <div id="main-video-wrapper">
-                <iframe
-                    src="https://iframe.mediadelivery.net/play/490445/98f62147-2cef-4dca-943a-1104eae70811?autoplay=true&muted=true"
-                    style="border: none; position: absolute; top: 0; height: 100%; width: 100%;"
-                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                    allowfullscreen="true"
-                    title="Main Video"
-                ></iframe>
-            </div>
-        </div>
-        
-        <a href="https://t.me/+tVrljmvYwKFhZTg0" class="cta-button" target="_blank" rel="noopener noreferrer">Get Full Access Now</a>
     </section>
 
     <section id="rumors">
@@ -360,61 +339,9 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            initAgeVerification();
             initRevealOnScroll();
         });
 
-        /**
-         * --- 1. Age Verification with A11y & Focus Trap ---
-         */
-        function initAgeVerification() {
-            const ageModal = document.getElementById('age-verification');
-            if (!ageModal) return;
-
-            const confirmButton = document.getElementById('confirm-age');
-            const exitButton = document.getElementById('exit-site');
-            const focusableElements = [confirmButton, exitButton];
-
-            const closeModal = () => {
-                sessionStorage.setItem('ageVerified', 'true');
-                ageModal.style.opacity = '0';
-                document.body.style.overflow = 'auto';
-                setTimeout(() => ageModal.style.display = 'none', 500);
-            };
-
-            const exitSite = () => {
-                window.location.href = 'https://www.google.com';
-            };
-
-            if (sessionStorage.getItem('ageVerified') === 'true') {
-                ageModal.style.display = 'none';
-            } else {
-                document.body.style.overflow = 'hidden';
-                confirmButton.focus();
-            }
-
-            confirmButton.addEventListener('click', closeModal);
-            exitButton.addEventListener('click', exitSite);
-
-            // Focus trap and escape key handler
-            ageModal.addEventListener('keydown', (e) => {
-                if (e.key === 'Tab') {
-                    e.preventDefault();
-                    const currentIndex = focusableElements.indexOf(document.activeElement);
-                    const nextIndex = e.shiftKey
-                        ? (currentIndex === 0 ? focusableElements.length - 1 : currentIndex - 1)
-                        : (currentIndex === focusableElements.length - 1 ? 0 : currentIndex + 1);
-                    focusableElements[nextIndex].focus();
-                }
-                if (e.key === 'Escape') {
-                    exitSite();
-                }
-            });
-        }
-        
-        /**
-         * --- 2. Scroll Animation (Intersection Observer) ---
-         */
         function initRevealOnScroll() {
             const revealElements = document.querySelectorAll('.reveal');
             if (!revealElements.length) return;
@@ -422,14 +349,14 @@
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.1 // Element appears when 10% of it is visible
+                threshold: 0.1
             };
 
             const observerCallback = (entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Stop observing once visible
+                        observer.unobserve(entry.target);
                     }
                 });
             };
