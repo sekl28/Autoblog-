@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exposé: The Unfiltered Narrative</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Tenor+Sans&display=swap" rel="stylesheet">
     <style>
-        /* --- Global Styles & Variables (Amethyst Noir Palette) --- */
+        /* --- Global Styles & Variables (Digital Noir & Velvet) --- */
         :root {
-            --bg-dark: #121212; /* Deep Charcoal */
-            --text-light: #F9F9F9; /* Soft White */
+            --bg-dark: #101010;
+            --text-light: #FDFDFD;
             --text-dim: #aaaaaa;
-            /* NEW ACCENT: Amethyst Purple (Luxury, Mystery, Intimacy) */
-            --accent-amethyst: #9966CC;
-            --accent-amethyst-dark: #7a52a3;
-            --card-bg: #1e1e1e;
-            --font-display: 'Bodoni Moda', serif;
-            --font-body: 'Manrope', sans-serif;
+            --accent-crimson: #E63946;
+            --accent-rosegold: #B76E79;
+            --card-bg: #1a1a1a;
+            --font-display: 'Tenor Sans', sans-serif;
+            --font-body: 'Inter', sans-serif;
         }
 
         * {
@@ -42,7 +41,7 @@
             cursor: none;
         }
 
-        /* --- Cinematic Texture/Grain --- */
+        /* --- Cinematic Texture/Grain (Innovation 1) --- */
         #grain-overlay {
             position: fixed;
             top: 0;
@@ -51,9 +50,10 @@
             height: 100%;
             z-index: 9000;
             pointer-events: none;
-            opacity: 0.06;
+            opacity: 0.07;
             /* Optimized SVG noise filter */
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            /* Subtle flicker animation */
             animation: grain-flicker 0.5s steps(1) infinite;
         }
         
@@ -73,37 +73,52 @@
 
         h1, h2, h3 {
             font-family: var(--font-display);
-            font-weight: 400;
-            /* Optical sizing for Bodoni Moda */
-            font-optical-sizing: auto;
+            font-weight: 400; /* Tenor Sans only has weight 400 */
         }
 
         /* --- Utility & Animations (Polished Micro-interactions) --- */
 
-        /* CTA Button (Premium Feel) */
+        /* CTA Button (High Contrast & Elegant Hover) */
         .cta-button {
             display: inline-block;
-            background-color: var(--accent-amethyst);
+            background-color: var(--accent-crimson);
             color: var(--text-light);
             padding: 15px 40px;
             text-decoration: none;
             font-weight: 600;
-            /* Elegant rounded corners */
-            border-radius: 5px;
+            /* Sharp edges for Noir style */
+            border-radius: 0;
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             font-size: 0.9rem;
             position: relative;
             overflow: hidden;
             z-index: 1;
-            box-shadow: 0 5px 15px rgba(153, 102, 204, 0.3);
+        }
+
+        /* Sliding background effect on hover (Micro-interaction) */
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--text-light);
+            /* Start hidden just outside the left edge */
+            transform: translateX(-101%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: -1;
         }
 
         .cta-button:hover {
-            background-color: var(--accent-amethyst-dark);
-            box-shadow: 0 10px 30px rgba(153, 102, 204, 0.5);
-            transform: translateY(-2px);
+            color: var(--bg-dark);
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.5);
+        }
+
+        .cta-button:hover::before {
+            transform: translateX(0);
         }
 
 
@@ -120,48 +135,43 @@
             transform: translateY(0);
         }
 
-        /* Cinematic Text Reveal (With subtle blur effect) */
+        /* Cinematic Text Reveal (Innovation 2) */
         .char-reveal {
             display: inline-block;
             opacity: 0;
-            /* Initial state: shifted down and slightly blurred */
-            transform: translateY(30px);
-            filter: blur(5px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out;
+            /* Initial state: shifted down and rotated back */
+            transform: translateY(20px) rotateX(-90deg);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
 
-        /* --- NEW Custom Cursor: Diamond Prism (Unique & Zero Lag) --- */
-        #cursor-diamond {
-            width: 18px;
-            height: 18px;
-            border: 1px solid var(--accent-amethyst);
-            /* Create diamond shape */
-            transform: rotate(45deg);
+        /* --- Custom Cursor (Innovation 5) --- */
+        #cursor-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-rosegold);
+            border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            /* Ensure it starts hidden until mouse moves */
-            display: none;
-            /* Smooth transitions for hover effects (NOT movement) */
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-            /* Subtle pulsing glow */
-            animation: pulse-glow 3s infinite;
-            will-change: transform;
         }
 
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 5px rgba(153, 102, 204, 0.2); }
-            50% { box-shadow: 0 0 20px rgba(153, 102, 204, 0.6); }
-            100% { box-shadow: 0 0 5px rgba(153, 102, 204, 0.2); }
+        #cursor-aura {
+            width: 35px;
+            height: 35px;
+            border: 1px solid var(--accent-rosegold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.6;
+            transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
         }
 
-        /* Cursor Hover State (Applied via JS) - Prism effect */
-        .cursor-hover #cursor-diamond {
-            /* Note: Scale is applied via JS transform string, this is for CSS fallback/transition sync */
-             background-color: rgba(153, 102, 204, 0.2);
-            /* Color shift (Prism effect) */
-            border-color: #cc6699;
-            box-shadow: 0 0 30px rgba(204, 102, 153, 0.8);
+        /* Cursor Hover State (Applied via JS) */
+        .cursor-hover #cursor-aura {
+            width: 50px;
+            height: 50px;
+            opacity: 0.3;
         }
 
 
@@ -172,37 +182,34 @@
             align-items: center;
             padding-top: 100px;
             padding-bottom: 100px;
-            /* Subtle background gradient for depth */
-            background: radial-gradient(circle at top left, rgba(153, 102, 204, 0.1) 0%, var(--bg-dark) 50%);
         }
 
         .hero-content {
             /* Constraining width for editorial feel */
-            max-width: 75%;
+            max-width: 70%;
         }
 
         #hero h1 {
-            font-size: 5.5rem;
-            line-height: 1.1;
+            font-size: 5rem;
+            line-height: 1.2;
             margin-bottom: 30px;
-            font-weight: 700;
         }
 
         #hero p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--text-dim);
             max-width: 600px;
             margin-bottom: 50px;
         }
 
-        /* --- Video Section (3D Interaction & Asymmetry) --- */
+        /* --- Video Section (3D Interaction & Asymmetry - Innovation 4) --- */
         #videos {
             padding: 150px 0;
         }
 
         .video-layout {
             display: flex;
-            gap: 80px;
+            gap: 50px;
             align-items: center;
         }
 
@@ -213,20 +220,18 @@
         }
 
         .video-info h2 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
         }
 
         .flirt-message {
-            font-size: 1.2rem;
-            color: var(--accent-amethyst);
-            /* Using italic Bodoni for the flirt message */
-            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--accent-crimson);
             font-style: italic;
             margin-bottom: 40px;
         }
 
-        /* 3D Tilt Container */
+        /* 3D Tilt Container (Innovation 3) */
         .video-tilt-container {
             flex: 1.5;
             /* Perspective defines the depth of the 3D effect */
@@ -234,14 +239,13 @@
         }
 
         #main-video-wrapper {
-            border-radius: 10px;
+            border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
             /* Ensures the element is ready for 3D transforms */
             transform-style: preserve-3d;
             transition: transform 0.1s ease-out; /* Smooth movement */
             will-change: transform; /* Performance optimization */
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         #mainVideo {
@@ -264,10 +268,8 @@
             height: 70px;
             cursor: pointer;
             transition: all 0.3s ease;
-            opacity: 0.6;
+            opacity: 0.5;
             border: 2px solid transparent;
-            border-radius: 5px;
-            overflow: hidden;
         }
 
         .thumbnail img {
@@ -284,14 +286,13 @@
 
         .thumbnail.active {
             opacity: 1;
-            border-color: var(--accent-amethyst);
-            box-shadow: 0 0 15px rgba(153, 102, 204, 0.5);
+            border-color: var(--accent-crimson);
         }
 
         /* --- Rumors Section (Readability & Structure) --- */
         #rumors {
             padding: 100px 0;
-            background-color: #181818; /* Slightly different tone for contrast */
+            background-color: #141414; /* Slightly different tone for contrast */
         }
 
         /* Structured Layout for long text (Editorial style) */
@@ -302,18 +303,19 @@
         }
 
         .rumors-sidebar h2 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             /* Sticky sidebar keeps the title visible while scrolling content */
             position: sticky;
             top: 100px;
-            color: var(--text-light);
         }
 
         .rumors-content h3 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-top: 80px;
             margin-bottom: 30px;
-            color: var(--accent-amethyst);
+            color: var(--accent-crimson);
+            font-family: var(--font-body);
+            font-weight: 600;
         }
 
         .rumors-content p {
@@ -328,19 +330,17 @@
         /* Card styling for the rumors list */
         .rumor-card {
             background-color: var(--card-bg);
-            padding: 35px;
-            margin-bottom: 25px;
-            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 20px;
             /* Accent border */
-            border-left: 4px solid var(--accent-amethyst);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            border-left: 3px solid var(--accent-crimson);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         /* Micro-interaction: Shift on hover */
         .rumor-card:hover {
             transform: translateX(10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            background-color: #242424;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .rumor-card strong {
@@ -348,14 +348,12 @@
             font-size: 1.1rem;
             font-weight: 600;
             display: block;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .highlight {
             font-weight: 400;
-            color: var(--accent-amethyst);
-            background-color: rgba(153, 102, 204, 0.1);
-            padding: 2px 5px;
+            color: var(--accent-crimson);
         }
 
         .cta-center {
@@ -369,7 +367,6 @@
             padding: 80px 0 40px 0;
             font-size: 0.9rem;
             color: var(--text-dim);
-            background-color: var(--bg-dark);
         }
 
         .warning {
@@ -379,7 +376,6 @@
             padding: 10px 30px;
             margin-bottom: 30px;
             font-weight: 400;
-            border-radius: 5px;
         }
 
         /* --- Responsive Design (Crucial Polish) --- */
@@ -389,8 +385,8 @@
                 cursor: auto;
             }
              /* Hide custom cursor elements */
-            #cursor-diamond {
-                display: none !important;
+            #cursor-dot, #cursor-aura {
+                display: none;
             }
 
             #hero h1 {
@@ -404,11 +400,10 @@
             .video-layout {
                 flex-direction: column;
                 align-items: stretch;
-                gap: 40px;
             }
             .video-info {
                 text-align: left;
-                margin-bottom: 20px;
+                margin-bottom: 40px;
             }
             .video-thumbnails {
                 justify-content: flex-start;
@@ -416,9 +411,6 @@
              /* Disable 3D tilt on tablet/mobile */
             .video-tilt-container {
                 perspective: none;
-            }
-            #main-video-wrapper {
-                transform: none !important;
             }
 
             /* Stack rumors layout */
@@ -442,9 +434,6 @@
                 width: 90px;
                 height: 55px;
             }
-            .rumors-sidebar h2 {
-                font-size: 3rem;
-            }
         }
 
     </style>
@@ -453,7 +442,8 @@
 
     <div id="grain-overlay"></div>
 
-    <div id="cursor-diamond"></div>
+    <div id="cursor-dot"></div>
+    <div id="cursor-aura"></div>
 
     <section id="hero">
         <div class="container">
@@ -593,10 +583,9 @@
 
     <script>
         // Determine if the device is desktop (for enabling complex interactions)
-        // Use pointer media query for more accurate detection of mouse input
-        const IS_DESKTOP = window.matchMedia("(pointer: fine)").matches && window.innerWidth > 1024;
+        const IS_DESKTOP = window.innerWidth > 1024;
 
-        // --- 1. Cinematic Text Reveal ---
+        // --- 1. Cinematic Text Reveal (Innovation 2) ---
         document.addEventListener('DOMContentLoaded', () => {
             const headline = document.getElementById('main-headline');
             if (!headline) return;
@@ -624,14 +613,13 @@
             chars.forEach((char, index) => {
                 setTimeout(() => {
                     char.style.opacity = '1';
-                    char.style.transform = 'translateY(0)';
-                    char.style.filter = 'blur(0)';
-                }, (delay * 1000) + (index * 30)); // 30ms stagger between letters
+                    char.style.transform = 'translateY(0) rotateX(0deg)';
+                }, (delay * 1000) + (index * 40)); // 40ms stagger between letters
             });
         });
 
 
-        // --- 2. 3D Tilt Effect ---
+        // --- 2. 3D Tilt Effect (Innovation 3) ---
         document.addEventListener('DOMContentLoaded', () => {
             const tiltContainer = document.getElementById('tilt-container');
             const videoWrapper = document.getElementById('main-video-wrapper');
@@ -639,7 +627,7 @@
             // Optimization: Only enable on Desktop
             if (!IS_DESKTOP || !tiltContainer) return;
 
-            const maxTilt = 10; 
+            const maxTilt = 8; // Maximum rotation angle
 
             tiltContainer.addEventListener('mousemove', (e) => {
                 const rect = tiltContainer.getBoundingClientRect();
@@ -655,15 +643,14 @@
                 const rotateX = -(y / (height / 2)) * maxTilt;
 
                 // Apply the 3D transformation
-                // Using perspective() function in transform for clarity
-                videoWrapper.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                videoWrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             });
 
             // Reset the tilt when the mouse leaves
             tiltContainer.addEventListener('mouseleave', () => {
                 // Smooth return to center
                 videoWrapper.style.transition = 'transform 0.5s ease';
-                videoWrapper.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+                videoWrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
                 // Restore the quick transition for active tracking
                 setTimeout(() => {
                     videoWrapper.style.transition = 'transform 0.1s ease-out';
@@ -723,78 +710,53 @@
             });
         });
 
-        // --- 5. NEW Custom Cursor Logic (Zero Lag, Optimized) ---
+        // --- 5. Custom Cursor Logic (Innovation 5) ---
+        // High-performance cursor implementation using Lerp (Linear Interpolation)
         document.addEventListener('DOMContentLoaded', () => {
-            const cursorDiamond = document.getElementById('cursor-diamond');
+            const cursorDot = document.getElementById('cursor-dot');
+            const cursorAura = document.getElementById('cursor-aura');
             const body = document.body;
 
             if (!IS_DESKTOP) return;
 
             let mouseX = 0;
             let mouseY = 0;
-            let initialized = false;
-            let isHovering = false;
+            let auraX = 0;
+            let auraY = 0;
 
             // Update mouse coordinates
             document.addEventListener('mousemove', (e) => {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
-                if (!initialized) {
-                    initialized = true;
-                    // Ensure cursor is visible once mouse moves
-                    cursorDiamond.style.display = 'block';
-                }
             });
 
-            // Function to animate the cursor using requestAnimationFrame (Syncs with refresh rate)
-            function updateCursor() {
-                // Move instantly (No Lerp/Delay)
-                // We center the diamond on the cursor point AND account for the 45deg rotation
+            // Function to animate the cursor using requestAnimationFrame
+            function animateCursor() {
+                // Dot follows instantly
                 // Using translate3d for hardware acceleration
-                let transformString = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0) rotate(45deg)`;
-                
-                // Apply scale if hovering
-                if (isHovering) {
-                    transformString += ' scale(1.5)';
-                }
+                cursorDot.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
 
-                cursorDiamond.style.transform = transformString;
+                // Aura follows with a delay (Lerp smoothing)
+                // The factor (0.15) controls the delay speed.
+                auraX += (mouseX - auraX) * 0.15;
+                auraY += (mouseY - auraY) * 0.15;
+                cursorAura.style.transform = `translate3d(calc(${auraX}px - 50%), calc(${auraY}px - 50%), 0)`;
 
-                requestAnimationFrame(updateCursor);
+                requestAnimationFrame(animateCursor);
             }
 
-            updateCursor();
+            animateCursor();
 
             // Add hover interactions
-            // Optimized using Event Delegation
-            document.addEventListener('mouseover', (e) => {
-                // Check if the hovered element or its parent is interactive
-                if (e.target.closest('a, button, .thumbnail, .rumor-card, input, textarea, video')) {
-                    if (!isHovering) {
-                        body.classList.add('cursor-hover');
-                        isHovering = true;
-                    }
-                }
-            });
+            const interactiveElements = document.querySelectorAll('a, button, .thumbnail, .rumor-card, input, textarea');
 
-            document.addEventListener('mouseout', (e) => {
-                 if (e.target.closest('a, button, .thumbnail, .rumor-card, input, textarea, video')) {
-                     if (isHovering) {
-                        body.classList.remove('cursor-hover');
-                        isHovering = false;
-                     }
-                 }
-            });
-            
-            // Hide custom cursor when leaving the viewport
-            document.addEventListener('mouseleave', () => {
-                cursorDiamond.style.display = 'none';
-                initialized = false;
-            });
-             document.addEventListener('mouseenter', () => {
-                if (IS_DESKTOP) {
-                    cursorDiamond.style.display = 'block';
-                }
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseover', () => {
+                    body.classList.add('cursor-hover');
+                });
+                el.addEventListener('mouseout', () => {
+                    body.classList.remove('cursor-hover');
+                });
             });
         });
     </script>
