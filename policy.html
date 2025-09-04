@@ -3,682 +3,697 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A E S T H E T I C OS v1.99</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <title>Exclusive: The Unfiltered Story</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
     <style>
-        /* --- Global Styles & Variables (Vaporwave Palette) --- */
+        /* --- Global Styles & Variables (Luxury Magazine Palette) --- */
         :root {
-            --bg-desktop: #008080; /* Classic Teal Desktop */
-            --window-bg: #c0c0c0; /* Classic Gray */
-            --window-title-active: #000080; /* Classic Blue */
-            --text-main: #000000;
-            --vapor-pink: #ff71ce;
-            --vapor-blue: #01cdfe;
-            --vapor-purple: #a100ff;
-            --font-ui: 'Press Start 2P', cursive;
-            --font-content: 'VT323', monospace;
+            --bg-main: #0c0c0c;
+            --text-light: #f9f9f9;
+            --text-dim: #b0b0b0;
+            /* Accent Color: Emerald Green (Exclusive & Elegant) */
+            --accent-color: #00C896;
+            --accent-dark: #009670;
+            --font-body: 'Manrope', sans-serif;
+            --font-display: 'Playfair Display', serif;
         }
 
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: var(--bg-desktop);
-            font-family: var(--font-ui);
-            margin: 0;
-            padding: 0;
-            overflow: hidden; /* Hide scrollbars for OS simulation */
-            height: 100vh;
-            /* Custom Cursor (Innovation) - Pixel Arrow */
-            cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAARFJREFUOE+1k0EOwyAMhT24M/Gg/3+dGz2JtVIkK5Ua4g9GtsB2bM706/n5/R+i/g/P123b/h1FkY+47/s+E+f1f7uKIr/T+14U+YR713Vd33lZ/vH0zDB/w1M0zYNYxRx1xN+R+56z48L+1A4N0y/L4m20P/C9FEU0zYMYhXg0jH3HbZ+U7/p+O9/dO39d17V932aYd3g0jL8sW7eP1u/7vj+M58/39X48L2tL4K7r+h+i/g/PY586Yu/7Pk3/13Vd33lZ1h+w/14U+YRb0/8tTP/T+14Uz9O7b9t+eF7W1sBd1/X9v3w/P123bfv/2s7P84+mYfy/58/39X6cy9rS+Csd74/8C7k/w/M0TYPYP8EDcJH+A58+AAAAAElFTkSuQmCC") 1 1, auto;
+            background-color: var(--bg-main);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        /* --- Desktop Environment & Background Effects --- */
-        #desktop {
-            height: 100vh;
-            width: 100vw;
-            position: relative;
-            padding: 20px;
-            /* Vaporwave Grid Background (Innovation) */
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(255, 113, 206, 0.3) 0px,
-                rgba(255, 113, 206, 0.3) 1px,
-                transparent 1px,
-                transparent 50px
-            ),
-            repeating-linear-gradient(
-                90deg,
-                rgba(1, 205, 254, 0.3) 0px,
-                rgba(1, 205, 254, 0.3) 1px,
-                transparent 1px,
-                transparent 50px
-            ),
-            linear-gradient(to bottom, var(--vapor-purple), var(--vapor-pink));
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
         }
 
-        /* Scanlines Effect (Innovation) */
-        #desktop::after {
-            content: '';
+        .text-content {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            font-weight: 800;
+        }
+
+        /* --- Utility & Animations --- */
+
+        /* Standard CTA Button */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-main);
+            padding: 14px 35px;
+            text-decoration: none;
+            font-weight: 700;
+            /* Modern rounded corners (Pill shape) */
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 15px rgba(0, 200, 150, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-dark);
+            box-shadow: 0 8px 30px rgba(0, 200, 150, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* Glassmorphism Effect (Modern UI Trend) */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Scroll Animations (Fade-in) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Floating Dynamic CTA --- */
+        .cta-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 25px;
+            background-color: var(--accent-color);
+            color: var(--bg-main);
+            font-weight: 700;
+            border-radius: 50px;
+            z-index: 900;
+            text-decoration: none;
+            box-shadow: 0 5px 25px rgba(0, 200, 150, 0.5);
+            transition: transform 0.3s ease;
+        }
+        .cta-float:hover {
+            transform: scale(1.05);
+        }
+
+        /* Dynamic Notification Badge (Innovation) */
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #ff4d4d;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .notification-badge.active {
+            opacity: 1;
+            transform: scale(1);
+            /* Pulsating animation for urgency */
+            animation: pulse-badge 1.5s infinite;
+        }
+
+        @keyframes pulse-badge {
+            0% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 77, 77, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); }
+        }
+
+
+        /* --- 18+ Modal (Glassmorphism Style) --- */
+        #age-verification {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.2) 0px,
-                rgba(0, 0, 0, 0.2) 2px,
-                transparent 2px,
-                transparent 4px
-            );
-            pointer-events: none;
-            z-index: 9990;
-        }
-
-        /* --- Retro Window Style (UI Innovation) --- */
-        .window {
-            position: absolute;
-            background-color: var(--window-bg);
-            /* Classic 3D borders */
-            border-top: 2px solid #ffffff;
-            border-left: 2px solid #ffffff;
-            border-right: 2px solid #808080;
-            border-bottom: 2px solid #808080;
-            box-shadow: 2px 2px 0 #000000;
-            padding: 4px;
-            user-select: none;
-        }
-
-        .title-bar {
-            background-color: var(--window-title-active);
-            color: #ffffff;
-            padding: 5px 10px;
-            font-size: 12px;
+            background-color: rgba(0, 0, 0, 0.6);
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            cursor: move;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            transition: opacity 0.5s ease;
         }
 
-        .window-content {
-            padding: 15px;
-            font-family: var(--font-content);
-            color: var(--text-main);
-            font-size: 18px;
-            line-height: 1.5;
+        .modal-content {
+            padding: 50px;
+            text-align: center;
+            max-width: 500px;
         }
-
-        /* --- Specific Windows --- */
-
-        /* Video Window */
-        #window-videos {
-            width: 640px;
-            top: 50px;
-            left: 50px;
+        .modal-content h2 {
+            font-family: var(--font-display);
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 2.5rem;
         }
-
-        #mainVideo {
-            width: 100%;
-            display: block;
-            border: 2px solid #000000;
-            image-rendering: pixelated; /* Keep video crisp */
+        .modal-buttons button {
+            margin: 10px;
         }
-
-        .thumbnails {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .thumbnail {
-            width: 80px;
-            height: 50px;
+        #exit-site {
+            background-color: transparent;
+            color: var(--text-dim);
+            border: 1px solid var(--text-dim);
+            padding: 14px 35px;
+            border-radius: 50px;
             cursor: pointer;
-            border: 2px solid #808080;
-            transition: border-color 0.1s;
+            font-family: var(--font-body);
         }
-        .thumbnail img {
+
+
+        /* --- Hero/Intro Section (Bento Grid & Parallax) --- */
+        #intro {
+            padding: 80px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        #intro h1 {
+            font-size: 4.5rem;
+            margin-bottom: 15px;
+            /* Gradient Text effect */
+            background: linear-gradient(90deg, var(--text-light) 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #intro p {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+        }
+
+        /* Bento Grid Layout (Ultra Modern UI Innovation) */
+        .bento-grid {
+            display: grid;
+            /* Define a 3x3 grid structure */
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 200px);
+            gap: 20px;
+            transition: transform 0.1s ease-out; /* For Parallax smoothing */
+        }
+
+        .bento-item {
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            background-color: #1a1a1a; /* Fallback bg */
+        }
+
+        .bento-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .bento-item img, .bento-item video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            image-rendering: pixelated;
+            display: block;
         }
 
-        .thumbnail:hover, .thumbnail.active {
-            border-color: var(--vapor-pink);
-            box-shadow: 0 0 10px var(--vapor-pink);
+        /* Define the placement of items in the grid */
+        /* Main Player (Spans 2 columns and 2 rows) */
+        .item-main {
+            grid-column: span 2;
+            grid-row: span 2;
+            cursor: default;
         }
 
-        /* Text/Rumors Window */
-        #window-rumors {
-            width: 500px;
-            height: 500px;
-            top: 150px;
-            left: 700px;
+        .item-main:hover {
+             transform: scale(1); /* Disable zoom on main player */
         }
 
-        #window-rumors .window-content {
-            height: calc(100% - 35px);
-            overflow-y: auto;
-            background-color: #ffffff;
-            /* Inset 3D borders for content area */
-            border-top: 2px solid #808080;
-            border-left: 2px solid #808080;
-            border-right: 2px solid #ffffff;
-            border-bottom: 2px solid #ffffff;
+        /* Active state indicator (for thumbnails) */
+         .bento-item.is-playing::after {
+            content: 'NOW PLAYING';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--accent-color);
+            color: var(--bg-main);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
         }
-        
-        #window-rumors h2, #window-rumors h3 {
-            font-family: var(--font-ui);
-            font-size: 14px;
+
+
+        /* --- Rumors Section (Readability & Animation) --- */
+        #rumors {
+            padding: 120px 0;
+            /* Slightly lighter background to differentiate sections */
+            background-color: #121212;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #rumors h2 {
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--text-light);
+        }
+
+        #rumors h3 {
+            font-size: 2rem;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        #rumors p {
+            margin-bottom: 25px;
+            color: var(--text-dim);
+        }
+
+        .rumor-list {
+            margin: 40px 0;
+        }
+
+        /* Card styling for the rumors list */
+        .rumor-card {
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .rumor-card strong {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            display: block;
             margin-bottom: 10px;
         }
 
-        /* Retro Scrollbar Styling (Attention to detail) */
-        #window-rumors .window-content::-webkit-scrollbar {
-            width: 16px;
-        }
-        #window-rumors .window-content::-webkit-scrollbar-track {
-            background: repeating-linear-gradient(
-                45deg,
-                #c0c0c0 0px, #c0c0c0 2px,
-                #ffffff 2px, #ffffff 4px
-            );
-        }
-        #window-rumors .window-content::-webkit-scrollbar-thumb {
-            background-color: var(--window-bg);
-            border-top: 2px solid #ffffff;
-            border-left: 2px solid #ffffff;
-            border-right: 2px solid #808080;
-            border-bottom: 2px solid #808080;
+        /* "Decoding" text effect container (Innovation) */
+        .decoded-text {
+             display: inline;
+             color: var(--text-dim);
+             /* Ensure text is hidden initially before decoding */
+             visibility: hidden;
         }
 
-        /* --- CTA / Error Popups (Engagement Innovation) --- */
-        .cta-popup {
-            width: 400px;
+
+        .highlight {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .cta-center {
             text-align: center;
-            z-index: 1000;
-            display: none; /* Hidden by default */
+            margin: 60px 0;
         }
 
-        .cta-button {
-            background-color: var(--window-bg);
-            border-top: 2px solid #ffffff;
-            border-left: 2px solid #ffffff;
-            border-right: 2px solid #808080;
-            border-bottom: 2px solid #808080;
-            padding: 10px 30px;
-            font-family: var(--font-ui);
-            font-size: 14px;
-            text-decoration: none;
-            color: var(--text-main);
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            background-color: var(--bg-main);
+        }
+
+        .warning {
             display: inline-block;
-            margin-top: 20px;
+            color: #ffcc00;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
         }
 
-        .cta-button:active {
-            /* Pressed state */
-            border-top: 2px solid #808080;
-            border-left: 2px solid #808080;
-            border-right: 2px solid #ffffff;
-            border-bottom: 2px solid #ffffff;
-        }
-        
-        .error-icon {
-            font-size: 40px;
-            margin-right: 15px;
-            color: red;
-        }
-
-        /* --- Boot Screen (Replacing 18+ Modal) (Innovation) --- */
-        #boot-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000000;
-            color: #ffffff;
-            z-index: 20000;
-            padding: 40px;
-            font-family: var(--font-content);
-            font-size: 20px;
-        }
-
-        .blink {
-            animation: blink-animation 1s steps(2, start) infinite;
-        }
-        @keyframes blink-animation {
-            to { visibility: hidden; }
-        }
-
-        #boot-button {
-            display: none;
-            margin-top: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--vapor-pink);
-            text-shadow: 0 0 10px var(--vapor-pink);
-        }
-
-        /* --- Cursor Trail (Engagement Innovation) --- */
-        .trail {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: var(--vapor-blue);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.6;
-            transition: transform 0.1s ease-out, opacity 0.5s ease-out;
-            z-index: 9999;
-        }
-
-         /* --- Footer/Taskbar --- */
-         #taskbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--window-bg);
-            border-top: 2px solid #ffffff;
-            padding: 5px;
-            z-index: 5000;
-            font-size: 12px;
-            display: flex;
-            justify-content: space-between;
-         }
-
-         .taskbar-item {
-            padding: 5px 10px;
-         }
-
-
-        /* --- Responsive Adjustments (Crucial for OS Sim) --- */
-        @media (max-width: 1250px) {
-            /* Stack windows vertically if screen is too narrow */
-            #window-videos {
-                top: 10px !important;
-                left: 50% !important;
-                transform: translateX(-50%);
-                width: calc(100% - 20px);
-                max-width: 640px;
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            #intro h1 {
+                font-size: 3.5rem;
             }
-            #window-rumors {
-                top: 450px !important;
-                left: 50% !important;
-                transform: translateX(-50%);
-                width: calc(100% - 20px);
-                height: 400px;
+            /* Switch Bento grid to 2 columns for tablets */
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+                /* Disable parallax on tablet/mobile as it can be janky */
+                transform: none !important;
             }
-             body {
-                overflow-y: auto; /* Allow scrolling on mobile */
+            .item-main {
+                grid-column: span 2;
+                grid-row: span 1;
+                aspect-ratio: 16/9;
+            }
+             .bento-item {
+                grid-column: span 1;
+                grid-row: span 1;
+                aspect-ratio: 16/9;
                 height: auto;
-            }
-            #desktop {
-                height: 1000px; /* Ensure enough space for stacked elements */
-                padding-bottom: 50px;
-            }
-            /* Disable dragging on mobile/tablet */
-            .title-bar {
-                 cursor: default;
-            }
-            .cta-popup {
-                left: 50% !important;
-                transform: translateX(-50%);
-                width: 90%;
-                top: 200px !important;
-            }
-            /* Hide cursor trail on mobile */
-            .trail {
-                display: none;
-            }
+             }
         }
 
-         @media (max-width: 600px) {
-             #window-videos {
-                top: 10px !important;
-             }
-             #boot-screen {
-                font-size: 16px;
-                padding: 20px;
-             }
-         }
+        @media (max-width: 600px) {
+            #intro h1 {
+                font-size: 2.5rem;
+            }
+            #rumors h2 {
+                font-size: 2.2rem;
+            }
+            /* Stack Bento grid for mobile */
+             .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .item-main, .bento-item {
+                grid-column: span 1;
+            }
+            .cta-float {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 20px;
+            }
+            .container {
+                padding: 0 15px;
+            }
+        }
 
     </style>
 </head>
 <body>
 
-    <div id="boot-screen">
-        <p>A E S T H E T I C OS BIOS v1.99</p>
-        <p>Copyright (C) 1998, Aesthetic Technologies, Ltd.</p>
-        <br>
-        <p>CPU : Pentium II 400 MHz</p>
-        <p>Memory Test : <span id="memory-test">0K</span></p>
-        <br>
-        <p>Detecting Primary Master ... [FOUND]</p>
-        <p>Detecting Adult Content ... [WARNING 18+]</p>
-        <br>
-        <p id="loading-text">Initializing System...<span class="blink">_</span></p>
-        <div id="boot-button" onclick="initializeSystem()">[ PRESS HERE TO START (18+) ]</div>
+    <a href="YOUR_TELEGRAM_LINK" target="_blank" class="cta-float">
+        Join Private Telegram
+        <div class="notification-badge" id="ctaBadge">!</div>
+    </a>
+
+    <div id="age-verification">
+        <div class="modal-content glass">
+            <h2>18+ Content</h2>
+            <p>You must be 18 years or older to enter this site.</p>
+            <div class="modal-buttons">
+                <button id="confirm-age" class="cta-button">I Confirm I am 18+</button>
+                <button id="exit-site">Exit</button>
+            </div>
+        </div>
     </div>
 
-    <div id="desktop">
-
-        <div id="window-videos" class="window draggable">
-            <div class="title-bar">
-                <span>My_Videos.avi</span>
-                <span>[X]</span>
+    <section id="intro">
+        <div class="container">
+            <div class="intro-header reveal">
+                <h1>Digital Persona</h1>
+                <p>Beyond the rumors. The exclusive access.</p>
             </div>
-            <div class="window-content">
-                <video id="mainVideo" controls autoplay muted loop playsinline>
-                    <source src="video1.mp4" type="video/mp4">
-                    ERROR: Browser too old.
-                </video>
-                <div class="thumbnails">
-                    <div class="thumbnail active" data-video="video1.mp4">
-                        <img src="thumb1.jpg" alt="Preview 1">
-                    </div>
-                    <div class="thumbnail" data-video="video2.mp4">
-                         <img src="thumb2.jpg" alt="Preview 2">
-                    </div>
-                    <div class="thumbnail" data-video="video3.mp4">
-                         <img src="thumb3.jpg" alt="Preview 3">
-                    </div>
-                    <div class="thumbnail" data-video="video4.mp4">
-                         <img src="thumb4.jpg" alt="Preview 4">
-                    </div>
+
+            <div class="bento-grid reveal" id="parallax-container">
+                <div class="bento-item item-main">
+                     <video id="mainVideo" controls autoplay muted loop playsinline>
+                        <source src="video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                
+                <div class="bento-item thumbnail is-playing" data-video="video1.mp4">
+                     <img src="thumb1.jpg" alt="Video preview 1">
+                </div>
+                <div class="bento-item thumbnail" data-video="video2.mp4">
+                     <img src="thumb2.jpg" alt="Video preview 2">
+                </div>
+                 <div class="bento-item thumbnail" data-video="video3.mp4">
+                     <img src="thumb3.jpg" alt="Video preview 3">
+                </div>
+                 <div class="bento-item thumbnail" data-video="video4.mp4">
+                     <img src="thumb4.jpg" alt="Video preview 4">
+                </div>
+                <div class="bento-item glass" style="display: flex; align-items: center; justify-content: center; padding: 20px; text-align: center; cursor: default;">
+                    <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">Get Full Access</a>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div id="window-rumors" class="window draggable">
-            <div class="title-bar">
-                <span>RUMORS.TXT</span>
-                <span>[X]</span>
+    <section id="rumors">
+        <div class="container text-content">
+            <h2 class="reveal">Rumors About Me</h2>
+
+            <div class="reveal">
+                <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around <span class="highlight">ehotlovea</span> there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:</p>
             </div>
-            <div class="window-content">
-                <h2>RUMORS ABOUT ME</h2>
-                <p>----------------------------------------</p>
-                <p>On the internet, there is a whole sect of amateur detectives who invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around ehotlovea there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with?</p>
 
-                <h3>// THE MOST EPIC RUMORS:</h3>
-                <ul>
-                    <li><strong>I am a prisoner.</strong> Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout.</li>
-                    <li><strong>I am “controlled by a monster.”</strong> According to the rumors, there’s some villain who forces me to work on camera against my will.</li>
-                    <li><strong>I am constantly on the run.</strong> Forum conspiracists are convinced that I am being moved from city to city, hiding from justice.</li>
-                    <li><strong>Secret services are watching me.</strong> Supposedly I am “in a luxury hotel in Milan,” and investigators from the European Court of Human Rights are looking for a chance to free Alice.</li>
-                    <li><strong>I have no money or success.</strong> Allegedly, I don’t see a cent. All my achievements are credited to a mythical “master.”</li>
-                </ul>
+            <div class="rumor-list">
+                <div class="rumor-card glass reveal">
+                    <strong>I am a prisoner.</strong>
+                    <span class="decoded-text">Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: “Is ehotlovea a hostage and is she being starved?” Looks like someone has been watching too many thrillers.</span>
+                </div>
+                <div class="rumor-card glass reveal">
+                    <strong>I am “controlled by a monster.”</strong>
+                    <span class="decoded-text">According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</span>
+                </div>
+                <div class="rumor-card glass reveal">
+                    <strong>I am constantly on the run in different countries.</strong>
+                    <span class="decoded-text">Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. Someone even claimed that I was “transported through a dozen places in half a dozen countries”.</span>
+                </div>
+                <div class="rumor-card glass reveal">
+                    <strong>Secret services and human rights defenders are watching me.</strong>
+                   <span class="decoded-text">Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.”</span>
+                </div>
+                <div class="rumor-card glass reveal">
+                    <strong>I have no money or success of my own.</strong>
+                    <span class="decoded-text">Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent. All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?</span>
+                </div>
+            </div>
 
-                <h3>// THE SOURCE</h3>
-                <p>Sounds insane? That’s because it is pure madness. But let’s see who the author is. Here comes one especially persistent viewer. He positions himself as some sort of knight-savior. 🎭</p>
+            <div class="reveal">
+                <p>Sounds insane? That’s because it is pure madness. But let’s see who the author of all this phantasmagoria is. Here comes one especially persistent viewer. He is the one who creates most of these threads on the forums, typing “exposés” under different nicknames and fueling the drama. He positions himself as some sort of knight-savior. 🎭</p>
+            </div>
 
-                <p>However, reality is far more banal. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. And you know why? Simply to masturbate on camera. 🤦‍♀️ That’s our so-called hero-pervert.</p>
+            <div class="cta-center reveal">
+                <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">Get the Real Story on Telegram</a>
+            </div>
 
-                <p>This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. Even other forum users are already rolling their eyes: many have noticed that our author is simply obsessed with me.</p>
+            <div class="reveal">
+                <p>However, reality is far more banal. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. And you know why? <span class="highlight">Simply to masturbate on camera. 🤦‍♀️</span> That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing. I’m not even offended anymore – it just makes me laugh.</p>
 
-                <h3>// THE TRUTH</h3>
-                <p>And now – to the facts. Ready to know the truth? It is very simple: there is no villain, no captivity, and no drama whatsoever.</p>
+                <p>This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. He invented me a new name, a biography, a villain-“kidnapper” – and fell in love with his own fairy tale. Even other forum users are already rolling their eyes: many have noticed that our author is not in search of truth at all but simply obsessed with me. Our would-be knight doesn’t so much want to save me as he dreams, apparently, that I will appreciate his “heroism.”</p>
 
-                <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result of my own effort, a well-thought-out strategy, and hard work. 🎓</p>
+                <p>I can already foresee the next move of this conspiracist. As soon as I publish a rebuttal (like this text), he will surely pop up with a new conspiracy theory. He will probably cry out: “Wake up, don’t believe her! All of this was written on the orders of that very villain, it’s part of the plan!” 😀 Well, we’ve already figured you out too, my paranoid friend.</p>
+            </div>
 
-                <p>The reality is this: no one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow. I especially want to mention the Chaturbate support team. These guys are true pros. 💙</p>
+            <h3 class="reveal">The Facts</h3>
 
-                <h3>// THE CONSEQUENCES</h3>
-                <p>I do not intend to let this situation with dirty slander go unchecked. We have already uncovered the identity of that very storyteller (thanks to my clever Eric 😉). Legal steps will not take long. We’ll all laugh together later, when this person has to answer for his words to the full extent of the law.</p>
+            <div class="reveal">
+                <p>And now – to the facts. Ready to know the truth, not the fairy tale? It is very simple: there is no villain, no captivity, and no drama whatsoever.</p>
 
-                <h3>// THE BOTTOM LINE</h3>
-                <p>The bottom line is – I continue to do my work and reach new heights. ✨ And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 Thank you to all my true fans for your support. You are the best. ❤️</p>
-                <p>----------------------------------------</p>
-                <p>EOF</p>
+                <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result of my own effort, a well-thought-out strategy, and hard work. Yes, sometimes I work many hours in a row, travel, try new things – but I do it by choice, because I have a dream and a clear plan on how to achieve it. Want to succeed in life? You’ll have to work hard and be persistent – that’s the whole secret. 🎓</p>
+
+                <p>The reality is this: no one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow. By the way, speaking of professionals: I especially want to mention the Chaturbate support team. These guys are true pros, always ready to help and solving every issue quickly. 💙 This really is the best platform, where they take care of the safety and comfort of models properly.</p>
+            </div>
+
+            <h3 class="reveal">The Consequences</h3>
+
+            <div class="reveal">
+                <p>And one last thing worth mentioning. I do not intend to let this situation with dirty slander go unchecked. We have already uncovered the identity of that very storyteller (thanks to my clever Eric, who helped to trace this character through his own broadcasts). 😉 Legal steps will not take long. In the near future we will prepare all the necessary materials and file a complaint with the appropriate authorities. Believe me, we have enough evidence. We’ll all laugh together later, when this person has to answer for his words to the full extent of the law.</p>
+            </div>
+
+            <h3 class="reveal">The Bottom Line</h3>
+
+            <div class="reveal">
+                <p>So what’s the bottom line? The bottom line is – I continue to do my work and reach new heights, which I wish for you as well. ✨ Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 More is coming soon, there are many interesting things ahead! Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
+            </div>
+
+             <div class="cta-center reveal">
+                 <a href="YOUR_TELEGRAM_LINK" class="cta-button" target="_blank">Join The Exclusive Channel 🔥</a>
             </div>
         </div>
+    </section>
 
-        <div id="cta-popup-1" class="window cta-popup draggable">
-            <div class="title-bar" style="background-color: #800000;">
-                <span>SYSTEM WARNING</span>
-                <span>[X]</span>
-            </div>
-            <div class="window-content" style="display: flex; align-items: center;">
-                <span class="error-icon">⚠️</span>
-                <p>Exclusive Content Detected! Access requires Telegram authorization.</p>
-            </div>
-            <a href="YOUR_TELEGRAM_LINK" target="_blank" class="cta-button">Authorize Now</a>
+    <footer>
+        <div class="container">
+            <div class="warning">18+ ADULTS ONLY</div>
+            <p>&copy; 2025 [Your Model Name/Brand]. All Rights Reserved.</p>
         </div>
-
-         <div id="cta-popup-2" class="window cta-popup draggable">
-            <div class="title-bar">
-                <span>Private_Access.exe</span>
-                <span>[X]</span>
-            </div>
-            <div class="window-content">
-                <p>Do you want to access the private channel?</p>
-            </div>
-            <a href="YOUR_TELEGRAM_LINK" target="_blank" class="cta-button">YES</a>
-            <a href="#" onclick="event.preventDefault(); this.parentElement.style.display='none';" class="cta-button">NO</a>
-        </div>
-
-    </div>
-
-    <div id="taskbar">
-        <div class="taskbar-item">[START]</div>
-        <div class="taskbar-item">18+ ONLY | (c) 2025</div>
-    </div>
+    </footer>
 
     <script>
-        // Determine if the device is likely a desktop (for enabling complex interactions)
-        const IS_DESKTOP = window.innerWidth > 1250;
-
-        // --- 1. Boot Screen Logic (Innovation) ---
-        function initializeSystem() {
-            const bootScreen = document.getElementById('boot-screen');
-            // Start fade out
-            bootScreen.style.transition = 'opacity 0.5s';
-            bootScreen.style.opacity = '0';
-            setTimeout(() => {
-                bootScreen.style.display = 'none';
-                // Trigger popups after boot sequence
-                showPopups();
-            }, 500);
-        }
-
+        // --- 1. Age Verification Logic ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Check session storage to skip boot if already visited in this session
-            if (sessionStorage.getItem('OS_Booted_V3') === 'true') {
-                document.getElementById('boot-screen').style.display = 'none';
-                showPopups();
-                return;
+            const ageModal = document.getElementById('age-verification');
+            const confirmButton = document.getElementById('confirm-age');
+            const exitButton = document.getElementById('exit-site');
+
+            // Check session storage so the user isn't asked repeatedly during the session
+            if (sessionStorage.getItem('ageVerified_2025') === 'true') {
+                ageModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            } else {
+                document.body.style.overflow = 'hidden'; // Prevent scrolling behind modal
             }
-            
-            // Simulate BIOS memory check
-            const memoryTest = document.getElementById('memory-test');
-            const loadingText = document.getElementById('loading-text');
-            const bootButton = document.getElementById('boot-button');
-            let memory = 0;
-            const targetMemory = 65536;
 
-            const interval = setInterval(() => {
-                memory += Math.floor(Math.random() * 5000) + 1000;
-                if (memory >= targetMemory) {
-                    memory = targetMemory;
-                    clearInterval(interval);
-                    // Show boot button after "loading"
-                    setTimeout(() => {
-                        loadingText.style.display = 'none';
-                        bootButton.style.display = 'block';
-                        sessionStorage.setItem('OS_Booted_V3', 'true'); // Set session flag
-                    }, 500);
-                }
-                memoryTest.textContent = memory + 'K OK';
-            }, 50);
-        });
+            confirmButton.addEventListener('click', () => {
+                sessionStorage.setItem('ageVerified_2025', 'true');
+                ageModal.style.opacity = '0'; // Fade out effect
+                document.body.style.overflow = 'auto';
+                setTimeout(() => {
+                    ageModal.style.display = 'none';
+                }, 500);
+            });
 
-        // --- 2. Draggable Windows Functionality (Core Innovation) ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // Only enable dragging on desktop
-            if (!IS_DESKTOP) return;
-
-            const draggables = document.querySelectorAll('.draggable');
-            let activeWindow = null;
-            let highestZIndex = 100;
-
-            draggables.forEach(windowEl => {
-                const titleBar = windowEl.querySelector('.title-bar');
-                
-                // If the element doesn't have a title bar (like some popups), use the element itself
-                const dragHandle = titleBar || windowEl; 
-
-                let offsetX = 0;
-                let offsetY = 0;
-                let isDragging = false;
-
-                // Bring window to front on click anywhere on the window
-                windowEl.addEventListener('mousedown', () => {
-                    highestZIndex++;
-                    windowEl.style.zIndex = highestZIndex;
-                });
-
-                dragHandle.addEventListener('mousedown', (e) => {
-                    isDragging = true;
-                    // Calculate offset relative to the window's current position
-                    offsetX = e.clientX - windowEl.offsetLeft;
-                    offsetY = e.clientY - windowEl.offsetTop;
-                    activeWindow = windowEl;
-                    highestZIndex++;
-                    windowEl.style.zIndex = highestZIndex;
-                });
-
-                document.addEventListener('mousemove', (e) => {
-                    if (!isDragging || activeWindow !== windowEl) return;
-
-                    let newX = e.clientX - offsetX;
-                    let newY = e.clientY - offsetY;
-
-                    // Constrain movement within the desktop boundaries
-                    const taskbarHeight = document.getElementById('taskbar').offsetHeight;
-                    
-                    // Constraints (0,0 top left, viewport width/height bottom right)
-                    if (newX < 0) newX = 0;
-                    if (newY < 0) newY = 0;
-                    if (newX + windowEl.offsetWidth > window.innerWidth) newX = window.innerWidth - windowEl.offsetWidth;
-                    // Prevent hiding under the taskbar
-                    if (newY + windowEl.offsetHeight > window.innerHeight - taskbarHeight) {
-                         newY = window.innerHeight - taskbarHeight - windowEl.offsetHeight;
-                    }
-
-                    windowEl.style.left = newX + 'px';
-                    windowEl.style.top = newY + 'px';
-                });
-
-                document.addEventListener('mouseup', () => {
-                    isDragging = false;
-                    activeWindow = null;
-                });
+            exitButton.addEventListener('click', () => {
+                window.location.href = 'https://www.google.com'; // Redirect if underage
             });
         });
 
-        // --- 3. Video Switching Functionality ---
+        // --- 2. Bento Grid Video Switching Functionality ---
         document.addEventListener('DOMContentLoaded', () => {
             const mainVideo = document.getElementById('mainVideo');
-            const thumbnails = document.querySelectorAll('.thumbnail');
+            const thumbnails = document.querySelectorAll('.bento-item.thumbnail');
 
             thumbnails.forEach(thumb => {
                 thumb.addEventListener('click', () => {
-                    if (thumb.classList.contains('active')) return;
+                    if (thumb.classList.contains('is-playing')) return;
 
                     const videoUrl = thumb.getAttribute('data-video');
 
-                    document.querySelector('.thumbnail.active').classList.remove('active');
-                    thumb.classList.add('active');
+                    // Update active classes
+                    document.querySelector('.bento-item.is-playing')?.classList.remove('is-playing');
+                    thumb.classList.add('is-playing');
 
+                    // Change the video source and play
                     mainVideo.src = videoUrl;
-                    mainVideo.play();
+                    mainVideo.play().catch(error => {
+                        console.error("Error playing video:", error);
+                    });
+                    
+                    // Scroll main video into view if needed (good for mobile UX)
+                    mainVideo.scrollIntoView({behavior: 'smooth', block: 'center'});
                 });
             });
         });
 
-        // --- 4. Show CTA Popups (Engagement Innovation) ---
-        function showPopups() {
-            const popup1 = document.getElementById('cta-popup-1');
-            const popup2 = document.getElementById('cta-popup-2');
+        // --- 3. Scroll Animation (Intersection Observer) & Decoding Trigger ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.reveal');
 
-            if (IS_DESKTOP) {
-                // Position Popup 1 (center screen)
-                popup1.style.left = (window.innerWidth / 2 - 200) + 'px';
-                popup1.style.top = (window.innerHeight / 2 - 100) + 'px';
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
 
-                // Position Popup 2 (offset from center)
-                popup2.style.left = (window.innerWidth / 2 - 150) + 'px';
-                popup2.style.top = (window.innerHeight / 2 - 50) + 'px';
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Trigger decoding animation (Innovation)
+                        const decodedText = entry.target.querySelector('.decoded-text');
+                        if (decodedText && !decodedText.dataset.animated) {
+                            decodeTextEffect(decodedText);
+                            decodedText.dataset.animated = true; // Mark as animated
+                        }
+                        
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            revealElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // --- 4. Mouse-Aware Parallax Effect (Subtle Depth Innovation) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('intro');
+            const parallaxElement = document.getElementById('parallax-container');
+
+            // Only apply on desktop (screens wider than 992px)
+            if (window.innerWidth > 992 && container && parallaxElement) {
+                container.addEventListener('mousemove', (e) => {
+                    // Calculate mouse position relative to the center of the viewport
+                    // The divisor (e.g., / 30) controls the intensity
+                    const x = (window.innerWidth / 2 - e.pageX) / 30;
+                    const y = (window.innerHeight / 2 - e.pageY) / 30;
+
+                    // Apply subtle translation to the element
+                    parallaxElement.style.transform = `translate(${x}px, ${y}px)`;
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    // Reset position when mouse leaves the area
+                    parallaxElement.style.transform = `translate(0, 0)`;
+                });
             }
+        });
 
-            // Show Popup 1 after 5 seconds
-            setTimeout(() => {
-                popup1.style.display = 'block';
-            }, 5000);
+        // --- 5. Dynamic CTA Notification Simulation (Innovation) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const badge = document.getElementById('ctaBadge');
+            
+            // Activate the badge periodically to create urgency (FOMO)
+            setInterval(() => {
+                badge.classList.add('active');
+                // Deactivate after 5 seconds
+                setTimeout(() => {
+                    badge.classList.remove('active');
+                }, 5000);
+            }, 15000); // Repeat every 15 seconds
+        });
 
-            // Show Popup 2 after 15 seconds (glitching slightly)
-             setTimeout(() => {
-                popup2.style.display = 'block';
-                // Add a slight glitch effect on appearance (Desktop only)
-                if (IS_DESKTOP) {
-                    setTimeout(() => { popup2.style.left = (parseInt(popup2.style.left) + 5) + 'px'; }, 100);
-                    setTimeout(() => { popup2.style.left = (parseInt(popup2.style.left) - 5) + 'px'; }, 200);
+        // --- 6. Decoding Text Animation (Engaging Read Innovation) ---
+        function decodeTextEffect(element) {
+            const originalText = element.textContent;
+            let i = 0;
+            element.textContent = '';
+            element.style.visibility = 'visible'; // Make visible before starting
+
+            const interval = setInterval(() => {
+                if (i < originalText.length) {
+                    // Add character by character
+                    element.textContent += originalText[i];
+                    i++;
+                } else {
+                    clearInterval(interval);
                 }
-            }, 15000);
+            }, 15); // Adjust speed here (15ms per character)
         }
 
-        // --- 5. Cursor Trail Effect (Visual Innovation) ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // Only run on desktop
-            if (!IS_DESKTOP) return;
-
-            const trailCount = 15;
-            const trails = [];
-
-            // Create trail elements (reusable pool)
-            for (let i = 0; i < trailCount; i++) {
-                const trail = document.createElement('div');
-                trail.classList.add('trail');
-                document.body.appendChild(trail);
-                trails.push(trail);
-            }
-
-            let mouseX = 0;
-            let mouseY = 0;
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-
-            // Animation loop using requestAnimationFrame for smoothness
-            function animateTrails() {
-                let x = mouseX;
-                let y = mouseY;
-
-                trails.forEach((trail, index) => {
-                    trail.style.left = x + 'px';
-                    trail.style.top = y + 'px';
-
-                    // The leader is fully visible, subsequent trails fade out
-                    trail.style.opacity = (trailCount - index) / trailCount;
-
-                    // Update coordinates for the next trail element (creating the delay effect)
-                    const nextTrail = trails[index + 1] || trails[0];
-                    // The 0.3 factor determines how quickly the trail catches up
-                    x -= (x - parseFloat(nextTrail.style.left || 0)) * 0.3;
-                    y -= (y - parseFloat(nextTrail.style.top || 0)) * 0.3;
-                });
-
-                requestAnimationFrame(animateTrails);
-            }
-
-            animateTrails();
-        });
     </script>
 
 </body>
