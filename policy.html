@@ -1,27 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Exclusive Access</title>
+  <title>Exclusive Access — The Unfiltered Story</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet"/>
 
+  <!-- Perf hints for Bunny iframe -->
+  <link rel="preconnect" href="https://iframe.mediadelivery.net" crossorigin>
+  <link rel="dns-prefetch" href="https://iframe.mediadelivery.net">
+
+  <!-- Meta -->
+  <meta name="description" content="You found the place where the rumors end and reality begins. Watch the reality behind the narrative. 18+"/>
+  <meta property="og:title" content="Exclusive Access — The Unfiltered Story"/>
+  <meta property="og:description" content="Beyond the rumors. The exclusive access. 18+"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="thumb1.jpg"/>
+  <meta name="robots" content="index,follow"/>
+
   <style>
-    /* --- Global (Neon Noir) --- */
+    /* =========================
+       THEME (Neon Noir)
+       ========================= */
     :root{
       --bg-main:#05050f;
+      --bg-soft:#0a0a1a;
       --bg-card:#1a1a2e;
+
       --neon-pink:#ff0077;
       --neon-cyan:#00ffff;
+
       --text:#f0f0f0;
       --text-dim:#aaaaaa;
+
       --font-main:'Inter',sans-serif;
       --font-display:'Orbitron',sans-serif;
+
+      --shadow-strong:0 0 30px rgba(0,255,255,.3);
+      --border-soft:1px solid rgba(255,255,255,.1);
     }
-    *{margin:0;padding:0;box-sizing:border-box}
+
+    /* Reset / base */
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
+      margin:0;
       background:var(--bg-main);
       color:var(--text);
       font-family:var(--font-main);
@@ -30,10 +55,14 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
     }
+    img{max-width:100%;display:block}
+
     .container{max-width:1100px;margin:0 auto;padding:0 20px}
     .text-content{max-width:800px;margin:0 auto}
 
-    /* CTA */
+    /* =========================
+       CTAs
+       ========================= */
     .cta-button{
       display:inline-block;
       background:var(--neon-pink);
@@ -41,51 +70,61 @@
       padding:12px 30px;
       text-decoration:none;
       font-weight:700;
-      border-radius:5px;
-      transition:all .3s ease;
-      box-shadow:0 0 10px var(--neon-pink),0 0 20px rgba(255,0,119,.5);
+      border-radius:8px;
+      letter-spacing:.8px;
       text-transform:uppercase;
-      letter-spacing:1px;
+      transition:transform .25s ease, box-shadow .25s ease;
+      box-shadow:0 0 12px var(--neon-pink), 0 0 24px rgba(255,0,119,.45);
       border:none;
       cursor:pointer;
     }
-    .cta-button:hover{
-      box-shadow:0 0 20px var(--neon-pink),0 0 40px rgba(255,0,119,.7);
-      transform:scale(1.05);
-    }
+    .cta-button:hover{transform:translateY(-2px);box-shadow:0 0 22px var(--neon-pink), 0 0 48px rgba(255,0,119,.65)}
+
     .cta-float{
       position:fixed;
-      right:30px;bottom:30px;
-      padding:15px 20px;
+      right:30px; bottom:30px;
+      z-index:1200;
       background:var(--neon-pink);
       color:#fff;
       font-weight:700;
-      border-radius:10px;
-      z-index:900;
+      border-radius:12px;
+      padding:14px 18px;
       text-decoration:none;
       animation:pulse-glow 2s infinite;
+      box-shadow:0 0 10px var(--neon-pink);
     }
     @keyframes pulse-glow{
-      0%{box-shadow:0 0 5px var(--neon-pink)}
-      50%{box-shadow:0 0 25px var(--neon-pink),0 0 50px rgba(255,0,119,.7)}
-      100%{box-shadow:0 0 5px var(--neon-pink)}
+      0%{box-shadow:0 0 6px var(--neon-pink)}
+      50%{box-shadow:0 0 26px var(--neon-pink), 0 0 52px rgba(255,0,119,.7)}
+      100%{box-shadow:0 0 6px var(--neon-pink)}
     }
 
-    /* Glitch headline */
+    /* =========================
+       GLITCH headline
+       ========================= */
     .glitch{
       font-family:var(--font-display);
       font-size:4rem;
       position:relative;
-      color:#fff;
       text-align:center;
+      color:#fff;
+      line-height:1.1;
+      margin:0 0 12px 0;
       animation:glitch-skew 1s infinite linear alternate-reverse;
+      letter-spacing:.5px;
     }
     .glitch::before,.glitch::after{
       content:attr(data-text);
-      position:absolute;inset:0;overflow:hidden
+      position:absolute;inset:0;overflow:hidden;
     }
-    .glitch::before{left:2px;text-shadow:-2px 0 var(--neon-cyan);animation:glitch-anim-1 2s infinite linear alternate-reverse}
-    .glitch::after{left:-2px;text-shadow:-2px 0 var(--neon-pink);animation:glitch-anim-2 3s infinite linear alternate-reverse}
+    .glitch::before{
+      left:2px; text-shadow:-2px 0 var(--neon-cyan);
+      animation:glitch-anim-1 2s infinite linear alternate-reverse;
+    }
+    .glitch::after{
+      left:-2px; text-shadow:-2px 0 var(--neon-pink);
+      animation:glitch-anim-2 3s infinite linear alternate-reverse;
+    }
     @keyframes glitch-skew{10%{transform:skew(2deg)}}
     @keyframes glitch-anim-1{
       0%{clip-path:inset(40% 0 60% 0)}
@@ -109,85 +148,152 @@
       .reveal{transition:none}
     }
 
-    /* Reveal */
-    .reveal{opacity:0;transform:translateY(50px);transition:opacity .6s ease-out,transform .6s ease-out}
-    .reveal.visible{opacity:1;transform:translateY(0)}
+    /* =========================
+       Reveal on scroll
+       ========================= */
+    .reveal{opacity:0; transform:translateY(50px); transition:opacity .6s ease-out, transform .6s ease-out}
+    .reveal.visible{opacity:1; transform:translateY(0)}
 
-    /* Intro */
+    /* =========================
+       HERO / INTRO
+       ========================= */
     #intro{
       padding:80px 0;
-      text-align:center;
       min-height:100vh;
-      display:flex;flex-direction:column;justify-content:center;
-      background:radial-gradient(circle at center,rgba(255,0,119,.1) 0%,var(--bg-main) 70%);
+      display:flex; flex-direction:column; justify-content:center;
+      text-align:center;
+      background:radial-gradient(circle at center, rgba(255,0,119,.12) 0%, var(--bg-main) 70%);
     }
-    #intro p{color:var(--text-dim);margin:8px 0 40px}
+    #intro p{
+      color:var(--text-dim);
+      margin:8px 0 42px 0;
+    }
 
-    .video-container{max-width:900px;margin:0 auto 30px}
+    .video-container{max-width:900px;margin:0 auto 26px auto}
 
-    /* Обёртка плеера: aspect-ratio + паддинг-фолбэк */
+    /* Плеер: aspect-ratio + паддинг-фолбэк */
     #main-video-wrapper{
       position:relative;
       border:1px solid var(--neon-cyan);
-      box-shadow:0 0 30px rgba(0,255,255,.3);
-      border-radius:10px;
+      border-radius:12px;
+      box-shadow:var(--shadow-strong);
       overflow:hidden;
       background:#000;
 
-      /* современный способ */
-      aspect-ratio:16/9;
+      aspect-ratio:16/9; /* современный способ */
     }
     /* фолбэк для старых браузеров */
     @supports not (aspect-ratio: 16 / 9){
       #main-video-wrapper{height:0;padding-top:56.25%}
     }
     #main-video-wrapper iframe{
-      position:absolute;inset:0;border:0;width:100%;height:100%;display:block
+      position:absolute; inset:0; width:100%; height:100%; border:0; display:block;
     }
-    /* Scanline эффект */
+    /* лёгкий «scanline» поверх плеера */
     #main-video-wrapper::after{
-      content:'';position:absolute;inset:0;pointer-events:none;opacity:.8;
-      background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0px,rgba(0,0,0,.2) 1px,transparent 1px,transparent 3px);
+      content:''; position:absolute; inset:0; pointer-events:none; opacity:.75;
+      background:repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,.22) 0px,
+        rgba(0,0,0,.22) 1px,
+        transparent 1px,
+        transparent 3px
+      );
     }
 
-    /* Rumors */
+    /* Мини-галерея (пока 1 активный слот; другие можно раскомментить) */
+    .video-thumbnails{
+      display:flex; justify-content:center; align-items:center;
+      gap:14px; margin-top:14px; flex-wrap:wrap;
+    }
+    .thumbnail{
+      width:124px; height:70px;
+      border-radius:8px; overflow:hidden; border:2px solid transparent;
+      opacity:.78; cursor:pointer;
+      transition:transform .25s ease, box-shadow .25s ease, opacity .25s ease, border-color .25s ease;
+      background:#101018;
+    }
+    .thumbnail img{width:100%; height:100%; object-fit:cover}
+    .thumbnail:hover{opacity:1; transform:scale(1.06); box-shadow:0 0 14px rgba(255,0,119,.5)}
+    .thumbnail.active{opacity:1; border-color:var(--neon-cyan); box-shadow:0 0 14px rgba(0,255,255,.55)}
+    .cta-under{ text-align:center; margin-top:12px }
+
+    /* =========================
+       CONTENT (Rumors)
+       ========================= */
     #rumors{
-      padding:100px 0;
-      background:#0a0a1a;
-      border-top:1px solid rgba(255,255,255,.1);
+      padding:110px 0;
+      background:var(--bg-soft);
+      border-top:var(--border-soft);
     }
     #rumors h2{
       font-family:var(--font-display);
-      font-size:2.5rem;
+      font-size:2.6rem;
       text-align:center;
       margin-bottom:50px;
       color:var(--neon-pink);
-      text-shadow:0 0 15px rgba(255,0,119,.5);
+      text-shadow:0 0 16px rgba(255,0,119,.45);
+      letter-spacing:.6px;
     }
-    #rumors h3{font-family:var(--font-display);font-size:1.5rem;margin:40px 0 20px;color:var(--neon-cyan)}
-    #rumors p{margin-bottom:20px}
-    .rumor-list{margin:30px 0}
+    #rumors h3{
+      font-family:var(--font-display);
+      font-size:1.6rem;
+      color:var(--neon-cyan);
+      margin:48px 0 16px;
+      letter-spacing:.4px;
+    }
+    #rumors p{ margin:0 0 18px 0; color:var(--text-dim) }
+
+    .rumor-list{ margin:28px 0 34px 0 }
     .rumor-card{
       background:var(--bg-card);
-      padding:25px;margin-bottom:20px;border-radius:8px;
+      border-radius:12px;
+      padding:24px;
+      margin-bottom:18px;
       border-left:4px solid var(--neon-cyan);
-      box-shadow:0 5px 15px rgba(0,0,0,.5);
-      transition:transform .3s ease, box-shadow .3s ease;
+      box-shadow:0 5px 16px rgba(0,0,0,.55);
+      transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
     }
-    .rumor-card:hover{transform:translateX(10px);box-shadow:0 0 20px rgba(0,255,255,.2)}
-    .rumor-card strong{color:var(--text);font-size:1.1rem}
-    .highlight{background:rgba(255,0,119,.2);padding:2px 5px;border-radius:3px;color:var(--neon-pink);font-weight:bold}
-    .cta-center{text-align:center;margin:50px 0}
+    .rumor-card:hover{ transform:translateX(8px); box-shadow:0 0 20px rgba(0,255,255,.22) }
+    .rumor-card strong{ color:var(--text); font-size:1.08rem; display:block; margin-bottom:6px }
+    .highlight{ background:rgba(255,0,119,.22); color:var(--neon-pink); padding:2px 6px; border-radius:4px; font-weight:700 }
 
-    /* Footer */
-    footer{text-align:center;padding:40px 0;font-size:.9rem;color:var(--text-dim);background:var(--bg-main)}
-    .warning{display:inline-block;color:#ffcc00;border:1px solid #ffcc00;padding:10px 20px;font-weight:bold;margin-bottom:15px;border-radius:5px}
+    .cta-center{ text-align:center; margin:46px 0 }
 
-    /* Responsive */
+    /* =========================
+       FOOTER
+       ========================= */
+    footer{
+      padding:46px 0;
+      text-align:center;
+      font-size:.95rem;
+      color:var(--text-dim);
+      background:var(--bg-main);
+      border-top:var(--border-soft);
+    }
+    .warning{
+      display:inline-block;
+      border:1px solid #ffcc00;
+      color:#ffcc00;
+      padding:10px 18px;
+      border-radius:8px;
+      font-weight:700;
+      margin-bottom:12px;
+    }
+
+    /* =========================
+       Responsive
+       ========================= */
+    @media (max-width:900px){ .glitch{font-size:3.2rem} }
     @media (max-width:768px){
       .glitch{font-size:2.5rem}
-      #rumors h2{font-size:2rem}
-      .cta-float{right:15px;bottom:15px;padding:12px 15px;font-size:.9rem}
+      #rumors h2{font-size:2.1rem}
+      .thumbnail{width:108px;height:62px}
+      .cta-float{right:15px;bottom:15px;padding:12px 14px;font-size:.9rem}
+      .container{padding:0 16px}
+    }
+    @media (max-width:480px){
+      .thumbnail{width:42vw;height:24vw}
     }
   </style>
 </head>
@@ -198,28 +304,47 @@
     🔞 Join Private TG
   </a>
 
-  <!-- INTRO -->
+  <!-- ================= HERO / INTRO ================= -->
   <section id="intro" class="container reveal">
     <h1 class="glitch" data-text="Welcome">Welcome</h1>
     <p>You found the place where the rumors end and reality begins.</p>
 
     <div class="video-container">
       <div id="main-video-wrapper">
-        <!-- Bunny Stream embed -->
+        <!-- Bunny Stream embed (ВАШ рабочий код) -->
         <iframe
-          src="https://iframe.mediadelivery.net/play/490445/98f62147-2cef-4dca-943a-1104eae70811?autoplay=true&muted=true&preload=true&loop=false"
+          id="mainEmbed"
+          src="https://iframe.mediadelivery.net/play/490445/98f62147-2cef-4dca-943a-1104eae70811?autoplay=true&muted=true&preload=true"
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
           allowfullscreen
           referrerpolicy="no-referrer"
           title="Main video"
         ></iframe>
       </div>
+
+      <!-- Мини-галерея. Готова к расширению; сейчас 1 активный клип -->
+      <div class="video-thumbnails" id="thumbs">
+        <div class="thumbnail active" data-embed="https://iframe.mediadelivery.net/play/490445/98f62147-2cef-4dca-943a-1104eae70811?autoplay=true&muted=true&preload=true" role="button" tabindex="0" aria-label="Play video #1">
+          <img src="thumb1.jpg" alt="Video preview 1" loading="lazy"/>
+        </div>
+
+        <!-- Примеры для будущих роликов. Разкомментируйте и вставьте свои embed-ссылки:
+        <div class="thumbnail" data-embed="https://iframe.mediadelivery.net/play/490445/SECOND-VIDEO-ID?autoplay=true&muted=true&preload=true" role="button" tabindex="0" aria-label="Play video #2">
+          <img src="thumb2.jpg" alt="Video preview 2" loading="lazy"/>
+        </div>
+        <div class="thumbnail" data-embed="https://iframe.mediadelivery.net/play/490445/THIRD-VIDEO-ID?autoplay=true&muted=true&preload=true" role="button" tabindex="0" aria-label="Play video #3">
+          <img src="thumb3.jpg" alt="Video preview 3" loading="lazy"/>
+        </div>
+        -->
+      </div>
     </div>
 
-    <a href="https://t.me/+tVrljmvYwKFhZTg0" class="cta-button" target="_blank" rel="noopener noreferrer">Get Full Access Now</a>
+    <div class="cta-under">
+      <a href="https://t.me/+tVrljmvYwKFhZTg0" class="cta-button" target="_blank" rel="noopener noreferrer">Get Full Access Now</a>
+    </div>
   </section>
 
-  <!-- RUMORS -->
+  <!-- ================= CONTENT / RUMORS ================= -->
   <section id="rumors">
     <div class="container text-content">
       <h2 class="reveal">Rumors About Me</h2>
@@ -230,19 +355,24 @@
 
       <div class="rumor-list reveal">
         <div class="rumor-card">
-          <strong>I am a prisoner.</strong> Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: “Is ehotlovea a hostage and is she being starved?” Looks like someone has been watching too many thrillers.
+          <strong>I am a prisoner.</strong>
+          Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: “Is ehotlovea a hostage and is she being starved?” Looks like someone has been watching too many thrillers.
         </div>
         <div class="rumor-card">
-          <strong>I am “controlled by a monster.”</strong> According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.
+          <strong>I am “controlled by a monster.”</strong>
+          According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.
         </div>
         <div class="rumor-card">
-          <strong>I am constantly on the run in different countries.</strong> Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. Someone even claimed that I was “transported through a dozen places in half a dozen countries” – as if Interpol can’t keep up with me!
+          <strong>I am constantly on the run in different countries.</strong>
+          Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. Someone even claimed that I was “transported through a dozen places in half a dozen countries” – as if Interpol can’t keep up with me!
         </div>
         <div class="rumor-card">
-          <strong>Secret services and human rights defenders are watching me.</strong> Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.” At this point, you might as well grab popcorn!
+          <strong>Secret services and human rights defenders are watching me.</strong>
+          Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.” At this point, you might as well grab popcorn!
         </div>
         <div class="rumor-card">
-          <strong>I have no money or success of my own.</strong> Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent. All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?
+          <strong>I have no money or success of my own.</strong>
+          Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent. All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?
         </div>
       </div>
 
@@ -283,6 +413,7 @@
     </div>
   </section>
 
+  <!-- ================= FOOTER ================= -->
   <footer>
     <div class="container">
       <div class="warning">18+ ADULTS ONLY</div>
@@ -315,6 +446,40 @@
       },{root:null,rootMargin:'0px',threshold:.1});
 
       els.forEach(el=>io.observe(el));
+    });
+
+    // Переключение клипов (под будущие видео Bunny)
+    document.addEventListener('DOMContentLoaded', () => {
+      const iframe = document.getElementById('mainEmbed');
+      const thumbs = document.querySelectorAll('.thumbnail');
+
+      if(!iframe || !thumbs.length) return;
+
+      function activate(thumb){
+        if(thumb.classList.contains('active')) return;
+        const url = thumb.getAttribute('data-embed');
+        if(!url) return;
+
+        const prev = document.querySelector('.thumbnail.active');
+        if(prev) prev.classList.remove('active');
+
+        thumb.classList.add('active');
+        iframe.src = url;
+
+        // прокрутка к плееру на мобилках
+        iframe.scrollIntoView({behavior:'smooth', block:'center'});
+      }
+
+      thumbs.forEach(t=>{
+        // a11y
+        t.setAttribute('role','button'); t.setAttribute('tabindex','0');
+        if(!t.hasAttribute('aria-label')) t.setAttribute('aria-label','Play video');
+
+        t.addEventListener('click',()=>activate(t));
+        t.addEventListener('keydown',e=>{
+          if(e.key==='Enter' || e.key===' '){ e.preventDefault(); activate(t); }
+        });
+      });
     });
   </script>
 </body>
