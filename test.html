@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exclusive Access</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>ehotlovea | Exclusive Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
     <style>
         /* --- Global Variables & Setup --- */
         :root {
-            --bg-color: #0a0a1a;
-            --text-color: #f0f0f0;
-            --neon-pink: #ff0077;
-            --neon-cyan: #00ffea;
-            --card-bg: rgba(25, 25, 40, 0.7);
-            --font-main: 'Poppins', sans-serif;
-            --font-mono: 'Roboto Mono', monospace;
+            --bg-dark: #0a0a1a;
+            --color-primary: #ff0077; /* Vibrant Pink */
+            --color-secondary: #9d00ff; /* Electric Violet */
+            --color-text: #f0f0f0;
+            --gradient-main: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            --transition-speed: 0.4s;
         }
 
         * {
@@ -24,487 +23,565 @@
         }
 
         body {
-            font-family: var(--font-main);
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-dark);
+            color: var(--color-text);
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* --- Noise/Grain Texture (Premium Feel) --- */
+        /* Adds subtle texture for a less sterile digital look */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            /* SVG Noise Filter */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 1000;
         }
 
-        /* --- Glitch Effect Title (Wow-Effect) --- */
-        .glitch {
-            font-size: 3.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            position: relative;
-            /* Subtle glitch using text-shadow animation */
-            text-shadow: 0.05em 0 0 rgba(255, 0, 119, 0.75),
-                        -0.025em -0.05em 0 rgba(0, 255, 234, 0.75),
-                        0.025em 0.05em 0 rgba(10, 10, 255, 0.75);
-            animation: glitch 5s infinite;
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
         }
 
-        @keyframes glitch {
-            0%, 14% { text-shadow: 0.05em 0 0 rgba(255, 0, 119, 0.75), -0.05em -0.025em 0 rgba(0, 255, 234, 0.75), -0.025em 0.05em 0 rgba(10, 10, 255, 0.75); }
-            15%, 49% { text-shadow: -0.05em -0.025em 0 rgba(255, 0, 119, 0.75), 0.025em 0.025em 0 rgba(0, 255, 234, 0.75), -0.05em -0.05em 0 rgba(10, 10, 255, 0.75); }
-            50%, 99% { text-shadow: 0.025em 0.05em 0 rgba(255, 0, 119, 0.75), 0.05em 0 0 rgba(0, 255, 234, 0.75), 0 -0.05em 0 rgba(10, 10, 255, 0.75); }
-            100% { text-shadow: -0.025em 0 0 rgba(255, 0, 119, 0.75), -0.025em -0.025em 0 rgba(0, 255, 234, 0.75), -0.025em -0.05em 0 rgba(10, 10, 255, 0.75); }
+        /* --- Utility: Glassmorphism --- */
+        /* Frosted glass effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px); /* Safari support */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
 
-        /* --- Section 1: Introduction (Знакомство) --- */
-        #intro {
+        /* --- Utility: CTA Button --- */
+        .cta-button {
+            display: inline-block;
+            padding: 14px 35px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            background: var(--gradient-main);
+            border: none;
+            cursor: pointer;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            /* Neon Glow */
+            box-shadow: 0 0 20px rgba(255, 0, 119, 0.4);
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 40px rgba(255, 0, 119, 0.6);
+        }
+
+        /* --- Section 1: Hero & Introduction --- */
+        .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 60px 0;
-            /* Subtle radial gradient for depth */
-            background: radial-gradient(circle at center, rgba(255, 0, 119, 0.05) 0%, var(--bg-color) 60%);
-        }
-
-        .intro-container {
-            text-align: center;
-        }
-
-        .nickname {
-            font-size: 1.5rem;
-            font-family: var(--font-mono);
-            color: var(--neon-pink);
-            text-shadow: 0 0 5px var(--neon-pink);
-            margin-bottom: 40px;
-            letter-spacing: 3px;
-        }
-
-        /* --- Video Gallery --- */
-        .video-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .main-video-wrapper {
-            width: 100%;
-            border: 2px solid var(--neon-cyan);
-            /* Neon Glow effect on the player frame */
-            box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 10px rgba(0, 255, 234, 0.5);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 30px;
-            transition: box-shadow 0.3s ease;
-        }
-        
-        .main-video-wrapper:hover {
-             box-shadow: 0 0 20px var(--neon-cyan), inset 0 0 15px rgba(0, 255, 234, 0.7);
-        }
-
-        /* Responsive iframe container (16:9 Aspect Ratio) */
-        .responsive-iframe {
-            position: relative;
-            padding-bottom: 56.25%; 
-            height: 0;
-            overflow: hidden;
-        }
-
-        .responsive-iframe iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            transition: opacity 0.5s ease; /* Smooth transition when switching */
-        }
-
-        .video-previews {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .preview-thumb {
-            width: 150px;
-            height: 85px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            border: 2px solid transparent;
-            background-size: cover;
-            background-position: center;
+            padding: 80px 20px;
             position: relative;
             overflow: hidden;
-            background-color: var(--card-bg);
         }
 
-        /* Dimming effect for non-active thumbnails */
-        .preview-thumb::before {
+        /* Atmospheric Background Glow (Animated) */
+        .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            transition: background-color 0.3s ease;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(157, 0, 255, 0.15) 0%, rgba(10, 10, 26, 0) 70%);
+            top: 5%;
+            left: 5%;
+            animation: float 15s infinite alternate;
+            z-index: 1;
         }
 
-        .preview-thumb:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255, 0, 119, 0.5);
-            border-color: var(--neon-pink);
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 0, 119, 0.1) 0%, rgba(10, 10, 26, 0) 70%);
+            bottom: 5%;
+            right: 5%;
+            animation: float 12s infinite alternate-reverse;
+            z-index: 1;
         }
 
-        .preview-thumb.active,
-        .preview-thumb:hover::before {
-            background-color: rgba(0, 0, 0, 0);
+        @keyframes float {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(50px, -30px) scale(1.1); }
         }
 
-        .preview-thumb.active {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 15px var(--neon-cyan);
+        .hero-content {
+            text-align: center;
+            z-index: 2;
         }
-        
-        /* Placeholder style for upcoming videos */
-        .preview-placeholder {
+
+        .hero-title {
+            font-size: 5rem;
+            margin-bottom: 10px;
+            /* Gradient Text */
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        /* --- Video Hub Implementation (The Wow Factor) --- */
+        .video-hub {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.7);
-            cursor: default;
+            gap: 30px;
+            margin-top: 40px;
         }
-         .preview-placeholder::before {
-            background-color: rgba(0, 0, 0, 0);
-         }
-         .preview-placeholder:hover {
-            transform: none;
-            box-shadow: none;
-            border-color: transparent;
-         }
 
+        /* Main Player */
+        .video-main-wrapper {
+            border-radius: 15px;
+            padding: 10px;
+            width: 80vw;
+            max-width: 900px; /* Large size as requested */
+            aspect-ratio: 16 / 9;
+            position: relative;
+            overflow: hidden;
+        }
 
-        /* --- Section 2: Rumors (Слухи обо мне) --- */
-        #rumors {
-            padding: 100px 0;
-            background-color: #101020; /* Slightly different dark shade for contrast */
+        #mainVideoPlayer {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            transition: opacity 0.5s ease-in-out; /* Smooth transition for switching */
+            border: none;
+        }
+
+        /* Thumbnails (Stories style with Live Previews) */
+        .video-thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .thumbnail {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Gradient border setup */
+            background: var(--bg-dark);
+            padding: 3px;
+            position: relative;
+        }
+
+        /* Creating the gradient border using mask composite */
+        .thumbnail::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            padding: 3px; 
+            background: var(--gradient-main);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            transition: opacity 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .thumbnail-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Embedding iframes in thumbnails for live previews */
+        .thumbnail iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* Cropping 16:9 video into a square container */
+            width: 160px; /* 16:9 ratio based on 90px height */
+            height: 90px;
+            transform: translate(-50%, -50%);
+            pointer-events: none; /* Prevent clicking on the iframe itself */
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.1);
+        }
+
+        .thumbnail:hover iframe {
+            opacity: 1;
+        }
+
+        .thumbnail.active iframe {
+            opacity: 1;
+        }
+
+        /* Active state styling */
+        .thumbnail.active::before {
+            opacity: 1;
+            box-shadow: 0 0 25px var(--color-primary);
         }
         
-        .rumors-card {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 50px;
-            /* Glassmorphism effect */
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px); /* Safari support */
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        .thumbnail:not(.active)::before {
+            opacity: 0.5;
         }
 
-        #rumors h2 {
+
+        .hero-cta {
+            margin-top: 50px;
+        }
+
+        /* --- Section 2: Rumors (Storytelling) --- */
+        .rumors-section {
+            padding: 150px 0;
+            background-color: #12122b; /* Slightly different background for contrast */
+        }
+
+        .rumors-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .rumors-title {
+            font-size: 3.5rem;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 80px;
+            color: var(--color-primary);
+        }
+
+        /* Content Blocks with Scroll Animation */
+        .content-block {
+            margin-bottom: 60px;
+            /* Setup for scroll animation */
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Class added by JS when in view */
+        .content-block.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .content-block p {
-            margin-bottom: 25px;
-            font-weight: 300;
+            margin-bottom: 20px;
             font-size: 1.1rem;
         }
-        
-        .content-block ul {
-            margin-bottom: 25px;
-            padding-left: 30px;
+
+        /* Styled List for the rumors (Glass effect on items) */
+        .rumor-list {
             list-style: none;
-        }
-
-        .content-block ul li {
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        /* Stylized bullet points using monospace font */
-        .content-block ul li::before {
-            content: '>';
-            font-family: var(--font-mono);
-            color: var(--neon-pink);
-            font-weight: bold;
-            position: absolute;
-            left: -20px;
-            text-shadow: 0 0 5px var(--neon-pink);
-        }
-
-        .highlight {
-            color: var(--neon-cyan);
-            font-weight: 600;
-        }
-
-        /* --- CTA Button (High Impact) --- */
-        .cta-container {
-            text-align: center;
             margin: 40px 0;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            font-size: 1.1rem;
+        .rumor-list li {
+            margin-bottom: 20px;
+            padding: 25px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .rumor-list li:hover {
+            transform: translateX(10px);
+        }
+        
+        .rumor-list li strong {
+            color: var(--color-secondary);
+        }
+
+        .quote {
+            border-left: 4px solid var(--color-secondary);
+            padding-left: 30px;
+            margin: 40px 0;
+            font-size: 1.3rem;
             font-weight: 600;
-            text-decoration: none;
-            color: var(--bg-color);
-            background-color: var(--neon-pink);
-            border-radius: 50px; /* Rounded buttons feel more friendly/inviting */
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            /* Initial pulse animation */
-            animation: pulse-shadow 3s infinite alternate;
+            font-style: italic;
         }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            background-color: #ff3388;
-            box-shadow: 0 0 15px var(--neon-pink), 0 0 40px var(--neon-pink);
-            animation: none; /* Stop pulse on hover */
-        }
-
-        @keyframes pulse-shadow {
-            from {
-                box-shadow: 0 0 5px var(--neon-pink), 0 0 15px var(--neon-pink);
-            }
-            to {
-                box-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--neon-pink);
-            }
+        
+        .cta-wrapper {
+            text-align: center;
+            margin: 80px 0;
+            padding: 40px;
+            border-radius: 15px;
         }
 
         /* --- Footer --- */
         footer {
+            padding: 40px 0;
             text-align: center;
-            padding: 50px 0 30px;
-            background-color: var(--bg-color);
-            border-top: 1px solid rgba(255, 0, 119, 0.2);
+            background-color: var(--bg-dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-text {
             font-size: 0.9rem;
-            font-family: var(--font-mono);
+            color: #aaa;
         }
 
         .warning {
-            color: var(--neon-pink);
-            font-weight: 700;
-            margin-top: 10px;
-        }
-
-        /* --- Scroll Animations (Reveal) --- */
-        .reveal {
-            position: relative;
-            transform: translateY(50px);
-            opacity: 0;
-            transition: 1s all ease;
-        }
-
-        .reveal.active {
-            transform: translateY(0);
-            opacity: 1;
+            color: var(--color-primary);
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            border: 2px solid var(--color-primary);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 5px;
         }
 
         /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .glitch {
-                font-size: 2.5rem;
+        @media (max-width: 1024px) {
+            /* Stack video player and thumbnails on tablet/mobile */
+            .video-hub {
+                flex-direction: column-reverse;
+                gap: 30px;
             }
-            .rumors-card {
-                padding: 30px;
+
+            .video-thumbnails {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
             }
-             .preview-thumb {
-                width: 120px;
-                height: 68px;
-            }
-            #intro {
-                min-height: auto;
-                padding-top: 100px;
+            
+            .video-main-wrapper {
+                 width: 90vw;
             }
         }
 
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .rumors-title {
+                font-size: 2.5rem;
+            }
+
+            /* Adjust thumbnail size and iframe cropping for mobile */
+            .thumbnail {
+                width: 70px;
+                height: 70px;
+            }
+            .thumbnail iframe {
+                width: 124.44px; /* 16:9 ratio for 70px height */
+                height: 70px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <main>
-        <section id="intro">
-            <div class="container intro-container reveal">
-                <div class="nickname">[YourNickName] PRESENTS</div>
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">ehotlovea</h1>
+            <p class="hero-subtitle">Welcome to my world. Let's get acquainted.</p>
 
-                <div class="video-container">
-                    <div class="main-video-wrapper">
-                        <div class="responsive-iframe">
-                            <iframe id="mainVideoPlayer" 
-                                    src="https://iframe.mediadelivery.net/play/490684/5324dc77-45c9-427c-b63d-e74aa4cfc445?autoplay=true&loop=true&muted=true" 
-                                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" 
-                                    allowfullscreen="true"
-                                    loading="lazy">
-                            </iframe>
+            <div class="video-hub">
+                <div class="video-thumbnails">
+                    
+                    <div class="thumbnail active" data-video-url="https://iframe.mediadelivery.net/play/490684/5324dc77-45c9-427c-b63d-e74aa4cfc445?autoplay=true&loop=true&muted=true&preload=true">
+                        <div class="thumbnail-inner">
+                            <iframe src="https://iframe.mediadelivery.net/play/490684/5324dc77-45c9-427c-b63d-e74aa4cfc445?autoplay=true&loop=true&muted=true&preload=true" loading="lazy" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="false"></iframe>
                         </div>
                     </div>
-                    <div class="video-previews">
-                        <div class="preview-thumb active" 
-                             data-video-url="https://iframe.mediadelivery.net/play/490684/5324dc77-45c9-427c-b63d-e74aa4cfc445"
-                             style="background-image: url('https://d14639b1-39d5-4935-a51d-b306c63560c4.b-cdn.net/5324dc77-45c9-427c-b63d-e74aa4cfc445/thumbnail.jpg');">
-                        </div>
-                        <div class="preview-thumb" 
-                             data-video-url="https://iframe.mediadelivery.net/play/490685/dd611d7c-2d83-4b89-a1dd-3dea5fa8e448"
-                             style="background-image: url('https://d14639b1-39d5-4935-a51d-b306c63560c4.b-cdn.net/dd611d7c-2d83-4b89-a1dd-3dea5fa8e448/thumbnail.jpg');">
-                        </div>
-                        <div class="preview-thumb" 
-                             data-video-url="https://iframe.mediadelivery.net/play/490687/49cc6a28-5f4a-4617-87cd-e0ac1e090e00"
-                             style="background-image: url('https://d14639b1-39d5-4935-a51d-b306c63560c4.b-cdn.net/49cc6a28-5f4a-4617-87cd-e0ac1e090e00/thumbnail.jpg');">
-                        </div>
-                         <div class="preview-thumb preview-placeholder">
-                            More soon...
+                    
+                    <div class="thumbnail" data-video-url="https://iframe.mediadelivery.net/play/490685/dd611d7c-2d83-4b89-a1dd-3dea5fa8e448?autoplay=true&loop=true&muted=true&preload=true">
+                        <div class="thumbnail-inner">
+                             <iframe src="https://iframe.mediadelivery.net/play/490685/dd611d7c-2d83-4b89-a1dd-3dea5fa8e448?autoplay=true&loop=true&muted=true&preload=true" loading="lazy" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="false"></iframe>
                         </div>
                     </div>
+                    
+                    <div class="thumbnail" data-video-url="https://iframe.mediadelivery.net/play/490687/49cc6a28-5f4a-4617-87cd-e0ac1e090e00?autoplay=true&loop=true&muted=true&preload=true">
+                        <div class="thumbnail-inner">
+                             <iframe src="https://iframe.mediadelivery.net/play/490687/49cc6a28-5f4a-4617-87cd-e0ac1e090e00?autoplay=true&loop=true&muted=true&preload=true" loading="lazy" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="false"></iframe>
+                        </div>
+                    </div>
+                    
+                    <div class="thumbnail" style="opacity: 0.5; cursor: default;">
+                        <div class="thumbnail-inner glass" style="display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                            SOON
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-main-wrapper glass">
+                    <iframe id="mainVideoPlayer" src="https://iframe.mediadelivery.net/play/490684/5324dc77-45c9-427c-b63d-e74aa4cfc445?autoplay=true&loop=true&muted=true&preload=true" loading="lazy" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" allowfullscreen="true"></iframe>
+                </div>
+            </div>
+            
+            <div class="hero-cta">
+                <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" class="cta-button">Join My Private Telegram Channel</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="rumors-section">
+        <div class="rumors-container">
+            <h2 class="rumors-title">Rumors About Me</h2>
+
+            <div class="content-block">
+                <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around <strong>ehotlovea</strong> there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:</p>
+            </div>
+
+            <div class="content-block">
+                <h3>The Theories They Invented</h3>
+                <ul class="rumor-list">
+                    <li class="glass"><strong>I am a prisoner.</strong> Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: “Is ehotlovea a hostage and is she being starved?” Looks like someone has been watching too many thrillers.</li>
+                    <li class="glass"><strong>I am “controlled by a monster.”</strong> According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</li>
+                    <li class="glass"><strong>I am constantly on the run in different countries.</strong> Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. It creates the impression that I change location every couple of weeks. Someone even claimed that I was “transported through a dozen places in half a dozen countries” – as if Interpol can’t keep up with me!</li>
+                    <li class="glass"><strong>Secret services and human rights defenders are watching me.</strong> Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.” At this point, you might as well grab popcorn – the plot is worthy of a thriller!</li>
+                    <li class="glass"><strong>I have no money or success of my own.</strong> Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent – “the slave is used like an object, what kind of reward could she get.” All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?</li>
+                </ul>
+            </div>
+
+            <div class="content-block">
+                <h3>The Source of Madness</h3>
+                <p>Sounds insane? That’s because it is pure madness. But let’s see who the author of all this phantasmagoria is. Here comes one especially persistent viewer. He is the one who creates most of these threads on the forums, typing “exposés” under different nicknames and fueling the drama. He positions himself as some sort of knight-savior: supposedly he alone has seen the truth and exposed everyone. 🎭</p>
+                
+                <p>However, reality is far more banal. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. And you know why?</p>
+                
+                <div class="quote">
+                    Simply to masturbate on camera. 🤦‍♀️
                 </div>
                 
-                <div class="cta-container" style="margin-top: 50px;">
-                     <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" class="cta-button">
-                        Enter Private Telegram 🔐
-                    </a>
-                </div>
+                <p>That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing. I’m not even offended anymore – it just makes me laugh.</p>
             </div>
-        </section>
 
-        <section id="rumors">
-            <div class="container">
-                <div class="rumors-card reveal">
-                    <h2 class="glitch" data-text="Rumors About Me">Rumors About Me</h2>
-                    
-                    <div class="content-block reveal">
-                        <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around <span class="highlight">ehotlovea</span> there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:</p>
-
-                        <ul>
-                            <li><strong>I am a prisoner.</strong> Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: “Is ehotlovea a hostage and is she being starved?” Looks like someone has been watching too many thrillers.</li>
-                            <li><strong>I am “controlled by a monster.”</strong> According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.</li>
-                            <li><strong>I am constantly on the run in different countries.</strong> Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. It creates the impression that I change location every couple of weeks. Someone even claimed that I was “transported through a dozen places in half a dozen countries” – as if Interpol can’t keep up with me!</li>
-                            <li><strong>Secret services and human rights defenders are watching me.</strong> Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.” At this point, you might as well grab popcorn – the plot is worthy of a thriller!</li>
-                            <li><strong>I have no money or success of my own.</strong> Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent – “the slave is used like an object, what kind of reward could she get.” All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?</li>
-                        </ul>
-                    </div>
-
-                    <div class="content-block reveal">
-                        <p>Sounds insane? That’s because it is pure madness. But let’s see who the author of all this phantasmagoria is. Here comes one especially persistent viewer. He is the one who creates most of these threads on the forums, typing “exposés” under different nicknames and fueling the drama. He positions himself as some sort of knight-savior: supposedly he alone has seen the truth and exposed everyone. 🎭</p>
-                    </div>
-
-                    <div class="cta-container reveal">
-                        <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" class="cta-button">
-                            See The Truth in Telegram
-                        </a>
-                    </div>
-
-                    <div class="content-block reveal">
-                        <p>However, reality is far more banal. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. And you know why? <span class="highlight">Simply to masturbate on camera.</span> 🤦‍♀️ That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing. I’m not even offended anymore – it just makes me laugh.</p>
-
-                        <p>This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. He invented me a new name, a biography, a villain-“kidnapper” – and fell in love with his own fairy tale. Even other forum users are already rolling their eyes: many have noticed that our author is not in search of truth at all but simply obsessed with me. One commenter directly wrote that the behavior of this “savior” is very similar to that of a typical “simp” who doesn’t actually want to expose anything but is head over heels in love with Alice and is desperately seeking attention. Exactly right! Our would-be knight doesn’t so much want to save me as he dreams, apparently, that I will appreciate his “heroism.” Well, dreams don’t cost anything.</p>
-
-                        <p>I can already foresee the next move of this conspiracist. As soon as I publish a rebuttal (like this text), he will surely pop up with a new conspiracy theory. He will probably cry out into the internet void: “Wake up, don’t believe her! All of this was written on the orders of that very villain, it’s part of the plan!” 😀 Well, we’ve already figured you out too, my paranoid friend. Your scenario is clear in advance, and it is just as ridiculous as all the previous ones.</p>
-                    </div>
-
-                    <div class="content-block reveal">
-                        <h3 style="text-align: center; margin: 40px 0; color: var(--neon-cyan); font-size: 1.5rem;">And now – to the facts.</h3>
-                        
-                        <p>Ready to know the truth, not the fairy tale? It is very simple and, perhaps, will disappoint some: <span class="highlight">there is no villain, no captivity, and no drama whatsoever.</span></p>
-
-                        <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result of my own effort, a well-thought-out strategy, and hard work. Yes, sometimes I work many hours in a row, travel, try new things – but I do it by choice, because I have a dream and a clear plan on how to achieve it. Want to succeed in life? You’ll have to work hard and be persistent – that’s the whole secret. 🎓</p>
-
-                        <p>Of course, it’s much more convenient to believe that behind someone’s success stands a mysterious “kidnapper” or a “rich sponsor” than to acknowledge the role of effort and talent. But the reality is this: no one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow. By the way, speaking of professionals: I especially want to mention the Chaturbate support team. These guys are true pros, always ready to help and solving every issue quickly. 💙 This really is the best platform, where they take care of the safety and comfort of models properly. Do you think that if something really bad were happening to me, it would go unnoticed? Not a chance – not by my team, nor by the platform.</p>
-                    </div>
-
-                     <div class="cta-container reveal">
-                        <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" class="cta-button">
-                            Follow My Journey ✨
-                        </a>
-                    </div>
-
-                    <div class="content-block reveal">
-                        <p>And one last thing worth mentioning. I do not intend to let this situation with dirty slander go unchecked. We have already uncovered the identity of that very storyteller (thanks to my clever Eric, who helped to trace this character through his own broadcasts). 😉 Legal steps will not take long. Right now, I have other projects and ideas as a priority, but in the near future we will prepare all the necessary materials and file a complaint with the appropriate authorities. Believe me, we have enough evidence – his entire forum “creativity” is saved, along with many other actions that I cannot reveal so as not to alarm him. We’ll all laugh together later, when this person has to answer for his words to the full extent of the law.</p>
-
-                        <p>So what’s the bottom line? The bottom line is – I continue to do my work and reach new heights, which I wish for you as well. ✨ Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 More is coming soon, there are many interesting things ahead! Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
-                    </div>
-                </div>
+            <div class="content-block">
+                 <h3>The Obsession</h3>
+                <p>This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. He invented me a new name, a biography, a villain-“kidnapper” – and fell in love with his own fairy tale. Even other forum users are already rolling their eyes: many have noticed that our author is not in search of truth at all but simply obsessed with me. One commenter directly wrote that the behavior of this “savior” is very similar to that of a typical “simp” who doesn’t actually want to expose anything but is head over heels in love with Alice and is desperately seeking attention. Exactly right! Our would-be knight doesn’t so much want to save me as he dreams, apparently, that I will appreciate his “heroism.” Well, dreams don’t cost anything.</p>
             </div>
-        </section>
+
+            <div class="cta-wrapper glass content-block">
+                <h3>Tired of the rumors?</h3>
+                <p>Get the unfiltered truth and exclusive content directly from me.</p>
+                <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" class="cta-button">Access The Real Story on Telegram</a>
+            </div>
+
+            <div class="content-block">
+                <p>I can already foresee the next move of this conspiracist. As soon as I publish a rebuttal (like this text), he will surely pop up with a new conspiracy theory. He will probably cry out into the internet void: “Wake up, don’t believe her! All of this was written on the orders of that very villain, it’s part of the plan!” 😀 Well, we’ve already figured you out too, my paranoid friend. Your scenario is clear in advance, and it is just as ridiculous as all the previous ones.</p>
+            </div>
+
+            <div class="content-block">
+                <h3>And now – to the facts.</h3>
+                <p>Ready to know the truth, not the fairy tale? It is very simple and, perhaps, will disappoint some: there is no villain, no captivity, and no drama whatsoever.</p>
+                <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result of my own effort, a well-thought-out strategy, and hard work. Yes, sometimes I work many hours in a row, travel, try new things – but I do it by choice, because I have a dream and a clear plan on how to achieve it. Want to succeed in life? You’ll have to work hard and be persistent – that’s the whole secret. 🎓</p>
+            </div>
+
+            <div class="content-block">
+                <h3>My Independence</h3>
+                <p>Of course, it’s much more convenient to believe that behind someone’s success stands a mysterious “kidnapper” or a “rich sponsor” than to acknowledge the role of effort and talent. But the reality is this: <strong>no one controls me</strong>. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow.</p>
+                 <p>By the way, speaking of professionals: I especially want to mention the Chaturbate support team. These guys are true pros, always ready to help and solving every issue quickly. 💙 This really is the best platform, where they take care of the safety and comfort of models properly. Do you think that if something really bad were happening to me, it would go unnoticed? Not a chance – not by my team, nor by the platform.</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Legal Action</h3>
+                <p>And one last thing worth mentioning. I do not intend to let this situation with dirty slander go unchecked. We have already uncovered the identity of that very storyteller (thanks to my clever Eric, who helped to trace this character through his own broadcasts). 😉 Legal steps will not take long.</p>
+                <p>Right now, I have other projects and ideas as a priority, but in the near future we will prepare all the necessary materials and file a complaint with the appropriate authorities. Believe me, we have enough evidence – his entire forum “creativity” is saved, along with many other actions that I cannot reveal so as not to alarm him. We’ll all laugh together later, when this person has to answer for his words to the full extent of the law.</p>
+            </div>
+
+            <div class="content-block">
+                <h3>The Bottom Line</h3>
+                <p>So what’s the bottom line? The bottom line is – I continue to do my work and reach new heights, which I wish for you as well. ✨ Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 More is coming soon, there are many interesting things ahead! Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
+            </div>
+
+             <div class="cta-wrapper content-block" style="padding: 0;">
+                <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" class="cta-button">Join My Private Telegram Now</a>
+            </div>
+
+        </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 [YourNickName]. All Rights Reserved.</p>
-            <p class="warning">THIS SITE CONTAINS ADULT CONTENT. 18+ ONLY.</p>
+            <p class="footer-text">&copy; 2025 ehotlovea. All Rights Reserved.</p>
+            <div class="warning">18+ ADULTS ONLY</div>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // --- 1. Video Switcher Logic ---
+            // 1. Video Switching Logic (Handles the seamless transition)
             const mainPlayer = document.getElementById('mainVideoPlayer');
-            const thumbnails = document.querySelectorAll('.preview-thumb[data-video-url]');
+            const thumbnails = document.querySelectorAll('.thumbnail[data-video-url]');
 
             thumbnails.forEach(thumb => {
                 thumb.addEventListener('click', () => {
                     const videoUrl = thumb.getAttribute('data-video-url');
                     
-                    // Add autoplay/loop/muted parameters to the new URL
-                    const separator = videoUrl.includes('?') ? '&' : '?';
-                    const newSrc = `${videoUrl}${separator}autoplay=true&loop=true&muted=true`;
-                    
-                    // Only switch if the video is different and the thumbnail isn't already active
-                    if (!thumb.classList.contains('active')) {
-                        
-                        // Fade effect for transition
-                        mainPlayer.style.opacity = 0.5;
+                    // Do nothing if the video is already active
+                    if (thumb.classList.contains('active')) return;
 
+                    // Update active classes
+                    document.querySelector('.thumbnail.active')?.classList.remove('active');
+                    thumb.classList.add('active');
+
+                    // Smooth transition effect (Fade out, switch source, fade in)
+                    mainPlayer.style.opacity = 0;
+                    setTimeout(() => {
+                        mainPlayer.src = videoUrl;
+                        // Fade in after a short delay to allow the iframe to start loading
                         setTimeout(() => {
-                             mainPlayer.src = newSrc;
-                             mainPlayer.style.opacity = 1;
-                        }, 300);
-
-                        // Update active class
-                        document.querySelector('.preview-thumb.active')?.classList.remove('active');
-                        thumb.classList.add('active');
-                    }
+                            mainPlayer.style.opacity = 1;
+                        }, 100);
+                    }, 500);
                 });
             });
 
-            // --- 2. Scroll Animation Logic (Intersection Observer) ---
-            // Modern and performant way to handle scroll reveals
-            const revealElements = document.querySelectorAll('.reveal');
+            // 2. Scroll Reveal Animation (Makes text appear smoothly on scroll)
+            // Uses the modern Intersection Observer API for performance.
+            const revealElements = document.querySelectorAll('.content-block');
 
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                threshold: 0.1 // Element is revealed when 10% visible
+                threshold: 0.1 // Trigger when 10% of the element is visible
             };
 
             const observerCallback = (entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        // Stop observing the element once it has been revealed
-                        observer.unobserve(entry.target); 
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once it has appeared
                     }
                 });
             };
 
             const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-            revealElements.forEach(element => {
-                observer.observe(element);
+            revealElements.forEach(el => {
+                observer.observe(el);
             });
         });
     </script>
