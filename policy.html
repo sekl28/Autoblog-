@@ -1,486 +1,726 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Exclusive Access — The Unfiltered Story</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinnacle: Выбор Профессионалов. Лучшие Коэффициенты и Высокие Лимиты.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. CSS Reset & Global Variables (Elite Style 2025) --- */
+        :root {
+            --color-accent: #FF6600; /* Pinnacle Orange */
+            --color-accent-glow: rgba(255, 102, 0, 0.5);
+            --color-bg-dark: #051D2E; /* Deep Navy Blue */
+            --color-bg-medium: #0B1A2E; /* Medium Navy for sections */
+            --color-bg-light: #1A2A3A; /* Lighter Blue for cards/glass */
+            --color-text: #FFFFFF;
+            --color-text-muted: #A0B0C0;
+            --color-success: #4CAF50;
+            --color-neon-data: #00A3FF; /* Neon blue for data visualization */
+            --font-main: 'Inter', sans-serif;
+            --transition-fast: 0.3s ease-in-out; /* ≤300 мс по ТЗ */
+        }
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet"/>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Perf hints for Bunny iframe -->
-  <link rel="preconnect" href="https://iframe.mediadelivery.net" crossorigin>
-  <link rel="dns-prefetch" href="https://iframe.mediadelivery.net">
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <!-- Meta -->
-  <meta name="description" content="You found the place where the rumors end and reality begins. Watch the reality behind the narrative. 18+"/>
-  <meta property="og:title" content="Exclusive Access — The Unfiltered Story"/>
-  <meta property="og:description" content="Beyond the rumors. The exclusive access. 18+"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="thumb1.jpg"/>
-  <meta name="robots" content="index,follow"/>
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-bg-dark);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-  <style>
-    /* =========================
-       THEME (Neon Noir)
-       ========================= */
-    :root{
-      --bg-main:#05050f;
-      --bg-soft:#0a0a1a;
-      --bg-card:#1a1a2e;
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-      --neon-pink:#ff0077;
-      --neon-cyan:#00ffff;
+        /* --- 2. Utility & Typography --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-      --text:#f0f0f0;
-      --text-dim:#aaaaaa;
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
 
-      --font-main:'Inter',sans-serif;
-      --font-display:'Orbitron',sans-serif;
+        /* Responsive Typography */
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
 
-      --shadow-strong:0 0 30px rgba(0,255,255,.3);
-      --border-soft:1px solid rgba(255,255,255,.1);
-    }
+        .section-subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 60px;
+            text-align: center;
+            color: var(--color-text-muted);
+        }
 
-    /* Reset / base */
-    *,*::before,*::after{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      background:var(--bg-main);
-      color:var(--text);
-      font-family:var(--font-main);
-      line-height:1.6;
-      overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-    img{max-width:100%;display:block}
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
-    .text-content{max-width:800px;margin:0 auto}
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-text);
+        }
 
-    /* =========================
-       CTAs
-       ========================= */
-    .cta-button{
-      display:inline-block;
-      background:var(--neon-pink);
-      color:#000;
-      padding:12px 30px;
-      text-decoration:none;
-      font-weight:700;
-      border-radius:8px;
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      transition:transform .25s ease, box-shadow .25s ease;
-      box-shadow:0 0 12px var(--neon-pink), 0 0 24px rgba(255,0,119,.45);
-      border:none;
-      cursor:pointer;
-    }
-    .cta-button:hover{transform:translateY(-2px);box-shadow:0 0 22px var(--neon-pink), 0 0 48px rgba(255,0,119,.65)}
+        /* Hover effect with motion and glow (по ТЗ) */
+        .btn-primary:hover {
+            background-color: #e65c00;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px var(--color-accent-glow);
+        }
 
-    .cta-float{
-      position:fixed;
-      right:30px; bottom:30px;
-      z-index:1200;
-      background:var(--neon-pink);
-      color:#fff;
-      font-weight:700;
-      border-radius:12px;
-      padding:14px 18px;
-      text-decoration:none;
-      animation:pulse-glow 2s infinite;
-      box-shadow:0 0 10px var(--neon-pink);
-    }
-    @keyframes pulse-glow{
-      0%{box-shadow:0 0 6px var(--neon-pink)}
-      50%{box-shadow:0 0 26px var(--neon-pink), 0 0 52px rgba(255,0,119,.7)}
-      100%{box-shadow:0 0 6px var(--neon-pink)}
-    }
+        /* Glassmorphism effect (Innovative trend) */
+        .glass-effect {
+            background: rgba(26, 42, 58, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-    /* =========================
-       GLITCH headline
-       ========================= */
-    .glitch{
-      font-family:var(--font-display);
-      font-size:4rem;
-      position:relative;
-      text-align:center;
-      color:#fff;
-      line-height:1.1;
-      margin:0 0 12px 0;
-      animation:glitch-skew 1s infinite linear alternate-reverse;
-      letter-spacing:.5px;
-    }
-    .glitch::before,.glitch::after{
-      content:attr(data-text);
-      position:absolute;inset:0;overflow:hidden;
-    }
-    .glitch::before{
-      left:2px; text-shadow:-2px 0 var(--neon-cyan);
-      animation:glitch-anim-1 2s infinite linear alternate-reverse;
-    }
-    .glitch::after{
-      left:-2px; text-shadow:-2px 0 var(--neon-pink);
-      animation:glitch-anim-2 3s infinite linear alternate-reverse;
-    }
-    @keyframes glitch-skew{10%{transform:skew(2deg)}}
-    @keyframes glitch-anim-1{
-      0%{clip-path:inset(40% 0 60% 0)}
-      20%{clip-path:inset(80% 0 10% 0)}
-      40%{clip-path:inset(10% 0 85% 0)}
-      60%{clip-path:inset(50% 0 50% 0)}
-      80%{clip-path:inset(5% 0 90% 0)}
-      100%{clip-path:inset(90% 0 5% 0)}
-    }
-    @keyframes glitch-anim-2{
-      0%{clip-path:inset(70% 0 30% 0)}
-      20%{clip-path:inset(20% 0 75% 0)}
-      40%{clip-path:inset(60% 0 30% 0)}
-      60%{clip-path:inset(15% 0 80% 0)}
-      80%{clip-path:inset(85% 0 10% 0)}
-      100%{clip-path:inset(30% 0 65% 0)}
-    }
-    @media (prefers-reduced-motion:reduce){
-      .glitch,.glitch::before,.glitch::after{animation:none}
-      .cta-float{animation:none}
-      .reveal{transition:none}
-    }
+        /* --- 3. Animations & Interactivity (Motion Design) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
 
-    /* =========================
-       Reveal on scroll
-       ========================= */
-    .reveal{opacity:0; transform:translateY(50px); transition:opacity .6s ease-out, transform .6s ease-out}
-    .reveal.visible{opacity:1; transform:translateY(0)}
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    /* =========================
-       HERO / INTRO
-       ========================= */
-    #intro{
-      padding:80px 0;
-      min-height:100vh;
-      display:flex; flex-direction:column; justify-content:center;
-      text-align:center;
-      background:radial-gradient(circle at center, rgba(255,0,119,.12) 0%, var(--bg-main) 70%);
-    }
-    #intro p{
-      color:var(--text-dim);
-      margin:8px 0 42px 0;
-    }
+        /* --- 4. Header --- */
+        header {
+            padding: 25px 0;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+        }
 
-    .video-container{max-width:900px;margin:0 auto 26px auto}
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    /* Плеер: aspect-ratio + паддинг-фолбэк */
-    #main-video-wrapper{
-      position:relative;
-      border:1px solid var(--neon-cyan);
-      border-radius:12px;
-      box-shadow:var(--shadow-strong);
-      overflow:hidden;
-      background:#000;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        .logo span {
+            color: var(--color-accent);
+        }
 
-      aspect-ratio:16/9; /* современный способ */
-    }
-    /* фолбэк для старых браузеров */
-    @supports not (aspect-ratio: 16 / 9){
-      #main-video-wrapper{height:0;padding-top:56.25%}
-    }
-    #main-video-wrapper iframe{
-      position:absolute; inset:0; width:100%; height:100%; border:0; display:block;
-    }
-    /* лёгкий «scanline» поверх плеера */
-    #main-video-wrapper::after{
-      content:''; position:absolute; inset:0; pointer-events:none; opacity:.75;
-      background:repeating-linear-gradient(
-        0deg,
-        rgba(0,0,0,.22) 0px,
-        rgba(0,0,0,.22) 1px,
-        transparent 1px,
-        transparent 3px
-      );
-    }
+        /* --- 5. Hero Section (Инновационный, Динамичный, Mobile First) --- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-bg-medium) 100%);
+            padding-top: 120px;
+            padding-bottom: 60px;
+        }
 
-    /* Мини-галерея (пока 1 активный слот; другие можно раскомментить) */
-    .video-thumbnails{
-      display:flex; justify-content:center; align-items:center;
-      gap:14px; margin-top:14px; flex-wrap:wrap;
-    }
-    .thumbnail{
-      width:124px; height:70px;
-      border-radius:8px; overflow:hidden; border:2px solid transparent;
-      opacity:.78; cursor:pointer;
-      transition:transform .25s ease, box-shadow .25s ease, opacity .25s ease, border-color .25s ease;
-      background:#101018;
-    }
-    .thumbnail img{width:100%; height:100%; object-fit:cover}
-    .thumbnail:hover{opacity:1; transform:scale(1.06); box-shadow:0 0 14px rgba(255,0,119,.5)}
-    .thumbnail.active{opacity:1; border-color:var(--neon-cyan); box-shadow:0 0 14px rgba(0,255,255,.55)}
-    .cta-under{ text-align:center; margin-top:12px }
+        /* Dynamic background element */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at top right, rgba(255, 102, 0, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(0, 163, 255, 0.05) 0%, transparent 50%);
+            /* Subtle rotation for dynamism */
+            animation: rotate-bg 50s linear infinite;
+        }
 
-    /* =========================
-       CONTENT (Rumors)
-       ========================= */
-    #rumors{
-      padding:110px 0;
-      background:var(--bg-soft);
-      border-top:var(--border-soft);
-    }
-    #rumors h2{
-      font-family:var(--font-display);
-      font-size:2.6rem;
-      text-align:center;
-      margin-bottom:50px;
-      color:var(--neon-pink);
-      text-shadow:0 0 16px rgba(255,0,119,.45);
-      letter-spacing:.6px;
-    }
-    #rumors h3{
-      font-family:var(--font-display);
-      font-size:1.6rem;
-      color:var(--neon-cyan);
-      margin:48px 0 16px;
-      letter-spacing:.4px;
-    }
-    #rumors p{ margin:0 0 18px 0; color:var(--text-dim) }
+        @keyframes rotate-bg {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-    .rumor-list{ margin:28px 0 34px 0 }
-    .rumor-card{
-      background:var(--bg-card);
-      border-radius:12px;
-      padding:24px;
-      margin-bottom:18px;
-      border-left:4px solid var(--neon-cyan);
-      box-shadow:0 5px 16px rgba(0,0,0,.55);
-      transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
-    }
-    .rumor-card:hover{ transform:translateX(8px); box-shadow:0 0 20px rgba(0,255,255,.22) }
-    .rumor-card strong{ color:var(--text); font-size:1.08rem; display:block; margin-bottom:6px }
-    .highlight{ background:rgba(255,0,119,.22); color:var(--neon-pink); padding:2px 6px; border-radius:4px; font-weight:700 }
+        .hero-layout {
+            display: flex;
+            flex-direction: column; /* Mobile First: Stacked layout */
+            align-items: center;
+            gap: 50px;
+            position: relative;
+            z-index: 1;
+        }
 
-    .cta-center{ text-align:center; margin:46px 0 }
+        .hero-content {
+            text-align: center; /* Mobile First: Centered text */
+            max-width: 700px;
+        }
 
-    /* =========================
-       FOOTER
-       ========================= */
-    footer{
-      padding:46px 0;
-      text-align:center;
-      font-size:.95rem;
-      color:var(--text-dim);
-      background:var(--bg-main);
-      border-top:var(--border-soft);
-    }
-    .warning{
-      display:inline-block;
-      border:1px solid #ffcc00;
-      color:#ffcc00;
-      padding:10px 18px;
-      border-radius:8px;
-      font-weight:700;
-      margin-bottom:12px;
-    }
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
 
-    /* =========================
-       Responsive
-       ========================= */
-    @media (max-width:900px){ .glitch{font-size:3.2rem} }
-    @media (max-width:768px){
-      .glitch{font-size:2.5rem}
-      #rumors h2{font-size:2.1rem}
-      .thumbnail{width:108px;height:62px}
-      .cta-float{right:15px;bottom:15px;padding:12px 14px;font-size:.9rem}
-      .container{padding:0 16px}
-    }
-    @media (max-width:480px){
-      .thumbnail{width:42vw;height:24vw}
-    }
-  </style>
+        .hero-title span {
+            color: var(--color-accent);
+            text-shadow: 0 0 10px var(--color-accent-glow);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            color: var(--color-text-muted);
+            margin-bottom: 40px;
+        }
+
+        /* Интерактивный элемент: Калькулятор выгоды низкой маржи */
+        .profit-calculator {
+            padding: 30px;
+            text-align: left;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .calculator-input {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .calculator-input input {
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 1rem;
+            border: 1px solid var(--color-bg-light);
+            background-color: var(--color-bg-dark);
+            color: var(--color-text);
+        }
+
+        .calculator-result {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .extra-profit {
+            color: var(--color-success);
+            font-size: 1.8rem;
+            font-weight: 900;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* --- 6. Features Section (Сильные стороны с 3D акцентами и микроанимациями) --- */
+        #features {
+            background-color: var(--color-bg-dark);
+        }
+
+        .features-grid {
+            display: grid;
+            /* Mobile First: Auto-fit grid */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--color-bg-medium);
+            padding: 35px;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition-fast);
+            border: 1px solid transparent;
+            /* Setup for 3D effect on hover */
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 3D-акцент и Hover-эффект */
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: var(--color-bg-light);
+            border-color: var(--color-accent-glow);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Микроанимация: Subtle hover glow background */
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 102, 0, 0.15) 0%, rgba(255, 102, 0, 0) 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translate(-50%, -50%) scale(0.5);
+            pointer-events: none;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .feature-icon {
+            margin-bottom: 25px;
+            display: inline-block;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-icon svg {
+             width: 48px;
+             height: 48px;
+             color: var(--color-accent);
+        }
+
+        .feature-card:hover .feature-icon {
+             /* Микроанимация иконки */
+            transform: scale(1.1);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .feature-text {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+        }
+
+        /* --- 7. How To Start Section (Как начать) --- */
+        #how-to {
+            background-color: var(--color-bg-medium);
+        }
+        .steps-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: var(--color-bg-dark);
+            border: 3px solid var(--color-accent);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-accent);
+            transition: var(--transition-fast);
+        }
+
+        .step:hover .step-icon {
+            background-color: var(--color-accent);
+            color: var(--color-bg-dark);
+            transform: scale(1.1);
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        /* --- 8. Trust Section (Факты доверия - Счётчики) --- */
+        #trust {
+            background-color: var(--color-bg-dark);
+        }
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .trust-fact {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--color-bg-medium);
+            border-radius: 15px;
+            border-bottom: 4px solid var(--color-neon-data);
+        }
+
+        .trust-number {
+            font-size: clamp(3rem, 6vw, 4rem);
+            font-weight: 800;
+            color: var(--color-neon-data);
+            display: block;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 163, 255, 0.5);
+        }
+
+        .trust-label {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+        }
+
+        /* --- 9. Advanced Section (Для продвинутых - Инфографика) --- */
+        #advanced {
+            background-color: var(--color-bg-medium);
+        }
+
+        .advanced-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile First */
+            gap: 30px;
+        }
+
+        .advanced-card {
+            background: var(--color-bg-dark);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .advanced-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* Infographic visualization (SVG) */
+        .infographic-container {
+            margin-top: 30px;
+        }
+        
+        .infographic-svg {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+        }
+
+        /* API Code Snippet (Visual) */
+        .api-code-snippet {
+            background-color: #011c37;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-family: monospace;
+            color: #b0c4de;
+            border-left: 4px solid var(--color-accent);
+            overflow-x: auto;
+        }
+
+        /* --- 10. FAQ Section (Аккордеон) --- */
+        #faq {
+             background-color: var(--color-bg-dark);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--color-bg-medium);
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 30px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color var(--transition-fast);
+        }
+
+        .faq-question:hover, .faq-item.active .faq-question {
+            background-color: var(--color-bg-light);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform var(--transition-fast);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            /* Smooth transition по ТЗ */
+            transition: max-height 0.3s ease-out;
+            color: var(--color-text-muted);
+        }
+
+        .faq-answer-content {
+             padding: 0 30px 25px;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+            color: var(--color-accent);
+        }
+
+        /* --- 11. Final CTA Section --- */
+        #final-cta {
+            text-align: center;
+            background-color: var(--color-bg-medium);
+        }
+
+        .cta-box {
+            padding: 60px 30px;
+        }
+
+        .cta-title {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        /* --- 12. Footer --- */
+        footer {
+            background-color: #041521;
+            padding: 50px 0 30px;
+            text-align: center;
+            color: var(--color-text-muted);
+        }
+
+        .footer-links a {
+            margin: 0 15px;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-copy {
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* --- 13. Media Queries (Desktop Adaptation) --- */
+        @media (min-width: 768px) {
+            .advanced-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-layout {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .hero-content {
+                text-align: left;
+                flex-basis: 55%;
+            }
+
+            .profit-calculator {
+                flex-basis: 40%;
+            }
+        }
+
+    </style>
 </head>
 <body>
 
-  <!-- Floating CTA -->
-  <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" rel="noopener noreferrer" class="cta-float" aria-label="Join Private Telegram">
-    🔞 Join Private TG
-  </a>
-
-  <!-- ================= HERO / INTRO ================= -->
-  <section id="intro" class="container reveal">
-    <h1 class="glitch" data-text="Welcome">Welcome</h1>
-    <p>You found the place where the rumors end and reality begins.</p>
-
-    <div class="video-container">
-      <div id="main-video-wrapper">
-        <!-- Bunny Stream embed (ВАШ рабочий код) -->
-        <iframe
-          id="mainEmbed"
-          src="https://iframe.mediadelivery.net/play/490445/98f62147-2cef-4dca-943a-1104eae70811?autoplay=true&muted=true&preload=true"
-          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-          allowfullscreen
-          referrerpolicy="no-referrer"
-          title="Main video"
-        ></iframe>
-      </div>
-
-      <!-- Мини-галерея. Готова к расширению; сейчас 1 активный клип -->
-      <div class="video-thumbnails" id="thumbs">
-        <div class="thumbnail active" data-embed="https://iframe.mediadelivery.net/play/490445/98f62147-2cef-4dca-943a-1104eae70811?autoplay=true&muted=true&preload=true" role="button" tabindex="0" aria-label="Play video #1">
-          <img src="thumb1.jpg" alt="Video preview 1" loading="lazy"/>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">PINNACLE<span>.</span></div>
+                <a href="#register" class="btn btn-primary">Регистрация</a>
+            </nav>
         </div>
+    </header>
 
-        <!-- Примеры для будущих роликов. Разкомментируйте и вставьте свои embed-ссылки:
-        <div class="thumbnail" data-embed="https://iframe.mediadelivery.net/play/490445/SECOND-VIDEO-ID?autoplay=true&muted=true&preload=true" role="button" tabindex="0" aria-label="Play video #2">
-          <img src="thumb2.jpg" alt="Video preview 2" loading="lazy"/>
-        </div>
-        <div class="thumbnail" data-embed="https://iframe.mediadelivery.net/play/490445/THIRD-VIDEO-ID?autoplay=true&muted=true&preload=true" role="button" tabindex="0" aria-label="Play video #3">
-          <img src="thumb3.jpg" alt="Video preview 3" loading="lazy"/>
-        </div>
-        -->
-      </div>
-    </div>
+    <main>
+        <section id="hero">
+            <div class="container hero-layout">
+                <div class="hero-content reveal">
+                    <h1 class="hero-title">Ставки без компромиссов. Ваше <span>Преимущество</span>.</h1>
+                    <p class="hero-subtitle">Выбор профессионалов. Низкая маржа, высочайшие лимиты и безупречная репутация с 1998 года.</p>
+                    <a href="#register" class="btn btn-primary">Начать Выигрывать</a>
+                </div>
 
-    <div class="cta-under">
-      <a href="https://t.me/+tVrljmvYwKFhZTg0" class="cta-button" target="_blank" rel="noopener noreferrer">Get Full Access Now</a>
-    </div>
-  </section>
+                 <div class="profit-calculator glass-effect reveal" style="transition-delay: 0.2s;">
+                    <h4>Калькулятор Вашей Выгоды</h4>
+                    <p>Сравните выигрыш с Pinnacle (маржа ~2.5%) и средним букмекером (~7%).</p>
+                    <div class="calculator-input">
+                        <input type="number" id="betAmount" placeholder="Сумма ставки ($)" value="1000">
+                        <input type="number" id="odds" placeholder="Справедливый Коэффициент (напр. 2.0)" value="2.0">
+                        <button class="btn btn-primary" onclick="calculateProfit()">Рассчитать</button>
+                    </div>
+                    <div class="calculator-result">
+                        Ваша дополнительная прибыль:
+                        <span class="extra-profit" id="extraProfit">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <!-- ================= CONTENT / RUMORS ================= -->
-  <section id="rumors">
-    <div class="container text-content">
-      <h2 class="reveal">Rumors About Me</h2>
+        <section id="features" class="section">
+            <div class="container">
+                <h2 class="section-title reveal">Преимущество Pinnacle</h2>
+                <p class="section-subtitle reveal">Мы не ограничиваем успешных игроков. Мы их приветствуем.</p>
+                <div class="features-grid">
+                    
+                    <div class="feature-card reveal">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Самая Низкая Маржа</h3>
+                        <p class="feature-text">Мы предлагаем лучшие коэффициенты в индустрии (маржа ~2.5%). Ваша прибыль максимизируется благодаря нашей модели.</p>
+                    </div>
+                    
+                    <div class="feature-card reveal" style="transition-delay: 0.1s;">
+                        <div class="feature-icon">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Высочайшие Лимиты</h3>
+                        <p class="feature-text">Ставьте больше, выигрывайте больше. Мы предоставляем самые высокие лимиты ставок онлайн для серьезных игроков.</p>
+                    </div>
+                    
+                    <div class="feature-card reveal" style="transition-delay: 0.2s;">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52a6.003 6.003 0 0 1-5.395 4.972M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492v-1.516M18.75 4.236 18.75 2.721" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Победителям Рады</h3>
+                        <p class="feature-text">Политика "Winners Welcome" гарантирует, что ваш аккаунт не будет ограничен за выигрыши. Арбитраж разрешен.</p>
+                    </div>
 
-      <div class="reveal">
-        <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around <span class="highlight">ehotlovea</span> there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:</p>
-      </div>
+                     <div class="feature-card reveal" style="transition-delay: 0.3s;">
+                        <div class="feature-icon">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Быстрые Выплаты</h3>
+                        <p class="feature-text">Надежный и быстрый вывод средств. Получите свой выигрыш без лишних задержек и сложностей.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <div class="rumor-list reveal">
-        <div class="rumor-card">
-          <strong>I am a prisoner.</strong>
-          Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout. One user even seriously asked: “Is ehotlovea a hostage and is she being starved?” Looks like someone has been watching too many thrillers.
-        </div>
-        <div class="rumor-card">
-          <strong>I am “controlled by a monster.”</strong>
-          According to the rumors, there’s some villain (they literally call him “monster”) who forces me to work on camera against my will. They write that my streams are not pleasure for me at all, but sheer torture for the delight of this puppeteer.
-        </div>
-        <div class="rumor-card">
-          <strong>I am constantly on the run in different countries.</strong>
-          Forum conspiracists are convinced that I am being moved from city to city, from country to country, hiding from justice. Someone even claimed that I was “transported through a dozen places in half a dozen countries” – as if Interpol can’t keep up with me!
-        </div>
-        <div class="rumor-card">
-          <strong>Secret services and human rights defenders are watching me.</strong>
-          Seriously, they went even further. Recently they released “top secret” news: supposedly I am “in a luxury hotel in Milan,” and someone “even hopes that investigators from the European Court of Human Rights are monitoring the situation and looking for a chance to free Alice.” At this point, you might as well grab popcorn!
-        </div>
-        <div class="rumor-card">
-          <strong>I have no money or success of my own.</strong>
-          Naturally, by their logic, how could I possibly be independent? Allegedly, I don’t see a cent. All my achievements are credited to a mythical “master.” Because, of course, a girl cannot succeed on her own – there must be some sinister puppet master behind her, right?
-        </div>
-      </div>
+        <section id="how-to" class="section">
+            <div class="container">
+                <h2 class="section-title reveal">Начать за 3 минуты</h2>
+                <div class="steps-container reveal">
+                    <div class="step">
+                        <div class="step-icon">1</div>
+                        <h3 class="step-title">Регистрация</h3>
+                        <p>Быстрое создание аккаунта.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">2</div>
+                        <h3 class="step-title">Депозит</h3>
+                        <p>Безопасное пополнение счета.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">3</div>
+                        <h3 class="step-title">Игра</h3>
+                        <p>Доступ к лучшим коэффициентам.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <div class="reveal">
-        <p>Sounds insane? That’s because it is pure madness. But let’s see who the author of all this phantasmagoria is. Here comes one especially persistent viewer. He is the one who creates most of these threads on the forums, typing “exposés” under different nicknames and fueling the drama. He positions himself as some sort of knight-savior: supposedly he alone has seen the truth and exposed everyone. 🎭</p>
-      </div>
+        <section id="trust" class="section">
+            <div class="container">
+                <h2 class="section-title reveal">Стабильность и Доверие</h2>
+                <div class="trust-grid">
+                    <div class="trust-fact reveal">
+                        <span class="trust-number counter" data-target="1998">0</span>
+                        <p class="trust-label">Год основания компании</p>
+                    </div>
+                    <div class="trust-fact reveal" style="transition-delay: 0.1s;">
+                        <span class="trust-number counter" data-target="100" data-suffix="+">0</span>
+                        <p class="trust-label">Стран присутствия</p>
+                    </div>
+                    <div class="trust-fact reveal" style="transition-delay: 0.2s;">
+                        <span class="trust-number counter" data-target="5" data-prefix="<" data-suffix=" мин">0</span>
+                        <p class="trust-label">Среднее время вывода средств</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <div class="cta-center reveal">
-        <a href="https://t.me/+tVrljmvYwKFhZTg0" class="cta-button" target="_blank" rel="noopener noreferrer">Get the Real Story on Telegram</a>
-      </div>
+        <section id="advanced" class="section">
+            <div class="container">
+                <h2 class="section-title reveal">Инструменты Профессионалов</h2>
+                 <p class="section-subtitle reveal">Функционал, созданный для тех, кто относится к ставкам серьезно.</p>
+                <div class="advanced-grid">
+                    
+                    <div class="advanced-card reveal">
+                        <h3 class="advanced-title">Преимущество Низкой Маржи</h3>
+                        <p>Наша маржа в среднем на 60% ниже, чем у конкурентов. Это напрямую увеличивает ваш потенциальный выигрыш на дистанции и идеально подходит для Value Betting.</p>
+                        <div class="infographic-container">
+                            ```svg
+                            <svg class="infographic-svg" viewBox="0 0 100 60" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
+                                <defs>
+                                    <linearGradient id="gradPinnacle" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#FF6600;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#FF9933;stop-opacity:1" />
+                                    </linearGradient>
+                                    <linearGradient id="gradCompetitor" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#5E8BBF;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#99BADD;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
 
-      <div class="reveal">
-        <p>However, reality is far more banal. This very “savior” is my constant drop-in guest in the chat. Every single day he hangs out on my streams. Moreover, he sends a request daily for a private with his camera on. And you know why? <span class="highlight">Simply to masturbate on camera. 🤦‍♀️</span> That’s our so-called hero-pervert: with one hand he writes posts about my “rescue,” and with the other hand… well, you can guess what he’s doing. I’m not even offended anymore – it just makes me laugh.</p>
-        <p>This fellow has gotten so carried away with his detective role that he seems to genuinely believe in the imaginary world he created. He invented me a new name, a biography, a villain-“kidnapper” – and fell in love with his own fairy tale. Even other forum users are already rolling their eyes: many have noticed that our author is not in search of truth at all but simply obsessed with me. One commenter directly wrote that the behavior of this “savior” is very similar to that of a typical “simp” who doesn’t actually want to expose anything but is head over heels in love with Alice and is desperately seeking attention. Exactly right! Our would-be knight doesn’t so much want to save me as he dreams, apparently, that I will appreciate his “heroism.” Well, dreams don’t cost anything.</p>
-        <p>I can already foresee the next move of this conspiracist. As soon as I publish a rebuttal (like this text), he will surely pop up with a new conspiracy theory. He will probably cry out into the internet void: “Wake up, don’t believe her! All of this was written on the orders of that very villain, it’s part of the plan!” 😀 Well, we’ve already figured you out too, my paranoid friend. Your scenario is clear in advance, and it is just as ridiculous as all the previous ones.</p>
-      </div>
+                                <text x="0" y="15" fill="#FFFFFF" font-size="5">Pinnacle (Маржа ~2.5%)</text>
+                                <rect x="0" y="20" width="97.5" height="10" rx="3" fill="#051D2E"/>
+                                <rect x="0" y="20" width="97.5" height="10" rx="3" fill="url(#gradPinnacle)"/>
+                                <text x="95.5" y="27" fill="#FFFFFF" font-size="4" text-anchor="end">97.5% Выплата</text>
 
-      <h3 class="reveal">The Facts</h3>
-      <div class="reveal">
-        <p>And now – to the facts. Ready to know the truth, not the fairy tale? It is very simple and, perhaps, will disappoint some: there is no villain, no captivity, and no drama whatsoever.</p>
-        <p>There is me – an ordinary girl who set a goal and works hard to achieve it. Everything I have achieved on the platform is the result of my own effort, a well-thought-out strategy, and hard work. Yes, sometimes I work many hours in a row, travel, try new things – but I do it by choice, because I have a dream and a clear plan on how to achieve it. Want to succeed in life? You’ll have to work hard and be persistent – that’s the whole secret. 🎓</p>
-        <p>Of course, it’s much more convenient to believe that behind someone’s success stands a mysterious “kidnapper” or a “rich sponsor” than to acknowledge the role of effort and talent. But the reality is this: no one controls me. There is no shadow puppeteer behind me – only a team of loyal friends and professionals who help me grow. By the way, speaking of professionals: I especially want to mention the Chaturbate support team. These guys are true pros, always ready to help and solving every issue quickly. 💙 This really is the best platform, where they take care of the safety and comfort of models properly. Do you think that if something really bad were happening to me, it would go unnoticed? Not a chance – not by my team, nor by the platform.</p>
-      </div>
-
-      <h3 class="reveal">The Consequences</h3>
-      <div class="reveal">
-        <p>And one last thing worth mentioning. I do not intend to let this situation with dirty slander go unchecked. We have already uncovered the identity of that very storyteller (thanks to my clever Eric, who helped to trace this character through his own broadcasts). 😉 Legal steps will not take long. Right now, I have other projects and ideas as a priority, but in the near future we will prepare all the necessary materials and file a complaint with the appropriate authorities. Believe me, we have enough evidence – his entire forum “creativity” is saved, along with many other actions that I cannot reveal so as not to alarm him. We’ll all laugh together later, when this person has to answer for his words to the full extent of the law.</p>
-      </div>
-
-      <h3 class="reveal">The Bottom Line</h3>
-      <div class="reveal">
-        <p>So what’s the bottom line? The bottom line is – I continue to do my work and reach new heights, which I wish for you as well. ✨ Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 More is coming soon, there are many interesting things ahead! Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
-      </div>
-
-      <div class="cta-center reveal">
-        <a href="https://t.me/+tVrljmvYwKFhZTg0" class="cta-button" target="_blank" rel="noopener noreferrer">Join Me Now 🔥</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= FOOTER ================= -->
-  <footer>
-    <div class="container">
-      <div class="warning">18+ ADULTS ONLY</div>
-      <p>&copy; 2025 [Your Model Name/Brand]. All Rights Reserved.</p>
-    </div>
-  </footer>
-
-  <script>
-    // Безопасность target=_blank
-    (function secureBlankLinks(){
-      document.querySelectorAll('a[target="_blank"]').forEach(a=>{
-        if(!a.rel || !/noopener|noreferrer/.test(a.rel)){
-          a.setAttribute('rel','noopener noreferrer');
-        }
-      });
-    })();
-
-    // Reveal on scroll
-    document.addEventListener('DOMContentLoaded', () => {
-      const els = document.querySelectorAll('.reveal');
-      if(!els.length) return;
-
-      const io = new IntersectionObserver((entries,obs)=>{
-        entries.forEach(en=>{
-          if(en.isIntersecting){
-            en.target.classList.add('visible');
-            obs.unobserve(en.target);
-          }
-        });
-      },{root:null,rootMargin:'0px',threshold:.1});
-
-      els.forEach(el=>io.observe(el));
-    });
-
-    // Переключение клипов (под будущие видео Bunny)
-    document.addEventListener('DOMContentLoaded', () => {
-      const iframe = document.getElementById('mainEmbed');
-      const thumbs = document.querySelectorAll('.thumbnail');
-
-      if(!iframe || !thumbs.length) return;
-
-      function activate(thumb){
-        if(thumb.classList.contains('active')) return;
-        const url = thumb.getAttribute('data-embed');
-        if(!url) return;
-
-        const prev = document.querySelector('.thumbnail.active');
-        if(prev) prev.classList.remove('active');
-
-        thumb.classList.add('active');
-        iframe.src = url;
-
-        // прокрутка к плееру на мобилках
-        iframe.scrollIntoView({behavior:'smooth', block:'center'});
-      }
-
-      thumbs.forEach(t=>{
-        // a11y
-        t.setAttribute('role','button'); t.setAttribute('tabindex','0');
-        if(!t.hasAttribute('aria-label')) t.setAttribute('aria-label','Play video');
-
-        t.addEventListener('click',()=>activate(t));
-        t.addEventListener('keydown',e=>{
-          if(e.key==='Enter' || e.key===' '){ e.preventDefault(); activate(t); }
-        });
-      });
-    });
-  </script>
-</body>
-</html>
+                                <text x="0" y="40" fill="#B0B8C1" font-size="5">Конкуренты (Маржа ~7%)</text>
+                                <rect x="0" y="45" width="93" height="10" rx="3" fill="#051D2E"/>
+                                <rect x="0" y="45" width="93" height="10" rx="3" fill="url(#gradCompetitor)"/>
+                                <text x="91" y="52" fill="#FFFFFF" font-size="4" text-anchor="end">93% Выплата</text>
+                            </svg>
