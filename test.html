@@ -1,240 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Exclusive Access</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet"/>
+
+    <!-- Perf hints for Bunny iframe -->
+    <link rel="preconnect" href="https://iframe.mediadelivery.net" crossorigin>
+    <link rel="dns-prefetch" href="https://iframe.mediadelivery.net">
+
     <style>
         /* --- Global Styles & Variables (Neon Noir Palette) --- */
-        :root {
-            --bg-main: #05050f;
-            --bg-card: #1a1a2e;
-            --neon-pink: #ff0077;
-            --neon-cyan: #00ffff;
-            --text-color: #f0f0f0;
-            --text-dim: #aaaaaa;
-            --font-main: 'Inter', sans-serif;
-            --font-display: 'Orbitron', sans-serif;
+        :root{
+            --bg-main:#05050f;
+            --bg-card:#1a1a2e;
+            --neon-pink:#ff0077;
+            --neon-cyan:#00ffff;
+            --text-color:#f0f0f0;
+            --text-dim:#aaaaaa;
+            --font-main:'Inter',sans-serif;
+            --font-display:'Orbitron',sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *{margin:0;padding:0;box-sizing:border-box}
 
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-color);
-            font-family: var(--font-main);
-            line-height: 1.6;
-            overflow-x: hidden;
+        html{scroll-behavior:smooth}
+
+        body{
+            background-color:var(--bg-main);
+            color:var(--text-color);
+            font-family:var(--font-main);
+            line-height:1.6;
+            overflow-x:hidden;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        .text-content { max-width: 800px; margin: 0 auto; }
+        .container{max-width:1100px;margin:0 auto;padding:0 20px}
+        .text-content{max-width:800px;margin:0 auto}
 
         /* --- Utility & Animations --- */
 
-        /* Standard CTA Button */
-        .cta-button {
-            display: inline-block;
-            background-color: var(--neon-pink);
-            color: var(--bg-main);
-            padding: 12px 30px;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 0, 119, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* CTA */
+        .cta-button{
+            display:inline-block;
+            background-color:var(--neon-pink);
+            color:#000;
+            padding:12px 30px;
+            text-decoration:none;
+            font-weight:700;
+            border-radius:5px;
+            transition:all .3s ease;
+            box-shadow:0 0 10px var(--neon-pink),0 0 20px rgba(255,0,119,.5);
+            text-transform:uppercase;
+            letter-spacing:1px;
+            border:none;
+            cursor:pointer;
         }
-        .cta-button:hover {
-            box-shadow: 0 0 20px var(--neon-pink), 0 0 40px rgba(255, 0, 119, 0.7);
-            transform: scale(1.05);
+        .cta-button:hover{
+            box-shadow:0 0 20px var(--neon-pink),0 0 40px rgba(255,0,119,.7);
+            transform:scale(1.05);
         }
 
         /* Floating Fixed CTA Button */
-        .cta-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            padding: 15px 20px;
-            background-color: var(--neon-pink);
-            color: #fff;
-            font-weight: 700;
-            border-radius: 10px;
-            z-index: 900;
-            text-decoration: none;
-            animation: pulse-glow 2s infinite;
+        .cta-float{
+            position:fixed;
+            bottom:30px;
+            right:30px;
+            padding:15px 20px;
+            background-color:var(--neon-pink);
+            color:#fff;
+            font-weight:700;
+            border-radius:10px;
+            z-index:900;
+            text-decoration:none;
+            animation:pulse-glow 2s infinite;
         }
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 5px var(--neon-pink); }
-            50% { box-shadow: 0 0 25px var(--neon-pink), 0 0 50px rgba(255, 0, 119, 0.7); }
-            100% { box-shadow: 0 0 5px var(--neon-pink); }
+        @keyframes pulse-glow{
+            0%{box-shadow:0 0 5px var(--neon-pink)}
+            50%{box-shadow:0 0 25px var(--neon-pink),0 0 50px rgba(255,0,119,.7)}
+            100%{box-shadow:0 0 5px var(--neon-pink)}
         }
 
-        /* Advanced Glitch Effect */
-        .glitch {
-            font-family: var(--font-display);
-            font-size: 4rem;
-            position: relative;
-            color: white;
-            animation: glitch-skew 1s infinite linear alternate-reverse;
+        /* Advanced Glitch Effect (Using clip-path) */
+        .glitch{
+            font-family:var(--font-display);
+            font-size:4rem;
+            position:relative;
+            color:#fff;
+            animation:glitch-skew 1s infinite linear alternate-reverse;
+            text-align:center;
+            margin:0 0 12px;
         }
-        .glitch::before, .glitch::after {
-            content: attr(data-text);
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: transparent; overflow: hidden;
+        .glitch::before,.glitch::after{
+            content:attr(data-text);
+            position:absolute;top:0;left:0;width:100%;height:100%;
+            background:transparent;overflow:hidden
         }
-        .glitch::before {
-            left: 2px; text-shadow: -2px 0 var(--neon-cyan);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        .glitch::before{
+            left:2px;
+            text-shadow:-2px 0 var(--neon-cyan);
+            clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
+            animation:glitch-anim-1 2s infinite linear alternate-reverse;
         }
-        .glitch::after {
-            left: -2px; text-shadow: -2px 0 var(--neon-pink);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        .glitch::after{
+            left:-2px;
+            text-shadow:-2px 0 var(--neon-pink);
+            clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
+            animation:glitch-anim-2 3s infinite linear alternate-reverse;
         }
-        @media (prefers-reduced-motion: reduce){
-          .glitch, .glitch::before, .glitch::after { animation: none; }
+        @media (prefers-reduced-motion:reduce){
+            .glitch,.glitch::before,.glitch::after{animation:none}
         }
-        @keyframes glitch-skew { 10% { transform: skew(2deg); } }
-        @keyframes glitch-anim-1 {
-            0% { clip-path: inset(40% 0 60% 0); }
-            20% { clip-path: inset(80% 0 10% 0); }
-            40% { clip-path: inset(10% 0 85% 0); }
-            60% { clip-path: inset(50% 0 50% 0); }
-            80% { clip-path: inset(5% 0 90% 0); }
-            100% { clip-path: inset(90% 0 5% 0); }
+        @keyframes glitch-skew{10%{transform:skew(2deg)}}
+        @keyframes glitch-anim-1{
+            0%{clip-path:inset(40% 0 60% 0)}
+            20%{clip-path:inset(80% 0 10% 0)}
+            40%{clip-path:inset(10% 0 85% 0)}
+            60%{clip-path:inset(50% 0 50% 0)}
+            80%{clip-path:inset(5% 0 90% 0)}
+            100%{clip-path:inset(90% 0 5% 0)}
         }
-        @keyframes glitch-anim-2 {
-            0% { clip-path: inset(70% 0 30% 0); }
-            20% { clip-path: inset(20% 0 75% 0); }
-            40% { clip-path: inset(60% 0 30% 0); }
-            60% { clip-path: inset(15% 0 80% 0); }
-            80% { clip-path: inset(85% 0 10% 0); }
-            100% { clip-path: inset(30% 0 65% 0); }
+        @keyframes glitch-anim-2{
+            0%{clip-path:inset(70% 0 30% 0)}
+            20%{clip-path:inset(20% 0 75% 0)}
+            40%{clip-path:inset(60% 0 30% 0)}
+            60%{clip-path:inset(15% 0 80% 0)}
+            80%{clip-path:inset(85% 0 10% 0)}
+            100%{clip-path:inset(30% 0 65% 0)}
         }
 
         /* Scroll Animations (Fade-in) */
-        .reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal{opacity:0;transform:translateY(50px);transition:opacity .6s ease-out,transform .6s ease-out}
+        .reveal.visible{opacity:1;transform:translateY(0)}
 
         /* --- Hero/Intro Section --- */
-        #intro {
-            padding: 80px 0;
-            text-align: center;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: radial-gradient(circle at center, rgba(255, 0, 119, 0.1) 0%, var(--bg-main) 70%);
+        #intro{
+            padding:80px 0;
+            text-align:center;
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            background:radial-gradient(circle at center, rgba(255,0,119,.1) 0%, var(--bg-main) 70%);
         }
-        #intro p { color: var(--text-dim); margin-bottom: 40px; }
+        #intro p{color:var(--text-dim);margin-bottom:40px}
 
-        .video-container { max-width: 900px; margin: 0 auto 30px; }
+        .video-container{max-width:900px;margin:0 auto 30px}
 
-        /* Плеер-рамка */
-        #main-video-wrapper {
-            border: 1px solid var(--neon-cyan);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-            /* ключ: поддерживаем стабильное соотношение сторон */
-            aspect-ratio: 16 / 9;
-            background: #000;
+        /* Плеер: адаптивная 16:9 рамка, без оверлеев поверх iframe */
+        #main-video-wrapper{
+            border:1px solid var(--neon-cyan);
+            box-shadow:0 0 30px rgba(0,255,255,.3);
+            border-radius:10px;
+            overflow:hidden;
+            position:relative;
+            background:#000;
+            aspect-ratio:16 / 9; /* современный вариант */
         }
-        /* убираем «сканлайны», чтобы ничего не затемняло iframe */
-        /* #main-video-wrapper::after { ... }  — удалено */
-
-        /* Сам iframe во всю рамку */
-        #main-video-wrapper iframe {
-            position: absolute; inset: 0;
-            width: 100%; height: 100%;
-            border: 0; display: block;
+        @supports not (aspect-ratio: 16 / 9){
+            #main-video-wrapper{height:0;padding-top:56.25%}
         }
+        #main-video-wrapper iframe{
+            position:absolute;inset:0;width:100%;height:100%;border:0;display:block
+        }
+
+        .video-thumbnails{
+            display:flex;justify-content:center;gap:15px;margin-top:20px;flex-wrap:wrap
+        }
+        .thumbnail{
+            width:120px;height:70px;cursor:pointer;border:2px solid transparent;transition:all .3s ease;border-radius:5px;overflow:hidden;opacity:.7;
+            outline:2px solid transparent;outline-offset:2px;
+        }
+        .thumbnail img{width:100%;height:100%;object-fit:cover;display:block}
+        .thumbnail:hover{opacity:1;transform:scale(1.1);box-shadow:0 0 15px var(--neon-pink)}
+        .thumbnail:focus{outline:2px solid var(--neon-cyan);outline-offset:2px}
+        .thumbnail.active{opacity:1;border-color:var(--neon-cyan);box-shadow:0 0 15px var(--neon-cyan)}
 
         /* --- Rumors Section --- */
-        #rumors {
-            padding: 100px 0;
-            background-color: #0a0a1a;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        #rumors{
+            padding:100px 0;background-color:#0a0a1a;border-top:1px solid rgba(255,255,255,.1)
         }
-        #rumors h2 {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--neon-pink);
-            text-shadow: 0 0 15px rgba(255, 0, 119, 0.5);
+        #rumors h2{
+            font-family:var(--font-display);font-size:2.5rem;text-align:center;margin-bottom:50px;color:var(--neon-pink);
+            text-shadow:0 0 15px rgba(255,0,119,.5)
         }
-        #rumors h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            color: var(--neon-cyan);
+        #rumors h3{font-family:var(--font-display);font-size:1.5rem;margin-top:40px;margin-bottom:20px;color:var(--neon-cyan)}
+        #rumors p{margin-bottom:20px}
+        .rumor-list{margin:30px 0}
+        .rumor-card{
+            background-color:var(--bg-card);padding:25px;margin-bottom:20px;border-radius:8px;border-left:4px solid var(--neon-cyan);
+            box-shadow:0 5px 15px rgba(0,0,0,.5);transition:transform .3s ease;
         }
-        #rumors p { margin-bottom: 20px; }
-
-        .rumor-list { margin: 30px 0; }
-        .rumor-card {
-            background-color: var(--bg-card);
-            padding: 25px; margin-bottom: 20px; border-radius: 8px;
-            border-left: 4px solid var(--neon-cyan);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
-        }
-        .rumor-card:hover { transform: translateX(10px); box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); }
-        .rumor-card strong { color: var(--text-color); font-size: 1.1rem; }
-
-        .highlight {
-            background-color: rgba(255, 0, 119, 0.2);
-            padding: 2px 5px;
-            border-radius: 3px;
-            color: var(--neon-pink);
-            font-weight: bold;
-        }
-
-        .cta-center { text-align: center; margin: 50px 0; }
+        .rumor-card:hover{transform:translateX(10px);box-shadow:0 0 20px rgba(0,255,255,.2)}
+        .rumor-card strong{color:var(--text-color);font-size:1.1rem}
+        .highlight{background-color:rgba(255,0,119,.2);padding:2px 5px;border-radius:3px;color:var(--neon-pink);font-weight:700}
+        .cta-center{text-align:center;margin:50px 0}
 
         /* --- Footer --- */
-        footer { text-align: center; padding: 40px 0; font-size: 0.9rem; color: var(--text-dim); background-color: var(--bg-main); }
-        .warning {
-            display: inline-block;
-            color: #ffcc00;
-            border: 1px solid #ffcc00;
-            padding: 10px 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            border-radius: 5px;
-        }
+        footer{text-align:center;padding:40px 0;font-size:.9rem;color:var(--text-dim);background-color:var(--bg-main)}
+        .warning{display:inline-block;color:#ffcc00;border:1px solid #ffcc00;padding:10px 20px;font-weight:700;margin-bottom:15px;border-radius:5px}
 
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .glitch { font-size: 2.5rem; }
-            #rumors h2 { font-size: 2rem; }
-            .video-thumbnails { flex-wrap: wrap; }
-            .thumbnail { width: 100px; height: 60px; }
-            .cta-float { bottom: 15px; right: 15px; padding: 12px 15px; font-size: 0.9rem; }
+        /* --- Responsive --- */
+        @media (max-width:768px){
+            .glitch{font-size:2.5rem}
+            #rumors h2{font-size:2rem}
+            .thumbnail{width:100px;height:60px}
+            .cta-float{bottom:15px;right:15px;padding:12px 15px;font-size:.9rem}
         }
     </style>
 </head>
 <body>
 
+    <!-- Floating CTA -->
     <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" rel="noopener noreferrer" class="cta-float" aria-label="Join Private Telegram">
         🔞 Join Private TG
     </a>
 
+    <!-- HERO -->
     <section id="intro" class="container reveal">
         <h1 class="glitch" data-text="Welcome">Welcome</h1>
         <p>You found the place where the rumors end and reality begins.</p>
 
         <div class="video-container">
             <div id="main-video-wrapper">
-                <!-- ✅ Bunny iframe — воспроизводится полностью в рамке 16:9 -->
+                <!-- Bunny iframe: играет полностью в рамке 16:9 -->
                 <iframe
+                    id="mainEmbed"
                     src="https://iframe.mediadelivery.net/play/490445/98f62147-2cef-4dca-943a-1104eae70811?autoplay=true&muted=true&preload=true"
                     allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
                     allowfullscreen
@@ -242,29 +237,38 @@
                 </iframe>
             </div>
 
-            <!-- Оставляю миниатюры как были (без JS-переключателя, чтобы не ломать iframe). Можно убрать, если не нужны. -->
-            <div class="video-thumbnails" aria-hidden="true">
-                <div class="thumbnail active">
+            <!-- Превью. Для переключения iframe укажи data-embed на каждом. -->
+            <div class="video-thumbnails" id="thumbs">
+                <div class="thumbnail active" role="button" tabindex="0"
+                     aria-label="Play video 1"
+                     data-embed="https://iframe.mediadelivery.net/play/490445/98f62147-2cef-4dca-943a-1104eae70811?autoplay=true&muted=true&preload=true">
                     <img src="thumb1.jpg" alt="Video preview 1">
                 </div>
-                <div class="thumbnail">
-                     <img src="thumb2.jpg" alt="Video preview 2" loading="lazy">
+
+                <!-- Пример: добавишь свои реальные VIDEO_ID сюда -->
+                <div class="thumbnail" role="button" tabindex="0" aria-label="Play video 2"
+                     data-embed="">
+                    <img src="thumb2.jpg" alt="Video preview 2" loading="lazy">
                 </div>
-                <div class="thumbnail">
-                     <img src="thumb3.jpg" alt="Video preview 3" loading="lazy">
+                <div class="thumbnail" role="button" tabindex="0" aria-label="Play video 3"
+                     data-embed="">
+                    <img src="thumb3.jpg" alt="Video preview 3" loading="lazy">
                 </div>
-                <div class="thumbnail">
-                     <img src="thumb4.jpg" alt="Video preview 4" loading="lazy">
+                <div class="thumbnail" role="button" tabindex="0" aria-label="Play video 4"
+                     data-embed="">
+                    <img src="thumb4.jpg" alt="Video preview 4" loading="lazy">
                 </div>
-                <div class="thumbnail">
-                     <img src="thumb5.jpg" alt="Video preview 5" loading="lazy">
+                <div class="thumbnail" role="button" tabindex="0" aria-label="Play video 5"
+                     data-embed="">
+                    <img src="thumb5.jpg" alt="Video preview 5" loading="lazy">
                 </div>
             </div>
         </div>
-        
+
         <a href="https://t.me/+tVrljmvYwKFhZTg0" class="cta-button" target="_blank" rel="noopener noreferrer">Get Full Access Now</a>
     </section>
 
+    <!-- CONTENT -->
     <section id="rumors">
         <div class="container text-content">
             <h2 class="reveal">Rumors About Me</h2>
@@ -329,8 +333,8 @@
                 <p>So what’s the bottom line? The bottom line is – I continue to do my work and reach new heights, which I wish for you as well. ✨ Let those who are capable of nothing else keep talking. And you, my dears, subscribe, come visit me more often – you will learn a lot of real things about me, without sensational inventions. 😉 More is coming soon, there are many interesting things ahead! Thank you to all my true fans for your support and common sense. You are the best. ❤️</p>
             </div>
 
-             <div class="cta-center reveal">
-                 <a href="https://t.me/+tVrljmvYwKFhZTg0" class="cta-button" target="_blank" rel="noopener noreferrer">Join Me Now 🔥</a>
+            <div class="cta-center reveal">
+                <a href="https://t.me/+tVrljmvYwKFhZTg0" class="cta-button" target="_blank" rel="noopener noreferrer">Join Me Now 🔥</a>
             </div>
         </div>
     </section>
@@ -343,32 +347,59 @@
     </footer>
 
     <script>
-        // --- Single init block ---
+        // защитим target=_blank
+        (function(){
+            document.querySelectorAll('a[target="_blank"]').forEach(a=>{
+                if(!a.rel || !/noopener|noreferrer/.test(a.rel)){
+                    a.rel = 'noopener noreferrer';
+                }
+            });
+        })();
+
+        // Reveal-on-scroll
         document.addEventListener('DOMContentLoaded', () => {
-            initRevealOnScroll();
-            // убрали initVideoSwitching и initAutoplayKick, т.к. теперь iframe (Bunny), а не <video>
-        });
-
-        // --- Scroll Animation (Intersection Observer) ---
-        function initRevealOnScroll() {
             const revealElements = document.querySelectorAll('.reveal');
-            if (!revealElements.length) return;
+            if (revealElements.length){
+                const io = new IntersectionObserver((entries, obs)=>{
+                    entries.forEach(en=>{
+                        if(en.isIntersecting){
+                            en.target.classList.add('visible');
+                            obs.unobserve(en.target);
+                        }
+                    });
+                }, {threshold:0.12});
+                revealElements.forEach(el=>io.observe(el));
+            }
 
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-
-            const observerCallback = (entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
+            // Переключение iframe по миниатюрам (используем data-embed)
+            const mainEmbed = document.getElementById('mainEmbed');
+            const thumbs = document.querySelectorAll('.thumbnail');
+            if (mainEmbed && thumbs.length){
+                const setActive = (el)=>{
+                    document.querySelector('.thumbnail.active')?.classList.remove('active');
+                    el.classList.add('active');
+                };
+                const switchTo = (el)=>{
+                    const url = el.getAttribute('data-embed');
+                    if (!url) return; // у превью нет ссылки — ничего не делаем
+                    // сохраняем базовые параметры для автоплея
+                    const hasQuery = url.includes('?');
+                    const src = url + (hasQuery ? '&' : '?') + 'autoplay=true&muted=true&preload=true';
+                    // смена src у iframe
+                    mainEmbed.src = src;
+                    setActive(el);
+                };
+                thumbs.forEach(el=>{
+                    el.addEventListener('click', ()=>switchTo(el));
+                    el.addEventListener('keydown', (e)=>{
+                        if(e.key==='Enter' || e.key===' '){
+                            e.preventDefault();
+                            switchTo(el);
+                        }
+                    });
                 });
-            };
-
-            const observer = new IntersectionObserver(observerCallback, observerOptions);
-            revealElements.forEach(el => observer.observe(el));
-        }
+            }
+        });
     </script>
-
 </body>
 </html>
