@@ -1,18 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bunny Clean Test</title>
-<body style="margin:0;background:#000;display:grid;place-items:center;min-height:100vh;">
-  <div style="width:min(900px,92vw);aspect-ratio:16/9;border:1px solid #0ff;border-radius:10px;overflow:hidden;background:#000;position:relative;">
-    <iframe
-      src="https://iframe.mediadelivery.net/play/490445/98f62147-2cef-4dca-943a-1104eae70811?autoplay=true&muted=true&preload=true"
-      allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-      allowfullscreen
-      referrerpolicy="no-referrer"
-      title="Bunny video"
-      style="position:absolute;inset:0;border:0;width:100%;height:100%;display:block">
-    </iframe>
-  </div>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exclusive Access</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet"/>
+
+  <!-- Perf hints for Bunny iframe -->
+  <link rel="preconnect" href="https://iframe.mediadelivery.net" crossorigin>
+  <link rel="dns-prefetch" href="https://iframe.mediadelivery.net">
+
+  <style>
+    :root{
+      --bg-main:#05050f; --bg-soft:#0a0a1a; --bg-card:#1a1a2e;
+      --neon-pink:#ff0077; --neon-cyan:#00ffff;
+      --text:#f0f0f0; --text-dim:#aaaaaa;
+      --font-main:'Inter',sans-serif; --font-display:'Orbitron',sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg-main); color:var(--text);
+      font-family:var(--font-main); line-height:1.6; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    .text-content{max-width:800px;margin:0 auto}
+
+    /* CTA */
+    .cta-button{
+      display:inline-block;background:var(--neon-pink);color:#000;padding:12px 30px;text-decoration:none;
+      font-weight:700;border-radius:8px;letter-spacing:.8px;text-transform:uppercase;
+      transition:transform .25s ease, box-shadow .25s ease;
+      box-shadow:0 0 12px var(--neon-pink), 0 0 24px rgba(255,0,119,.45);
+      border:none;cursor:pointer;
+    }
+    .cta-button:hover{transform:translateY(-2px);box-shadow:0 0 22px var(--neon-pink), 0 0 48px rgba(255,0,119,.65)}
+    .cta-float{
+      position:fixed;right:30px;bottom:30px;z-index:1000;background:var(--neon-pink);color:#fff;font-weight:700;border-radius:10px;
+      padding:14px 18px;text-decoration:none;
+    }
+
+    /* Headline */
+    .glitch{font-family:var(--font-display);font-size:4rem;text-align:center;margin:0 0 12px}
+
+    /* Intro / Hero */
+    #intro{
+      padding:80px 0;min-height:100vh;display:flex;flex-direction:column;justify-content:center;text-align:center;
+      background:radial-gradient(circle at center, rgba(255,0,119,.12) 0%, var(--bg-main) 70%);
+    }
+    #intro p{color:var(--text-dim);margin:8px 0 36px}
+
+    .video-container{max-width:900px;margin:0 auto 24px}
+
+    /* Плеер: iframe без перекрытий, всегда во «всю рамку» */
+    #main-video-wrapper{
+      position:relative;background:#000;border:1px solid var(--neon-cyan);border-radius:12px;overflow:hidden;
+      aspect-ratio:16/9; /* современный способ */
+    }
+    /* Фолбэк для старых браузеров */
+    @supports not (aspect-ratio: 16 / 9){
+      #main-video-wrapper{height:0;padding-top:56.25%}
+    }
+    #main-video-wrapper iframe{
+      position:absolute;inset:0;width:100%;height:100%;border:0;display:block;
+    }
+
+    /* Content */
+    #rumors{padding:100px 0;background:var(--bg-soft);border-top:1px solid rgba(255,255,255,.1)}
+    #rumors h2{font-family:var(--font-display);font-size:2.4rem;text-align:center;margin-bottom:40px;color:var(--neon-pink)}
+    #rumors h3{font-family:var(--font-display);font-size:1.5rem;color:var(--neon-cyan);margin:36px 0 14px}
+    #rumors p{color:var(--text-dim);margin-bottom:16px}
+    .rumor-list{margin:24px 0}
+    .rumor-card{background:var(--bg-card);padding:22px;border-radius:10px;margin-bottom:16px;border-left:4px solid var(--neon-cyan)}
+    .rumor-card strong{color:var(--text)}
+    .highlight{background:rgba(255,0,119,.22);color:var(--neon-pink);padding:2px 6px;border-radius:4px;font-weight:700}
+    .cta-center{text-align:center;margin:40px 0}
+
+    footer{text-align:center;padding:40px 0;color:var(--text-dim);background:var(--bg-main)}
+    .warning{display:inline-block;color:#ffcc00;border:1px solid #ffcc00;padding:8px 14px;border-radius:6px;margin-bottom:10px}
+
+    /* Reveal эффект (лёгкий) */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* Responsive */
+    @media (max-width:768px){
+      .glitch{font-size:2.6rem}
+      .container{padding:0 16px}
+      .cta-float{right:16px;bottom:16px;padding:12px 14px;font-size:.95rem}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Плавающая кнопка -->
+  <a href="https://t.me/+tVrljmvYwKFhZTg0" target="_blank" rel="noopener noreferrer" class="cta-float">🔞 Join Private TG</a>
+
+  <!-- HERO -->
+  <section id="intro" class="container reveal">
+    <h1 class="glitch">Welcome</h1>
+    <p>You found the place where the rumors end and reality begins.</p>
+
+    <div class="video-container">
+      <div id="main-video-wrapper">
+        <!-- Только чистый embed — как в тесте -->
+        <iframe
+          src="https://iframe.mediadelivery.net/play/490445/98f62147-2cef-4dca-943a-1104eae70811?autoplay=true&muted=true&preload=true"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+          referrerpolicy="no-referrer"
+          title="Main video">
+        </iframe>
+      </div>
+    </div>
+
+    <a href="https://t.me/+tVrljmvYwKFhZTg0" class="cta-button" target="_blank" rel="noopener noreferrer">Get Full Access Now</a>
+  </section>
+
+  <!-- CONTENT -->
+  <section id="rumors">
+    <div class="container text-content">
+      <h2 class="reveal">Rumors About Me</h2>
+
+      <div class="reveal">
+        <p>On the internet, there is a whole sect of amateur detectives who, with persistence worthy of a better cause, invent incredible stories about me. Go to Reddit – and you’ll be stunned: apparently, around <span class="highlight">ehotlovea</span> there is an entire series unfolding with a thrilling (though absurd) plot. So, what have they come up with? Here’s a brief overview of the most epic rumors:</p>
+      </div>
+
+      <div class="rumor-list reveal">
+        <div class="rumor-card"><strong>I am a prisoner.</strong> Yes, according to the forum “experts,” I’m a hostage, kept by force and starved somewhere in an underground hideout…</div>
+        <div class="rumor-card"><strong>I am “controlled by a monster.”</strong> They say some villain makes me work on camera against my will…</div>
+        <div class="rumor-card"><strong>I am constantly on the run in different countries.</strong> Supposedly I’m moved from city to city, country to country…</div>
+        <div class="rumor-card"><strong>Secret services are watching me.</strong> “Top secret” news about luxury hotels and investigators…</div>
+        <div class="rumor-card"><strong>I have no money or success of my own.</strong> Of course, they credit everything to a mythical “master”…</div>
+      </div>
+
+      <div class="cta-center reveal">
+        <a href="https://t.me/+tVrljmvYwKFhZTg0" class="cta-button" target="_blank" rel="noopener noreferrer">Get the Real Story on Telegram</a>
+      </div>
+
+      <h3 class="reveal">The Facts</h3>
+      <div class="reveal"><p>There is no villain, no captivity, no drama. Just work, strategy and persistence…</p></div>
+
+      <h3 class="reveal">The Consequences</h3>
+      <div class="reveal"><p>We’re preparing materials and evidence for a formal complaint…</p></div>
+
+      <h3 class="reveal">The Bottom Line</h3>
+      <div class="reveal"><p>I keep working and hitting new goals. Subscribe and come more often — the real story is here.</p></div>
+
+      <div class="cta-center reveal">
+        <a href="https://t.me/+tVrljmvYwKFhZTg0" class="cta-button" target="_blank" rel="noopener noreferrer">Join Me Now 🔥</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="warning">18+ ADULTS ONLY</div>
+      <p>&copy; 2025 [Your Model Name/Brand]. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // rel безопасность для всех внешних ссылок с target=_blank
+    (function(){
+      document.querySelectorAll('a[target="_blank"]').forEach(a=>{
+        if(!a.rel || !/noopener|noreferrer/.test(a.rel)) a.rel='noopener noreferrer';
+      });
+    })();
+
+    // Плавное появление блоков
+    document.addEventListener('DOMContentLoaded', () => {
+      const els = document.querySelectorAll('.reveal');
+      if(!els.length) return;
+      const io = new IntersectionObserver((entries,obs)=>{
+        entries.forEach(en=>{
+          if(en.isIntersecting){ en.target.classList.add('visible'); obs.unobserve(en.target); }
+        });
+      },{threshold:.12});
+      els.forEach(el=>io.observe(el));
+    });
+  </script>
 </body>
 </html>
