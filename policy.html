@@ -179,6 +179,8 @@
             border-radius: 10px;
             overflow: hidden;
             position: relative;
+            /* This maintains the 16:9 aspect ratio for the iframe */
+            aspect-ratio: 16 / 9;
         }
 
         /* Scanline effect overlay */
@@ -198,59 +200,6 @@
             );
             pointer-events: none;
             opacity: 0.8;
-        }
-
-        #mainVideo {
-            width: 100%;
-            display: block;
-            /* Modern way to handle aspect ratio */
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            background-color: #000; /* Fallback color */
-        }
-
-        .video-thumbnails {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .thumbnail {
-            width: 120px;
-            height: 70px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            border-radius: 5px;
-            overflow: hidden;
-            opacity: 0.7;
-            outline: 2px solid transparent;
-            outline-offset: 2px;
-        }
-
-        .thumbnail img {
-             width: 100%;
-             height: 100%;
-             object-fit: cover;
-        }
-
-        .thumbnail:hover {
-            opacity: 1;
-            transform: scale(1.1);
-            box-shadow: 0 0 15px var(--neon-pink);
-        }
-
-        .thumbnail:focus{
-            outline: 2px solid var(--neon-cyan);
-            outline-offset: 2px;
-        }
-
-        .thumbnail.active {
-            opacity: 1;
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 15px var(--neon-cyan);
         }
 
         /* --- Rumors Section (Слухи обо мне) --- */
@@ -347,13 +296,6 @@
             #rumors h2 {
                 font-size: 2rem;
             }
-            .video-thumbnails {
-                flex-wrap: wrap;
-            }
-            .thumbnail {
-                width: 100px;
-                height: 60px;
-            }
             .cta-float {
                 bottom: 15px;
                 right: 15px;
@@ -376,28 +318,12 @@
 
         <div class="video-container">
             <div id="main-video-wrapper">
-                <video id="mainVideo" controls autoplay muted loop playsinline>
-                    <source src="video1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-
-            <div class="video-thumbnails">
-                <div class="thumbnail active" data-video="video1.mp4" role="button" tabindex="0" aria-label="Play video 1">
-                    <img src="thumb1.jpg" alt="Video preview 1">
-                </div>
-                <div class="thumbnail" data-video="video2.mp4" role="button" tabindex="0" aria-label="Play video 2">
-                     <img src="thumb2.jpg" alt="Video preview 2" loading="lazy">
-                </div>
-                <div class="thumbnail" data-video="video3.mp4" role="button" tabindex="0" aria-label="Play video 3">
-                     <img src="thumb3.jpg" alt="Video preview 3" loading="lazy">
-                </div>
-                <div class="thumbnail" data-video="video4.mp4" role="button" tabindex="0" aria-label="Play video 4">
-                     <img src="thumb4.jpg" alt="Video preview 4" loading="lazy">
-                </div>
-                 <div class="thumbnail" data-video="video5.mp4" role="button" tabindex="0" aria-label="Play video 5">
-                     <img src="thumb5.jpg" alt="Video preview 5" loading="lazy">
-                </div>
+                <iframe
+                    src="https://iframe.mediadelivery.net/play/490445/98f62147-2cef-4dca-943a-1104eae70811?autoplay=true&muted=true"
+                    style="border: none; position: absolute; top: 0; height: 100%; width: 100%;"
+                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                    allowfullscreen="true"
+                ></iframe>
             </div>
         </div>
         
@@ -485,8 +411,6 @@
         // --- Single init block ---
         document.addEventListener('DOMContentLoaded', () => {
             initRevealOnScroll();
-            initVideoSwitching();
-            initAutoplayKick();
         });
 
         // --- Scroll Animation (Intersection Observer) ---
@@ -511,64 +435,6 @@
 
             const observer = new IntersectionObserver(observerCallback, observerOptions);
             revealElements.forEach(el => observer.observe(el));
-        }
-
-        // --- Video Switching Functionality (robust) ---
-        function initVideoSwitching() {
-            const mainVideo = document.getElementById('mainVideo');
-            const thumbnails = document.querySelectorAll('.thumbnail');
-            if (!mainVideo || !thumbnails.length) return;
-
-            const activate = (thumb) => {
-                if (thumb.classList.contains('active')) return;
-
-                const videoUrl = thumb.getAttribute('data-video');
-
-                // Update active classes (safe optional chaining)
-                document.querySelector('.thumbnail.active')?.classList.remove('active');
-                thumb.classList.add('active');
-
-                // Swap and play robustly
-                mainVideo.pause();
-                mainVideo.src = videoUrl;
-                mainVideo.load();
-                mainVideo.play().catch(error => {
-                    console.error("Error playing video:", error);
-                });
-            };
-
-            thumbnails.forEach(thumb => {
-                // ensure a11y even if markup changes elsewhere
-                thumb.setAttribute('role','button');
-                thumb.setAttribute('tabindex','0');
-                if (!thumb.hasAttribute('aria-label')) {
-                    const v = thumb.getAttribute('data-video') || 'video';
-                    thumb.setAttribute('aria-label', `Play ${v}`);
-                }
-
-                thumb.addEventListener('click', () => activate(thumb));
-                thumb.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        activate(thumb);
-                    }
-                });
-            });
-        }
-
-        // --- Autoplay kick for iOS/permissions ---
-        function initAutoplayKick(){
-            const v = document.getElementById('mainVideo');
-            if (!v) return;
-            const tryPlay = () => v.play().catch(() => {});
-            if (v.paused) tryPlay();
-            const kick = () => { tryPlay(); cleanup(); };
-            const cleanup = () => {
-                document.removeEventListener('touchstart', kick, {passive:true});
-                document.removeEventListener('click', kick);
-            };
-            document.addEventListener('touchstart', kick, {passive:true});
-            document.addEventListener('click', kick);
         }
     </script>
 
