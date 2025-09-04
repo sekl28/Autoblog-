@@ -56,7 +56,6 @@
             position: relative;
         }
 
-        /* Responsive Typography */
         .section-title {
             font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 800;
@@ -162,7 +161,6 @@
             height: 200%;
             background: radial-gradient(circle at top right, rgba(255, 102, 0, 0.05) 0%, transparent 40%),
                         radial-gradient(circle at bottom left, rgba(0, 163, 255, 0.05) 0%, transparent 50%);
-            /* Subtle rotation for dynamism */
             animation: rotate-bg 50s linear infinite;
         }
 
@@ -240,14 +238,13 @@
             margin-top: 5px;
         }
 
-        /* --- 6. Features Section (Сильные стороны с 3D акцентами и микроанимациями) --- */
+        /* --- 6. Features Section (Сильные стороны с микроанимациями) --- */
         #features {
             background-color: var(--color-bg-dark);
         }
 
         .features-grid {
             display: grid;
-            /* Mobile First: Auto-fit grid */
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
@@ -259,14 +256,11 @@
             text-align: center;
             transition: var(--transition-fast);
             border: 1px solid transparent;
-            /* Setup for 3D effect on hover */
-            transform-style: preserve-3d;
-            perspective: 1000px;
             position: relative;
             overflow: hidden;
         }
 
-        /* 3D-акцент и Hover-эффект */
+        /* Hover-эффект */
         .feature-card:hover {
             transform: translateY(-10px) scale(1.02);
             background: var(--color-bg-light);
@@ -307,7 +301,6 @@
         }
 
         .feature-card:hover .feature-icon {
-             /* Микроанимация иконки */
             transform: scale(1.1);
         }
 
@@ -359,7 +352,7 @@
         .step:hover .step-icon {
             background-color: var(--color-accent);
             color: var(--color-bg-dark);
-            transform: scale(1.1);
+            transform: rotate(360deg);
         }
 
         .step-title {
@@ -391,7 +384,7 @@
             color: var(--color-neon-data);
             display: block;
             margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(0, 163, 255, 0.5);
+            text-shadow: 0 0 15px rgba(0, 163, 255, 0.5);
         }
 
         .trust-label {
@@ -432,6 +425,7 @@
             width: 100%;
             height: auto;
             max-width: 500px;
+            display: block;
         }
 
         /* API Code Snippet (Visual) */
@@ -635,7 +629,7 @@
                         <p class="feature-text">Политика "Winners Welcome" гарантирует, что ваш аккаунт не будет ограничен за выигрыши. Арбитраж разрешен.</p>
                     </div>
 
-                     <div class="feature-card reveal" style="transition-delay: 0.3s;">
+                    <div class="feature-card reveal" style="transition-delay: 0.3s;">
                         <div class="feature-icon">
                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
@@ -701,8 +695,7 @@
                         <h3 class="advanced-title">Преимущество Низкой Маржи</h3>
                         <p>Наша маржа в среднем на 60% ниже, чем у конкурентов. Это напрямую увеличивает ваш потенциальный выигрыш на дистанции и идеально подходит для Value Betting.</p>
                         <div class="infographic-container">
-                            ```svg
-                            <svg class="infographic-svg" viewBox="0 0 100 60" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
+                            <svg class="infographic-svg" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
                                 <defs>
                                     <linearGradient id="gradPinnacle" x1="0%" y1="0%" x2="100%" y2="0%">
                                         <stop offset="0%" style="stop-color:#FF6600;stop-opacity:1" />
@@ -724,3 +717,245 @@
                                 <rect x="0" y="45" width="93" height="10" rx="3" fill="url(#gradCompetitor)"/>
                                 <text x="91" y="52" fill="#FFFFFF" font-size="4" text-anchor="end">93% Выплата</text>
                             </svg>
+                        </div>
+                    </div>
+
+                <div class="advanced-card reveal" style="transition-delay: 0.1s;">
+                    <h3 class="advanced-title">API Доступ и Автоматизация</h3>
+                    <p>Мы предоставляем мощный API для автоматизации торговли, доступа к данным в реальном времени и интеграции ваших алгоритмов. Арбитраж приветствуется.</p>
+                     <div class="api-code-snippet">
+                        > GET /v1/odds?sportId=29&leagueIds=1980<br>
+                        > "periods": [<br>
+                        &nbsp;&nbsp;{"lineId": 12345, "moneyline": {"home": 1.952, "away": 1.971}},<br>
+                        &nbsp;&nbsp;...<br>
+                        > ]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section">
+        <div class="container">
+            <h2 class="section-title reveal">Часто задаваемые вопросы</h2>
+            <div class="faq-container reveal">
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Почему у Pinnacle такие высокие коэффициенты?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Мы работаем по модели низкой маржи (около 2.5%). Вместо того чтобы тратить бюджет на маркетинг и бонусы, мы вкладываемся в предоставление лучших коэффициентов, привлекая профессиональных игроков и зарабатывая на обороте.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Правда ли, что вы не блокируете успешных игроков?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Абсолютно верно. Наша политика "Winners Welcome" гарантирует, что мы не ограничиваем лимиты и не закрываем счета за выигрыши. Мы используем данные от успешных игроков для корректировки наших линий.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Поддерживаете ли вы арбитражные ставки (вилки)?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Да, мы лояльно относимся к арбитражным игрокам. Наши высокие коэффициенты и лимиты делают Pinnacle идеальной платформой для арбитража.
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="faq-item">
+                    <div class="faq-question">
+                        Какие максимальные лимиты на ставки?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Лимиты зависят от рынка и события, но они традиционно являются одними из самых высоких в индустрии. На топовые события лимиты могут достигать десятков тысяч долларов.
+                        </div>
+                    </div>
+                </div>
+
+                  <div class="faq-item">
+                    <div class="faq-question">
+                       Предоставляете ли вы доступ к API?
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Да, для профессиональных игроков мы предлагаем доступ к нашему API, что позволяет автоматизировать процесс ставок и получать данные о коэффициентах в реальном времени.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="final-cta" class="section">
+        <div class="container">
+            <div class="cta-box reveal">
+                <h2 class="cta-title">Присоединяйтесь к Элите Беттинга</h2>
+                <p>Испытайте преимущество лучших коэффициентов уже сегодня.</p>
+                <br>
+                <a href="#register" class="btn btn-primary btn-large">Зарегистрироваться Сейчас</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="logo">PINNACLE<span>.</span></div>
+        <div class="footer-links">
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Условия использования</a>
+            <a href="#">Ответственная игра</a>
+            <a href="#">API</a>
+            <a href="#">Контакты</a>
+        </div>
+        <p class="footer-copy">&copy; 2025 Pinnacle. Все права защищены. 18+</p>
+    </div>
+</footer>
+
+<script>
+    // === JavaScript для Интерактива и Анимаций ===
+
+    // 1. Profit Calculator (Hero Section)
+    function calculateProfit() {
+        const betAmount = parseFloat(document.getElementById('betAmount').value) || 0;
+        const baseOdds = parseFloat(document.getElementById('odds').value) || 1;
+        const extraProfitSpan = document.getElementById('extraProfit');
+
+        if (betAmount <= 0 || baseOdds <= 1) {
+            extraProfitSpan.textContent = '$0.00';
+            return;
+        }
+
+        const competitorMargin = 0.07;
+        const pinnacleMargin = 0.025;
+
+        // Рассчитываем подразумеваемую вероятность
+        const impliedProbability = 1 / baseOdds;
+
+        // Рассчитываем скорректированные коэффициенты (Упрощенная модель)
+        const competitorOdds = 1 / (impliedProbability * (1 + competitorMargin));
+        const pinnacleOdds = 1 / (impliedProbability * (1 + pinnacleMargin));
+
+        // Рассчитываем потенциальную прибыль
+        const competitorWinnings = betAmount * (competitorOdds - 1);
+        const pinnacleWinnings = betAmount * (pinnacleOdds - 1);
+
+        const extraProfit = pinnacleWinnings - competitorWinnings;
+
+        extraProfitSpan.textContent = `$${extraProfit.toFixed(2)}`;
+    }
+
+     // Инициализация калькулятора при загрузке
+    document.addEventListener('DOMContentLoaded', (event) => {
+        calculateProfit();
+    });
+
+
+    // 2. Smooth Scroll Reveal (Intersection Observer)
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    revealElements.forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    // 3. FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            const answer = item.querySelector('.faq-answer');
+
+            // Close all
+            faqItems.forEach(i => {
+               i.classList.remove('active');
+               i.querySelector('.faq-answer').style.maxHeight = 0;
+            });
+
+            // Open clicked item
+            if (!isActive) {
+                item.classList.add('active');
+                // Calculate dynamic height for smooth transition
+                answer.style.maxHeight = answer.scrollHeight + 50 + "px"; 
+            }
+        });
+    });
+
+    // 4. Animated Counters (Trust Section)
+    const counters = document.querySelectorAll('.counter');
+    
+    const animateCounter = (counterEl) => {
+        const target = parseInt(counterEl.getAttribute('data-target'));
+        if (isNaN(target)) return;
+
+        const prefix = counterEl.getAttribute('data-prefix') || '';
+        const suffix = counterEl.getAttribute('data-suffix') || '';
+        const duration = 2000; 
+        let startTime = null;
+
+        const step = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            // Easing function (easeOutExpo)
+            const easedProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+            const currentValue = Math.floor(easedProgress * target);
+            
+            counterEl.textContent = prefix + currentValue.toLocaleString() + suffix;
+
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            } else {
+                counterEl.textContent = prefix + target.toLocaleString() + suffix;
+            }
+        };
+
+        window.requestAnimationFrame(step);
+    };
+
+     // Trigger counters animation when they come into view
+     const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => {
+        if (counter.hasAttribute('data-target')) {
+                counterObserver.observe(counter);
+        }
+    });
+
+</script>
+</body>
+</html>
