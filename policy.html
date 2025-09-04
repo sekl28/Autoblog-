@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pinnacle: Выбор Профессионалов. Лучшие Коэффициенты и Высокие Лимиты.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Pinnacle: Переход на Профессиональный Уровень. Получите Лучшие Коэффициенты.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;800&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* --- 1. CSS Reset & Global Variables (Elite Style 2025) --- */
+        /* --- 1. Global Variables (Data-Driven Dominance Theme) --- */
         :root {
-            --color-accent: #FF6600; /* Pinnacle Orange */
-            --color-accent-glow: rgba(255, 102, 0, 0.5);
-            --color-bg-dark: #051D2E; /* Deep Navy Blue */
-            --color-bg-medium: #0B1A2E; /* Medium Navy for sections */
-            --color-bg-light: #1A2A3A; /* Lighter Blue for cards/glass */
-            --color-text: #FFFFFF;
-            --color-text-muted: #A0B0C0;
-            --color-success: #4CAF50;
-            --color-neon-data: #00A3FF; /* Neon blue for data visualization */
-            --font-main: 'Inter', sans-serif;
-            --transition-fast: 0.3s ease-in-out; /* ≤300 мс по ТЗ */
+            --color-cta: #FF6600; /* Pinnacle Orange */
+            --color-cta-glow: rgba(255, 102, 0, 0.6);
+            --color-data: #00FFFF; /* Cyber Blue for data visualization */
+            --color-data-glow: rgba(0, 255, 255, 0.3);
+            --color-bg-primary: #0A0A0F; /* Carbon Black */
+            --color-bg-secondary: #15151E; /* Dark Gray for cards */
+            --color-text: #F0F0F0;
+            --color-text-muted: #9A9AAF;
+            --font-main: 'Manrope', sans-serif;
+            --font-data: 'Roboto Mono', monospace;
+            --transition-sharp: 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Быстрый и резкий переход */
         }
 
+        /* --- 2. Reset & Base Styles --- */
         * {
             margin: 0;
             padding: 0;
@@ -33,96 +34,124 @@
 
         body {
             font-family: var(--font-main);
-            background-color: var(--color-bg-dark);
+            background-color: var(--color-bg-primary);
             color: var(--color-text);
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
         }
 
         a {
-            color: inherit;
             text-decoration: none;
+            color: inherit;
         }
 
-        /* --- 2. Utility & Typography --- */
+        /* --- 3. Utility Classes & Typography --- */
         .container {
-            max-width: 1200px;
+            max-width: 1140px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
         .section {
-            padding: 100px 0;
+            padding: 120px 0;
             position: relative;
         }
 
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-align: center;
-            letter-spacing: -0.5px;
+        .text-data {
+            font-family: var(--font-data);
+            color: var(--color-data);
+            text-shadow: 0 0 5px var(--color-data-glow);
         }
 
-        .section-subtitle {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+        .section-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
             margin-bottom: 60px;
             text-align: center;
-            color: var(--color-text-muted);
+            letter-spacing: -1px;
+            position: relative;
         }
 
+        /* Cyberpunk style underline */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--color-cta);
+            margin: 20px auto 0;
+            box-shadow: 0 0 15px var(--color-cta-glow);
+        }
+
+        /* --- 4. Buttons (Инновационный стиль 2025 - Clip-path & Glitch) --- */
         .btn {
             display: inline-block;
-            padding: 15px 30px;
+            padding: 15px 40px;
             font-size: 1rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition-fast);
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            background-color: var(--color-cta);
+            color: var(--color-bg-primary);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-sharp);
+            position: relative;
+            overflow: hidden;
+            /* Futuristic sharp corners instead of radius */
+            clip-path: polygon(0 0, 100% 0, 100% 75%, 95% 100%, 0 100%);
         }
 
-        .btn-primary {
-            background-color: var(--color-accent);
-            color: var(--color-text);
-        }
-
-        /* Hover effect with motion and glow (по ТЗ) */
-        .btn-primary:hover {
+        .btn:hover {
             background-color: #e65c00;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px var(--color-accent-glow);
+            box-shadow: 0 0 30px var(--color-cta-glow), 0 0 10px var(--color-cta-glow) inset;
+            transform: scale(1.05);
         }
 
-        /* Glassmorphism effect (Innovative trend) */
-        .glass-effect {
-            background: rgba(26, 42, 58, 0.7);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Glitch effect on hover (Micro-animation) */
+        .btn:hover::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-cta);
+            color: var(--color-bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(0 0, 100% 0, 100% 75%, 95% 100%, 0 100%);
+            animation: glitch-anim 0.3s steps(2, end) infinite;
         }
 
-        /* --- 3. Animations & Interactivity (Motion Design) --- */
+        @keyframes glitch-anim {
+            0% { transform: translate(2px, 2px); }
+            25% { transform: translate(-2px, -2px); }
+            50% { transform: translate(2px, -2px); }
+            75% { transform: translate(-2px, 2px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* --- 5. Animations (Scroll Reveal) --- */
         .reveal {
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(50px) scale(0.95);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
 
         .reveal.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
-        /* --- 4. Header --- */
+        /* --- 6. Header --- */
         header {
-            padding: 25px 0;
+            padding: 20px 0;
             position: absolute;
             width: 100%;
-            z-index: 10;
+            z-index: 100;
+            background-color: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(5px);
         }
 
         nav {
@@ -132,426 +161,249 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
+            color: var(--color-text);
         }
         .logo span {
-            color: var(--color-accent);
+             color: var(--color-cta);
         }
 
-        /* --- 5. Hero Section (Инновационный, Динамичный, Mobile First) --- */
+        /* --- 7. Hero Section (Data-Driven, Dynamic, 3D Parallax) --- */
         #hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-bg-medium) 100%);
-            padding-top: 120px;
-            padding-bottom: 60px;
+            padding-top: 100px;
         }
 
-        /* Dynamic background element */
-        #hero::before {
-            content: '';
+        /* Dynamic Background: "Data Flow" Grid */
+        .data-flow-bg {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at top right, rgba(255, 102, 0, 0.05) 0%, transparent 40%),
-                        radial-gradient(circle at bottom left, rgba(0, 163, 255, 0.05) 0%, transparent 50%);
-            animation: rotate-bg 50s linear infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(21, 21, 30, 0.8) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(21, 21, 30, 0.8) 1px, transparent 1px);
+            opacity: 0.5;
+            /* Subtle movement to simulate data flow */
+            animation: dataFlow 30s linear infinite;
+        }
+        
+        @keyframes dataFlow {
+            from { background-position: 0 0; }
+            to { background-position: -50px 50px; }
         }
 
-        @keyframes rotate-bg {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        /* 3D Parallax Element Container */
+        .hero-parallax-container {
+             position: absolute;
+             width: 100%;
+             height: 100%;
+             perspective: 1000px;
+             z-index: 0;
         }
 
-        .hero-layout {
-            display: flex;
-            flex-direction: column; /* Mobile First: Stacked layout */
-            align-items: center;
-            gap: 50px;
+        .parallax-layer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+            transition: transform 0.1s linear; /* Smooth transition for parallax */
+        }
+
+        .parallax-layer svg {
+             width: 80vw;
+             height: 80vh;
+             stroke: var(--color-data);
+        }
+
+
+        .hero-content {
+            max-width: 900px;
             position: relative;
             z-index: 1;
         }
 
-        .hero-content {
-            text-align: center; /* Mobile First: Centered text */
-            max-width: 700px;
+        .hero-tagline {
+            font-family: var(--font-data);
+            color: var(--color-data);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
         }
 
         .hero-title {
-            font-size: clamp(3rem, 8vw, 4.5rem);
+            font-size: clamp(3rem, 8vw, 5.5rem);
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .hero-title span {
-            color: var(--color-accent);
-            text-shadow: 0 0 10px var(--color-accent-glow);
+            margin-bottom: 30px;
         }
 
         .hero-subtitle {
-            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
             color: var(--color-text-muted);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Интерактивный элемент: Калькулятор выгоды низкой маржи */
-        .profit-calculator {
-            padding: 30px;
-            text-align: left;
-            width: 100%;
-            max-width: 450px;
+        /* --- 8. Features Section (Преимущества для игрока) --- */
+        #advantage {
+             background-color: var(--color-bg-primary);
         }
 
-        .calculator-input {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .calculator-input input {
-            padding: 12px;
-            border-radius: 5px;
-            font-size: 1rem;
-            border: 1px solid var(--color-bg-light);
-            background-color: var(--color-bg-dark);
-            color: var(--color-text);
-        }
-
-        .calculator-result {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .extra-profit {
-            color: var(--color-success);
-            font-size: 1.8rem;
-            font-weight: 900;
-            display: block;
-            margin-top: 5px;
-        }
-
-        /* --- 6. Features Section (Сильные стороны с микроанимациями) --- */
-        #features {
-            background-color: var(--color-bg-dark);
-        }
-
-        .features-grid {
+        .advantage-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
-        .feature-card {
-            background: var(--color-bg-medium);
-            padding: 35px;
-            border-radius: 15px;
-            text-align: center;
-            transition: var(--transition-fast);
-            border: 1px solid transparent;
+        .advantage-card {
+            background-color: var(--color-bg-secondary);
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-sharp);
             position: relative;
-            overflow: hidden;
         }
 
-        /* Hover-эффект */
-        .feature-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            background: var(--color-bg-light);
-            border-color: var(--color-accent-glow);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        /* Futuristic Border effect on hover */
+        .advantage-card:hover {
+            border-color: var(--color-data);
+            box-shadow: 0 0 30px var(--color-data-glow);
+            transform: translateY(-10px);
         }
 
-        /* Микроанимация: Subtle hover glow background */
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 102, 0, 0.15) 0%, rgba(255, 102, 0, 0) 70%);
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            transform: translate(-50%, -50%) scale(0.5);
-            pointer-events: none;
+        .advantage-number {
+            font-family: var(--font-data);
+            font-size: 3.5rem;
+            color: var(--color-data);
+            margin-bottom: 20px;
+            display: block;
         }
 
-        .feature-card:hover::before {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .feature-icon {
-            margin-bottom: 25px;
-            display: inline-block;
-            transition: transform 0.5s ease;
-        }
-
-        .feature-icon svg {
-             width: 48px;
-             height: 48px;
-             color: var(--color-accent);
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 700;
+        .advantage-title {
+            font-size: 1.8rem;
+            font-weight: 800;
             margin-bottom: 15px;
         }
 
-        .feature-text {
-            font-size: 1rem;
+        .advantage-text {
             color: var(--color-text-muted);
         }
 
-        /* --- 7. How To Start Section (Как начать) --- */
-        #how-to {
-            background-color: var(--color-bg-medium);
-        }
-        .steps-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
+        /* --- 9. Deep Dive Section (Анатомия коэффициентов + SVG) --- */
+        #deep-dive {
+            background-color: var(--color-bg-secondary);
         }
 
-        .step {
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .step-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
+        .comparison-container {
             display: flex;
+            flex-direction: column; /* Mobile first */
+            gap: 50px;
             align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: var(--color-bg-dark);
-            border: 3px solid var(--color-accent);
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--color-accent);
-            transition: var(--transition-fast);
         }
 
-        .step:hover .step-icon {
-            background-color: var(--color-accent);
-            color: var(--color-bg-dark);
-            transform: rotate(360deg);
+        .comparison-text {
+            flex: 1;
+            max-width: 600px;
         }
 
-        .step-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        /* --- 8. Trust Section (Факты доверия - Счётчики) --- */
-        #trust {
-            background-color: var(--color-bg-dark);
-        }
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .trust-fact {
-            text-align: center;
-            padding: 40px 20px;
-            background: var(--color-bg-medium);
-            border-radius: 15px;
-            border-bottom: 4px solid var(--color-neon-data);
-        }
-
-        .trust-number {
-            font-size: clamp(3rem, 6vw, 4rem);
-            font-weight: 800;
-            color: var(--color-neon-data);
-            display: block;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(0, 163, 255, 0.5);
-        }
-
-        .trust-label {
-            font-size: 1.1rem;
-            color: var(--color-text-muted);
-        }
-
-        /* --- 9. Advanced Section (Для продвинутых - Инфографика) --- */
-        #advanced {
-            background-color: var(--color-bg-medium);
-        }
-
-        .advanced-grid {
-            display: grid;
-            grid-template-columns: 1fr; /* Mobile First */
-            gap: 30px;
-        }
-
-        .advanced-card {
-            background: var(--color-bg-dark);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .advanced-title {
-            font-size: 1.8rem;
-            font-weight: 700;
+        .comparison-text h3 {
+            font-size: 2rem;
             margin-bottom: 20px;
         }
 
-        /* Infographic visualization (SVG) */
-        .infographic-container {
-            margin-top: 30px;
+        .comparison-text p {
+             margin-bottom: 20px;
+             color: var(--color-text-muted);
         }
-        
-        .infographic-svg {
+
+        /* Data Visualization (SVG) */
+        .comparison-visual {
+            flex: 1;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .data-viz-svg {
             width: 100%;
             height: auto;
-            max-width: 500px;
-            display: block;
         }
 
-        /* API Code Snippet (Visual) */
-        .api-code-snippet {
-            background-color: #011c37;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            font-family: monospace;
-            color: #b0c4de;
-            border-left: 4px solid var(--color-accent);
-            overflow-x: auto;
+        /* --- 10. Trust Section (Выбор Профессионалов) --- */
+        #trust {
+            text-align: center;
         }
 
-        /* --- 10. FAQ Section (Аккордеон) --- */
-        #faq {
-             background-color: var(--color-bg-dark);
-        }
-
-        .faq-container {
+        .trust-quote {
             max-width: 800px;
             margin: 0 auto;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-style: italic;
+            color: var(--color-text);
+            position: relative;
+            padding: 30px;
         }
 
-        .faq-item {
-            background: var(--color-bg-medium);
-            margin-bottom: 15px;
-            border-radius: 10px;
-            overflow: hidden;
+        .trust-quote::before {
+            content: '“';
+            font-size: 10rem;
+            color: var(--color-cta);
+            position: absolute;
+            top: -50px;
+            left: -30px;
+            opacity: 0.2;
         }
 
-        .faq-question {
-            padding: 20px 30px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color var(--transition-fast);
-        }
-
-        .faq-question:hover, .faq-item.active .faq-question {
-            background-color: var(--color-bg-light);
-        }
-
-        .faq-toggle {
-            font-size: 1.5rem;
-            transition: transform var(--transition-fast);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            /* Smooth transition по ТЗ */
-            transition: max-height 0.3s ease-out;
+        .trust-source {
+            margin-top: 30px;
+            font-size: 1.2rem;
             color: var(--color-text-muted);
-        }
-
-        .faq-answer-content {
-             padding: 0 30px 25px;
-        }
-
-        .faq-item.active .faq-toggle {
-            transform: rotate(180deg);
-            color: var(--color-accent);
         }
 
         /* --- 11. Final CTA Section --- */
         #final-cta {
+            background-color: var(--color-bg-secondary);
             text-align: center;
-            background-color: var(--color-bg-medium);
-        }
-
-        .cta-box {
-            padding: 60px 30px;
         }
 
         .cta-title {
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            font-weight: 800;
-            margin-bottom: 30px;
+             font-size: clamp(2.5rem, 6vw, 4rem);
+             font-weight: 800;
+             margin-bottom: 40px;
         }
 
         /* --- 12. Footer --- */
         footer {
-            background-color: #041521;
-            padding: 50px 0 30px;
+            background-color: var(--color-bg-primary);
+            padding: 50px 0;
             text-align: center;
             color: var(--color-text-muted);
-        }
-
-        .footer-links a {
-            margin: 0 15px;
-            transition: color var(--transition-fast);
-        }
-
-        .footer-links a:hover {
-            color: var(--color-accent);
-        }
-
-        .footer-copy {
-            margin-top: 30px;
             font-size: 0.9rem;
+            border-top: 1px solid var(--color-bg-secondary);
+        }
+
+        .footer-disclaimer {
+             max-width: 800px;
+             margin: 0 auto;
         }
 
         /* --- 13. Media Queries (Desktop Adaptation) --- */
         @media (min-width: 768px) {
-            .advanced-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero-layout {
+            .comparison-container {
                 flex-direction: row;
-                justify-content: space-between;
                 align-items: center;
-            }
-
-            .hero-content {
-                text-align: left;
-                flex-basis: 55%;
-            }
-
-            .profit-calculator {
-                flex-basis: 40%;
             }
         }
 
@@ -559,403 +411,102 @@
 </head>
 <body>
 
+    <div class="data-flow-bg"></div>
+
     <header>
         <div class="container">
             <nav>
-                <div class="logo">PINNACLE<span>.</span></div>
-                <a href="#register" class="btn btn-primary">Регистрация</a>
+                <div class="logo">PINNACLE<span>.PROMO</span></div>
+                <a href="YOUR_AFFILIATE_LINK" target="_blank" class="btn" data-text="ВХОД">ВХОД</a>
             </nav>
         </div>
     </header>
 
     <main>
         <section id="hero">
-            <div class="container hero-layout">
-                <div class="hero-content reveal">
-                    <h1 class="hero-title">Ставки без компромиссов. Ваше <span>Преимущество</span>.</h1>
-                    <p class="hero-subtitle">Выбор профессионалов. Низкая маржа, высочайшие лимиты и безупречная репутация с 1998 года.</p>
-                    <a href="#register" class="btn btn-primary">Начать Выигрывать</a>
+             <div class="hero-parallax-container" id="parallaxContainer">
+                <div class="parallax-layer" data-depth="0.1">
+                    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" fill="none" stroke-width="0.1">
+                        <circle cx="50" cy="50" r="30" />
+                        <line x1="0" y1="50" x2="100" y2="50" />
+                        <line x1="50" y1="0" x2="50" y2="100" />
+                    </svg>
                 </div>
+                 <div class="parallax-layer" data-depth="0.05">
+                     <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" fill="none" stroke-width="0.05">
+                        <rect x="20" y="20" width="60" height="60" />
+                     </svg>
+                </div>
+            </div>
 
-                 <div class="profit-calculator glass-effect reveal" style="transition-delay: 0.2s;">
-                    <h4>Калькулятор Вашей Выгоды</h4>
-                    <p>Сравните выигрыш с Pinnacle (маржа ~2.5%) и средним букмекером (~7%).</p>
-                    <div class="calculator-input">
-                        <input type="number" id="betAmount" placeholder="Сумма ставки ($)" value="1000">
-                        <input type="number" id="odds" placeholder="Справедливый Коэффициент (напр. 2.0)" value="2.0">
-                        <button class="btn btn-primary" onclick="calculateProfit()">Рассчитать</button>
-                    </div>
-                    <div class="calculator-result">
-                        Ваша дополнительная прибыль:
-                        <span class="extra-profit" id="extraProfit">$0.00</span>
-                    </div>
-                </div>
+            <div class="container hero-content reveal">
+                <p class="hero-tagline">// ИГРАЙТЕ КАК ПРОФЕССИОНАЛ</p>
+                <h1 class="hero-title">Прекратите Терять Деньги на Марже.</h1>
+                <p class="hero-subtitle">Pinnacle предлагает самые низкие маржинальные ставки в индустрии. Это выбор тех, кто относится к беттингу как к инвестициям.</p>
+                <a href="YOUR_AFFILIATE_LINK" target="_blank" class="btn" data-text="ПОЛУЧИТЬ ЛУЧШИЕ КОЭФФИЦИЕНТЫ">ПОЛУЧИТЬ ЛУЧШИЕ КОЭФФИЦИЕНТЫ</a>
             </div>
         </section>
 
-        <section id="features" class="section">
+        <section id="advantage" class="section">
             <div class="container">
-                <h2 class="section-title reveal">Преимущество Pinnacle</h2>
-                <p class="section-subtitle reveal">Мы не ограничиваем успешных игроков. Мы их приветствуем.</p>
-                <div class="features-grid">
-                    
-                    <div class="feature-card reveal">
-                        <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">Самая Низкая Маржа</h3>
-                        <p class="feature-text">Мы предлагаем лучшие коэффициенты в индустрии (маржа ~2.5%). Ваша прибыль максимизируется благодаря нашей модели.</p>
-                    </div>
-                    
-                    <div class="feature-card reveal" style="transition-delay: 0.1s;">
-                        <div class="feature-icon">
-                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">Высочайшие Лимиты</h3>
-                        <p class="feature-text">Ставьте больше, выигрывайте больше. Мы предоставляем самые высокие лимиты ставок онлайн для серьезных игроков.</p>
-                    </div>
-                    
-                    <div class="feature-card reveal" style="transition-delay: 0.2s;">
-                        <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52a6.003 6.003 0 0 1-5.395 4.972M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492v-1.516M18.75 4.236 18.75 2.721" />
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">Победителям Рады</h3>
-                        <p class="feature-text">Политика "Winners Welcome" гарантирует, что ваш аккаунт не будет ограничен за выигрыши. Арбитраж разрешен.</p>
-                    </div>
-
-                    <div class="feature-card reveal" style="transition-delay: 0.3s;">
-                        <div class="feature-icon">
-                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
-                            </svg>
-                        </div>
-                        <h3 class="feature-title">Быстрые Выплаты</h3>
-                        <p class="feature-text">Надежный и быстрый вывод средств. Получите свой выигрыш без лишних задержек и сложностей.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="how-to" class="section">
-            <div class="container">
-                <h2 class="section-title reveal">Начать за 3 минуты</h2>
-                <div class="steps-container reveal">
-                    <div class="step">
-                        <div class="step-icon">1</div>
-                        <h3 class="step-title">Регистрация</h3>
-                        <p>Быстрое создание аккаунта.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-icon">2</div>
-                        <h3 class="step-title">Депозит</h3>
-                        <p>Безопасное пополнение счета.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-icon">3</div>
-                        <h3 class="step-title">Игра</h3>
-                        <p>Доступ к лучшим коэффициентам.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="trust" class="section">
-            <div class="container">
-                <h2 class="section-title reveal">Стабильность и Доверие</h2>
-                <div class="trust-grid">
-                    <div class="trust-fact reveal">
-                        <span class="trust-number counter" data-target="1998">0</span>
-                        <p class="trust-label">Год основания компании</p>
-                    </div>
-                    <div class="trust-fact reveal" style="transition-delay: 0.1s;">
-                        <span class="trust-number counter" data-target="100" data-suffix="+">0</span>
-                        <p class="trust-label">Стран присутствия</p>
-                    </div>
-                    <div class="trust-fact reveal" style="transition-delay: 0.2s;">
-                        <span class="trust-number counter" data-target="5" data-prefix="<" data-suffix=" мин">0</span>
-                        <p class="trust-label">Среднее время вывода средств</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="advanced" class="section">
-            <div class="container">
-                <h2 class="section-title reveal">Инструменты Профессионалов</h2>
-                 <p class="section-subtitle reveal">Функционал, созданный для тех, кто относится к ставкам серьезно.</p>
-                <div class="advanced-grid">
-                    
-                    <div class="advanced-card reveal">
-                        <h3 class="advanced-title">Преимущество Низкой Маржи</h3>
-                        <p>Наша маржа в среднем на 60% ниже, чем у конкурентов. Это напрямую увеличивает ваш потенциальный выигрыш на дистанции и идеально подходит для Value Betting.</p>
-                        <div class="infographic-container">
-                            <svg class="infographic-svg" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="gradPinnacle" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" style="stop-color:#FF6600;stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:#FF9933;stop-opacity:1" />
-                                    </linearGradient>
-                                    <linearGradient id="gradCompetitor" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" style="stop-color:#5E8BBF;stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:#99BADD;stop-opacity:1" />
-                                    </linearGradient>
-                                </defs>
-
-                                <text x="0" y="15" fill="#FFFFFF" font-size="5">Pinnacle (Маржа ~2.5%)</text>
-                                <rect x="0" y="20" width="97.5" height="10" rx="3" fill="#051D2E"/>
-                                <rect x="0" y="20" width="97.5" height="10" rx="3" fill="url(#gradPinnacle)"/>
-                                <text x="95.5" y="27" fill="#FFFFFF" font-size="4" text-anchor="end">97.5% Выплата</text>
-
-                                <text x="0" y="40" fill="#B0B8C1" font-size="5">Конкуренты (Маржа ~7%)</text>
-                                <rect x="0" y="45" width="93" height="10" rx="3" fill="#051D2E"/>
-                                <rect x="0" y="45" width="93" height="10" rx="3" fill="url(#gradCompetitor)"/>
-                                <text x="91" y="52" fill="#FFFFFF" font-size="4" text-anchor="end">93% Выплата</text>
-                            </svg>
-                        </div>
-                    </div>
-
-                <div class="advanced-card reveal" style="transition-delay: 0.1s;">
-                    <h3 class="advanced-title">API Доступ и Автоматизация</h3>
-                    <p>Мы предоставляем мощный API для автоматизации торговли, доступа к данным в реальном времени и интеграции ваших алгоритмов. Арбитраж приветствуется.</p>
-                     <div class="api-code-snippet">
-                        > GET /v1/odds?sportId=29&leagueIds=1980<br>
-                        > "periods": [<br>
-                        &nbsp;&nbsp;{"lineId": 12345, "moneyline": {"home": 1.952, "away": 1.971}},<br>
-                        &nbsp;&nbsp;...<br>
-                        > ]
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="faq" class="section">
-        <div class="container">
-            <h2 class="section-title reveal">Часто задаваемые вопросы</h2>
-            <div class="faq-container reveal">
+                <h2 class="section-title reveal">Ваше Несправедливое Преимущество</h2>
                 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Почему у Pinnacle такие высокие коэффициенты?
-                        <span class="faq-toggle">▼</span>
+                <div class="advantage-grid">
+                    
+                    <div class="advantage-card reveal">
+                        <span class="advantage-number">2.5%</span>
+                        <h3 class="advantage-title">Минимальная Маржа</h3>
+                        <p class="advantage-text">В то время как другие букмекеры забирают до 10%, маржа Pinnacle составляет около 2.5%. Это напрямую увеличивает ваш доход на дистанции.</p>
                     </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Мы работаем по модели низкой маржи (около 2.5%). Вместо того чтобы тратить бюджет на маркетинг и бонусы, мы вкладываемся в предоставление лучших коэффициентов, привлекая профессиональных игроков и зарабатывая на обороте.
-                        </div>
-                    </div>
-                </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Правда ли, что вы не блокируете успешных игроков?
-                        <span class="faq-toggle">▼</span>
+                    <div class="advantage-card reveal" style="transition-delay: 0.1s;">
+                        <span class="advantage-number">$1M+</span>
+                        <h3 class="advantage-title">Высочайшие Лимиты</h3>
+                        <p class="advantage-text">Играйте по-крупному. Pinnacle известен самыми высокими лимитами в индустрии, позволяя размещать ставки на суммы, недоступные у конкурентов.</p>
                     </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Абсолютно верно. Наша политика "Winners Welcome" гарантирует, что мы не ограничиваем лимиты и не закрываем счета за выигрыши. Мы используем данные от успешных игроков для корректировки наших линий.
-                        </div>
-                    </div>
-                </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Поддерживаете ли вы арбитражные ставки (вилки)?
-                        <span class="faq-toggle">▼</span>
+                    <div class="advantage-card reveal" style="transition-delay: 0.2s;">
+                        <span class="advantage-number">0.00</span>
+                        <h3 class="advantage-title">Никаких Блокировок</h3>
+                        <p class="advantage-text">Политика "Winners Welcome". Pinnacle гарантирует, что ваш счет не будет ограничен или заблокирован за успешную игру. Арбитраж разрешен.</p>
                     </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Да, мы лояльно относимся к арбитражным игрокам. Наши высокие коэффициенты и лимиты делают Pinnacle идеальной платформой для арбитража.
-                        </div>
-                    </div>
-                </div>
 
-                 <div class="faq-item">
-                    <div class="faq-question">
-                        Какие максимальные лимиты на ставки?
-                        <span class="faq-toggle">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Лимиты зависят от рынка и события, но они традиционно являются одними из самых высоких в индустрии. На топовые события лимиты могут достигать десятков тысяч долларов.
-                        </div>
-                    </div>
-                </div>
-
-                  <div class="faq-item">
-                    <div class="faq-question">
-                       Предоставляете ли вы доступ к API?
-                        <span class="faq-toggle">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Да, для профессиональных игроков мы предлагаем доступ к нашему API, что позволяет автоматизировать процесс ставок и получать данные о коэффициентах в реальном времени.
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="final-cta" class="section">
-        <div class="container">
-            <div class="cta-box reveal">
-                <h2 class="cta-title">Присоединяйтесь к Элите Беттинга</h2>
-                <p>Испытайте преимущество лучших коэффициентов уже сегодня.</p>
-                <br>
-                <a href="#register" class="btn btn-primary btn-large">Зарегистрироваться Сейчас</a>
-            </div>
-        </div>
-    </section>
-</main>
+        <section id="deep-dive" class="section">
+            <div class="container">
+                <h2 class="section-title reveal">Анатомия Лучших Коэффициентов</h2>
 
-<footer>
-    <div class="container">
-        <div class="logo">PINNACLE<span>.</span></div>
-        <div class="footer-links">
-            <a href="#">Политика конфиденциальности</a>
-            <a href="#">Условия использования</a>
-            <a href="#">Ответственная игра</a>
-            <a href="#">API</a>
-            <a href="#">Контакты</a>
-        </div>
-        <p class="footer-copy">&copy; 2025 Pinnacle. Все права защищены. 18+</p>
-    </div>
-</footer>
+                <div class="comparison-container reveal">
+                    <div class="comparison-text">
+                        <h3>Модель "Объём против Маржи"</h3>
+                        <p>Большинство букмекеров устанавливают высокую маржу, чтобы гарантировать себе прибыль на каждом событии, и ограничивают успешных игроков.</p>
+                        <p>Pinnacle работает иначе. Они зарабатывают на огромных объёмах ставок при минимальной марже. Эта модель требует высочайшей точности в определении коэффициентов.</p>
+                        <p>Для вас это означает одно: <strong class="text-data">максимально возможный выигрыш</strong> при каждой ставке.</p>
+                    </div>
+                    <div class="comparison-visual">
+                        ```svg
+<svg class="data-viz-svg" viewBox="0 0 400 250" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
+                            <style>
+                                .label { font-family: 'Manrope', sans-serif; fill: #F0F0F0; font-size: 14px; }
+                                .data-text { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 16px; }
+                                .pinnacle-bar { fill: #FF6600; }
+                                .competitor-bar { fill: #15151E; stroke: #00FFFF; stroke-width: 1; }
+                            </style>
 
-<script>
-    // === JavaScript для Интерактива и Анимаций ===
+                            <text x="10" y="30" class="label">Сравнение Маржи (Событие с равными шансами)</text>
 
-    // 1. Profit Calculator (Hero Section)
-    function calculateProfit() {
-        const betAmount = parseFloat(document.getElementById('betAmount').value) || 0;
-        const baseOdds = parseFloat(document.getElementById('odds').value) || 1;
-        const extraProfitSpan = document.getElementById('extraProfit');
+                            <text x="10" y="80" class="label">Pinnacle</text>
+                            <rect x="120" y="65" width="250" height="25" class="pinnacle-bar"/>
+                            <text x="130" y="83" class="data-text" fill="#0A0A0F">Коэф. 1.95 / 1.95 (Маржа 2.5%)</text>
 
-        if (betAmount <= 0 || baseOdds <= 1) {
-            extraProfitSpan.textContent = '$0.00';
-            return;
-        }
-
-        const competitorMargin = 0.07;
-        const pinnacleMargin = 0.025;
-
-        // Рассчитываем подразумеваемую вероятность
-        const impliedProbability = 1 / baseOdds;
-
-        // Рассчитываем скорректированные коэффициенты (Упрощенная модель)
-        const competitorOdds = 1 / (impliedProbability * (1 + competitorMargin));
-        const pinnacleOdds = 1 / (impliedProbability * (1 + pinnacleMargin));
-
-        // Рассчитываем потенциальную прибыль
-        const competitorWinnings = betAmount * (competitorOdds - 1);
-        const pinnacleWinnings = betAmount * (pinnacleOdds - 1);
-
-        const extraProfit = pinnacleWinnings - competitorWinnings;
-
-        extraProfitSpan.textContent = `$${extraProfit.toFixed(2)}`;
-    }
-
-     // Инициализация калькулятора при загрузке
-    document.addEventListener('DOMContentLoaded', (event) => {
-        calculateProfit();
-    });
-
-
-    // 2. Smooth Scroll Reveal (Intersection Observer)
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
-
-    revealElements.forEach(el => {
-        revealObserver.observe(el);
-    });
-
-    // 3. FAQ Accordion
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            const answer = item.querySelector('.faq-answer');
-
-            // Close all
-            faqItems.forEach(i => {
-               i.classList.remove('active');
-               i.querySelector('.faq-answer').style.maxHeight = 0;
-            });
-
-            // Open clicked item
-            if (!isActive) {
-                item.classList.add('active');
-                // Calculate dynamic height for smooth transition
-                answer.style.maxHeight = answer.scrollHeight + 50 + "px"; 
-            }
-        });
-    });
-
-    // 4. Animated Counters (Trust Section)
-    const counters = document.querySelectorAll('.counter');
-    
-    const animateCounter = (counterEl) => {
-        const target = parseInt(counterEl.getAttribute('data-target'));
-        if (isNaN(target)) return;
-
-        const prefix = counterEl.getAttribute('data-prefix') || '';
-        const suffix = counterEl.getAttribute('data-suffix') || '';
-        const duration = 2000; 
-        let startTime = null;
-
-        const step = (timestamp) => {
-            if (!startTime) startTime = timestamp;
-            const progress = Math.min((timestamp - startTime) / duration, 1);
-            // Easing function (easeOutExpo)
-            const easedProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-            const currentValue = Math.floor(easedProgress * target);
-            
-            counterEl.textContent = prefix + currentValue.toLocaleString() + suffix;
-
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            } else {
-                counterEl.textContent = prefix + target.toLocaleString() + suffix;
-            }
-        };
-
-        window.requestAnimationFrame(step);
-    };
-
-     // Trigger counters animation when they come into view
-     const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounter(entry.target);
-                counterObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    counters.forEach(counter => {
-        if (counter.hasAttribute('data-target')) {
-                counterObserver.observe(counter);
-        }
-    });
-
-</script>
-</body>
-</html>
+                            <text x="10" y="130" class="label">Конкуренты</text>
+                            <rect x="120" y="115" width="250" height="25" class="competitor-bar"/>
+                             <text x="130" y="133" class="data-text" fill="#00FFFF">Коэф. 1.87 / 1.87 (Маржа 7%)</text>
+                             
+                             <line x1="20" y1="170" x2="380" y2="170" stroke="#9A9AAF" stroke-dasharray="5,5"/>
+                             <text x="100" y="200" class="label">Ваше преимущество с Pinnacle:</text>
+                             <text x="320" y="200" class="data-text" fill="#FF6600">+4.5% Прибыли</text>
+                        </svg>
