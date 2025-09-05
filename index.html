@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Я онлайн — присоединяйся к стриму</title>
-  <meta name="description" content="Чтобы увидеть стрим, зарегистрируйся. После этого попадёшь ко мне в комнату. Поверь, моя история очень интересная." />
+  <title>I’m online — Join my stream</title>
+  <meta name="description" content="To see the stream, register first. After that, you’ll get into my room. Believe me, my story is very interesting." />
 
   <style>
     body {
@@ -48,7 +48,7 @@
       border-radius: 12px;
       cursor: pointer;
       text-decoration: none;
-      animation: pulse 1.6s infinite;
+      animation: pulse 1.6s infinite, swing 2.5s infinite ease-in-out;
       box-shadow: 0 0 25px rgba(255, 45, 85, 0.7);
     }
 
@@ -56,6 +56,14 @@
       0% { box-shadow: 0 0 25px rgba(255, 45, 85, 0.7); }
       50% { box-shadow: 0 0 50px rgba(255, 45, 85, 1); }
       100% { box-shadow: 0 0 25px rgba(255, 45, 85, 0.7); }
+    }
+
+    @keyframes swing {
+      0%   { transform: translateX(-50%) rotate(0deg); }
+      25%  { transform: translateX(-50%) rotate(2deg); }
+      50%  { transform: translateX(-50%) rotate(0deg); }
+      75%  { transform: translateX(-50%) rotate(-2deg); }
+      100% { transform: translateX(-50%) rotate(0deg); }
     }
   </style>
 </head>
@@ -66,7 +74,7 @@
   </div>
 
   <a href="https://chaturbate.com/in/?tour=APi5&campaign=l8Gy2&track=default&room=ehotlovea" class="floating-btn" target="_blank">
-    Я онлайн!
+    I’m online!
   </a>
 </body>
 </html>
