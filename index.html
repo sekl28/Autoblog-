@@ -1,185 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join My Telegram</title>
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Global Styles */
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: #000;
-            color: #fff;
-            line-height: 1.6;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        .container {
-            width: 100%;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 100vh;
-            background: url('background.jpg') no-repeat center/cover;
-        }
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-        }
-        .hero-content {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            width: 100%;
-        }
-        .hero-content h1 {
-            font-size: 2rem;
-            margin: 0 0 10px;
-        }
-        .hero-content p {
-            font-size: 1rem;
-            margin: 0 0 20px;
-            opacity: 0.9;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #e63946;
-            color: #fff;
-            padding: 15px 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.2s, background-color 0.2s;
-        }
-        .btn:hover {
-            background-color: #ff4d4d;
-            transform: translateY(-2px);
-        }
-        .tagline {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: #ccc;
-        }
-        /* Benefits Section */
-        .benefits {
-            background-color: #111;
-            padding: 40px 0;
-        }
-        .benefit-item {
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: rgba(255,255,255,0.05);
-            border-radius: 10px;
-            text-align: center;
-        }
-        .benefit-item h2 {
-            color: #e63946;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        .benefit-item p {
-            font-size: 0.95rem;
-            margin: 0;
-            color: #eee;
-        }
-        /* Bottom CTA */
-        .bottom-cta {
-            text-align: center;
-            padding: 40px 20px;
-        }
-        .bottom-cta .btn {
-            width: 100%;
-            max-width: 300px;
-        }
-        /* Responsive Typography */
-        @media (min-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            .hero-content p {
-                font-size: 1.1rem;
-            }
-            .benefit-item h2 {
-                font-size: 1.5rem;
-            }
-            .benefit-item p {
-                font-size: 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Я онлайн — присоединяйся к стриму</title>
+  <meta name="description" content="Чтобы увидеть стрим, зарегистрируйся. После этого попадёшь ко мне в комнату. Поверь, моя история очень интересная." />
 
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '658720606700372');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=658720606700372&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0b10;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
 
+    .content {
+      max-width: 700px;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.5;
+    }
+
+    .floating-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #ff2d55, #ff6b81);
+      color: #fff;
+      padding: 20px 40px;
+      font-size: 1.5em;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      animation: pulse 1.6s infinite;
+      box-shadow: 0 0 25px rgba(255, 45, 85, 0.7);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 25px rgba(255, 45, 85, 0.7); }
+      50% { box-shadow: 0 0 50px rgba(255, 45, 85, 1); }
+      100% { box-shadow: 0 0 25px rgba(255, 45, 85, 0.7); }
+    }
+  </style>
 </head>
 <body>
+  <div class="content">
+    <h1>I’m online! Join my stream ❤️</h1>
+    <p>To see the stream, register first. After that, you’ll get into my room. Believe me, my story is very interesting 🫶</p>
+  </div>
 
-    <!-- Hero Section with Background Image -->
-    <section class="hero">
-        <div class="hero-content container">
-            <h1>Uncensored & Exclusive Content Only for You!</h1>
-            <p>See my secret side. I'm waiting...</p>
-            <a href="https://t.me/+Er9QlKyQy-EyNjY0" 
-               class="btn" target="_blank" 
-               onclick="fbq('track', 'Lead');">Join Telegram</a>
-            <div class="tagline">Over 25,000 fans can't be wrong — join now!</div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="benefits container">
-        <div class="benefit-item">
-            <h2>Exclusive Photos & Videos</h2>
-            <p>Never posted on any social media. Only for my private Telegram fans.</p>
-        </div>
-        <div class="benefit-item">
-            <h2>Personal Chat</h2>
-            <p>Get to know me intimately. I promise privacy and a personal connection.</p>
-        </div>
-        <div class="benefit-item">
-            <h2>Total Privacy</h2>
-            <p>Your secrets are safe with me. Enjoy complete anonymity and freedom.</p>
-        </div>
-    </section>
-
-    <!-- Bottom CTA -->
-    <section class="bottom-cta">
-        <a href="https://t.me/+Er9QlKyQy-EyNjY0" 
-           class="btn" target="_blank"
-           onclick="fbq('track', 'Lead');">Join Telegram</a>
-    </section>
-
+  <a href="https://chaturbate.com/in/?tour=APi5&campaign=l8Gy2&track=default&room=ehotlovea" class="floating-btn" target="_blank">
+    Я онлайн!
+  </a>
 </body>
 </html>
