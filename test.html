@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIVE NOW // ACCESS REQUIRED</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&display=swap" rel="stylesheet">
+    <title>LIVE NOW // 1.5M // ACCESS REQUIRED</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --color-accent: #ff0066; /* Яркий, агрессивный розовый */
+            --color-secondary: #9900ff; /* Фиолетовый для акцентов статистики (Новый цвет) */
             --color-glitch-1: #ff0000; /* Красный для глитча */
             --color-glitch-2: #00ffff; /* Циановый для глитча */
             --bg-dark: #000000;
@@ -94,17 +95,47 @@
             border: 1px solid rgba(255, 0, 102, 0.3);
         }
 
+        /* НОВЫЙ ЭЛЕМЕНТ: Секция с метками (Highlights) */
+        .highlights {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .highlight-badge {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 50px; /* Форма "пилюли" */
+            font-size: 1rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Стилизация метки с подписчиками (Социальное доказательство) */
+        .badge-followers {
+            color: var(--color-secondary);
+            border-color: var(--color-secondary);
+            background-color: rgba(153, 0, 255, 0.2);
+             /* Небольшое свечение для выделения */
+            box-shadow: 0 0 15px rgba(153, 0, 255, 0.4);
+        }
+
+
         .header-text {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900; /* Максимально жирный */
             line-height: 1.3;
             margin-bottom: 25px;
+            margin-top: 0;
         }
 
         .sub-text {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 300;
             opacity: 0.9;
+            margin-bottom: 0;
         }
 
         /* 3. Кинетическая Типографика (Glitch) для акцента на регистрации */
@@ -185,10 +216,15 @@
                 padding: 30px 20px;
             }
             .header-text {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             .sub-text {
                 font-size: 1rem;
+            }
+            /* Адаптация меток для мобильных */
+            .highlight-badge {
+                font-size: 0.85rem;
+                padding: 8px 15px;
             }
             .cta-button {
                 font-size: 1.2rem;
@@ -223,6 +259,11 @@
 
     <div class="container">
         <div class="interface-panel">
+
+            <div class="highlights">
+                <div class="highlight-badge badge-followers">⭐ 1,500,000 Followers</div>
+                <div class="highlight-badge">Orgasms & Squirts ☺️☺️☺️🏹🏹</div>
+            </div>
             <h1 class="header-text">
                 To see the stream, you must
                 <span class="glitch" data-text="REGISTER FIRST">REGISTER FIRST</span>.
