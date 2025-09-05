@@ -13,7 +13,7 @@
       background:var(--bg-dark); color:#fff; margin:0; min-height:100dvh;
       display:flex; align-items:center; justify-content:center; overflow-x:hidden;
     }
-    #background-video{position:fixed; inset:auto 0 0 0; min-width:100%; min-height:100%; object-fit:cover; z-index:1; animation:pulse 8s infinite ease-in-out}
+    #background-video{position:fixed; inset:0; min-width:100%; min-height:100%; object-fit:cover; z-index:1; animation:pulse 8s infinite ease-in-out}
     @keyframes pulse{0%{filter:blur(40px) brightness(.3) saturate(1.5); transform:scale(1.1)}50%{filter:blur(15px) brightness(.5) saturate(1.5); transform:scale(1)}100%{filter:blur(40px) brightness(.3) saturate(1.5); transform:scale(1.1)}}
     .video-overlay{position:fixed; inset:0; z-index:2; background:radial-gradient(ellipse at center,rgba(0,0,0,.3) 0%,rgba(0,0,0,.8) 100%)}
     .container{position:relative; z-index:10; padding:20px; max-width:900px; width:100%; box-sizing:border-box; padding-bottom:calc(160px + env(safe-area-inset-bottom))}
@@ -29,15 +29,16 @@
     .glitch::after{left:-3px; text-shadow:3px 0 var(--color-glitch-2); animation:gl2 3s infinite linear alternate-reverse}
     @keyframes gl2{0%{clip-path:polygon(0 33%,100% 33%,100% 66%,0 66%)}25%{clip-path:polygon(0 0,100% 0,100% 33%,0 33%)}50%{clip-path:polygon(0 66%,100% 66%,100% 100%,0 100%)}75%{clip-path:polygon(0 10%,100% 10%,100% 40%,0 40%)}100%{clip-path:polygon(0 80%,100% 80%,100% 100%,0 100%)}}
 
-    /* ---- ВАЖНО: скейлер для встраиваемого стрима ---- */
+    /* контейнер для стрима */
     .embed-scale{
       position:relative; width:100%; margin:0 auto 20px; border-radius:15px; overflow:hidden;
-      box-shadow:0 10px 30px rgba(0,0,0,.45); background:#000;   /* фон под видео */
+      box-shadow:0 10px 30px rgba(0,0,0,.45); background:#000;
     }
     .embed-scale iframe{
-      display:block; border:0; width:850px; height:528px;      /* базовый размер встраиваемого плеера */
-      transform-origin:top center;                              /* будем масштабировать JS-ом */
-      will-change:transform;
+      display:block; border:0;
+      width:850px; height:528px;    /* базовый размер */
+      transform-origin: top left;   /* масштабируем от угла */
+      will-change: transform;
     }
 
     .cta-button{
@@ -80,7 +81,7 @@
       </h1>
       <p class="sub-text">After that, you’ll get into my room. Believe me, my story is very interesting 🫶</p>
 
-      <!-- СКЕЙЛИРУЕМЫЙ ВСТРОЕННЫЙ СТРИМ -->
+      <!-- адаптивный стрим -->
       <div class="embed-scale" id="embedBox">
         <iframe
           id="cb-embed"
@@ -89,7 +90,6 @@
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
-
     </div>
   </div>
 
@@ -99,7 +99,7 @@
     I’m online! Join my stream ❤️
   </a>
 
-  <!-- Авто-масштаб для iframe под ширину контейнера -->
+  <!-- скрипт центрирования и масштабирования -->
   <script>
     (function () {
       const BASE_W = 850, BASE_H = 528;
@@ -110,17 +110,14 @@
         if (!box || !frame) return;
         const w = box.clientWidth;
         const scale = Math.min(1, w / BASE_W);
-        frame.style.transform = 'scale(' + scale + ')';
+        const offsetX = (w - BASE_W * scale) / 2; // центрируем
+        frame.style.transform = 'translateX(' + offsetX + 'px) scale(' + scale + ')';
         box.style.height = (BASE_H * scale) + 'px';
       }
 
-      // инициализация и обновления
       window.addEventListener('resize', fit);
       window.addEventListener('orientationchange', fit);
-      document.addEventListener('DOMContentLoaded', function () {
-        fit();
-        setTimeout(fit, 150); // Safari подхватывает размеры с задержкой
-      });
+      document.addEventListener('DOMContentLoaded', () => { fit(); setTimeout(fit,150); });
     })();
   </script>
 </body>
