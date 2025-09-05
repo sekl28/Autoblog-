@@ -1,98 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>I’m online — Join my stream</title>
-  <meta name="description" content="To see the stream, register first. After that, you’ll get into my room. Believe me, my story is very interesting." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVE NOW // 1.5M // ACCESS REQUIRED</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-accent: #ff0066;
+            --color-secondary: #9900ff;
+            --color-glitch-1: #ff0000;
+            --color-glitch-2: #00ffff;
+            --bg-dark: #000000;
+        }
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b0b10;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      min-height: 100vh;
-      text-align: center;
-      padding: 20px;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
-    .content {
-      max-width: 900px;
-    }
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            animation: pulsingTease 8s infinite ease-in-out;
+        }
 
-    h1 {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
+        @keyframes pulsingTease {
+            0% { filter: blur(40px) brightness(0.3) saturate(1.5); transform: scale(1.1);}
+            50% { filter: blur(15px) brightness(0.5) saturate(1.5); transform: scale(1.0);}
+            100% { filter: blur(40px) brightness(0.3) saturate(1.5); transform: scale(1.1);}
+        }
 
-    p {
-      font-size: 1.2em;
-      line-height: 1.5;
-      margin-bottom: 30px;
-    }
+        .video-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+            z-index: 2;
+        }
 
-    iframe {
-      max-width: 100%;
-      border-radius: 10px;
-      margin-bottom: 30px;
-    }
+        .container {
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            max-width: 900px;
+            margin-bottom: 100px;
+        }
 
-    .floating-btn {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(90deg, #ff2d55, #ff6b81);
-      color: #fff;
-      padding: 20px 40px;
-      font-size: 1.5em;
-      font-weight: bold;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      text-decoration: none;
-      animation: pulse 1.6s infinite, swing 2.5s infinite ease-in-out;
-      box-shadow: 0 0 25px rgba(255, 45, 85, 0.7);
-    }
+        .interface-panel {
+            padding: 50px;
+            text-align: center;
+            background: rgba(10, 0, 15, 0.3);
+            border-radius: 30px;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 0, 102, 0.3);
+        }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 25px rgba(255, 45, 85, 0.7); }
-      50% { box-shadow: 0 0 50px rgba(255, 45, 85, 1); }
-      100% { box-shadow: 0 0 25px rgba(255, 45, 85, 0.7); }
-    }
+        .highlights {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
 
-    @keyframes swing {
-      0%   { transform: translateX(-50%) rotate(0deg); }
-      25%  { transform: translateX(-50%) rotate(2deg); }
-      50%  { transform: translateX(-50%) rotate(0deg); }
-      75%  { transform: translateX(-50%) rotate(-2deg); }
-      100% { transform: translateX(-50%) rotate(0deg); }
-    }
-  </style>
+        .highlight-badge {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .badge-followers {
+            color: var(--color-secondary);
+            border-color: var(--color-secondary);
+            background-color: rgba(153, 0, 255, 0.2);
+            box-shadow: 0 0 15px rgba(153, 0, 255, 0.4);
+        }
+
+        .header-text {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 25px;
+        }
+
+        .sub-text {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .glitch {
+            color: #ffffff;
+            position: relative;
+            display: inline-block;
+            text-transform: uppercase;
+            animation: glitch-skew 1s infinite linear alternate-reverse;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0;
+        }
+
+        .glitch::before {
+            left: 3px;
+            text-shadow: -3px 0 var(--color-glitch-1);
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -3px;
+            text-shadow: 3px 0 var(--color-glitch-2);
+            animation: glitch-anim 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip-path: polygon(0 33%,100% 33%,100% 66%,0 66%);}
+            25% { clip-path: polygon(0 0,100% 0,100% 33%,0 33%);}
+            50% { clip-path: polygon(0 66%,100% 66%,100% 100%,0 100%);}
+            75% { clip-path: polygon(0 10%,100% 10%,100% 40%,0 40%);}
+            100%{ clip-path: polygon(0 80%,100% 80%,100% 100%,0 100%);}
+        }
+
+        .cta-button {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            padding: 22px 45px;
+            font-size: 1.6rem;
+            font-weight: 900;
+            text-decoration: none;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            background-color: var(--color-accent);
+            animation: intensePulse 1.5s infinite alternate;
+        }
+
+        @keyframes intensePulse {
+            from { box-shadow: 0 0 10px var(--color-accent), 0 0 30px var(--color-accent), 0 0 60px rgba(255,0,102,0.8);}
+            to { box-shadow: 0 0 20px var(--color-accent), 0 0 50px var(--color-accent), 0 0 100px rgba(255,0,102,1);}
+        }
+
+        .cta-button:hover {
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        iframe {
+            max-width: 100%;
+            border-radius: 15px;
+            margin-top: 25px;
+        }
+    </style>
 </head>
 <body>
-  <div class="content">
-    <h1>I’m online! Join my stream ❤️</h1>
-    <p>To see the stream, register first. After that, you’ll get into my room. Believe me, my story is very interesting 🫶</p>
 
-    <!-- Встроенный стрим -->
-    <iframe 
-      src="https://cbxyz.com/in/?tour=SHBY&campaign=qKRb5&track=embed&room=ehotlovea" 
-      height="528" 
-      width="850" 
-      style="border: none;">
-    </iframe>
-  </div>
+    <video autoplay loop muted playsinline id="background-video">
+        <source src="https://videos.pexels.com/video-files/3129977/3129977-uhd_2560_1440_25fps.mp4" type="video/mp4">
+        <source src="https://videos.pexels.com/video-files/5752721/5752721-uhd_2560_1440_30fps.mp4" type="video/mp4">
+    </video>
 
-  <!-- Плавающая кнопка -->
-  <a href="https://chaturbate.com/in/?tour=APi5&campaign=l8Gy2&track=default&room=ehotlovea" 
-     class="floating-btn" target="_blank">
-    I’m online!
-  </a>
+    <div class="video-overlay"></div>
+
+    <div class="container">
+        <div class="interface-panel">
+            <div class="highlights">
+                <div class="highlight-badge badge-followers">⭐ 1,500,000 Followers</div>
+                <div class="highlight-badge">Orgasms & Squirts ☺️☺️☺️🏹🏹</div>
+            </div>
+            <h1 class="header-text">
+                To see the stream, you must
+                <span class="glitch" data-text="REGISTER FIRST">REGISTER FIRST</span>.
+            </h1>
+            <p class="sub-text">
+                After that, you’ll get into my room. Believe me, my story is very interesting 🫶
+            </p>
+
+            <!-- ВСТАВЛЕННЫЙ СТРИМ -->
+            <iframe 
+              src="https://cbxyz.com/in/?tour=SHBY&campaign=qKRb5&track=embed&room=ehotlovea" 
+              height="528" width="850" style="border:none;">
+            </iframe>
+        </div>
+    </div>
+
+    <a href="https://chaturbate.com/in/?tour=APi5&campaign=l8Gy2&track=default&room=ehotlovea" 
+       class="cta-button" target="_blank" rel="noopener noreferrer">
+        I’m online! Join my stream ❤️
+    </a>
+
 </body>
 </html>
