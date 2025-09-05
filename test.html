@@ -3,147 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join My Stream!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>LIVE NOW! Exclusive Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #120017;
-            color: #ffffff;
+            background-color: #0a000c;
             margin: 0;
             padding: 0;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        /* Инновационный эффект размытого фона для создания атмосферы */
-        .background-blur {
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            /* Используем радиальный градиент для динамического свечения */
-            background-image: radial-gradient(circle at center, rgba(255, 0, 102, 0.3) 0%, rgba(18, 0, 23, 0) 60%);
-            filter: blur(80px);
-            z-index: -1;
-            /* Медленное вращение добавляет динамики */
-            animation: subtleRotate 30s infinite linear;
+        /* 1. Симуляция фона стрима (Движущийся гипнотический градиент) */
+        .stream-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Яркие, насыщенные цвета, имитирующие освещение */
+            background: linear-gradient(45deg, #ff0066, #9900ff, #ff0066, #9900ff);
+            background-size: 400% 400%;
+            animation: gradientMove 10s ease infinite;
+            /* 2. Эффект размытия (Tease Effect) - ключевой элемент завлечения */
+            filter: blur(40px) brightness(0.7);
         }
 
-        @keyframes subtleRotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
+        /* Контейнер с текстом */
         .container {
-            padding: 20px;
+            position: relative;
+            z-index: 10;
             text-align: center;
-            /* Отступ снизу, чтобы текст не перекрывался плавающей кнопкой */
-            margin-bottom: 150px;
+            padding: 20px;
             max-width: 700px;
+            margin-bottom: 150px; /* Отступ для плавающей кнопки */
         }
 
-        .message {
-            font-size: 1.5rem;
-            line-height: 1.6;
-            /* Эффект матового стекла (Glassmorphism) */
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+        .message-box {
+            padding: 35px;
+            /* Эффект матового стекла (Glassmorphism) для читаемости */
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Анимации для мерцания (Пульсация неона) */
-        @keyframes neonPulse {
-            0%, 100% {
-                box-shadow: 0 0 5px #ff0066, 0 0 15px #ff0066, 0 0 30px rgba(255, 0, 102, 0.4);
+        /* 3. Индикатор LIVE */
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            background-color: #ff0000;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 8px;
+            /* Пульсация индикатора */
+            animation: livePulse 1.5s infinite alternate;
+        }
+
+        @keyframes livePulse {
+            from { opacity: 0.3; }
+            to { opacity: 1; }
+        }
+
+        .message {
+            font-size: 1.4rem;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* 4. Агрессивная плавающая кнопка */
+        /* Анимация интенсивного неонового свечения */
+        @keyframes intenseNeonPulse {
+            0% {
+                box-shadow: 0 0 5px #ff0066, 0 0 20px #ff0066, 0 0 40px #ff0066, 0 0 80px rgba(255, 0, 102, 0.5);
             }
-            50% {
-                box-shadow: 0 0 10px #ff0066, 0 0 25px #ff0066, 0 0 50px rgba(255, 0, 102, 0.6);
+            100% {
+                box-shadow: 0 0 10px #ff0066, 0 0 30px #ff3385, 0 0 60px #ff3385, 0 0 120px rgba(255, 51, 133, 0.8);
             }
         }
 
-        /* Анимация блика (Shimmer Effect) */
+        /* Анимация блика (Shimmer) */
         @keyframes shimmer {
             0% { background-position: -1000px 0; }
             100% { background-position: 1000px 0; }
         }
 
-        .floating-button {
-            /* Фиксированное положение = Плавающая кнопка */
+        .floating-action-button {
             position: fixed;
             bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             color: white;
-            padding: 20px 45px;
+            padding: 22px 45px;
             font-size: 1.8rem;
-            font-weight: 700;
+            font-weight: 900;
             text-decoration: none;
             border-radius: 60px;
             z-index: 1000;
-            white-space: nowrap;
             cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: transform 0.2s ease;
+            white-space: nowrap;
 
-            /* Основной цвет кнопки */
+            /* Основной цвет */
             background-color: #ff0066;
 
-            /* Градиент для блика, накладывается поверх основного цвета */
-            background-image: linear-gradient(
+             /* Эффект блика (Shimmer) - накладывается поверх */
+             background-image: linear-gradient(
                 -75deg,
                 rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0.5) 50%,
                 rgba(255, 255, 255, 0) 100%
             );
             background-size: 200% 100%;
             background-repeat: no-repeat;
 
-            /* Применение анимаций: пульсация и блик */
-            animation: neonPulse 2s infinite alternate, shimmer 3s infinite linear;
+            /* Применение анимаций */
+            animation: intenseNeonPulse 1.5s infinite alternate, shimmer 2.5s infinite linear;
         }
 
-        .floating-button:hover {
+        .floating-action-button:hover {
             transform: translateX(-50%) scale(1.05);
-            background-color: #ff3377;
         }
 
-        /* Адаптивность для мобильных устройств */
+        /* Адаптивность */
         @media (max-width: 600px) {
-            .message {
-                font-size: 1.2rem;
-                padding: 20px;
+            .message-box {
+                padding: 25px;
             }
-            .floating-button {
+            .message {
+                font-size: 1.1rem;
+            }
+            .floating-action-button {
                 font-size: 1.3rem;
-                padding: 18px 30px;
+                padding: 18px 20px;
                 bottom: 20px;
                 width: 90%;
-                max-width: 400px;
                 text-align: center;
+            }
+            .stream-background {
+                /* Меньше размытия на мобильных */
+                filter: blur(30px) brightness(0.7);
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="background-blur"></div>
+    <div class="stream-background"></div>
 
     <div class="container">
-        <div class="message">
-            To see the stream, register first. After that, you’ll get into my room. Believe me, my story is very interesting 🫶
+        <div class="message-box">
+            <div class="live-indicator">
+                <span class="live-dot"></span> LIVE NOW
+            </div>
+            <p class="message">
+                To see the stream, register first. After that, you’ll get into my room. Believe me, my story is very interesting 🫶
+            </p>
         </div>
     </div>
 
-    <a href="https://chaturbate.com/in/?tour=APi5&campaign=l8Gy2&track=default&room=ehotlovea" class="floating-button" target="_blank" rel="noopener noreferrer">
+    <a href="https://chaturbate.com/in/?tour=APi5&campaign=l8Gy2&track=default&room=ehotlovea" class="floating-action-button" target="_blank" rel="noopener noreferrer">
         I’m online! Join my stream ❤️
     </a>
 
