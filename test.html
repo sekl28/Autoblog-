@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACCESS RESTRICTED // JOIN STREAM</title>
+    <title>LIVE STREAM // ACCESS REQUIRED</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --color-accent: #ff00cc; /* Яркий цифровой розовый */
-            --color-secondary: #3300ff; /* Электрический синий */
-            --color-glitch-1: #ff0066;
-            --color-glitch-2: #00ffff;
+            --color-glitch-1: #ff0066; /* Красный для глитча */
+            --color-glitch-2: #00ffff; /* Циановый для глитча */
             --bg-dark: #05000a;
         }
 
@@ -27,52 +26,35 @@
             overflow: hidden;
         }
 
-        /* 1. Иммерсивный Фон "Aurora" (Динамический и завлекающий) */
-        .aurora-bg {
-            position: absolute;
+        /* 1. Видео-фон в движении (High Quality/4K Look) */
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1;
+            object-fit: cover; /* Гарантирует, что видео покроет весь экран */
+
+            /* 2. Эффект "Tease & Reveal" - Ключевой элемент завлечения */
+            /* Сильное размытие (35px) и снижение яркости (40%) вызывают любопытство */
+            filter: blur(35px) brightness(0.4);
+            /* Оптимизация для плавности рендеринга */
+            transform: translateZ(0);
+        }
+
+        /* Оверлей для дополнительного контраста (Виньетка) */
+        .video-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
-            filter: blur(90px); /* Сильное размытие для создания атмосферы */
-            overflow: hidden;
-        }
-
-        /* Движущиеся цветовые пятна */
-        .aurora-shape {
-            position: absolute;
-            border-radius: 50%;
-            mix-blend-mode: screen; /* Смешивание цветов для яркости */
-            opacity: 0.5;
-        }
-
-        .shape1 {
-            width: 800px;
-            height: 800px;
-            background: var(--color-accent);
-            top: -200px;
-            left: -100px;
-            animation: auroraMove1 20s infinite alternate linear;
-        }
-
-        .shape2 {
-            width: 900px;
-            height: 900px;
-            background: var(--color-secondary);
-            bottom: -300px;
-            right: -200px;
-            animation: auroraMove2 25s infinite alternate-reverse linear;
-        }
-
-        @keyframes auroraMove1 {
-            from { transform: translate(-100px, -50px) rotate(0deg); }
-            to { transform: translate(100px, 50px) rotate(360deg); }
-        }
-
-        @keyframes auroraMove2 {
-            from { transform: translate(50px, 100px) rotate(0deg); }
-            to { transform: translate(-50px, -100px) rotate(-360deg); }
+            /* Легкое затемнение и радиальный градиент для затемнения краев */
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
+            z-index: 2;
         }
 
         /* Контейнер контента */
@@ -81,22 +63,21 @@
             z-index: 10;
             padding: 20px;
             max-width: 750px;
-            margin-bottom: 100px;
+            margin-bottom: 100px; /* Отступ для кнопки */
         }
 
-        /* 3. Продвинутый Глассморфизм (Интерфейс) */
+        /* 4. Интерфейс (Glassmorphism) */
         .interface-panel {
             padding: 40px;
             text-align: center;
-            /* Сложный эффект стекла */
-            background: rgba(255, 255, 255, 0.05);
+            /* Усиленный эффект стекла для читаемости поверх движущегося видео */
+            background: rgba(10, 0, 15, 0.5);
             border-radius: 25px;
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            /* Добавление шума для текстуры интерфейса (Тренд 2025) */
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            /* Усиленное размытие фона под панелью */
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 0, 204, 0.2); /* Легкая розовая обводка */
         }
 
         .header-text {
@@ -112,17 +93,17 @@
             opacity: 0.9;
         }
 
-        /* 2. Кинетическая Типографика (Glitch Effect) для акцента на регистрации */
+        /* 3. Акцент на Регистрации (Glitch Effect) */
         .glitch {
             color: #ffffff;
             position: relative;
             display: inline-block;
             text-transform: uppercase;
-            /* Применяем анимацию глитча */
+            /* Анимация искажения текста */
             animation: glitch-skew 1s infinite linear alternate-reverse;
         }
 
-        /* Создаем псевдоэлементы для цветового искажения (RGB shift) */
+        /* Псевдоэлементы для создания цветового сдвига (RGB shift) */
         .glitch::before,
         .glitch::after {
             content: attr(data-text);
@@ -132,22 +113,21 @@
             width: 100%;
             height: 100%;
             background: transparent;
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
         }
 
         .glitch::before {
             left: 3px;
-            text-shadow: -3px 0 var(--color-glitch-1); /* Розовый сдвиг */
+            text-shadow: -3px 0 var(--color-glitch-1);
             animation: glitch-anim1 2s infinite linear alternate-reverse;
         }
 
         .glitch::after {
             left: -3px;
-            text-shadow: 3px 0 var(--color-glitch-2); /* Циановый сдвиг */
+            text-shadow: 3px 0 var(--color-glitch-2);
             animation: glitch-anim2 2.5s infinite linear alternate-reverse;
         }
 
-        /* Анимации для глитча (искажение формы) */
+        /* Сложные анимации глитча для привлечения внимания */
         @keyframes glitch-anim1 {
             0% { clip-path: polygon(0 33%, 100% 33%, 100% 66%, 0 66%); }
             20% { clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%); }
@@ -172,7 +152,7 @@
             100% { transform: skew(0deg); }
         }
 
-        /* 4. 3D-Стиль Кнопки (Нео-Скевоморфизм) */
+        /* Кнопка (CTA) - Стиль 3D Неон (Нео-Скевоморфизм) */
         .cta-button {
             position: fixed;
             bottom: 40px;
@@ -188,19 +168,19 @@
             cursor: pointer;
             white-space: nowrap;
 
-            /* Градиентный фон и объем */
+            /* Градиент и объем (3D feel) */
             background: linear-gradient(145deg, #ff00cc, #e600b8);
-            /* Глубокая тень для объема и интенсивная неоновая тень для свечения */
+            /* Сложная тень: внешняя тень, неоновое свечение, и внутренние блики (bevel) */
             box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5),
                         0 0 20px var(--color-accent),
-                        inset 0 2px 1px rgba(255, 255, 255, 0.3), /* Верхний блик (bevel) */
-                        inset 0 -2px 1px rgba(0, 0, 0, 0.2); /* Нижняя тень (bevel) */
+                        inset 0 2px 1px rgba(255, 255, 255, 0.3), /* Верхний блик */
+                        inset 0 -2px 1px rgba(0, 0, 0, 0.2); /* Нижняя тень */
 
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease;
             animation: subtlePulse 2s infinite alternate;
         }
 
-        /* Анимация пульсации свечения */
+        /* Пульсация свечения кнопки */
         @keyframes subtlePulse {
             from {
                 box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5),
@@ -210,7 +190,7 @@
             }
             to {
                 box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5),
-                            0 0 40px var(--color-accent),
+                            0 0 50px var(--color-accent), /* Усиленное свечение */
                             inset 0 2px 1px rgba(255, 255, 255, 0.3),
                             inset 0 -2px 1px rgba(0, 0, 0, 0.2);
             }
@@ -220,7 +200,7 @@
             transform: translateX(-50%) scale(1.05);
         }
 
-        /* Адаптивность */
+        /* Адаптивность для мобильных устройств */
         @media (max-width: 600px) {
             .interface-panel {
                 padding: 30px 20px;
@@ -238,19 +218,22 @@
                 width: 90%;
                 text-align: center;
             }
-            .aurora-bg {
-                /* Уменьшаем размытие на мобильных для производительности */
-                filter: blur(60px);
+            #background-video {
+                 /* Меньше размытия на мобильных для лучшего восприятия движения */
+                filter: blur(20px) brightness(0.4);
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="aurora-bg">
-        <div class="aurora-shape shape1"></div>
-        <div class="aurora-shape shape2"></div>
-    </div>
+    <video autoplay loop muted playsinline id="background-video">
+        <source src="https://videos.pexels.com/video-files/5453602/5453602-uhd_2560_1440_25fps.mp4" type="video/mp4">
+        <source src="https://videos.pexels.com/video-files/3141214/3141214-uhd_2560_1440_25fps.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="video-overlay"></div>
 
     <div class="container">
         <div class="interface-panel">
@@ -270,4 +253,3 @@
 
 </body>
 </html>
-
