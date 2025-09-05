@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join My Stream!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #120017;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* Инновационный эффект размытого фона для создания атмосферы */
+        .background-blur {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            /* Используем радиальный градиент для динамического свечения */
+            background-image: radial-gradient(circle at center, rgba(255, 0, 102, 0.3) 0%, rgba(18, 0, 23, 0) 60%);
+            filter: blur(80px);
+            z-index: -1;
+            /* Медленное вращение добавляет динамики */
+            animation: subtleRotate 30s infinite linear;
+        }
+
+        @keyframes subtleRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+            /* Отступ снизу, чтобы текст не перекрывался плавающей кнопкой */
+            margin-bottom: 150px;
+            max-width: 700px;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            /* Эффект матового стекла (Glassmorphism) */
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Анимации для мерцания (Пульсация неона) */
+        @keyframes neonPulse {
+            0%, 100% {
+                box-shadow: 0 0 5px #ff0066, 0 0 15px #ff0066, 0 0 30px rgba(255, 0, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 10px #ff0066, 0 0 25px #ff0066, 0 0 50px rgba(255, 0, 102, 0.6);
+            }
+        }
+
+        /* Анимация блика (Shimmer Effect) */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .floating-button {
+            /* Фиксированное положение = Плавающая кнопка */
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            padding: 20px 45px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 60px;
+            z-index: 1000;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+
+            /* Основной цвет кнопки */
+            background-color: #ff0066;
+
+            /* Градиент для блика, накладывается поверх основного цвета */
+            background-image: linear-gradient(
+                -75deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            background-size: 200% 100%;
+            background-repeat: no-repeat;
+
+            /* Применение анимаций: пульсация и блик */
+            animation: neonPulse 2s infinite alternate, shimmer 3s infinite linear;
+        }
+
+        .floating-button:hover {
+            transform: translateX(-50%) scale(1.05);
+            background-color: #ff3377;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 600px) {
+            .message {
+                font-size: 1.2rem;
+                padding: 20px;
+            }
+            .floating-button {
+                font-size: 1.3rem;
+                padding: 18px 30px;
+                bottom: 20px;
+                width: 90%;
+                max-width: 400px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-blur"></div>
+
+    <div class="container">
+        <div class="message">
+            To see the stream, register first. After that, you’ll get into my room. Believe me, my story is very interesting 🫶
+        </div>
+    </div>
+
+    <a href="https://chaturbate.com/in/?tour=APi5&campaign=l8Gy2&track=default&room=ehotlovea" class="floating-button" target="_blank" rel="noopener noreferrer">
+        I’m online! Join my stream ❤️
+    </a>
+
+</body>
+</html>
