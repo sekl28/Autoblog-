@@ -1,124 +1,453 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it-IT">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LIVE NOW // 1.5M // ACCESS REQUIRED</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <style>
-    :root{ --color-accent:#ff0066; --color-secondary:#9900ff; --color-glitch-1:#ff0000; --color-glitch-2:#00ffff; --bg-dark:#000; }
-    html,body{height:100%}
-    body{
-      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:var(--bg-dark); color:#fff; margin:0; min-height:100dvh;
-      display:flex; align-items:center; justify-content:center; overflow-x:hidden;
-    }
-    #background-video{position:fixed; inset:0; min-width:100%; min-height:100%; object-fit:cover; z-index:1; animation:pulse 8s infinite ease-in-out}
-    @keyframes pulse{0%{filter:blur(40px) brightness(.3) saturate(1.5); transform:scale(1.1)}50%{filter:blur(15px) brightness(.5) saturate(1.5); transform:scale(1)}100%{filter:blur(40px) brightness(.3) saturate(1.5); transform:scale(1.1)}}
-    .video-overlay{position:fixed; inset:0; z-index:2; background:radial-gradient(ellipse at center,rgba(0,0,0,.3) 0%,rgba(0,0,0,.8) 100%)}
-    .container{position:relative; z-index:10; padding:20px; max-width:900px; width:100%; box-sizing:border-box; padding-bottom:calc(160px + env(safe-area-inset-bottom))}
-    .interface-panel{padding:50px; text-align:center; background:rgba(10,0,15,.3); border-radius:30px; backdrop-filter:blur(25px); -webkit-backdrop-filter:blur(25px); box-shadow:0 25px 70px rgba(0,0,0,.8); border:1px solid rgba(255,0,102,.3)}
-    .highlights{display:flex; justify-content:center; flex-wrap:wrap; gap:15px; margin-bottom:30px}
-    .highlight-badge{background-color:rgba(255,255,255,.1); padding:10px 20px; border-radius:50px; font-size:1rem; font-weight:700; border:1px solid rgba(255,255,255,.2)}
-    .badge-followers{color:var(--color-secondary); border-color:var(--color-secondary); background-color:rgba(153,0,255,.2); box-shadow:0 0 15px rgba(153,0,255,.4)}
-    .header-text{font-size:2.5rem; font-weight:900; line-height:1.25; margin:0 0 25px}
-    .sub-text{font-size:1.1rem; font-weight:300; opacity:.9; margin:0 0 24px}
-    .glitch{position:relative; display:inline-block; text-transform:uppercase}
-    .glitch::before,.glitch::after{content:attr(data-text); position:absolute; top:0; left:0}
-    .glitch::before{left:3px; text-shadow:-3px 0 var(--color-glitch-1); animation:gl2 2s infinite linear alternate-reverse}
-    .glitch::after{left:-3px; text-shadow:3px 0 var(--color-glitch-2); animation:gl2 3s infinite linear alternate-reverse}
-    @keyframes gl2{0%{clip-path:polygon(0 33%,100% 33%,100% 66%,0 66%)}25%{clip-path:polygon(0 0,100% 0,100% 33%,0 33%)}50%{clip-path:polygon(0 66%,100% 66%,100% 100%,0 100%)}75%{clip-path:polygon(0 10%,100% 10%,100% 40%,0 40%)}100%{clip-path:polygon(0 80%,100% 80%,100% 100%,0 100%)}}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BitStarz Italia — Pagamenti Lampo. VIP Reale. Cripto senza limiti.</title>
+<meta name="description" content="BitStarz Italia: prelievi rapidi, VIP reale 24/7, cripto senza limiti. Entra ora e gioca responsabilmente.">
+<meta name="robots" content="index,follow">
 
-    /* контейнер для стрима */
-    .embed-scale{
-      position:relative; width:100%; margin:0 auto 20px; border-radius:15px; overflow:hidden;
-      box-shadow:0 10px 30px rgba(0,0,0,.45); background:#000;
-    }
-    .embed-scale iframe{
-      display:block; border:0;
-      width:850px; height:528px;    /* базовый размер */
-      transform-origin: top left;   /* масштабируем от угла */
-      will-change: transform;
-    }
+<style>
+  /* ---------- Base / Theme ---------- */
+  :root{
+    --bg:#070709;
+    --bg-2:#0f0f14;
+    --surface:#14141a;
+    --line:#23232a;
+    --gold:#d4af37;
+    --gold-2:#f3cd59;
+    --txt:#f6f6f7;
+    --muted:#a7a7b0;
+    --ok:#38d17d;
+    --danger:#ff477e;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--txt);
+    font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  @media (min-width:768px){ body{font-size:18px} }
+  a{color:var(--gold); text-decoration:none}
+  a:hover{ text-decoration:underline }
+  .container{max-width:1180px; margin:0 auto; padding:0 16px}
 
-    .cta-button{
-      position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom));
-      transform:translateX(-50%); z-index:100;
-      padding:22px 42px; font-size:1.4rem; font-weight:900; color:#fff; text-decoration:none;
-      border-radius:50px; background:var(--color-accent); animation:intense 1.5s infinite alternate;
-      box-shadow:0 0 10px var(--color-accent),0 0 30px var(--color-accent),0 0 60px rgba(255,0,102,.8);
-      -webkit-tap-highlight-color:transparent;
-    }
-    @keyframes intense{from{box-shadow:0 0 10px var(--color-accent),0 0 30px var(--color-accent),0 0 60px rgba(255,0,102,.8)}to{box-shadow:0 0 20px var(--color-accent),0 0 50px var(--color-accent),0 0 100px rgba(255,0,102,1)}}
-    .cta-button:hover{transform:translateX(-50%) scale(1.05)}
+  /* ---------- Header ---------- */
+  .header{
+    position:fixed; inset:0 0 auto 0; height:64px; z-index:100;
+    display:flex; align-items:center;
+    background:rgba(7,7,9,.75);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  @media (min-width:768px){ .header{height:76px} }
+  .brand{font-weight:900; letter-spacing:.5px; font-size:22px}
+  .brand .dot{color:var(--gold)}
+  .nav{display:none; gap:22px; margin-left:auto; margin-right:16px}
+  @media (min-width:992px){ .nav{display:flex} }
+  .nav a{color:var(--txt); opacity:.85}
+  .nav a:hover{ color:var(--gold) }
+  .menu-btn{
+    margin-left:auto; display:inline-flex; align-items:center; gap:8px;
+    color:#fff; background:none; border:0; padding:8px 10px; border-radius:10px
+  }
+  @media (min-width:992px){ .menu-btn{display:none} }
 
-    @media (max-width:600px){
-      .interface-panel{padding:32px 20px}
-      .header-text{font-size:1.8rem}
-      .sub-text{font-size:1rem}
-      .cta-button{width:92%; text-align:center; padding:18px 20px; font-size:1.2rem}
-    }
-    @media (prefers-reduced-motion:reduce){*{animation:none!important}}
-  </style>
+  /* ---------- Mobile Menu ---------- */
+  .menu{
+    position:fixed; inset:0; z-index:90; background:rgba(7,7,9,.98);
+    opacity:0; visibility:hidden; transition:opacity .25s ease;
+  }
+  .menu.open{opacity:1; visibility:visible}
+  .menu nav a{
+    display:block; padding:16px 0; border-bottom:1px dashed var(--line);
+    font-weight:700; font-size:22px; color:#fff;
+  }
+
+  /* ---------- Sparkle Background ---------- */
+  .sky{
+    position:fixed; inset:-50vmax; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.35), transparent 60%),
+      radial-gradient(1.5px 1.5px at 60% 70%, rgba(255,255,255,.25), transparent 60%),
+      radial-gradient(1.8px 1.8px at 80% 20%, rgba(255,255,255,.20), transparent 60%),
+      radial-gradient(1.2px 1.2px at 30% 80%, rgba(255,255,255,.20), transparent 60%),
+      radial-gradient(1200px 1200px at 50% 10%, rgba(212,175,55,.08), transparent 70%);
+    animation: pan 60s linear infinite;
+    filter:saturate(1.1);
+  }
+  @keyframes pan { to { transform: translate3d(10vmax, 10vmax, 0); } }
+
+  /* ---------- Sections ---------- */
+  main{position:relative; z-index:1; padding-top:64px}
+  @media (min-width:768px){ main{padding-top:76px} }
+  section{padding:64px 0}
+  @media (min-width:768px){ section{padding:92px 0} }
+  h1{font-weight:900; font-size:clamp(34px,6vw,64px); line-height:1.05; margin:0 0 16px}
+  h2{font-weight:800; font-size:clamp(26px,4.5vw,40px); margin:0 0 16px}
+  h3{font-weight:800; font-size:22px; margin:0 0 10px}
+  .lead{color:var(--muted); font-size:clamp(18px,2.2vw,22px)}
+  .center{text-align:center}
+  .surface{background:var(--bg-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .grid{display:grid; gap:20px}
+  .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media (max-width:991.98px){ .grid-2,.grid-3{grid-template-columns:1fr} }
+
+  /* ---------- Glow / Glass / Shine ---------- */
+  .glass{
+    background:linear-gradient(180deg, rgba(20,20,26,.75), rgba(20,20,26,.55));
+    border:1px solid var(--line); border-radius:16px;
+    box-shadow:0 0 28px rgba(212,175,55,.12);
+  }
+  .glow{ box-shadow:0 0 18px rgba(212,175,55,.35), inset 0 0 0 1px rgba(212,175,55,.35) }
+  .shine{ position:relative; overflow:hidden }
+  .shine::after{
+    content:""; position:absolute; inset:0 -150% 0  -150%;
+    background:linear-gradient(100deg, transparent 40%, rgba(255,255,255,.18) 50%, transparent 60%);
+    transform:translateX(-40%); animation:shine 3s ease-in-out infinite;
+  }
+  @keyframes shine { 0%{transform:translateX(-40%)} 50%{transform:translateX(30%)} 100%{transform:translateX(120%)} }
+
+  /* ---------- Gradient Text ---------- */
+  .gold-gradient{
+    background:linear-gradient(90deg, var(--gold), var(--gold-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+    padding:12px 18px; border-radius:12px; font-weight:900; letter-spacing:.2px;
+    border:2px solid transparent; cursor:pointer;
+    transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+    position:relative; isolation:isolate;
+  }
+  .btn:active{ transform:translateY(0) }
+  .btn:hover{ transform:translateY(-1px) }
+  .btn-primary{
+    color:#090909; background:linear-gradient(90deg,var(--gold),var(--gold-2));
+    box-shadow:0 0 20px rgba(243,205,89,.25);
+  }
+  .btn-secondary{
+    color:var(--txt); background:transparent; border-color:#7f7f88;
+  }
+  .btn-pulse::before{
+    content:""; position:absolute; inset:-8px; border-radius:16px;
+    border:2px solid rgba(243,205,89,.25); filter:blur(4px); opacity:.75;
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse { 50%{opacity:.2; transform:scale(1.03)} }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+  }
+  .blob{
+    position:absolute; left:50%; top:-28%;
+    transform:translateX(-50%);
+    width:min(900px,120vw); height:600px;
+    background:radial-gradient(closest-side, rgba(212,175,55,.17), transparent 70%);
+    filter:blur(64px); opacity:.9; pointer-events:none;
+  }
+  .microtrust{display:flex; gap:10px; align-items:center; justify-content:center; color:var(--muted); font-size:14px; opacity:.85}
+
+  /* ---------- Feature cards ---------- */
+  .card{padding:22px; border-radius:16px}
+  .badge{display:inline-flex; align-items:center; gap:.6rem; font-weight:800}
+
+  /* ---------- Game tags (без картинок) ---------- */
+  .game{
+    padding:18px; border-radius:14px; background:var(--surface); border:1px dashed var(--line);
+  }
+
+  /* ---------- Sticky CTA (mobile) ---------- */
+  .sticky{
+    position:fixed; left:0; right:0; bottom:0; z-index:80;
+    background:var(--surface); border-top:2px solid var(--gold); padding:14px 16px;
+    box-shadow:0 -10px 28px rgba(0,0,0,.55);
+  }
+  @media (min-width:768px){ .sticky{display:none} }
+
+  /* ---------- Sparkles (button confetti) ---------- */
+  .sparkles{position:absolute; inset:0; pointer-events:none; overflow:visible}
+  .spark{position:absolute; width:6px; height:6px; border-radius:50%; background:var(--gold); filter:drop-shadow(0 0 6px rgba(243,205,89,.9)); opacity:0; animation:spark 1.4s ease-out forwards}
+  @keyframes spark {
+    0%{transform:translate(0,0) scale(.8) rotate(0deg); opacity:0}
+    20%{opacity:1}
+    100%{transform:translate(var(--x), var(--y)) scale(0.4) rotate(180deg); opacity:0}
+  }
+
+  /* Utilities */
+  .centered{display:flex; align-items:center; justify-content:center}
+  .mt-2{margin-top:12px} .mt-3{margin-top:18px} .mt-4{margin-top:24px}
+  .mb-0{margin-bottom:0}
+  .row{display:flex; gap:12px; flex-wrap:wrap}
+  .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+</style>
 </head>
 <body>
+  <div class="sky" aria-hidden="true"></div>
 
-  <video autoplay loop muted playsinline id="background-video">
-    <source src="https://videos.pexels.com/video-files/3129977/3129977-uhd_2560_1440_25fps.mp4" type="video/mp4">
-    <source src="https://videos.pexels.com/video-files/5752721/5752721-uhd_2560_1440_30fps.mp4" type="video/mp4">
-  </video>
-  <div class="video-overlay"></div>
+  <!-- Header -->
+  <header class="header">
+    <div class="container row" style="align-items:center; justify-content:space-between;">
+      <a class="brand" href="#hero" aria-label="BitStarz Italia Home">BitStarz<span class="dot">.IT</span></a>
+      <nav class="nav" aria-label="Main Navigation">
+        <a href="#vip">VIP</a>
+        <a href="#bonus">Promozioni</a>
+        <a href="#giochi">Giochi</a>
+        <a href="#pagamenti">Pagamenti</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-controls="menu" aria-expanded="false">Menu ▾</button>
+    </div>
+  </header>
 
-  <div class="container">
-    <div class="interface-panel">
-      <div class="highlights">
-        <div class="highlight-badge badge-followers">⭐ 1,500,000 Followers</div>
-        <div class="highlight-badge">Orgasms &amp; Squirts ☺️☺️☺️🏹🏹</div>
-      </div>
-
-      <h1 class="header-text">
-        To see the stream, you must <span class="glitch" data-text="REGISTER FIRST">REGISTER FIRST</span>.
-      </h1>
-      <p class="sub-text">After that, you’ll get into my room. Believe me, my story is very interesting 🫶</p>
-
-      <!-- адаптивный стрим -->
-      <div class="embed-scale" id="embedBox">
-        <iframe
-          id="cb-embed"
-          src="https://cbxyz.com/in/?tour=SHBY&campaign=qKRb5&track=embed&room=ehotlovea"
-          loading="lazy" allowfullscreen
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+  <!-- Mobile Menu -->
+  <div id="menu" class="menu" role="dialog" aria-modal="true" aria-labelledby="menu-title">
+    <div class="container" style="padding-top:96px; padding-bottom:24px;">
+      <h2 id="menu-title" class="sr-only">Menu</h2>
+      <nav>
+        <a href="#vip" onclick="closeMenu()">VIP</a>
+        <a href="#bonus" onclick="closeMenu()">Promozioni</a>
+        <a href="#giochi" onclick="closeMenu()">Giochi</a>
+        <a href="#pagamenti" onclick="closeMenu()">Pagamenti</a>
+        <a href="#faq" onclick="closeMenu()">FAQ</a>
+      </nav>
+      <div class="mt-3">
+        <a id="menuCta" class="btn btn-primary btn-pulse shine">Gioca ora</a>
       </div>
     </div>
   </div>
 
-  <a class="cta-button"
-     href="https://chaturbate.com/in/?tour=APi5&campaign=l8Gy2&track=default&room=ehotlovea"
-     target="_blank" rel="nofollow noopener">
-    I’m online! Join my stream ❤️
-  </a>
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="hero">
+      <div class="blob" aria-hidden="true"></div>
+      <div class="container center" style="position:relative; z-index:1;">
+        <h1 class="mb-0">
+          <span>Pagamenti lampo.</span>
+          <span class="gold-gradient">VIP reale.</span>
+          <span>Cripto senza limiti.</span>
+        </h1>
+        <p class="lead">Gioca da high-roller con prelievi veloci e servizio dedicato 24/7.</p>
+        <div class="row centered mt-2" style="gap:14px">
+          <a id="heroCta" class="btn btn-primary btn-pulse shine">✨ Gioca ora</a>
+          <a class="btn btn-secondary" href="#vip">Scopri il VIP</a>
+        </div>
+        <p class="microtrust mt-3"><span aria-hidden="true">✔</span> 18+ • Gioca responsabilmente • Termini si applicano</p>
+      </div>
+    </section>
 
-  <!-- скрипт центрирования и масштабирования -->
-  <script>
-    (function () {
-      const BASE_W = 850, BASE_H = 528;
-      const box = document.getElementById('embedBox');
-      const frame = document.getElementById('cb-embed');
+    <!-- MICRO-PROOF -->
+    <section class="surface">
+      <div class="container">
+        <p class="center" style="color:var(--muted); font-style:italic; font-weight:700;">«Milioni pagati ogni mese»</p>
+        <div class="grid grid-3 mt-3">
+          <div class="glass card centered"><span class="badge">⚡ <span>Prelievi veloci</span></span></div>
+          <div class="glass card centered"><span class="badge">₿ <span>BTC / ETH / USDT</span></span></div>
+          <div class="glass card centered"><span class="badge">🛡️ <span>VIP reale 24/7</span></span></div>
+        </div>
+      </div>
+    </section>
 
-      function fit() {
-        if (!box || !frame) return;
-        const w = box.clientWidth;
-        const scale = Math.min(1, w / BASE_W);
-        const offsetX = (w - BASE_W * scale) / 2; // центрируем
-        frame.style.transform = 'translateX(' + offsetX + 'px) scale(' + scale + ')';
-        box.style.height = (BASE_H * scale) + 'px';
-      }
+    <!-- VIP -->
+    <section id="vip">
+      <div class="container">
+        <h2 class="center">Esperienza <span class="gold-gradient">VIP per High-Roller</span></h2>
+        <div class="grid grid-3 mt-3">
+          <div class="glass card">
+            <h3>Manager Personale</h3>
+            <p style="color:var(--muted)">Accesso dedicato al tuo VIP manager, priorità assoluta e soluzioni su misura.</p>
+          </div>
+          <div class="glass card">
+            <h3>Limiti Elevati</h3>
+            <p style="color:var(--muted)">Puntate alte e prelievi importanti — perfetto per volumi seri.</p>
+          </div>
+          <div class="glass card">
+            <h3>Cashback & Reload</h3>
+            <p style="color:var(--muted)">Offerte personalizzate, cashback settimanali. T&amp;C si applicano.</p>
+          </div>
+        </div>
+        <div class="center mt-3">
+          <a id="vipCta" class="btn btn-primary shine">Entra nel Club VIP</a>
+        </div>
+      </div>
+    </section>
 
-      window.addEventListener('resize', fit);
-      window.addEventListener('orientationchange', fit);
-      document.addEventListener('DOMContentLoaded', () => { fit(); setTimeout(fit,150); });
-    })();
-  </script>
+    <!-- BONUS -->
+    <section id="bonus" class="surface">
+      <div class="container">
+        <h2 class="center">Promozioni e Bonus</h2>
+        <p class="center" style="color:var(--muted)">Offerte chiare e vantaggiose per l’Italia — leggi sempre i termini.</p>
+        <div class="grid grid-3 mt-3">
+          <div class="glass card glow">
+            <h3>Pacchetto di Benvenuto</h3>
+            <p class="mt-2" style="color:var(--muted)">Bonus sui primi depositi e free spins.</p>
+            <a id="bonusWelcome" class="btn btn-primary mt-3">Richiedi il Bonus</a>
+            <p style="color:var(--muted); font-size:12px" class="mt-2">T&amp;C si applicano. 18+.</p>
+          </div>
+          <div class="glass card glow shine" style="border:2px solid rgba(212,175,55,.5)">
+            <h3>Ricompense VIP</h3>
+            <p class="mt-2" style="color:var(--muted)">Cashback esclusivo e reload personalizzati.</p>
+            <a id="bonusVip" class="btn btn-primary mt-3">Scopri le Offerte VIP</a>
+            <p style="color:var(--muted); font-size:12px" class="mt-2">T&amp;C si applicano. 18+.</p>
+          </div>
+          <div class="glass card glow">
+            <h3>Tornei Settimanali</h3>
+            <p class="mt-2" style="color:var(--muted)">Competi su slot e tavoli per montepremi extra.</p>
+            <a id="bonusTournaments" class="btn btn-primary mt-3">Vedi i Tornei</a>
+            <p style="color:var(--muted); font-size:12px" class="mt-2">T&amp;C si applicano. 18+.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GIOCHI (без картинок — эмоциональные ярлыки) -->
+    <section id="giochi">
+      <div class="container">
+        <h2 class="center">Giochi & Provider Leader</h2>
+        <div class="grid grid-3 mt-3">
+          <div class="game"><strong>Book of Dead</strong><p class="mt-2" style="color:var(--muted)">Slot • Volatilità media</p><a data-game="1" class="btn btn-primary mt-2">Gioca Ora</a></div>
+          <div class="game"><strong>Lightning Roulette</strong><p class="mt-2" style="color:var(--muted)">Live • Moltiplicatori</p><a data-game="2" class="btn btn-primary mt-2">Gioca Ora</a></div>
+          <div class="game"><strong>Starburst</strong><p class="mt-2" style="color:var(--muted)">Slot • Classico</p><a data-game="3" class="btn btn-primary mt-2">Gioca Ora</a></div>
+          <div class="game"><strong>Blackjack VIP</strong><p class="mt-2" style="color:var(--muted)">Tavolo • High-stakes</p><a data-game="4" class="btn btn-primary mt-2">Gioca Ora</a></div>
+          <div class="game"><strong>Gonzo’s Quest</strong><p class="mt-2" style="color:var(--muted)">Slot • Avalanche</p><a data-game="5" class="btn btn-primary mt-2">Gioca Ora</a></div>
+          <div class="game"><strong>Crazy Time</strong><p class="mt-2" style="color:var(--muted)">Live • Game show</p><a data-game="6" class="btn btn-primary mt-2">Gioca Ora</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGAMENTI -->
+    <section id="pagamenti" class="surface">
+      <div class="container">
+        <h2>Pagamenti rapidi e <span class="gold-gradient">cripto sicure</span></h2>
+        <p style="color:var(--muted)">Deposita e preleva in modo rapido con le principali criptovalute oppure usa metodi tradizionali. La priorità è la velocità — sempre nel rispetto delle verifiche necessarie.</p>
+        <div class="glass card mt-3">
+          <strong>Tempi medi di prelievo: rapidi</strong>
+          <div style="color:var(--muted); font-size:14px" class="mt-2">Possono essere richieste verifiche KYC/AML.</div>
+        </div>
+        <div class="grid grid-2 mt-3">
+          <div>
+            <h3>Cripto</h3>
+            <p style="color:var(--muted)">Bitcoin (BTC) • Ethereum (ETH) • Tether (USDT) • Litecoin (LTC) • Dogecoin (DOGE)</p>
+          </div>
+          <div>
+            <h3>FIAT</h3>
+            <p style="color:var(--muted)">VISA • Mastercard • Skrill • Neteller • Bonifico bancario</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <h2 class="center">Domande Frequenti (FAQ)</h2>
+        <div class="glass card">
+          <details>
+            <summary><strong>Registrazione necessaria?</strong></summary>
+            <p style="color:var(--muted)">Sì, è richiesta per giocare con denaro reale/cripto. Età 18+.</p>
+          </details>
+          <details>
+            <summary><strong>Tempi dei prelievi?</strong></summary>
+            <p style="color:var(--muted)">Generalmente veloci (specie in cripto). Variano per metodo e KYC.</p>
+          </details>
+          <details>
+            <summary><strong>Limiti VIP?</strong></summary>
+            <p style="color:var(--muted)">Limiti elevati, gestiti con il manager personale.</p>
+          </details>
+          <details>
+            <summary><strong>Come diventare VIP?</strong></summary>
+            <p style="color:var(--muted)">Di solito su invito, in base al volume di gioco/depositi.</p>
+          </details>
+        </div>
+        <p class="center mt-3" style="color:var(--muted); font-size:13px">18+ • Gioca responsabilmente • Termini si applicano</p>
+      </div>
+    </section>
+
+    <!-- CTA Finale -->
+    <section>
+      <div class="container centered">
+        <a id="finalCta" class="btn btn-primary btn-pulse shine" style="padding:14px 22px; font-size:18px">
+          ✨ Inizia Ora — BitStarz
+          <span class="sparkles" aria-hidden="true"></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky CTA (mobile) -->
+  <div class="sticky">
+    <a id="stickyCta" class="btn btn-primary btn-pulse shine" style="display:block; text-align:center">Gioca ora</a>
+  </div>
+
+<script>
+  // ========= Affiliate =========
+  const AFFILIATE_BASE_URL = "https://bzstarz.com/b269d9fb2";
+  const DEFAULT_UTM = { utm_source:'landing', utm_medium:'cta', utm_campaign:'it_hr_2025' };
+  function getAffiliateLink(contentId){
+    const p = new URLSearchParams({ ...DEFAULT_UTM, utm_content: contentId });
+    return AFFILIATE_BASE_URL + "?" + p.toString();
+  }
+  function wireCta(id, contentId){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.href = getAffiliateLink(contentId);
+    el.target = "_blank";
+    el.rel = "nofollow noopener noreferrer";
+    el.addEventListener('click', (e) => {
+      // sparks!
+      burstSparks(el);
+      console.log('outbound_click_affiliate', { button_id: contentId });
+    });
+  }
+  // buttons
+  wireCta("heroCta","hero_primary");
+  wireCta("menuCta","mobile_menu_cta");
+  wireCta("vipCta","vip_cta");
+  wireCta("bonusWelcome","bonus_welcome");
+  wireCta("bonusVip","bonus_vip");
+  wireCta("bonusTournaments","bonus_tournaments");
+  wireCta("finalCta","footer_cta");
+  wireCta("stickyCta","sticky_mobile_cta");
+  // game tags
+  document.querySelectorAll('[data-game]').forEach(btn=>{
+    const id = btn.getAttribute('data-game');
+    btn.href = getAffiliateLink('game_'+id);
+    btn.target = "_blank";
+    btn.rel = "nofollow noopener noreferrer";
+    btn.addEventListener('click', ()=>burstSparks(btn));
+  });
+
+  // ========= Mobile Menu =========
+  const menu = document.getElementById('menu');
+  const menuBtn = document.getElementById('menuBtn');
+  function openMenu(){ menu.classList.add('open'); menuBtn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+  function closeMenu(){ menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+  menuBtn.addEventListener('click', ()=> menu.classList.contains('open') ? closeMenu() : openMenu());
+  menu.addEventListener('click', (e)=>{ if(e.target===menu) closeMenu(); });
+  window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
+
+  // ========= Sparkles on click =========
+  function burstSparks(target){
+    const N = 12;
+    const wrap = target.querySelector('.sparkles') || (()=>{ const s=document.createElement('span'); s.className='sparkles'; target.appendChild(s); return s; })();
+    const rect = target.getBoundingClientRect();
+    for(let i=0;i<N;i++){
+      const sp = document.createElement('span');
+      sp.className = 'spark';
+      const ang = (Math.PI*2/N)*i + (Math.random()*0.5);
+      const dist = 40 + Math.random()*30;
+      sp.style.setProperty('--x', `${Math.cos(ang)*dist}px`);
+      sp.style.setProperty('--y', `${Math.sin(ang)*dist}px`);
+      wrap.appendChild(sp);
+      setTimeout(()=>sp.remove(), 1500);
+    }
+  }
+</script>
 </body>
 </html>
