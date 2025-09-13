@@ -1,453 +1,1009 @@
 <!DOCTYPE html>
-<html lang="it-IT">
+<html lang="it-IT" class="scroll-smooth antialiased">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BitStarz Italia — Pagamenti Lampo. VIP Reale. Cripto senza limiti.</title>
-<meta name="description" content="BitStarz Italia: prelievi rapidi, VIP reale 24/7, cripto senza limiti. Entra ora e gioca responsabilmente.">
-<meta name="robots" content="index,follow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BitStarz Italia | Pagamenti Veloci e VIP Club Esclusivo</title>
+    <meta name="description" content="Scopri BitStarz: prelievi rapidi, servizio VIP 24/7 e cripto senza limiti per high-roller in Italia. Gioca responsabilmente.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.your-landing-domain-it.com" />
+    <meta property="og:title" content="BitStarz Italia | Pagamenti Veloci e VIP Club Esclusivo" />
+    <meta property="og:description" content="Scopri BitStarz: prelievi rapidi, servizio VIP 24/7 e cripto senza limiti per high-roller in Italia." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:url" content="https://www.your-landing-domain-it.com" />
+    <meta property="og:image" content="https://www.your-landing-domain-it.com/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image">
 
-<style>
-  /* ---------- Base / Theme ---------- */
-  :root{
-    --bg:#070709;
-    --bg-2:#0f0f14;
-    --surface:#14141a;
-    --line:#23232a;
-    --gold:#d4af37;
-    --gold-2:#f3cd59;
-    --txt:#f6f6f7;
-    --muted:#a7a7b0;
-    --ok:#38d17d;
-    --danger:#ff477e;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0; background:var(--bg); color:var(--txt);
-    font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
-    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-    overflow-x:hidden;
-  }
-  @media (min-width:768px){ body{font-size:18px} }
-  a{color:var(--gold); text-decoration:none}
-  a:hover{ text-decoration:underline }
-  .container{max-width:1180px; margin:0 auto; padding:0 16px}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 
-  /* ---------- Header ---------- */
-  .header{
-    position:fixed; inset:0 0 auto 0; height:64px; z-index:100;
-    display:flex; align-items:center;
-    background:rgba(7,7,9,.75);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--line);
-  }
-  @media (min-width:768px){ .header{height:76px} }
-  .brand{font-weight:900; letter-spacing:.5px; font-size:22px}
-  .brand .dot{color:var(--gold)}
-  .nav{display:none; gap:22px; margin-left:auto; margin-right:16px}
-  @media (min-width:992px){ .nav{display:flex} }
-  .nav a{color:var(--txt); opacity:.85}
-  .nav a:hover{ color:var(--gold) }
-  .menu-btn{
-    margin-left:auto; display:inline-flex; align-items:center; gap:8px;
-    color:#fff; background:none; border:0; padding:8px 10px; border-radius:10px
-  }
-  @media (min-width:992px){ .menu-btn{display:none} }
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  /* ---------- Mobile Menu ---------- */
-  .menu{
-    position:fixed; inset:0; z-index:90; background:rgba(7,7,9,.98);
-    opacity:0; visibility:hidden; transition:opacity .25s ease;
-  }
-  .menu.open{opacity:1; visibility:visible}
-  .menu nav a{
-    display:block; padding:16px 0; border-bottom:1px dashed var(--line);
-    font-weight:700; font-size:22px; color:#fff;
-  }
-
-  /* ---------- Sparkle Background ---------- */
-  .sky{
-    position:fixed; inset:-50vmax; z-index:0; pointer-events:none;
-    background:
-      radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.35), transparent 60%),
-      radial-gradient(1.5px 1.5px at 60% 70%, rgba(255,255,255,.25), transparent 60%),
-      radial-gradient(1.8px 1.8px at 80% 20%, rgba(255,255,255,.20), transparent 60%),
-      radial-gradient(1.2px 1.2px at 30% 80%, rgba(255,255,255,.20), transparent 60%),
-      radial-gradient(1200px 1200px at 50% 10%, rgba(212,175,55,.08), transparent 70%);
-    animation: pan 60s linear infinite;
-    filter:saturate(1.1);
-  }
-  @keyframes pan { to { transform: translate3d(10vmax, 10vmax, 0); } }
-
-  /* ---------- Sections ---------- */
-  main{position:relative; z-index:1; padding-top:64px}
-  @media (min-width:768px){ main{padding-top:76px} }
-  section{padding:64px 0}
-  @media (min-width:768px){ section{padding:92px 0} }
-  h1{font-weight:900; font-size:clamp(34px,6vw,64px); line-height:1.05; margin:0 0 16px}
-  h2{font-weight:800; font-size:clamp(26px,4.5vw,40px); margin:0 0 16px}
-  h3{font-weight:800; font-size:22px; margin:0 0 10px}
-  .lead{color:var(--muted); font-size:clamp(18px,2.2vw,22px)}
-  .center{text-align:center}
-  .surface{background:var(--bg-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
-  .grid{display:grid; gap:20px}
-  .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-  @media (max-width:991.98px){ .grid-2,.grid-3{grid-template-columns:1fr} }
-
-  /* ---------- Glow / Glass / Shine ---------- */
-  .glass{
-    background:linear-gradient(180deg, rgba(20,20,26,.75), rgba(20,20,26,.55));
-    border:1px solid var(--line); border-radius:16px;
-    box-shadow:0 0 28px rgba(212,175,55,.12);
-  }
-  .glow{ box-shadow:0 0 18px rgba(212,175,55,.35), inset 0 0 0 1px rgba(212,175,55,.35) }
-  .shine{ position:relative; overflow:hidden }
-  .shine::after{
-    content:""; position:absolute; inset:0 -150% 0  -150%;
-    background:linear-gradient(100deg, transparent 40%, rgba(255,255,255,.18) 50%, transparent 60%);
-    transform:translateX(-40%); animation:shine 3s ease-in-out infinite;
-  }
-  @keyframes shine { 0%{transform:translateX(-40%)} 50%{transform:translateX(30%)} 100%{transform:translateX(120%)} }
-
-  /* ---------- Gradient Text ---------- */
-  .gold-gradient{
-    background:linear-gradient(90deg, var(--gold), var(--gold-2));
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-  }
-
-  /* ---------- Buttons ---------- */
-  .btn{
-    display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
-    padding:12px 18px; border-radius:12px; font-weight:900; letter-spacing:.2px;
-    border:2px solid transparent; cursor:pointer;
-    transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;
-    position:relative; isolation:isolate;
-  }
-  .btn:active{ transform:translateY(0) }
-  .btn:hover{ transform:translateY(-1px) }
-  .btn-primary{
-    color:#090909; background:linear-gradient(90deg,var(--gold),var(--gold-2));
-    box-shadow:0 0 20px rgba(243,205,89,.25);
-  }
-  .btn-secondary{
-    color:var(--txt); background:transparent; border-color:#7f7f88;
-  }
-  .btn-pulse::before{
-    content:""; position:absolute; inset:-8px; border-radius:16px;
-    border:2px solid rgba(243,205,89,.25); filter:blur(4px); opacity:.75;
-    animation:pulse 2.6s ease-in-out infinite;
-  }
-  @keyframes pulse { 50%{opacity:.2; transform:scale(1.03)} }
-
-  /* ---------- Hero ---------- */
-  .hero{
-    position:relative; overflow:hidden;
-  }
-  .blob{
-    position:absolute; left:50%; top:-28%;
-    transform:translateX(-50%);
-    width:min(900px,120vw); height:600px;
-    background:radial-gradient(closest-side, rgba(212,175,55,.17), transparent 70%);
-    filter:blur(64px); opacity:.9; pointer-events:none;
-  }
-  .microtrust{display:flex; gap:10px; align-items:center; justify-content:center; color:var(--muted); font-size:14px; opacity:.85}
-
-  /* ---------- Feature cards ---------- */
-  .card{padding:22px; border-radius:16px}
-  .badge{display:inline-flex; align-items:center; gap:.6rem; font-weight:800}
-
-  /* ---------- Game tags (без картинок) ---------- */
-  .game{
-    padding:18px; border-radius:14px; background:var(--surface); border:1px dashed var(--line);
-  }
-
-  /* ---------- Sticky CTA (mobile) ---------- */
-  .sticky{
-    position:fixed; left:0; right:0; bottom:0; z-index:80;
-    background:var(--surface); border-top:2px solid var(--gold); padding:14px 16px;
-    box-shadow:0 -10px 28px rgba(0,0,0,.55);
-  }
-  @media (min-width:768px){ .sticky{display:none} }
-
-  /* ---------- Sparkles (button confetti) ---------- */
-  .sparkles{position:absolute; inset:0; pointer-events:none; overflow:visible}
-  .spark{position:absolute; width:6px; height:6px; border-radius:50%; background:var(--gold); filter:drop-shadow(0 0 6px rgba(243,205,89,.9)); opacity:0; animation:spark 1.4s ease-out forwards}
-  @keyframes spark {
-    0%{transform:translate(0,0) scale(.8) rotate(0deg); opacity:0}
-    20%{opacity:1}
-    100%{transform:translate(var(--x), var(--y)) scale(0.4) rotate(180deg); opacity:0}
-  }
-
-  /* Utilities */
-  .centered{display:flex; align-items:center; justify-content:center}
-  .mt-2{margin-top:12px} .mt-3{margin-top:18px} .mt-4{margin-top:24px}
-  .mb-0{margin-bottom:0}
-  .row{display:flex; gap:12px; flex-wrap:wrap}
-  .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
-</style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#0a0a0c',
+                        'dark-surface': '#1c1c1f',
+                        'dark-border': '#27272a',
+                        'accent-gold': '#d4af37',
+                        'text-primary': '#f5f5f5',
+                        'text-secondary': '#a1a1aa',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-subtle': '0 0 15px rgba(212, 175, 55, 0.3)',
+                    },
+                     animation: {
+                        fadeIn: 'fadeIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    },
+                },
+                container: {
+                    center: true,
+                    padding: '1rem',
+                    screens: {
+                        'sm': '640px',
+                        'md': '768px',
+                        'lg': '1024px',
+                        'xl': '1280px',
+                        '2xl': '1320px',
+                    },
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-dark-bg text-text-primary;
+                font-size: 16px;
+            }
+             @screen md {
+                body {
+                    font-size: 18px;
+                }
+            }
+            h1, h2, h3 {
+                @apply text-white;
+            }
+        }
+        @layer components {
+            .glass-card {
+                @apply bg-dark-surface/70 backdrop-blur-md border border-dark-border shadow-xl rounded-xl;
+            }
+            .cta-primary {
+                 @apply inline-block px-8 py-3 rounded-lg font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-bg bg-accent-gold text-dark-bg hover:opacity-90 shadow-neon-subtle focus:ring-accent-gold;
+            }
+            .cta-secondary {
+                 @apply inline-block px-8 py-3 rounded-lg font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-bg bg-transparent border-2 border-text-secondary text-text-primary hover:border-accent-gold hover:text-accent-gold focus:ring-text-secondary;
+            }
+        }
+        /* Анимация для FAQ */
+        .faq-content {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            overflow: hidden;
+        }
+    </style>
 </head>
-<body>
-  <div class="sky" aria-hidden="true"></div>
+<body class="font-sans">
 
-  <!-- Header -->
-  <header class="header">
-    <div class="container row" style="align-items:center; justify-content:space-between;">
-      <a class="brand" href="#hero" aria-label="BitStarz Italia Home">BitStarz<span class="dot">.IT</span></a>
-      <nav class="nav" aria-label="Main Navigation">
-        <a href="#vip">VIP</a>
-        <a href="#bonus">Promozioni</a>
-        <a href="#giochi">Giochi</a>
-        <a href="#pagamenti">Pagamenti</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <button class="menu-btn" id="menuBtn" aria-controls="menu" aria-expanded="false">Menu ▾</button>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="icon-bolt" viewBox="0 0 24 24" fill="currentColor">
+          <path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clip-rule="evenodd" />
+        </symbol>
+        <symbol id="icon-shield-check" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+        </symbol>
+        <symbol id="icon-currency-dollar" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.5 4.5a.75.75 0 00-1.5 0v2.25H7.5a.75.75 0 000 1.5h1.5v2.25a.75.75 0 001.5 0v-2.25h1.5a.75.75 0 000-1.5h-1.5V6.75zm3.75 6a.75.75 0 01-1.5 0v-2.25h1.5a.75.75 0 010 1.5h-1.5v.75z" clip-rule="evenodd" />
+        </symbol>
+        <symbol id="icon-user-group" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M8.25 6.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM15.75 9.75a3 3 0 116 0 3 3 0 01-6 0zM2.25 9.75a3 3 0 116 0 3 3 0 01-6 0zM6.31 15.117A6.745 6.745 0 0112 13.5a6.745 6.745 0 015.69 1.617M4.5 20.25h15a2.25 2.25 0 002.25-2.25V17.89a8.25 8.25 0 00-4.12-1.043A8.25 8.25 0 0012 16.5a8.25 8.25 0 00-5.63.347A8.25 8.25 0 002.25 17.89V18a2.25 2.25 0 002.25 2.25z" clip-rule="evenodd" />
+        </symbol>
+        <symbol id="icon-star" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+        </symbol>
+        <symbol id="icon-clock" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" clip-rule="evenodd" />
+        </symbol>
+         <symbol id="icon-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.25-9.75h16.5" />
+        </symbol>
+        <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+        </symbol>
+        <symbol id="icon-bars" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+        </symbol>
+        <symbol id="icon-xmark" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" />
+        </symbol>
+        <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z" clip-rule="evenodd" />
+        </symbol>
+    </svg>
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-dark-bg/80 backdrop-blur-md border-b border-dark-border">
+        <div class="container flex justify-between items-center h-16 md:h-20">
+            <a href="/" class="text-2xl md:text-3xl font-bold font-display text-white">
+                BitStarz<span class='text-accent-gold'>.IT</span>
+            </a>
+
+            <nav class="hidden lg:flex space-x-8 text-base">
+                <a href="#vip" class="hover:text-accent-gold transition">VIP</a>
+                <a href="#bonus" class="hover:text-accent-gold transition">Promozioni</a>
+                <a href="#giochi" class="hover:text-accent-gold transition">Giochi</a>
+                <a href="#pagamenti" class="hover:text-accent-gold transition">Pagamenti</a>
+                <a href="#faq" class="hover:text-accent-gold transition">FAQ</a>
+            </nav>
+
+            <div class='hidden md:flex items-center'>
+                <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=header_nav" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary text-sm px-5 py-2" data-content-id="header_nav">
+                    Gioca ora
+                </a>
+            </div>
+
+             <button id="menu-toggle" class="lg:hidden text-white p-2 focus:outline-none focus:ring-2 focus:ring-accent-gold rounded" aria-label="Toggle menu" aria-expanded="false">
+                <svg class="w-6 h-6" aria-hidden="true"><use xlink:href="#icon-bars"></use></svg>
+             </button>
+        </div>
+    </header>
+
+     <div id="mobile-menu" class="fixed inset-0 z-40 bg-dark-bg transition-opacity duration-300 lg:hidden opacity-0 invisible" style="padding-top: 64px;">
+        <div class="container pt-8 pb-12 flex flex-col h-full">
+            <nav class="flex flex-col space-y-6 text-2xl font-semibold">
+                <a href="#vip" class="nav-link hover:text-accent-gold transition py-2 border-b border-dark-border">VIP</a>
+                <a href="#bonus" class="nav-link hover:text-accent-gold transition py-2 border-b border-dark-border">Promozioni</a>
+                <a href="#giochi" class="nav-link hover:text-accent-gold transition py-2 border-b border-dark-border">Giochi</a>
+                <a href="#pagamenti" class="nav-link hover:text-accent-gold transition py-2 border-b border-dark-border">Pagamenti</a>
+                <a href="#faq" class="nav-link hover:text-accent-gold transition py-2 border-b border-dark-border">FAQ</a>
+            </nav>
+            <div class="mt-12">
+                <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=mobile_menu_cta" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary w-full text-center py-4 block nav-link" data-content-id="mobile_menu_cta">
+                    Gioca ora
+                </a>
+            </div>
+        </div>
     </div>
-  </header>
 
-  <!-- Mobile Menu -->
-  <div id="menu" class="menu" role="dialog" aria-modal="true" aria-labelledby="menu-title">
-    <div class="container" style="padding-top:96px; padding-bottom:24px;">
-      <h2 id="menu-title" class="sr-only">Menu</h2>
-      <nav>
-        <a href="#vip" onclick="closeMenu()">VIP</a>
-        <a href="#bonus" onclick="closeMenu()">Promozioni</a>
-        <a href="#giochi" onclick="closeMenu()">Giochi</a>
-        <a href="#pagamenti" onclick="closeMenu()">Pagamenti</a>
-        <a href="#faq" onclick="closeMenu()">FAQ</a>
-      </nav>
-      <div class="mt-3">
-        <a id="menuCta" class="btn btn-primary btn-pulse shine">Gioca ora</a>
-      </div>
-    </div>
-  </div>
+    <main class="pt-16 md:pt-20">
 
-  <main>
-    <!-- HERO -->
-    <section id="hero" class="hero">
-      <div class="blob" aria-hidden="true"></div>
-      <div class="container center" style="position:relative; z-index:1;">
-        <h1 class="mb-0">
-          <span>Pagamenti lampo.</span>
-          <span class="gold-gradient">VIP reale.</span>
-          <span>Cripto senza limiti.</span>
-        </h1>
-        <p class="lead">Gioca da high-roller con prelievi veloci e servizio dedicato 24/7.</p>
-        <div class="row centered mt-2" style="gap:14px">
-          <a id="heroCta" class="btn btn-primary btn-pulse shine">✨ Gioca ora</a>
-          <a class="btn btn-secondary" href="#vip">Scopri il VIP</a>
-        </div>
-        <p class="microtrust mt-3"><span aria-hidden="true">✔</span> 18+ • Gioca responsabilmente • Termini si applicano</p>
-      </div>
-    </section>
+        <section id="hero" class="relative overflow-hidden pt-10 pb-20 md:pt-16 md:pb-28">
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/3 w-[800px] h-[600px] bg-accent-gold/10 rounded-full blur-3xl pointer-events-none opacity-70" aria-hidden="true"></div>
 
-    <!-- MICRO-PROOF -->
-    <section class="surface">
-      <div class="container">
-        <p class="center" style="color:var(--muted); font-style:italic; font-weight:700;">«Milioni pagati ogni mese»</p>
-        <div class="grid grid-3 mt-3">
-          <div class="glass card centered"><span class="badge">⚡ <span>Prelievi veloci</span></span></div>
-          <div class="glass card centered"><span class="badge">₿ <span>BTC / ETH / USDT</span></span></div>
-          <div class="glass card centered"><span class="badge">🛡️ <span>VIP reale 24/7</span></span></div>
-        </div>
-      </div>
-    </section>
+            <div class="container relative z-10 text-center animate-fadeIn">
+                <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight mb-6">
+                    Pagamenti lampo.
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-gold to-yellow-200 block"> VIP reale.</span>
+                    Cripto senza limiti.
+                </h1>
+                <p class="text-xl md:text-2xl text-text-secondary mb-10 max-w-3xl mx-auto">
+                    Gioca da high-roller con prelievi veloci e servizio dedicato 24/7.
+                </p>
 
-    <!-- VIP -->
-    <section id="vip">
-      <div class="container">
-        <h2 class="center">Esperienza <span class="gold-gradient">VIP per High-Roller</span></h2>
-        <div class="grid grid-3 mt-3">
-          <div class="glass card">
-            <h3>Manager Personale</h3>
-            <p style="color:var(--muted)">Accesso dedicato al tuo VIP manager, priorità assoluta e soluzioni su misura.</p>
-          </div>
-          <div class="glass card">
-            <h3>Limiti Elevati</h3>
-            <p style="color:var(--muted)">Puntate alte e prelievi importanti — perfetto per volumi seri.</p>
-          </div>
-          <div class="glass card">
-            <h3>Cashback & Reload</h3>
-            <p style="color:var(--muted)">Offerte personalizzate, cashback settimanali. T&amp;C si applicano.</p>
-          </div>
-        </div>
-        <div class="center mt-3">
-          <a id="vipCta" class="btn btn-primary shine">Entra nel Club VIP</a>
-        </div>
-      </div>
-    </section>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-12">
+                    <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=hero_primary" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary" data-content-id="hero_primary">
+                        Gioca ora
+                    </a>
+                    <a href="#vip" class="cta-secondary" data-content-id="hero_secondary">
+                        Scopri il VIP
+                    </a>
+                </div>
 
-    <!-- BONUS -->
-    <section id="bonus" class="surface">
-      <div class="container">
-        <h2 class="center">Promozioni e Bonus</h2>
-        <p class="center" style="color:var(--muted)">Offerte chiare e vantaggiose per l’Italia — leggi sempre i termini.</p>
-        <div class="grid grid-3 mt-3">
-          <div class="glass card glow">
-            <h3>Pacchetto di Benvenuto</h3>
-            <p class="mt-2" style="color:var(--muted)">Bonus sui primi depositi e free spins.</p>
-            <a id="bonusWelcome" class="btn btn-primary mt-3">Richiedi il Bonus</a>
-            <p style="color:var(--muted); font-size:12px" class="mt-2">T&amp;C si applicano. 18+.</p>
-          </div>
-          <div class="glass card glow shine" style="border:2px solid rgba(212,175,55,.5)">
-            <h3>Ricompense VIP</h3>
-            <p class="mt-2" style="color:var(--muted)">Cashback esclusivo e reload personalizzati.</p>
-            <a id="bonusVip" class="btn btn-primary mt-3">Scopri le Offerte VIP</a>
-            <p style="color:var(--muted); font-size:12px" class="mt-2">T&amp;C si applicano. 18+.</p>
-          </div>
-          <div class="glass card glow">
-            <h3>Tornei Settimanali</h3>
-            <p class="mt-2" style="color:var(--muted)">Competi su slot e tavoli per montepremi extra.</p>
-            <a id="bonusTournaments" class="btn btn-primary mt-3">Vedi i Tornei</a>
-            <p style="color:var(--muted); font-size:12px" class="mt-2">T&amp;C si applicano. 18+.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+                <p class="text-sm text-text-secondary opacity-70 flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4 text-green-500" aria-hidden="true"><use xlink:href="#icon-shield-check"></use></svg>
+                    18+ • Gioca responsabilmente • Termini si applicano
+                </p>
+            </div>
+        </section>
 
-    <!-- GIOCHI (без картинок — эмоциональные ярлыки) -->
-    <section id="giochi">
-      <div class="container">
-        <h2 class="center">Giochi & Provider Leader</h2>
-        <div class="grid grid-3 mt-3">
-          <div class="game"><strong>Book of Dead</strong><p class="mt-2" style="color:var(--muted)">Slot • Volatilità media</p><a data-game="1" class="btn btn-primary mt-2">Gioca Ora</a></div>
-          <div class="game"><strong>Lightning Roulette</strong><p class="mt-2" style="color:var(--muted)">Live • Moltiplicatori</p><a data-game="2" class="btn btn-primary mt-2">Gioca Ora</a></div>
-          <div class="game"><strong>Starburst</strong><p class="mt-2" style="color:var(--muted)">Slot • Classico</p><a data-game="3" class="btn btn-primary mt-2">Gioca Ora</a></div>
-          <div class="game"><strong>Blackjack VIP</strong><p class="mt-2" style="color:var(--muted)">Tavolo • High-stakes</p><a data-game="4" class="btn btn-primary mt-2">Gioca Ora</a></div>
-          <div class="game"><strong>Gonzo’s Quest</strong><p class="mt-2" style="color:var(--muted)">Slot • Avalanche</p><a data-game="5" class="btn btn-primary mt-2">Gioca Ora</a></div>
-          <div class="game"><strong>Crazy Time</strong><p class="mt-2" style="color:var(--muted)">Live • Game show</p><a data-game="6" class="btn btn-primary mt-2">Gioca Ora</a></div>
-        </div>
-      </div>
-    </section>
+        <section id="trust" class="py-12 bg-dark-surface border-y border-dark-border">
+            <div class="container">
+                <p class="text-center text-lg font-semibold text-text-secondary mb-8 italic">
+                    «Milioni pagati ogni mese»
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <svg class="w-10 h-10 mb-3 text-accent-gold" aria-hidden="true"><use xlink:href="#icon-bolt"></use></svg>
+                        <p class="font-medium">Velocità Prelievi</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <svg class="w-10 h-10 mb-3 text-accent-gold" aria-hidden="true"><use xlink:href="#icon-currency-dollar"></use></svg>
+                        <p class="font-medium">Cripto (BTC/ETH/USDT)</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <svg class="w-10 h-10 mb-3 text-accent-gold" aria-hidden="true"><use xlink:href="#icon-user-group"></use></svg>
+                        <p class="font-medium">Supporto 24/7</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <svg class="w-10 h-10 mb-3 text-accent-gold" aria-hidden="true"><use xlink:href="#icon-star"></use></svg>
+                        <p class="font-medium">Tornei Esclusivi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- PAGAMENTI -->
-    <section id="pagamenti" class="surface">
-      <div class="container">
-        <h2>Pagamenti rapidi e <span class="gold-gradient">cripto sicure</span></h2>
-        <p style="color:var(--muted)">Deposita e preleva in modo rapido con le principali criptovalute oppure usa metodi tradizionali. La priorità è la velocità — sempre nel rispetto delle verifiche necessarie.</p>
-        <div class="glass card mt-3">
-          <strong>Tempi medi di prelievo: rapidi</strong>
-          <div style="color:var(--muted); font-size:14px" class="mt-2">Possono essere richieste verifiche KYC/AML.</div>
-        </div>
-        <div class="grid grid-2 mt-3">
-          <div>
-            <h3>Cripto</h3>
-            <p style="color:var(--muted)">Bitcoin (BTC) • Ethereum (ETH) • Tether (USDT) • Litecoin (LTC) • Dogecoin (DOGE)</p>
-          </div>
-          <div>
-            <h3>FIAT</h3>
-            <p style="color:var(--muted)">VISA • Mastercard • Skrill • Neteller • Bonifico bancario</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <section id="vip" class="py-20 md:py-28">
+            <div class="container">
+                <h2 class="text-4xl md:text-5xl font-bold font-display text-center mb-16">
+                    Esperienza <span class="text-accent-gold">VIP per High-Roller</span>
+                </h2>
 
-    <!-- FAQ -->
-    <section id="faq">
-      <div class="container">
-        <h2 class="center">Domande Frequenti (FAQ)</h2>
-        <div class="glass card">
-          <details>
-            <summary><strong>Registrazione necessaria?</strong></summary>
-            <p style="color:var(--muted)">Sì, è richiesta per giocare con denaro reale/cripto. Età 18+.</p>
-          </details>
-          <details>
-            <summary><strong>Tempi dei prelievi?</strong></summary>
-            <p style="color:var(--muted)">Generalmente veloci (specie in cripto). Variano per metodo e KYC.</p>
-          </details>
-          <details>
-            <summary><strong>Limiti VIP?</strong></summary>
-            <p style="color:var(--muted)">Limiti elevati, gestiti con il manager personale.</p>
-          </details>
-          <details>
-            <summary><strong>Come diventare VIP?</strong></summary>
-            <p style="color:var(--muted)">Di solito su invito, in base al volume di gioco/depositi.</p>
-          </details>
-        </div>
-        <p class="center mt-3" style="color:var(--muted); font-size:13px">18+ • Gioca responsabilmente • Termini si applicano</p>
-      </div>
-    </section>
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="glass-card p-8 transition duration-300 hover:shadow-neon-subtle hover:border-accent-gold/50">
+                        <svg class="w-8 h-8 mb-4 text-accent-gold" aria-hidden="true"><use xlink:href="#icon-user-group"></use></svg>
+                        <h3 class="text-2xl font-bold mb-4">Manager Personale</h3>
+                        <p class="text-text-secondary">
+                            Accesso dedicato 24/7 al tuo VIP manager. Livelli VIP personalizzati e risoluzione prioritaria.
+                        </p>
+                    </div>
 
-    <!-- CTA Finale -->
-    <section>
-      <div class="container centered">
-        <a id="finalCta" class="btn btn-primary btn-pulse shine" style="padding:14px 22px; font-size:18px">
-          ✨ Inizia Ora — BitStarz
-          <span class="sparkles" aria-hidden="true"></span>
+                    <div class="glass-card p-8 transition duration-300 hover:shadow-neon-subtle hover:border-accent-gold/50">
+                        <svg class="w-8 h-8 mb-4 text-accent-gold" aria-hidden="true"><use xlink:href="#icon-bolt"></use></svg>
+                        <h3 class="text-2xl font-bold mb-4">Limiti Elevati</h3>
+                        <p class="text-text-secondary">
+                            Goditi limiti di puntata massimi aumentati e prelievi quasi illimitati. Ideale per volumi importanti.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-8 transition duration-300 hover:shadow-neon-subtle hover:border-accent-gold/50">
+                        <svg class="w-8 h-8 mb-4 text-accent-gold" aria-hidden="true"><use xlink:href="#icon-clock"></use></svg>
+                        <h3 class="text-2xl font-bold mb-4">Cashback e Reload</h3>
+                        <p class="text-text-secondary">
+                            Piani bonus personalizzati, cashback settimanali e bonus di ricarica esclusivi (Termini si applicano).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-16">
+                    <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=vip_cta" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary" data-content-id="vip_cta">
+                        Entra nel Club VIP
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="bonus" class="py-20 md:py-28 bg-dark-bg border-t border-dark-border">
+            <div class="container">
+                <h2 class="text-4xl md:text-5xl font-bold font-display text-center mb-6">
+                    Promozioni e Bonus
+                </h2>
+                <p class="text-center text-text-secondary mb-16 max-w-3xl mx-auto">
+                    Offerte chiare e vantaggiose per i giocatori italiani. Leggi sempre i termini applicabili.
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-8">
+
+                    <div class="glass-card p-8 flex flex-col h-full transition duration-300 hover:border-accent-gold/30">
+                        <svg class="w-10 h-10 mb-4 text-accent-gold" aria-hidden="true"><use xlink:href="#icon-gift"></use></svg>
+                        <h3 class="text-2xl font-bold mb-4">Pacchetto di Benvenuto</h3>
+                        <p class="text-text-secondary mb-6 flex-grow">
+                            Inizia la tua esperienza con un bonus sui primi depositi e giri gratuiti (free spins) su slot selezionate.
+                        </p>
+                        <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=bonus_welcome" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary mt-auto w-full text-center block" data-content-id="bonus_welcome">
+                            Richiedi il Bonus
+                        </a>
+                        <p class="text-xs text-center mt-3 text-text-secondary/60">T&C si applicano. 18+.</p>
+                    </div>
+
+                    <div class="glass-card p-8 flex flex-col h-full border-2 border-accent-gold shadow-neon-subtle">
+                        <svg class="w-10 h-10 mb-4 text-accent-gold" aria-hidden="true"><use xlink:href="#icon-star"></use></svg>
+                        <h3 class="text-2xl font-bold mb-4">Ricompense VIP</h3>
+                        <p class="text-text-secondary mb-6 flex-grow">
+                        Cashback esclusivo, bonus di ricarica (reload) e offerte personalizzate per i membri del club VIP.
+                        </p>
+                        <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=bonus_vip" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary mt-auto w-full text-center block" data-content-id="bonus_vip">
+                            Scopri le Offerte VIP
+                        </a>
+                        <p class="text-xs text-center mt-3 text-text-secondary/60">T&C si applicano. 18+.</p>
+                    </div>
+
+                    <div class="glass-card p-8 flex flex-col h-full transition duration-300 hover:border-accent-gold/30">
+                        <svg class="w-10 h-10 mb-4 text-accent-gold" aria-hidden="true"><use xlink:href="#icon-calendar"></use></svg>
+                        <h3 class="text-2xl font-bold mb-4">Tornei Settimanali</h3>
+                        <p class="text-text-secondary mb-6 flex-grow">
+                        Partecipa a tornei di slot e giochi da tavolo per competere per montepremi aggiuntivi.
+                        </p>
+                        <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=bonus_tournaments" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary mt-auto w-full text-center block" data-content-id="bonus_tournaments">
+                            Vedi i Tornei
+                        </a>
+                        <p class="text-xs text-center mt-3 text-text-secondary/60">T&C si applicano. 18+.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+         <section id="giochi" class="py-20 md:py-28 bg-dark-surface">
+            <div class="container">
+                <h2 class="text-4xl md:text-5xl font-bold font-display text-center mb-16">
+                    Giochi e Provider Leader
+                </h2>
+
+                <div class="flex flex-wrap justify-center gap-6 mb-16 opacity-80">
+                    <div class="bg-white/10 p-4 rounded-lg shadow-md w-32 h-16 flex items-center justify-center transition hover:opacity-100 grayscale hover:grayscale-0">
+                        <span class="text-sm font-medium">PRAGMATIC</span>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-lg shadow-md w-32 h-16 flex items-center justify-center transition hover:opacity-100 grayscale hover:grayscale-0">
+                        <span class="text-sm font-medium">EVOLUTION</span>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-lg shadow-md w-32 h-16 flex items-center justify-center transition hover:opacity-100 grayscale hover:grayscale-0">
+                        <span class="text-sm font-medium">NETENT</span>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-lg shadow-md w-32 h-16 flex items-center justify-center transition hover:opacity-100 grayscale hover:grayscale-0">
+                        <span class="text-sm font-medium">PLAYNGO</span>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-lg shadow-md w-32 h-16 flex items-center justify-center transition hover:opacity-100 grayscale hover:grayscale-0">
+                        <span class="text-sm font-medium">QUICKSPIN</span>
+                    </div>
+                     <div class="bg-white/10 p-4 rounded-lg shadow-md w-32 h-16 flex items-center justify-center transition hover:opacity-100 grayscale hover:grayscale-0">
+                        <span class="text-sm font-medium">YGGDRASIL</span>
+                    </div>
+                </div>
+
+                <div id="game-filters" class="flex justify-center gap-4 mb-8 flex-wrap">
+                    <button data-filter="all" class="filter-btn px-6 py-2 rounded-full font-semibold transition">Tutti</button>
+                    <button data-filter="slot" class="filter-btn px-6 py-2 rounded-full font-semibold transition">Slot</button>
+                    <button data-filter="live" class="filter-btn px-6 py-2 rounded-full font-semibold transition">Live Casino</button>
+                    <button data-filter="table" class="filter-btn px-6 py-2 rounded-full font-semibold transition">Tavolo</button>
+                </div>
+
+                <div id="game-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <div class="game-card group relative rounded-lg overflow-hidden aspect-[3/4] transition transform hover:scale-105 hover:shadow-neon-subtle bg-dark-border" data-type="slot">
+                        <div class="w-full h-full bg-gray-700 flex items-center justify-center text-xs text-gray-500" aria-hidden="true">Slot</div>
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                             <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=game_1" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary text-sm px-4 py-2" data-content-id="game_1">
+                                Gioca Ora
+                            </a>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-3 bg-black/70">
+                            <p class="text-sm font-semibold truncate">Book of Dead</p>
+                        </div>
+                    </div>
+                     <div class="game-card group relative rounded-lg overflow-hidden aspect-[3/4] transition transform hover:scale-105 hover:shadow-neon-subtle bg-dark-border" data-type="live">
+                        <div class="w-full h-full bg-gray-600 flex items-center justify-center text-xs text-gray-500" aria-hidden="true">Live</div>
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                             <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=game_2" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary text-sm px-4 py-2" data-content-id="game_2">
+                                Gioca Ora
+                            </a>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-3 bg-black/70">
+                            <p class="text-sm font-semibold truncate">Lightning Roulette</p>
+                        </div>
+                    </div>
+                    <div class="game-card group relative rounded-lg overflow-hidden aspect-[3/4] transition transform hover:scale-105 hover:shadow-neon-subtle bg-dark-border" data-type="slot">
+                        <div class="w-full h-full bg-gray-700 flex items-center justify-center text-xs text-gray-500" aria-hidden="true">Slot</div>
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                             <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=game_3" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary text-sm px-4 py-2" data-content-id="game_3">
+                                Gioca Ora
+                            </a>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-3 bg-black/70">
+                            <p class="text-sm font-semibold truncate">Starburst</p>
+                        </div>
+                    </div>
+                    <div class="game-card group relative rounded-lg overflow-hidden aspect-[3/4] transition transform hover:scale-105 hover:shadow-neon-subtle bg-dark-border" data-type="table">
+                        <div class="w-full h-full bg-gray-600 flex items-center justify-center text-xs text-gray-500" aria-hidden="true">Table</div>
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                             <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=game_4" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary text-sm px-4 py-2" data-content-id="game_4">
+                                Gioca Ora
+                            </a>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-3 bg-black/70">
+                            <p class="text-sm font-semibold truncate">Blackjack VIP</p>
+                        </div>
+                    </div>
+                    <div class="game-card group relative rounded-lg overflow-hidden aspect-[3/4] transition transform hover:scale-105 hover:shadow-neon-subtle bg-dark-border" data-type="slot">
+                        <div class="w-full h-full bg-gray-700 flex items-center justify-center text-xs text-gray-500" aria-hidden="true">Slot</div>
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                             <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=game_5" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary text-sm px-4 py-2" data-content-id="game_5">
+                                Gioca Ora
+                            </a>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-3 bg-black/70">
+                            <p class="text-sm font-semibold truncate">Gonzo's Quest</p>
+                        </div>
+                    </div>
+                    <div class="game-card group relative rounded-lg overflow-hidden aspect-[3/4] transition transform hover:scale-105 hover:shadow-neon-subtle bg-dark-border" data-type="live">
+                        <div class="w-full h-full bg-gray-600 flex items-center justify-center text-xs text-gray-500" aria-hidden="true">Live</div>
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                             <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=game_6" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary text-sm px-4 py-2" data-content-id="game_6">
+                                Gioca Ora
+                            </a>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-3 bg-black/70">
+                            <p class="text-sm font-semibold truncate">Crazy Time</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="pagamenti" class="py-20 md:py-28 bg-dark-bg">
+            <div class="container">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold font-display mb-6">
+                            Pagamenti Rapidi e <span class="text-accent-gold">Cripto Sicuri</span>
+                        </h2>
+                        <p class="text-lg text-text-secondary mb-8">
+                            Deposita e preleva istantaneamente con le principali criptovalute o utilizza metodi tradizionali. La nostra priorità è la velocità.
+                        </p>
+                        <div class="glass-card p-6 inline-flex items-center gap-4">
+                            <svg class="w-8 h-8 text-accent-gold" aria-hidden="true"><use xlink:href="#icon-bolt"></use></svg>
+                            <div>
+                                <p class="text-2xl font-bold">Tempi medi dei prelievi: Rapidi</p>
+                                <p class="text-sm text-text-secondary">(Senza verifiche aggiuntive)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Criptovalute Supportate</h3>
+                            <div class="flex flex-wrap gap-4">
+                                <div class="flex items-center gap-3 bg-dark-surface p-4 rounded-lg border border-dark-border shadow-md">
+                                    <span class="text-sm font-medium">Bitcoin (BTC)</span>
+                                </div>
+                                <div class="flex items-center gap-3 bg-dark-surface p-4 rounded-lg border border-dark-border shadow-md">
+                                    <span class="text-sm font-medium">Ethereum (ETH)</span>
+                                </div>
+                                <div class="flex items-center gap-3 bg-dark-surface p-4 rounded-lg border border-dark-border shadow-md">
+                                    <span class="text-sm font-medium">Tether (USDT)</span>
+                                </div>
+                                 <div class="flex items-center gap-3 bg-dark-surface p-4 rounded-lg border border-dark-border shadow-md">
+                                    <span class="text-sm font-medium">Litecoin (LTC)</span>
+                                </div>
+                                <div class="flex items-center gap-3 bg-dark-surface p-4 rounded-lg border border-dark-border shadow-md">
+                                    <span class="text-sm font-medium">Dogecoin (DOGE)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Metodi Tradizionali (FIAT)</h3>
+                            <div class="flex flex-wrap gap-4 opacity-80">
+                                <div class="flex items-center gap-3 bg-dark-surface p-3 rounded-lg border border-dark-border shadow-md">
+                                    <span class="text-sm font-medium">VISA</span>
+                                </div>
+                                <div class="flex items-center gap-3 bg-dark-surface p-3 rounded-lg border border-dark-border shadow-md">
+                                    <span class="text-sm font-medium">Mastercard</span>
+                                </div>
+                                <div class="flex items-center gap-3 bg-dark-surface p-3 rounded-lg border border-dark-border shadow-md">
+                                    <span class="text-sm font-medium">Skrill</span>
+                                </div>
+                                <div class="flex items-center gap-3 bg-dark-surface p-3 rounded-lg border border-dark-border shadow-md">
+                                    <span class="text-sm font-medium">Neteller</span>
+                                </div>
+                                 <div class="flex items-center gap-3 bg-dark-surface p-3 rounded-lg border border-dark-border shadow-md">
+                                    <span class="text-sm font-medium">Bank Transfer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="mobile" class="py-20 md:py-28 bg-dark-surface">
+            <div class="container">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+
+                    <div class="relative flex justify-center">
+                        <div class="relative z-10 w-64 h-[520px] border-[10px] border-black rounded-[40px] shadow-2xl overflow-hidden bg-dark-bg">
+                            <div class="w-full h-full bg-gray-800 flex items-center justify-center text-xs text-gray-500">Mobile Screenshot Placeholder</div>
+                        </div>
+                        <div class="absolute top-10 -right-10 w-64 h-[520px] border-[10px] border-gray-800 rounded-[40px] shadow-xl opacity-50 hidden lg:block transform rotate-6">
+                             <div class="w-full h-full bg-gray-700"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold font-display mb-6">
+                            Esperienza <span class="text-accent-gold">Mobile-First</span>
+                        </h2>
+                        <p class="text-lg text-text-secondary mb-8">
+                            Gioca ovunque tu sia. Il nostro sito è ottimizzato per smartphone e tablet (iOS/Android), garantendo velocità e fluidità senza download di app.
+                        </p>
+                        <ul class="list-disc list-inside space-y-3 text-text-primary mb-10 ml-4">
+                            <li>Interfaccia reattiva e veloce</li>
+                            <li>Accesso completo a giochi e pagamenti Cripto</li>
+                            <li>Supporto VIP disponibile via chat mobile</li>
+                        </ul>
+                         <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=mobile_experience_cta" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary" data-content-id="mobile_experience_cta">
+                            Prova su Mobile
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="py-20 md:py-28 bg-dark-bg">
+            <div class="container">
+                <h2 class="text-4xl md:text-5xl font-bold font-display text-center mb-16">
+                    Domande Frequenti (FAQ)
+                </h2>
+                <div id="faq-accordion" class="max-w-4xl mx-auto bg-dark-surface/70 backdrop-blur-md rounded-xl shadow-xl overflow-hidden">
+
+                    <div class="border-b border-dark-border faq-item">
+                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left font-semibold text-lg hover:bg-dark-surface focus:outline-none focus:ring-2 focus:ring-accent-gold" aria-expanded="false" aria-controls="faq-answer-1" data-faq-id="1">
+                            <span>È necessaria la registrazione per giocare su BitStarz?</span>
+                            <svg class="w-5 h-5 transition-transform duration-300 text-text-secondary faq-icon" aria-hidden="true"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </button>
+                        <div id="faq-answer-1" class="faq-content max-h-0 opacity-0" role="region">
+                            <p class="p-6 pt-0 text-text-secondary">Sì, per giocare con denaro reale o criptovalute è necessario completare un rapido processo di registrazione e verificare l'età (18+).</p>
+                        </div>
+                    </div>
+
+                     <div class="border-b border-dark-border faq-item">
+                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left font-semibold text-lg hover:bg-dark-surface focus:outline-none focus:ring-2 focus:ring-accent-gold" aria-expanded="false" aria-controls="faq-answer-2" data-faq-id="2">
+                            <span>Quali sono i tempi medi per i prelievi?</span>
+                            <svg class="w-5 h-5 transition-transform duration-300 text-text-secondary faq-icon" aria-hidden="true"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </button>
+                        <div id="faq-answer-2" class="faq-content max-h-0 opacity-0" role="region">
+                            <p class="p-6 pt-0 text-text-secondary">I prelievi, specialmente in criptovaluta, sono generalmente elaborati molto rapidamente. I tempi possono variare in base al metodo e alla necessità di verifiche KYC.</p>
+                        </div>
+                    </div>
+
+                     <div class="border-b border-dark-border faq-item">
+                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left font-semibold text-lg hover:bg-dark-surface focus:outline-none focus:ring-2 focus:ring-accent-gold" aria-expanded="false" aria-controls="faq-answer-3" data-faq-id="3">
+                            <span>Ci sono limiti sui prelievi per i giocatori VIP?</span>
+                            <svg class="w-5 h-5 transition-transform duration-300 text-text-secondary faq-icon" aria-hidden="true"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </button>
+                        <div id="faq-answer-3" class="faq-content max-h-0 opacity-0" role="region">
+                            <p class="p-6 pt-0 text-text-secondary">I giocatori VIP beneficiano di limiti di prelievo significativamente più elevati o, in alcuni casi, rimossi, gestiti dal loro manager personale.</p>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-dark-border faq-item">
+                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left font-semibold text-lg hover:bg-dark-surface focus:outline-none focus:ring-2 focus:ring-accent-gold" aria-expanded="false" aria-controls="faq-answer-4" data-faq-id="4">
+                            <span>Come posso diventare un membro VIP?</span>
+                            <svg class="w-5 h-5 transition-transform duration-300 text-text-secondary faq-icon" aria-hidden="true"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </button>
+                        <div id="faq-answer-4" class="faq-content max-h-0 opacity-0" role="region">
+                            <p class="p-6 pt-0 text-text-secondary">L'accesso al Club VIP è solitamente su invito, basato sul volume di gioco e sui depositi. Puoi contattare il supporto per maggiori dettagli sui requisiti.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left font-semibold text-lg hover:bg-dark-surface focus:outline-none focus:ring-2 focus:ring-accent-gold" aria-expanded="false" aria-controls="faq-answer-5" data-faq-id="5">
+                            <span>BitStarz è sicuro e regolamentato in Italia?</span>
+                            <svg class="w-5 h-5 transition-transform duration-300 text-text-secondary faq-icon" aria-hidden="true"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </button>
+                        <div id="faq-answer-5" class="faq-content max-h-0 opacity-0" role="region">
+                            <p class="p-6 pt-0 text-text-secondary">BitStarz opera sotto licenza internazionale. I giocatori italiani sono accettati, ma è responsabilità del giocatore informarsi sulle normative locali. Gioca responsabilmente.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black mt-20 border-t border-dark-border pt-12 pb-24 md:py-12">
+        <div class="container text-center text-sm text-text-secondary">
+             <div class="flex justify-center items-center gap-6 mb-6">
+                <span class="text-xl font-bold border-2 border-red-600 rounded-full w-10 h-10 flex items-center justify-center">18+</span>
+                <span class="font-semibold text-lg">Gioca responsabilmente</span>
+            </div>
+            <p class="mb-6">Attenzione: Il gioco d'azzardo può creare dipendenza patologica. Gioca con moderazione.</p>
+
+            <nav class="flex justify-center space-x-6 mb-6">
+                <a href="#privacy" class="hover:text-white">Privacy Policy</a>
+                <a href="#cookie" class="hover:text-white">Cookie Policy</a>
+                <a href="mailto:info@example.com" class="hover:text-white">Contatti</a>
+            </nav>
+
+             <p class="text-xs italic max-w-4xl mx-auto mb-6">
+                Disclaimer: Questo sito informativo non appartiene a BitStarz ed è gestito da partner indipendenti a scopo pubblicitario. Termini e condizioni dell'operatore si applicano.
+            </p>
+
+            <p class="mt-4">© 2025. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-dark-surface p-4 border-t-2 border-accent-gold shadow-2xl">
+        <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=sticky_mobile_cta" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary w-full text-center py-4 block" data-content-id="sticky_mobile_cta">
+            Gioca ora
         </a>
-      </div>
-    </section>
-  </main>
+    </div>
 
-  <!-- Sticky CTA (mobile) -->
-  <div class="sticky">
-    <a id="stickyCta" class="btn btn-primary btn-pulse shine" style="display:block; text-align:center">Gioca ora</a>
-  </div>
+     <div id="consent-banner" class="fixed bottom-[72px] md:bottom-4 left-4 right-4 z-50 max-w-4xl mx-auto hidden">
+        <div class="glass-card p-6 shadow-2xl border-accent-gold/50">
+            <h4 class="text-lg font-bold mb-3 text-white">Consenso Cookie (GDPR)</h4>
+            <p class="text-sm text-text-secondary mb-6">
+                Utilizziamo cookie per analizzare il traffico (GA4) e personalizzare la pubblicità (Meta Pixel). Scegliendo 'Accetta', acconsenti all'uso di queste tecnologie.
+            </p>
+            <div class="flex justify-end gap-4">
+                <button id="consent-reject" class="px-6 py-2 rounded-lg font-semibold transition hover:text-white text-text-secondary border border-dark-border hover:bg-dark-border">
+                    Rifiuta
+                </button>
+                <button id="consent-accept" class="px-6 py-2 rounded-lg font-semibold transition bg-accent-gold text-dark-bg hover:opacity-90 shadow-md">
+                    Accetta Tutto
+                </button>
+            </div>
+        </div>
+    </div>
 
-<script>
-  // ========= Affiliate =========
-  const AFFILIATE_BASE_URL = "https://bzstarz.com/b269d9fb2";
-  const DEFAULT_UTM = { utm_source:'landing', utm_medium:'cta', utm_campaign:'it_hr_2025' };
-  function getAffiliateLink(contentId){
-    const p = new URLSearchParams({ ...DEFAULT_UTM, utm_content: contentId });
-    return AFFILIATE_BASE_URL + "?" + p.toString();
-  }
-  function wireCta(id, contentId){
-    const el = document.getElementById(id);
-    if(!el) return;
-    el.href = getAffiliateLink(contentId);
-    el.target = "_blank";
-    el.rel = "nofollow noopener noreferrer";
-    el.addEventListener('click', (e) => {
-      // sparks!
-      burstSparks(el);
-      console.log('outbound_click_affiliate', { button_id: contentId });
-    });
-  }
-  // buttons
-  wireCta("heroCta","hero_primary");
-  wireCta("menuCta","mobile_menu_cta");
-  wireCta("vipCta","vip_cta");
-  wireCta("bonusWelcome","bonus_welcome");
-  wireCta("bonusVip","bonus_vip");
-  wireCta("bonusTournaments","bonus_tournaments");
-  wireCta("finalCta","footer_cta");
-  wireCta("stickyCta","sticky_mobile_cta");
-  // game tags
-  document.querySelectorAll('[data-game]').forEach(btn=>{
-    const id = btn.getAttribute('data-game');
-    btn.href = getAffiliateLink('game_'+id);
-    btn.target = "_blank";
-    btn.rel = "nofollow noopener noreferrer";
-    btn.addEventListener('click', ()=>burstSparks(btn));
-  });
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "BitStarz IT Review",
+            "url": "https://www.your-landing-domain-it.com"
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "È necessaria la registrazione per giocare su BitStarz?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Sì, per giocare con denaro reale o criptovalute è necessario completare un rapido processo di registrazione e verificare l'età (18+)."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Quali sono i tempi medi per i prelievi?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "I prelievi, specialmente in criptovaluta, sono generalmente elaborati molto rapidamente. I tempi possono variare in base al metodo e alla necessità di verifiche KYC."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Ci sono limiti sui prelievi per i giocatori VIP?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "I giocatori VIP beneficiano di limiti di prelievo significativamente più elevati o, in alcuni casi, rimossi, gestiti dal loro manager personale."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Come posso diventare un membro VIP?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "L'accesso al Club VIP è solitamente su invito, basato sul volume di gioco e sui depositi. Puoi contattare il supporto per maggiori dettagli sui requisiti."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "BitStarz è sicuro e regolamentato in Italia?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "BitStarz opera sotto licenza internazionale. I giocatori italiani sono accettati, ma è responsabilità del giocatore informarsi sulle normative locali. Gioca responsabilmente."
+                    }
+                }
+            ]
+        }
+    </script>
 
-  // ========= Mobile Menu =========
-  const menu = document.getElementById('menu');
-  const menuBtn = document.getElementById('menuBtn');
-  function openMenu(){ menu.classList.add('open'); menuBtn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
-  function closeMenu(){ menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
-  menuBtn.addEventListener('click', ()=> menu.classList.contains('open') ? closeMenu() : openMenu());
-  menu.addEventListener('click', (e)=>{ if(e.target===menu) closeMenu(); });
-  window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
 
-  // ========= Sparkles on click =========
-  function burstSparks(target){
-    const N = 12;
-    const wrap = target.querySelector('.sparkles') || (()=>{ const s=document.createElement('span'); s.className='sparkles'; target.appendChild(s); return s; })();
-    const rect = target.getBoundingClientRect();
-    for(let i=0;i<N;i++){
-      const sp = document.createElement('span');
-      sp.className = 'spark';
-      const ang = (Math.PI*2/N)*i + (Math.random()*0.5);
-      const dist = 40 + Math.random()*30;
-      sp.style.setProperty('--x', `${Math.cos(ang)*dist}px`);
-      sp.style.setProperty('--y', `${Math.sin(ang)*dist}px`);
-      wrap.appendChild(sp);
-      setTimeout(()=>sp.remove(), 1500);
-    }
-  }
-</script>
+             // --- 1. Аналитика и Consent Mode v2 (ТЗ п.7, п.14) ---
+            // Примечание: Замените ID на реальные перед запуском трафика.
+            const CONSENT_STORAGE_KEY = 'user_consent_v2_it';
+            const GA4_ID = 'G-XXXXXXXXXX';
+            const META_PIXEL_ID = '1234567890';
+
+            // Инициализация GTAG и DataLayer
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+
+            // Функция трекинга событий
+            function trackEvent(eventName, params = {}) {
+                const device = window.innerWidth < 768 ? 'mobile' : 'desktop';
+                const eventParams = { ...params, device };
+                console.log(`Event: ${eventName}`, eventParams);
+
+                if (typeof window.gtag === 'function') {
+                    window.gtag('event', eventName, eventParams);
+                }
+                if (typeof window.fbq === 'function') {
+                     if (eventName === 'outbound_click_affiliate') {
+                        window.fbq('track', 'Lead', eventParams);
+                    } else {
+                        window.fbq('trackCustom', eventName, eventParams);
+                    }
+                }
+            }
+
+             // Управление согласием
+             function updateConsent(settings) {
+                gtag('consent', 'update', settings);
+                localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(settings));
+
+                if (settings.analytics_storage === 'granted') {
+                    loadAnalyticsScripts();
+                }
+            }
+
+            function initializeConsent() {
+                const storedConsent = JSON.parse(localStorage.getItem(CONSENT_STORAGE_KEY) || '{}');
+                const defaultSettings = {
+                    ad_storage: storedConsent.ad_storage || 'denied',
+                    analytics_storage: storedConsent.analytics_storage || 'denied',
+                    ad_user_data: storedConsent.ad_user_data || 'denied',
+                    ad_personalization: storedConsent.ad_personalization || 'denied',
+                    wait_for_update: 500
+                };
+
+                gtag('consent', 'default', defaultSettings);
+
+                if (Object.keys(storedConsent).length === 0) {
+                    document.getElementById('consent-banner').classList.remove('hidden');
+                } else if (defaultSettings.analytics_storage === 'granted') {
+                    loadAnalyticsScripts();
+                }
+            }
+
+            let scriptsLoaded = false;
+            function loadAnalyticsScripts() {
+                if (scriptsLoaded) return;
+                scriptsLoaded = true;
+
+                // Загрузка GA4
+                const gaScript = document.createElement('script');
+                gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`;
+                gaScript.async = true;
+                document.head.appendChild(gaScript);
+
+                gaScript.onload = () => {
+                    gtag('js', new Date());
+                    gtag('config', GA4_ID);
+                    // Инициализация трекинга после загрузки скриптов
+                    trackEvent('view_hero');
+                    initScrollTracking();
+                    initSectionTracking();
+                };
+
+                // Загрузка Meta Pixel
+                !function(f,b,e,v,n,t,s)
+                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)}(window, document,'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+
+                if (typeof window.fbq === 'function') {
+                    fbq('consent', 'grant');
+                    fbq('init', META_PIXEL_ID);
+                    fbq('track', 'PageView');
+                }
+            }
+
+             // Обработчики баннера
+             document.getElementById('consent-accept').addEventListener('click', () => {
+                updateConsent({
+                    ad_storage: 'granted',
+                    analytics_storage: 'granted',
+                    ad_user_data: 'granted',
+                    ad_personalization: 'granted',
+                });
+                document.getElementById('consent-banner').classList.add('hidden');
+            });
+
+            document.getElementById('consent-reject').addEventListener('click', () => {
+                 updateConsent({
+                    ad_storage: 'denied',
+                    analytics_storage: 'denied',
+                    ad_user_data: 'denied',
+                    ad_personalization: 'denied',
+                });
+                document.getElementById('consent-banner').classList.add('hidden');
+            });
+
+            initializeConsent();
+
+             // Трекинг кликов по CTA (ТЗ п.7)
+             document.querySelectorAll('a[data-content-id]').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const contentId = this.getAttribute('data-content-id');
+                    const section = contentId.split('_')[0];
+                    const isInternal = this.getAttribute('href').startsWith('#');
+
+                    if (isInternal) {
+                        trackEvent('internal_navigation', { section_to: this.getAttribute('href'), from: section });
+                    } else {
+                        trackEvent('outbound_click_affiliate', {
+                            section: section,
+                            button_id: contentId,
+                        });
+                        const variant = this.classList.contains('cta-primary') ? 'primary' : 'secondary';
+                        trackEvent(`cta_click_${variant}`, { section: section });
+                    }
+                });
+            });
+
+             // Трекинг глубины скролла (ТЗ п.7)
+             function initScrollTracking() {
+                const trackedScrollDepths = new Set();
+                const depths = [25, 50, 75, 100];
+
+                function handleScroll() {
+                    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    if (scrollHeight <= 0) return;
+
+                    const scrollTop = window.scrollY;
+                    const currentDepth = Math.round((scrollTop / scrollHeight) * 100);
+
+                    depths.forEach(depth => {
+                        if (currentDepth >= depth && !trackedScrollDepths.has(depth)) {
+                            trackEvent(`scroll_${depth}`);
+                            trackedScrollDepths.add(depth);
+                        }
+                    });
+                }
+
+                let ticking = false;
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            handleScroll();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }, { passive: true });
+            }
+
+             // Трекинг видимости секций (ТЗ п.7)
+            function initSectionTracking() {
+                const trackedSections = new Set();
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                const sectionId = entry.target.id;
+                                if (sectionId && !trackedSections.has(sectionId)) {
+                                    // Специальное событие vip_view
+                                    if (sectionId === 'vip') {
+                                        trackEvent('vip_view');
+                                    }
+                                    trackedSections.add(sectionId);
+                                    observer.unobserve(entry.target); // Отслеживаем только один раз
+                                }
+                            }
+                        });
+                    },
+                    { threshold: 0.3 } // Срабатывает, когда 30% секции видно
+                );
+
+                // Наблюдаем за ключевыми секциями
+                const sectionsToObserve = ['vip', 'bonus', 'giochi'];
+                sectionsToObserve.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) observer.observe(element);
+                });
+            }
+
+
+            // --- 2. Мобильное Меню ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIconBars = '<svg class="w-6 h-6" aria-hidden="true"><use xlink:href="#icon-bars"></use></svg>';
+            const menuIconX = '<svg class="w-6 h-6" aria-hidden="true"><use xlink:href="#icon-xmark"></use></svg>';
+
+            const toggleMenu = (isOpen) => {
+                const shouldOpen = isOpen !== undefined ? isOpen : mobileMenu.classList.contains('invisible');
+                mobileMenu.classList.toggle('invisible', !shouldOpen);
+                mobileMenu.classList.toggle('opacity-0', !shouldOpen);
+                mobileMenu.classList.toggle('opacity-100', shouldOpen);
+                menuToggle.setAttribute('aria-expanded', shouldOpen);
+                menuToggle.innerHTML = shouldOpen ? menuIconX : menuIconBars;
+                // Блокировка скролла основного контента при открытом меню
+                document.body.classList.toggle('overflow-hidden', shouldOpen);
+            };
+
+            menuToggle.addEventListener('click', () => toggleMenu());
+
+            // Закрытие меню при клике на ссылку
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => toggleMenu(false));
+            });
+
+            // --- 3. FAQ Аккордеон (ТЗ п.3.8) ---
+            const faqToggles = document.querySelectorAll('.faq-toggle');
+            let openToggle = null;
+
+            faqToggles.forEach((toggle) => {
+                toggle.addEventListener('click', () => {
+                    const content = toggle.nextElementSibling;
+                    const icon = toggle.querySelector('.faq-icon');
+                    const isCurrentlyOpen = toggle.getAttribute('aria-expanded') === 'true';
+                    const faqId = toggle.getAttribute('data-faq-id');
+
+                    // Закрываем предыдущий открытый элемент
+                    if (openToggle && openToggle !== toggle) {
+                        const openContent = openToggle.nextElementSibling;
+                        const openIcon = openToggle.querySelector('.faq-icon');
+                        openToggle.setAttribute('aria-expanded', 'false');
+                        openContent.style.maxHeight = '0px';
+                        openContent.classList.add('opacity-0');
+                        openIcon.classList.remove('rotate-180', 'text-accent-gold');
+                    }
+
+                    if (isCurrentlyOpen) {
+                        // Закрываем текущий элемент
+                        content.style.maxHeight = '0px';
+                        content.classList.add('opacity-0');
+                        toggle.setAttribute('aria-expanded', 'false');
+                        icon.classList.remove('rotate-180', 'text-accent-gold');
+                        openToggle = null;
+                    } else {
+                        // Открываем текущий элемент
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        content.classList.remove('opacity-0');
+                        toggle.setAttribute('aria-expanded', 'true');
+                        icon.classList.add('rotate-180', 'text-accent-gold');
+                        openToggle = toggle;
+                        trackEvent('faq_open', { question_id: faqId });
+                    }
+                });
+            });
+
+            // --- 4. Фильтры Игр (ТЗ п.3.5) ---
+            const filterButtons = document.querySelectorAll('#game-filters .filter-btn');
+            const gameCards = document.querySelectorAll('#game-grid .game-card');
+
+            function updateFilterStyles(activeFilter) {
+                filterButtons.forEach(btn => {
+                    const activeClasses = ['bg-accent-gold', 'text-dark-bg'];
+                    const inactiveClasses = ['bg-dark-surface', 'text-text-primary', 'hover:bg-dark-border'];
+
+                    if (btn.getAttribute('data-filter') === activeFilter) {
+                        btn.classList.add(...activeClasses);
+                        btn.classList.remove(...inactiveClasses);
+                    } else {
+                        btn.classList.remove(...activeClasses);
+                        btn.classList.add(...inactiveClasses);
+                    }
+                });
+            }
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    updateFilterStyles(filter);
+
+                    gameCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-type') === filter) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Инициализация стилей фильтров
+            updateFilterStyles('all');
+        });
+    </script>
+
 </body>
 </html>
