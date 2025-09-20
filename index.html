@@ -1,642 +1,174 @@
-<!DOCTYPE html>
-<html lang="it-IT" class="scroll-smooth antialiased">
+<!doctype html>
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BitStarz ELITE Italia | Accesso VIP: Cashback Senza Requisiti e Prelievi Illimitati</title>
-    <meta name="description" content="Sblocca il livello ELITE di BitStarz. Per High-Rollers Italiani: Manager dedicato 24/7, bonus personalizzati, cashback senza rollover e prelievi istantanei senza limiti.">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.your-landing-domain-it.com" />
-    <meta property="og:title" content="BitStarz ELITE Italia | Accesso VIP: Cashback Senza Requisiti e Prelievi Illimitati" />
-    <meta property="og:description" content="Sblocca il livello ELITE. Per High-Rollers: Manager dedicato, cashback senza rollover e prelievi istantanei senza limiti." />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="it_IT" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    // Палитра "Cyber-Elite 2025": Глубокий черный и неоновый акцент
-                    colors: {
-                        'dark-bg': '#030303',       // Абсолютный черный
-                        'dark-surface': '#101012',
-                        'dark-border': '#222226',
-                        // Яркий, электрический "Neon Gold"
-                        'accent-neon': '#E2D44A',
-                        'accent-dark': '#b0a63a',
-                        'text-primary': '#ffffff',
-                        'text-secondary': '#a0a0ac',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Syne', 'sans-serif'], // Агрессивный заголовочный шрифт
-                    },
-                    // Усиленные неоновые свечения
-                    boxShadow: {
-                        'neon-intense': '0 0 15px rgba(226, 212, 74, 0.6), 0 0 40px rgba(226, 212, 74, 0.2)',
-                    },
-                    // Инновационные анимации
-                     animation: {
-                        fadeIn: 'fadeIn 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards',
-                        // Анимация фона Nebula (вращение и пульсация)
-                        nebulaRotate: 'nebulaRotate 120s linear infinite',
-                        nebulaPulse: 'nebulaPulse 10s ease-in-out infinite alternate',
-                        // Анимация глитча для заголовков
-                        glitch: 'glitch 1s linear infinite',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        nebulaRotate: {
-                            '0%': { transform: 'rotate(0deg)' },
-                            '100%': { transform: 'rotate(360deg)' },
-                        },
-                        nebulaPulse: {
-                            '0%': { opacity: '0.3' },
-                            '100%': { opacity: '0.6' },
-                        },
-                        // Keyframes для Glitch эффекта
-                        glitch: {
-                            '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
-                            '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
-                            '62%': { transform: 'translate(0,0) skew(5deg)' },
-                        },
-                    },
-                },
-                container: {
-                    center: true,
-                    padding: '1rem',
-                },
-            }
-        }
-    </script>
-    <style type="text/tailwindcss">
-        @layer base {
-            body {
-                /* overflow-x-hidden необходим для фоновых эффектов */
-                @apply bg-dark-bg text-text-primary overflow-x-hidden;
-            }
-        }
-        @layer components {
-            /* Компонент "Карточка" с 3D трансформацией (CSS-based) */
-            .interactive-card {
-                @apply bg-dark-surface/70 backdrop-blur-md border border-dark-border shadow-xl rounded-xl transition-all duration-300 transform-gpu;
-                /* Настройка перспективы и стиля трансформации */
-                transform-style: preserve-3d;
-                will-change: transform, box-shadow;
-            }
-            .interactive-card:hover {
-                 @apply border-accent-neon/50 shadow-neon-intense;
-                 /* Легкий 3D наклон и подъем при наведении (упрощенный вариант без JS) */
-                 transform: perspective(1000px) rotateX(2deg) rotateY(2deg) scale(1.02);
-            }
-
-            /* Кнопки CTA - "Заряжающиеся" при наведении */
-            .cta-primary {
-                 @apply relative inline-block px-10 py-4 rounded-lg font-extrabold transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-offset-4 focus:ring-offset-dark-bg text-dark-bg bg-accent-neon shadow-neon-intense focus:ring-accent-neon overflow-hidden;
-            }
-            /* Эффект заполнения слева направо */
-            .cta-primary::before {
-                content: '';
-                @apply absolute inset-0 bg-white/20 transition-transform duration-500 ease-in-out;
-                transform: translateX(-101%);
-            }
-            .cta-primary:hover::before {
-                transform: translateX(0);
-            }
-
-            .cta-secondary {
-                 @apply inline-block px-8 py-4 rounded-lg font-bold transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-4 focus:ring-offset-4 focus:ring-offset-dark-bg bg-transparent border-2 border-text-secondary text-text-primary hover:border-accent-neon hover:text-accent-neon focus:ring-text-secondary;
-            }
-        }
-
-        /* Стили для Glitch эффекта (активируется при наведении на заголовок) */
-        .glitch-effect {
-            position: relative;
-            display: inline-block;
-        }
-        .glitch-effect:hover {
-             animation: glitch 1s linear infinite;
-        }
-        .glitch-effect::before,
-        .glitch-effect::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            overflow: hidden;
-        }
-        .glitch-effect::before {
-            left: 2px;
-            text-shadow: -2px 0 #ff00c1; /* Розовый цвет тени */
-            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-        }
-        .glitch-effect::after {
-            left: -2px;
-            text-shadow: -2px 0 #00ffff; /* Голубой цвет тени */
-            clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
-        }
-         .glitch-effect:hover::before {
-            animation: glitch 1.5s linear infinite reverse;
-        }
-        .glitch-effect:hover::after {
-            animation: glitch 1s linear infinite;
-        }
-
-        /* Анимация для FAQ */
-        .faq-content {
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-            overflow: hidden;
-        }
-    </style>
+  <meta charset="utf-8">
+  <title>Ээ, брат — Захади в казик</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ээ, брат, крипта есть? Слотики любишь? Быстрые выводы за 10 минут? Тогда захади — 100% к первому депу.">
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#111826cc;
+      --gold:#d4af37;
+      --gold-2:#ffdf6f;
+      --text:#e8eef7;
+      --muted:#a7b3c4;
+      --accent:#ffd700;
+      --success:#40d67a;
+      --danger:#ff4d6d;
+      --shadow: 0 0 24px rgba(212,175,55,.35), 0 0 48px rgba(212,175,55,.2);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:
+        radial-gradient(60vw 60vw at 80% -10%, #233045 0%, transparent 60%),
+        radial-gradient(50vw 50vw at -10% 90%, #1a2435 0%, transparent 60%),
+        var(--bg);
+      color:var(--text);
+      font:16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      overflow-x:hidden;
+    }
+    .container{max-width:1000px;margin:0 auto;padding:24px}
+    .hero{
+      padding:64px 20px 32px;
+      text-align:center;
+      position:relative;
+    }
+    .tag{
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      background:linear-gradient(90deg, rgba(212,175,55,.15), rgba(255,223,111,.15));
+      color:var(--gold-2);
+      border:1px solid rgba(212,175,55,.35);
+      box-shadow:inset 0 0 14px rgba(212,175,55,.25);
+      backdrop-filter: blur(4px);
+      margin-bottom:16px;
+      font-weight:600;
+      letter-spacing:.3px;
+    }
+    h1{
+      margin:10px auto 16px;
+      font-size: clamp(28px, 6vw, 56px);
+      line-height:1.05;
+      background: linear-gradient(180deg, var(--gold-2), var(--gold) 60%, #9b7c1b);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow: 0 2px 30px rgba(212,175,55,.18);
+      animation: glow 2.6s ease-in-out infinite;
+    }
+    @keyframes glow{
+      0%,100%{filter: drop-shadow(0 0 0 rgba(212,175,55,.0))}
+      50%{filter: drop-shadow(0 0 18px rgba(212,175,55,.45))}
+    }
+    .pitch{
+      max-width:820px;
+      margin:0 auto 28px;
+      font-size: clamp(16px, 2.6vw, 20px);
+      color:var(--muted);
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,215,0,.09), rgba(255,215,0,.02));
+      border:1px solid rgba(212,175,55,.35);
+      border-radius:16px;
+      padding:18px 16px;
+      margin: 10px auto 24px;
+      max-width:860px;
+      color:#f7f4e6;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35), var(--shadow);
+    }
+    .list{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+    .list li{
+      display:flex;align-items:flex-start;gap:10px;
+      background:rgba(17,24,38,.55);
+      border:1px solid rgba(255,215,0,.12);
+      padding:12px 14px;border-radius:12px;
+    }
+    .li-ico{
+      width:22px;height:22px;flex:0 0 22px;border-radius:50%;
+      background: radial-gradient(40% 40% at 30% 20%, #fff7c2, #ffd772 60%, #b88a13);
+      box-shadow: 0 0 18px rgba(212,175,55,.55), inset 0 0 6px rgba(0,0,0,.3);
+    }
+    .cta-wrap{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:28px auto 8px}
+    .btn{
+      --ring: rgba(255,215,0,.5);
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:10px;
+      padding:16px 22px;
+      font-weight:800;letter-spacing:.3px;text-transform:uppercase;
+      border-radius:14px;border:2px solid #e6c75d;
+      background:
+        radial-gradient(120% 120% at 50% 0%, rgba(255,235,130,.25), rgba(255,215,0,.15) 40%, rgba(255,215,0,.08) 70%, rgba(0,0,0,.1) 100%),
+        linear-gradient(180deg, #ffe88a, #e5c75a 55%, #b88a13);
+      color:#2a2300;
+      text-shadow:0 1px 0 #fff7c7;
+      box-shadow: 0 10px 24px rgba(212,175,55,.35), inset 0 -3px 0 rgba(0,0,0,.18);
+      cursor:pointer;
+      animation: blink 1.3s infinite steps(2,end), floaty 3.5s ease-in-out infinite;
+      transform: translateZ(0);
+    }
+    .btn:active{transform: translateY(1px)}
+    @keyframes blink{
+      50%{filter: saturate(1.15) brightness(1.15)}
+    }
+    @keyframes floaty{
+      0%,100%{box-shadow: 0 10px 24px rgba(212,175,55,.35), inset 0 -3px 0 rgba(0,0,0,.18)}
+      50%{box-shadow: 0 18px 40px rgba(212,175,55,.55), inset 0 -1px 0 rgba(0,0,0,.12)}
+    }
+    .btn-ghost{
+      padding:14px 18px;border-radius:12px;border:1.5px dashed rgba(212,175,55,.6);
+      color:var(--gold-2);background:rgba(212,175,55,.06);
+    }
+    .legal{
+      margin:28px auto 0;
+      max-width:860px;color:#9aa8be;font-size:13px;opacity:.9
+    }
+    .footer-stick{
+      position:fixed;left:0;right:0;bottom:0;
+      background:linear-gradient(180deg, rgba(10,10,10,0), rgba(10,10,10,.65) 30%, rgba(10,10,10,.85));
+      padding:12px 14px;backdrop-filter: blur(4px);
+      display:flex;justify-content:center
+    }
+    .footer-stick .btn{font-size:16px;padding:14px 18px}
+    a{text-decoration:none}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
+  </style>
 </head>
-<body class="font-sans">
-
-    <div class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none" aria-hidden="true">
-        <div class="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] animate-nebulaRotate">
-            <div class="absolute inset-0 animate-nebulaPulse bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/50 via-blue-900/30 to-transparent blur-[150px]"></div>
-        </div>
-    </div>
-
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-        <symbol id="icon-bolt" viewBox="0 0 24 24" fill="currentColor">
-          <path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clip-rule="evenodd" />
-        </symbol>
-        <symbol id="icon-shield-check" viewBox="0 0 24 24" fill="currentColor">
-            <path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
-        </symbol>
-        <symbol id="icon-bars" viewBox="0 0 24 24" fill="currentColor">
-            <path fill-rule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
-        </symbol>
-        <symbol id="icon-xmark" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" />
-        </symbol>
-        <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="currentColor">
-            <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z" clip-rule="evenodd" />
-        </symbol>
-        <symbol id="icon-manager" viewBox="0 0 24 24" fill="currentColor">
-             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-        </symbol>
-        <symbol id="icon-nolimit" viewBox="0 0 24 24" fill="currentColor">
-             <path d="M18.13 12c-1.13 3.38-4.63 5-6.13 5s-5.01-1.62-6.13-5c1.13-3.38 4.63-5 6.13-5s5.01 1.62 6.13 5zM12 4c-3.31 0-6.82 2.12-8.13 6C5.18 15.88 8.69 18 12 18s6.82-2.12 8.13-8C18.82 6.12 15.31 4 12 4z"/>
-        </symbol>
-         <symbol id="icon-cashback" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-        </symbol>
-    </svg>
-
-    <header class="fixed top-0 left-0 w-full z-50 bg-dark-bg/80 backdrop-blur-xl border-b border-dark-border">
-        <div class="container flex justify-between items-center h-20">
-            <a href="/" class="text-3xl font-extrabold font-display text-white glitch-effect" data-text="BitStarz.ELITE">
-                BitStarz<span class='text-accent-neon'>.ELITE</span>
-            </a>
-
-            <nav class="hidden lg:flex space-x-12 text-base font-semibold">
-                <a href="#vip-club" class="hover:text-accent-neon transition duration-300">Il Club VIP</a>
-                <a href="#potenza" class="hover:text-accent-neon transition duration-300">Potenza Finanziaria</a>
-                <a href="#vantaggio" class="hover:text-accent-neon transition duration-300">Vantaggi</a>
-                <a href="#faq" class="hover:text-accent-neon transition duration-300">FAQ</a>
-            </nav>
-
-            <div class='hidden md:flex items-center'>
-                <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=header_nav" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary text-sm px-6 py-3" data-content-id="header_nav">
-                    ACCEDI ORA
-                </a>
-            </div>
-
-             <button id="menu-toggle" class="lg:hidden text-white p-2 focus:outline-none focus:ring-2 focus:ring-accent-neon rounded" aria-label="Toggle menu" aria-expanded="false">
-                <svg class="w-7 h-7" aria-hidden="true"><use xlink:href="#icon-bars"></use></svg>
-             </button>
-        </div>
-    </header>
-
-    <div id="mobile-menu" class="fixed inset-0 z-40 bg-dark-bg transition-all duration-500 ease-in-out lg:hidden opacity-0 invisible" style="padding-top: 80px;">
-        <div class="container pt-12 pb-12 flex flex-col h-full">
-            <nav class="flex flex-col space-y-8 text-4xl font-extrabold font-display">
-                <a href="#vip-club" class="nav-link hover:text-accent-neon transition py-2 border-b border-dark-border">Il Club VIP</a>
-                <a href="#potenza" class="nav-link hover:text-accent-neon transition py-2 border-b border-dark-border">Potenza Finanziaria</a>
-                <a href="#vantaggio" class="nav-link hover:text-accent-neon transition py-2 border-b border-dark-border">Vantaggi</a>
-                <a href="#faq" class="nav-link hover:text-accent-neon transition py-2 border-b border-dark-border">FAQ</a>
-            </nav>
-            <div class="mt-auto">
-                <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=mobile_menu_cta" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary w-full text-center py-5 block nav-link text-xl" data-content-id="mobile_menu_cta">
-                    ACCEDI ORA
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <main class="pt-20 relative z-10">
-
-        <section id="hero" class="pt-20 pb-24 md:pt-32 md:pb-32 lg:pt-40 lg:pb-48 relative overflow-hidden">
-            <div class="container relative z-10 text-center">
-                <div class="mb-6 animate-fadeIn" style="animation-delay: 0.1s;">
-                    <span class="px-4 py-2 text-sm font-bold tracking-widest uppercase border border-accent-neon text-accent-neon rounded-full shadow-neon-intense">ESCLUSIVO PER HIGH-ROLLER ITALIANI</span>
-                </div>
-
-                <h1 class="font-display text-7xl md:text-8xl lg:text-9xl xl:text-[150px] font-extrabold leading-none tracking-tighter mb-8 animate-fadeIn">
-                    SENZA LIMITI.
-                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-accent-neon to-white mt-4">SENZA ATTESE.</span>
-                </h1>
-
-                <p class="text-2xl md:text-3xl text-text-secondary mb-12 max-w-5xl mx-auto font-semibold animate-fadeIn" style="animation-delay: 0.5s;">
-                    Il gioco cambia quando le regole non si applicano a te. Prelievi illimitati, cashback senza rollover e controllo totale. Questo è il VIP BitStarz.
-                </p>
-
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-16 animate-fadeIn" style="animation-delay: 0.8s;">
-                    <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=hero_primary" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary text-xl" data-content-id="hero_primary">
-                        SBLOCCA IL LIVELLO VIP
-                    </a>
-                </div>
-
-                <p class="text-sm text-text-secondary opacity-70 flex items-center justify-center gap-3 animate-fadeIn" style="animation-delay: 1s;">
-                    <svg class="w-5 h-5 text-green-500" aria-hidden="true"><use xlink:href="#icon-shield-check"></use></svg>
-                    18+ • Gioca responsabilmente • T&C si applicano
-                </p>
-            </div>
-        </section>
-
-        <section id="vip-club" class="py-20 md:py-32 border-t border-dark-border bg-dark-bg/70">
-            <div class="container">
-                <h2 class="text-5xl md:text-7xl font-extrabold font-display text-center mb-8 glitch-effect" data-text="VIP STARZ CLUB: OLTRE IL LUSSO.">
-                    VIP STARZ CLUB: OLTRE IL LUSSO.
-                </h2>
-                <p class="text-center text-xl md:text-2xl text-text-secondary mb-20 max-w-4xl mx-auto">
-                   Non è un programma fedeltà. È un'esperienza su misura per chi gioca per vincere in grande. Accesso solo su invito.
-                </p>
-
-                <div class="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
-
-                    <div class="interactive-card p-10 text-center">
-                        <div class="text-6xl mb-6 text-accent-neon">
-                            <svg class="w-16 h-16 mx-auto" aria-hidden="true"><use xlink:href="#icon-manager"></use></svg>
-                        </div>
-                        <h3 class="text-3xl font-bold font-display mb-6">Manager VIP Dedicato 24/7</h3>
-                        <p class="text-lg text-text-secondary">
-                            Un concierge personale con oltre 10 anni di esperienza, disponibile via WhatsApp/Skype. Non solo supporto, ma strategia: richiedi limiti personalizzati, bonus esclusivi o semplicemente un'opinione esperta.
-                        </p>
-                    </div>
-
-                    <div class="interactive-card p-10 text-center border-2 border-accent-neon shadow-neon-intense">
-                         <div class="text-6xl mb-6 text-accent-neon font-extrabold font-display">
-                            0x
-                        </div>
-                        <h3 class="text-3xl font-bold font-display mb-6">Cashback Settimanale Senza Requisiti (No-Wager)</h3>
-                        <p class="text-lg text-text-secondary">
-                            Il vantaggio definitivo. Ricevi cashback settimanale sulle tue giocate <span class="text-white font-bold">senza requisiti di scommessa (rollover 0x)</span> e senza limiti di prelievo. Denaro reale, immediatamente disponibile.
-                        </p>
-                    </div>
-
-                    <div class="interactive-card p-10 text-center">
-                         <div class="text-6xl mb-6 text-accent-neon">
-                             <svg class="w-16 h-16 mx-auto" aria-hidden="true"><use xlink:href="#icon-gift"></use></svg>
-                        </div>
-                        <h3 class="text-3xl font-bold font-display mb-6">Piani Bonus Personalizzati</h3>
-                        <p class="text-lg text-text-secondary">
-                            Dimentica le offerte standard. Il tuo manager creerà bonus (Reload, Free Spins, Bonus Drop) basati sul tuo stile di gioco, sui tuoi giochi preferiti e sul tuo volume. Più giochi, più il piano si adatta a te.
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="potenza" class="py-20 md:py-32">
-            <div class="container">
-                 <h2 class="text-5xl md:text-7xl font-extrabold font-display text-center mb-16 glitch-effect" data-text="POTENZA FINANZIARIA.">
-                    POTENZA FINANZIARIA.
-                </h2>
-
-                <div class="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-
-                    <div class="interactive-card p-10">
-                        <svg class="w-16 h-16 text-accent-neon mb-6" aria-hidden="true"><use xlink:href="#icon-bolt"></use></svg>
-                        <h3 class="text-4xl font-bold font-display mb-6">Prelievi Prioritari Istantanei</h3>
-                        <p class="text-xl text-text-secondary mb-8">
-                            I VIP non aspettano. Le tue richieste di prelievo bypassano la coda standard. Grazie alla nostra infrastruttura Cripto, i fondi arrivano spesso in meno di 10 minuti.
-                        </p>
-                        <div class="text-3xl font-bold font-display p-4 bg-dark-surface rounded-lg inline-block">
-                            Tempo Medio VIP: <span class="text-accent-neon">&lt; 10 Minuti</span>
-                        </div>
-                    </div>
-
-                    <div class="interactive-card p-10">
-                        <svg class="w-16 h-16 text-accent-neon mb-6" aria-hidden="true"><use xlink:href="#icon-nolimit"></use></svg>
-                        <h3 class="text-4xl font-bold font-display mb-6">Zero Limiti di Prelievo</h3>
-                        <p class="text-xl text-text-secondary mb-8">
-                            Hai vinto un Jackpot milionario? Prelevalo interamente, subito. I membri del VIP Starz Club godono di prelievi illimitati. Nessuna restrizione, nessuna divisione in rate mensili.
-                        </p>
-                         <div class="text-3xl font-bold font-display p-4 bg-dark-surface rounded-lg inline-block">
-                            Limite Massimo: <span class="text-accent-neon">ILLIMITATO</span>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="text-center mt-20">
-                    <h3 class="text-2xl font-semibold mb-6">Criptovalute Principali per High-Rollers</h3>
-                    <div class="flex flex-wrap justify-center gap-8 text-2xl font-bold font-display text-text-secondary opacity-80">
-                        <span>BTC</span> | <span>ETH</span> | <span>USDT (ERC20/TRC20)</span> | <span>LTC</span> | <span>DOGE</span>
-                    </div>
-                     <p class="text-sm text-text-secondary mt-4">*Metodi FIAT disponibili con limiti personalizzati VIP.</p>
-                </div>
-            </div>
-        </section>
-
-         <section id="vantaggio" class="py-20 md:py-32 border-t border-dark-border bg-dark-bg/70">
-            <div class="container">
-                <h2 class="text-5xl md:text-7xl font-extrabold font-display text-center mb-16 glitch-effect" data-text="IL VANTAGGIO SLEALE.">
-                    IL VANTAGGIO SLEALE.
-                </h2>
-
-                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-
-                     <div class="interactive-card p-8">
-                        <h3 class="text-2xl font-bold font-display mb-4 text-accent-neon">Accesso Anticipato ai Giochi</h3>
-                        <p class="text-lg text-text-secondary">
-                            Prova le nuove uscite dei migliori provider (Pragmatic, Evolution, NetEnt) prima di tutti gli altri giocatori. Un vantaggio strategico esclusivo per i VIP.
-                        </p>
-                    </div>
-
-                    <div class="interactive-card p-8">
-                        <h3 class="text-2xl font-bold font-display mb-4 text-accent-neon">Limiti di Puntata Elevati</h3>
-                        <p class="text-lg text-text-secondary">
-                            Gioca ai tavoli Live con limiti massimi significativamente aumentati (es. €10k+ su Blackjack/Roulette) o richiedi limiti personalizzati al tuo manager.
-                        </p>
-                    </div>
-
-                    <div class="interactive-card p-8">
-                        <h3 class="text-2xl font-bold font-display mb-4 text-accent-neon">Eventi e Regali di Lusso</h3>
-                        <p class="text-lg text-text-secondary">
-                            Inviti esclusivi a eventi globali (F1, Champions League), pacchetti vacanza di lusso, regali tecnologici e bonus speciali per il tuo compleanno.
-                        </p>
-                    </div>
-
-                </div>
-
-                 <div class="text-center mt-20">
-                    <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=advantage_cta" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary text-xl" data-content-id="advantage_cta">
-                        DIVENTA MEMBRO VIP
-                    </a>
-                </div>
-
-            </div>
-        </section>
-
-
-        <section id="faq" class="py-20 md:py-32">
-            <div class="container">
-                <h2 class="text-4xl md:text-5xl font-bold font-display text-center mb-16">
-                    Domande Frequenti (VIP)
-                </h2>
-                <div id="faq-accordion" class="max-w-4xl mx-auto bg-dark-surface/70 backdrop-blur-md rounded-xl shadow-xl overflow-hidden border border-dark-border">
-
-                    <div class="border-b border-dark-border faq-item">
-                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left font-semibold text-lg hover:bg-dark-surface focus:outline-none focus:ring-2 focus:ring-accent-neon" aria-expanded="false" aria-controls="faq-answer-1" data-faq-id="1">
-                            <span>Come posso qualificarmi per il VIP Starz Club?</span>
-                            <svg class="w-5 h-5 transition-transform duration-300 text-text-secondary faq-icon" aria-hidden="true"><use xlink:href="#icon-chevron-down"></use></svg>
-                        </button>
-                        <div id="faq-answer-1" class="faq-content max-h-0 opacity-0" role="region">
-                            <p class="p-6 pt-0 text-text-secondary">L'accesso è solo su invito. Il nostro team monitora costantemente i giocatori con depositi consistenti e volumi di gioco elevati (High-Rollers). Continua a giocare al tuo livello e sarai contattato direttamente dal team VIP.</p>
-                        </div>
-                    </div>
-
-                     <div class="border-b border-dark-border faq-item">
-                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left font-semibold text-lg hover:bg-dark-surface focus:outline-none focus:ring-2 focus:ring-accent-neon" aria-expanded="false" aria-controls="faq-answer-2" data-faq-id="2">
-                            <span>Cosa significa "Cashback senza requisiti di scommessa"?</span>
-                            <svg class="w-5 h-5 transition-transform duration-300 text-text-secondary faq-icon" aria-hidden="true"><use xlink:href="#icon-chevron-down"></use></svg>
-                        </button>
-                        <div id="faq-answer-2" class="faq-content max-h-0 opacity-0" role="region">
-                            <p class="p-6 pt-0 text-text-secondary">Significa che il cashback che ricevi è denaro reale, non fondi bonus. Ha un rollover di 0x. Puoi prelevarlo immediatamente o utilizzarlo senza alcuna restrizione.</p>
-                        </div>
-                    </div>
-
-                     <div class="border-b border-dark-border faq-item">
-                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left font-semibold text-lg hover:bg-dark-surface focus:outline-none focus:ring-2 focus:ring-accent-neon" aria-expanded="false" aria-controls="faq-answer-3" data-faq-id="3">
-                            <span>Non ci sono davvero limiti di prelievo per i VIP?</span>
-                            <svg class="w-5 h-5 transition-transform duration-300 text-text-secondary faq-icon" aria-hidden="true"><use xlink:href="#icon-chevron-down"></use></svg>
-                        </button>
-                        <div id="faq-answer-3" class="faq-content max-h-0 opacity-0" role="region">
-                            <p class="p-6 pt-0 text-text-secondary">Corretto. Per i membri del VIP Starz Club, i limiti massimi di prelievo standard vengono rimossi, permettendoti di incassare grandi vincite in un'unica transazione rapida.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left font-semibold text-lg hover:bg-dark-surface focus:outline-none focus:ring-2 focus:ring-accent-neon" aria-expanded="false" aria-controls="faq-answer-4" data-faq-id="4">
-                            <span>Posso contattare il mio manager VIP in qualsiasi momento?</span>
-                            <svg class="w-5 h-5 transition-transform duration-300 text-text-secondary faq-icon" aria-hidden="true"><use xlink:href="#icon-chevron-down"></use></svg>
-                        </button>
-                        <div id="faq-answer-4" class="faq-content max-h-0 opacity-0" role="region">
-                            <p class="p-6 pt-0 text-text-secondary">Sì, il tuo manager dedicato è disponibile 24/7 tramite canali diretti (come WhatsApp, Skype o Email) per assisterti immediatamente con qualsiasi richiesta.</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-black mt-20 border-t border-dark-border pt-12 pb-24 md:py-12 relative z-10">
-        <div class="container text-center text-sm text-text-secondary">
-             <div class="flex justify-center items-center gap-6 mb-6">
-                <span class="text-xl font-bold border-2 border-red-600 rounded-full w-10 h-10 flex items-center justify-center">18+</span>
-                <span class="font-semibold text-lg">Gioca responsabilmente</span>
-            </div>
-            <p class="mb-6">Attenzione: Il gioco d'azzardo può creare dipendenza patologica. Gioca con moderazione.</p>
-
-            <nav class="flex justify-center space-x-6 mb-6">
-                <a href="#privacy" class="hover:text-white">Privacy Policy</a>
-                <a href="#cookie" class="hover:text-white">Cookie Policy</a>
-                <a href="mailto:info@example.com" class="hover:text-white">Contatti</a>
-            </nav>
-
-             <p class="text-xs italic max-w-4xl mx-auto mb-6">
-                Disclaimer: Questo sito informativo non appartiene a BitStarz ed è gestito da partner indipendenti a scopo pubblicitario. Termini e condizioni dell'operatore si applicano.
-            </p>
-
-            <p class="mt-4">© 2025. Tutti i diritti riservati.</p>
-        </div>
-    </footer>
-
-    <div class="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-dark-surface p-4 border-t-4 border-accent-neon shadow-xl">
-        <a href="https://bzstarz.com/b269d9fb2?utm_source=landing&utm_medium=cta&utm_campaign=it_hr_2025&utm_content=sticky_mobile_cta" target="_blank" rel="nofollow noopener noreferrer" class="cta-primary w-full text-center py-4 block text-lg" data-content-id="sticky_mobile_cta">
-            ACCEDI ORA
-        </a>
-    </div>
-
-    <div id="consent-banner" class="fixed bottom-[90px] md:bottom-4 left-4 right-4 z-50 max-w-4xl mx-auto hidden">
-        <div class="bg-dark-surface/90 backdrop-blur-lg p-6 shadow-2xl border border-accent-neon/50 rounded-xl">
-            <h4 class="text-lg font-bold mb-3 text-white">Consenso Cookie (GDPR)</h4>
-            <p class="text-sm text-text-secondary mb-6">
-                Utilizziamo cookie per analizzare il traffico (GA4) e personalizzare la pubblicità (Meta Pixel). Scegliendo 'Accetta', acconsenti all'uso di queste tecnologie.
-            </p>
-            <div class="flex justify-end gap-4">
-                <button id="consent-reject" class="px-6 py-2 rounded-lg font-semibold transition hover:text-white text-text-secondary border border-dark-border hover:bg-dark-border">
-                    Rifiuta
-                </button>
-                <button id="consent-accept" class="px-6 py-2 rounded-lg font-semibold transition bg-accent-neon text-dark-bg hover:opacity-90 shadow-md">
-                    Accetta Tutto
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-             // --- 1. Аналитика и Consent Mode (Placeholder) ---
-            const CONSENT_STORAGE_KEY = 'user_consent_v2_it_cyber';
-
-            // Функция трекинга событий
-            function trackEvent(eventName, params = {}) {
-                const device = window.innerWidth < 768 ? 'mobile' : 'desktop';
-                // Добавляем версию дизайна в аналитику
-                const eventParams = { ...params, device, design_version: 'Cyber_Elite_v4' };
-                console.log(`Event: ${eventName}`, eventParams);
-                // В реальном проекте здесь будет отправка в GA4/Pixel
-            }
-
-             // Управление согласием
-            function initializeConsent() {
-                const storedConsent = JSON.parse(localStorage.getItem(CONSENT_STORAGE_KEY) || '{}');
-
-                if (Object.keys(storedConsent).length === 0) {
-                    document.getElementById('consent-banner').classList.remove('hidden');
-                } else if (storedConsent.analytics_storage === 'granted') {
-                    loadAnalyticsScripts();
-                }
-            }
-
-            function loadAnalyticsScripts() {
-                console.log("Analytics Scripts Loaded (Simulation)");
-                // Инициализация трекинга после "загрузки" скриптов
-                trackEvent('view_hero');
-                initScrollTracking();
-                initSectionTracking();
-            }
-
-             // Обработчики баннера
-             document.getElementById('consent-accept').addEventListener('click', () => {
-                const settings = { ad_storage: 'granted', analytics_storage: 'granted' };
-                localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(settings));
-                document.getElementById('consent-banner').classList.add('hidden');
-                loadAnalyticsScripts();
-            });
-
-            document.getElementById('consent-reject').addEventListener('click', () => {
-                 const settings = { ad_storage: 'denied', analytics_storage: 'denied' };
-                 localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(settings));
-                document.getElementById('consent-banner').classList.add('hidden');
-            });
-
-            initializeConsent();
-
-             // Трекинг кликов по CTA
-             document.querySelectorAll('a[data-content-id]').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    const contentId = this.getAttribute('data-content-id');
-                    const section = contentId.split('_')[0];
-                    const isInternal = this.getAttribute('href').startsWith('#');
-
-                    if (isInternal) {
-                        trackEvent('internal_navigation', { section_to: this.getAttribute('href'), from: section });
-                    } else {
-                        trackEvent('outbound_click_affiliate', {
-                            section: section,
-                            button_id: contentId,
-                        });
-                        const variant = this.classList.contains('cta-primary') ? 'primary' : 'secondary';
-                        trackEvent(`cta_click_${variant}`, { section: section });
-                    }
-                });
-            });
-
-             // Трекинг глубины скролла (Placeholder)
-             function initScrollTracking() {
-                 // Реализация трекинга скролла (как в предыдущих блоках)
-             }
-
-             // Трекинг видимости секций (Placeholder)
-            function initSectionTracking() {
-                // Реализация Intersection Observer (как в предыдущих блоках)
-            }
-
-
-            // --- 2. Мобильное Меню ---
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuIconBars = '<svg class="w-7 h-7" aria-hidden="true"><use xlink:href="#icon-bars"></use></svg>';
-            const menuIconX = '<svg class="w-7 h-7" aria-hidden="true"><use xlink:href="#icon-xmark"></use></svg>';
-
-            const toggleMenu = (isOpen) => {
-                const shouldOpen = isOpen !== undefined ? isOpen : mobileMenu.classList.contains('invisible');
-                mobileMenu.classList.toggle('invisible', !shouldOpen);
-                mobileMenu.classList.toggle('opacity-0', !shouldOpen);
-                mobileMenu.classList.toggle('opacity-100', shouldOpen);
-                menuToggle.setAttribute('aria-expanded', shouldOpen);
-                menuToggle.innerHTML = shouldOpen ? menuIconX : menuIconBars;
-                document.body.classList.toggle('overflow-hidden', shouldOpen);
-            };
-
-            menuToggle.addEventListener('click', () => toggleMenu());
-
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', () => toggleMenu(false));
-            });
-
-            // --- 3. FAQ Аккордеон ---
-            const faqToggles = document.querySelectorAll('.faq-toggle');
-            let openToggle = null;
-
-            faqToggles.forEach((toggle) => {
-                toggle.addEventListener('click', () => {
-                    const content = toggle.nextElementSibling;
-                    const icon = toggle.querySelector('.faq-icon');
-                    const isCurrentlyOpen = toggle.getAttribute('aria-expanded') === 'true';
-                    const faqId = toggle.getAttribute('data-faq-id');
-
-                    // Закрываем предыдущий открытый элемент
-                    if (openToggle && openToggle !== toggle) {
-                        const openContent = openToggle.nextElementSibling;
-                        const openIcon = openToggle.querySelector('.faq-icon');
-                        openToggle.setAttribute('aria-expanded', 'false');
-                        openContent.style.maxHeight = '0px';
-                        openContent.classList.add('opacity-0');
-                        openIcon.classList.remove('rotate-180', 'text-accent-neon');
-                    }
-
-                    if (isCurrentlyOpen) {
-                        // Закрываем текущий элемент
-                        content.style.maxHeight = '0px';
-                        content.classList.add('opacity-0');
-                        toggle.setAttribute('aria-expanded', 'false');
-                        icon.classList.remove('rotate-180', 'text-accent-neon');
-                        openToggle = null;
-                    } else {
-                        // Открываем текущий элемент
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        content.classList.remove('opacity-0');
-                        toggle.setAttribute('aria-expanded', 'true');
-                        icon.classList.add('rotate-180', 'text-accent-neon');
-                        openToggle = toggle;
-                        trackEvent('faq_open', { question_id: faqId });
-                    }
-                });
-            });
-        });
-    </script>
-
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="tag">UZ — формат, как вы любите</div>
+      <h1>Ээ, брат — крипта есть? Слотики любишь? Вывод быстро любишь?</h1>
+      <p class="pitch">
+        Тогда не мороси по-братски: регайся в чёткой конторе, заноси деп — и сверху сразу <span style="color:var(--gold-2);font-weight:700">+100%</span>.
+        Мамой клянусь, казик — лучший, отвечаю. Всё честно, шустро, гладко.
+      </p>
+
+      <div class="card">
+        <ul class="list">
+          <li><span class="li-ico"></span><div><b>Моментальные выплаты</b> — без лишних движений, быстро и стабильно.</div></li>
+          <li><span class="li-ico"></span><div><b>Крипта ок</b> — залетел USDT/BTC/ETH, спокойно крутишь.</div></li>
+          <li><span class="li-ico"></span><div><b>Щедрый старт</b> — <span style="color:var(--gold-2);font-weight:700">100% к первому депозиту</span>.</div></li>
+          <li><span class="li-ico"></span><div><b>Слотики на любой вкус</b> — крути, как душе угодно.</div></li>
+        </ul>
+      </div>
+
+      <div class="cta-wrap">
+        <a class="btn" href="https://bzstarz.com/b5ea4c8cf" rel="nofollow noopener" target="_blank">Захади брат</a>
+        <a class="btn-ghost mono" href="https://bzstarz.com/b5ea4c8cf" rel="nofollow noopener" target="_blank">Ээ, давай без суеты →</a>
+      </div>
+
+      <p class="legal">
+        Важно: играй ответственно. Бонус 100% начисляется на первый депозит по правилам платформы. Доступность функций и провайдеров зависит от региона.
+      </p>
+    </section>
+  </div>
+
+  <div class="footer-stick">
+    <a class="btn" href="https://bzstarz.com/b5ea4c8cf" rel="nofollow noopener" target="_blank">Захади брат</a>
+  </div>
 </body>
 </html>
