@@ -27,26 +27,32 @@
       gtag('js', new Date());
       // Замените G-XXXXXXXXXX на ваш ID GA4
       gtag('config', 'G-XXXXXXXXXX', {
-          'page_version': 'v5_cybergrid_3d',
+          'page_version': 'v7_modern_luxury_beige',
           'geo_blocking': true
       });
     </script>
 
     <style>
-        /* --- 1. Переменные и Сброс (Инновация: Cyber-Premium Palette) --- */
+        /* --- 1. Переменные и Сброс (Инновация: Бежевая Премиум Палитра) --- */
         :root {
-            /* Палитра (Cyber Grid) */
-            --color-bg-primary: #050505; /* Абсолютно черный */
-            --color-bg-secondary: #1A1A1A;
-            --color-text-primary: #FFFFFF;
-            --color-text-muted: #A0A0A0;
+            /* Палитра (Современный Люкс / Беж) */
+            --color-bg-primary: #F7F4F1; /* Теплый белый / Светло-бежевый фон */
+            --color-bg-card: #FFFFFF; /* Чистый белый для карточек */
+
+            /* Текст (Высокий контраст для A11y ТЗ 5) */
+            --color-text-primary: #2C2623; /* Глубокий темно-коричневый/угольный */
+            --color-text-muted: #7D7470; /* Приглушенный серый/коричневый */
 
             /* Акценты */
-            --color-accent-cyan: #00FFEA; /* Неоновый Циан/Бирюзовый для интерфейса */
-            --color-accent-gold: #CBA65A; /* Золотой для финансов (ТЗ 5) */
+            --color-accent-gold: #CBA65A; /* Золотой (ТЗ 5) */
+            --color-accent-soft: #E5A98F; /* Мягкий терракотовый/розовый для фона */
 
-            --color-border: rgba(255, 255, 255, 0.15);
-            --color-border-active: var(--color-accent-cyan);
+            --gradient-gold: linear-gradient(90deg, #CBA65A, #E1C27C);
+            --color-border: rgba(44, 38, 35, 0.1);
+
+            /* Тени (Soft UI) */
+            --shadow-soft: 0 30px 60px rgba(44, 38, 35, 0.1);
+            --shadow-hover: 0 40px 80px rgba(44, 38, 35, 0.15);
 
             /* Шрифты (ТЗ 5) */
             --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
@@ -85,7 +91,7 @@
 
         /* ТЗ 5: A11y */
         :focus-visible {
-            outline: 3px solid var(--color-accent-cyan);
+            outline: 3px solid var(--color-accent-gold);
             outline-offset: 4px;
         }
 
@@ -96,11 +102,9 @@
             left: 0;
             width: 0%;
             height: 3px;
-            background: var(--color-accent-cyan);
+            background: var(--gradient-gold);
             z-index: 2000;
             transition: width 0.1s linear;
-            /* Неоновое свечение */
-            box-shadow: 0 0 15px var(--color-accent-cyan);
         }
 
         /* --- 3. Контейнер (ТЗ 7) --- */
@@ -116,49 +120,66 @@
             }
         }
 
-        /* --- 4. Инновация: Динамический Фон (Cyber Grid & Scanlines) --- */
-        .background-grid {
+        /* --- 4. Инновация: Динамичный Фон (Мягкие плавающие формы) --- */
+        .background-dynamics {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 1;
-            /* Сетка с помощью градиентов */
-            background-image:
-                linear-gradient(to right, rgba(0, 255, 234, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 255, 234, 0.05) 1px, transparent 1px);
-            background-size: 60px 60px;
-            /* Эффект затухания сетки к краям (Vignette) */
-            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
-            -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+            overflow: hidden;
         }
 
-        /* Эффект сканирующих линий (Scanlines) */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 50%, transparent 50%);
-            background-size: 100% 4px;
-            z-index: 2;
-            pointer-events: none;
-            opacity: 0.5;
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            /* Мягкое размытие для глубины */
+            filter: blur(120px);
+            opacity: 0.6;
+            animation: shape-movement 30s infinite alternate ease-in-out;
+        }
+
+        /* Используем мягкие акцентные цвета */
+        .shape--1 {
+            width: 600px;
+            height: 600px;
+            background: var(--color-accent-soft);
+            top: -10%;
+            left: -10%;
+        }
+
+        .shape--2 {
+            width: 700px;
+            height: 500px;
+            background: rgba(203, 166, 90, 0.5); /* Мягкий золотой */
+            bottom: -20%;
+            right: -15%;
+            animation-delay: -10s;
+        }
+
+        @keyframes shape-movement {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+            50% {
+                transform: scale(1.1) translate(20px, -40px);
+            }
+            100% {
+                transform: scale(1) translate(0, 0);
+            }
         }
 
         /* --- 5. Hero Section и Типографика --- */
         header, main, footer {
             position: relative;
-            z-index: 10; /* Над фоном и сеткой */
+            z-index: 10; /* Над фоном */
         }
 
         .hero {
             padding: 15vh 0 100px;
             text-align: left;
-            min-height: 80vh;
+            min-height: 70vh;
             display: flex;
             align-items: center;
         }
@@ -166,11 +187,11 @@
         h1 {
             font-family: var(--font-heading);
             font-size: 3rem; /* 48px */
-            line-height: 1.1;
+            line-height: 1.15;
             margin-bottom: 32px;
             max-width: 1000px;
             font-weight: 700;
-            color: #fff;
+            color: var(--color-text-primary);
         }
 
         @media (min-width: 992px) {
@@ -179,36 +200,31 @@
             }
         }
 
-        /* Инновация: Кинетическая Типографика (Анимация H1) */
+        /* Инновация: Элегантная Анимация H1 (Плавное появление) */
         .h1-char {
             display: inline-block;
             opacity: 0;
-            transform: translateY(20px);
-            /* Анимация появления */
-            animation: kinetic-reveal 0.5s forwards cubic-bezier(0.22, 0.61, 0.36, 1);
+            transform: translateY(20px) scale(0.95);
+            /* Плавная анимация появления с кастомным easing */
+            animation: elegant-reveal 0.6s forwards cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes kinetic-reveal {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+        /* Исправление для пробелов, чтобы они занимали место */
+         .h1-char--space {
+            width: 0.3em;
+            animation: none;
+            opacity: 1;
+            transform: none;
         }
 
-        /* Эффект Глитча (Мерцания) для некоторых букв */
-        .h1-char.glitch {
-            animation: kinetic-reveal 0.5s forwards cubic-bezier(0.22, 0.61, 0.36, 1), glitch-flicker 3s infinite alternate;
-        }
-
-        @keyframes glitch-flicker {
-            0% { opacity: 1; text-shadow: 0 0 5px var(--color-accent-cyan); }
-            2%, 8% { opacity: 0.8; transform: skewX(2deg); }
-            4%, 10% { opacity: 1; transform: skewX(0deg); }
-            100% { opacity: 1; text-shadow: none; }
+        @keyframes elegant-reveal {
+            0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .highlight-gold {
              color: var(--color-accent-gold);
-             /* Золотое свечение */
-             text-shadow: 0 0 10px rgba(203, 166, 90, 0.5);
+             font-weight: 700;
         }
 
         .hero__intro {
@@ -218,7 +234,7 @@
             margin-bottom: 48px;
             /* Анимация появления интро текста после H1 */
             opacity: 0;
-            animation: kinetic-reveal 0.5s 1.5s forwards;
+            animation: elegant-reveal 0.6s 1.5s forwards;
         }
 
         .hero__theses {
@@ -227,40 +243,36 @@
             gap: 16px;
             /* Анимация появления тегов */
             opacity: 0;
-            animation: kinetic-reveal 0.5s 1.8s forwards;
+            animation: elegant-reveal 0.6s 1.8s forwards;
         }
 
-        /* Инновация: Cyber-теги */
+        /* Инновация: Элегантные теги */
         .thesis-tag {
-            padding: 8px 20px;
-            background: rgba(0, 255, 234, 0.1);
-            border: 1px solid var(--color-accent-cyan);
-            color: var(--color-accent-cyan);
-            /* Угловатая форма вместо скругленной */
-            border-radius: 4px;
+            padding: 10px 24px;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-primary);
+            border-radius: 50px; /* Мягкая скругленная форма */
             font-size: 0.9rem;
             font-weight: 500;
-            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s;
+            /* Мягкая тень */
+            box-shadow: 0 4px 10px rgba(44, 38, 35, 0.05);
         }
 
         .thesis-tag:hover {
-             background: var(--color-accent-cyan);
-             color: var(--color-bg-primary);
-             transform: scale(1.05);
-             box-shadow: 0 0 20px var(--color-accent-cyan);
+             border-color: var(--color-accent-gold);
+             transform: translateY(-4px);
+             box-shadow: 0 8px 20px rgba(44, 38, 35, 0.1);
         }
 
         /* --- 6. Базовая типографика и Секции --- */
         h2 {
             font-family: var(--font-heading);
-            font-size: 2rem; /* 32px */
+            font-size: 1.8rem; /* 28px */
             margin-bottom: 24px;
             color: var(--color-text-primary);
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
         }
 
         p {
@@ -283,45 +295,29 @@
              }
          }
 
-         /* --- 7. Инновация: Дизайн Карточек (Cyber/3D) --- */
+         /* --- 7. Инновация: Дизайн Карточек (Мягкий, Реалистичный / Soft UI) --- */
          .card {
-            background: var(--color-bg-secondary);
+            background: var(--color-bg-card);
             border: 1px solid var(--color-border);
-            border-radius: 8px;
+            border-radius: 24px; /* Сильное скругление для мягкости */
             padding: 32px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            /* Подготовка для 3D эффекта Tilt */
-            transform-style: preserve-3d;
+            /* Инновация: Мягкая, рассеянная тень для глубины */
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: transform;
-            position: relative;
-            overflow: hidden; /* Для ограничения свечения */
          }
 
-         /* Эффект при наведении (без 3D) */
-         .card:hover {
-              border-color: var(--color-border-active);
-              box-shadow: 0 0 30px rgba(0, 255, 234, 0.2);
+         @media (min-width: 768px) {
+              .card {
+                  padding: 40px;
+              }
+             /* Инновация: Эффект "приподнимания" при наведении */
+             .card:hover {
+                  transform: translateY(-8px);
+                  box-shadow: var(--shadow-hover);
+             }
          }
 
-         /* Инновация: Внутреннее свечение (Glow), следующее за курсором */
-         .card__glow {
-             position: absolute;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 100%;
-             /* Начальное состояние (градиент в центре) */
-             background: radial-gradient(circle at center, rgba(0, 255, 234, 0.4) 0%, transparent 60%);
-             opacity: 0;
-             transition: opacity 0.3s;
-             pointer-events: none;
-             /* Размещаем свечение чуть "над" карточкой в 3D пространстве */
-             transform: translateZ(10px);
-         }
-
-         .card:hover .card__glow {
-              opacity: 1;
-         }
 
          /* --- 8. Инновация: Асимметричная Сетка (Layout) --- */
          .grid-layout {
@@ -334,9 +330,9 @@
              /* Двухколоночный макет для основного контента */
              .grid-layout--main {
                  grid-template-columns: 2fr 1fr;
-                 gap: 60px;
+                 gap: 50px;
              }
-             /* Трехколоночный макет для деталей (Оплата, График, Оборудование) */
+             /* Трехколоночный макет для деталей */
              .grid-layout--details {
                  grid-template-columns: repeat(3, 1fr);
                  gap: 40px;
@@ -354,7 +350,10 @@
 <body>
     <div id="progress-bar" aria-hidden="true"></div>
 
-    <div class="background-grid" aria-hidden="true"></div>
+    <div class="background-dynamics" aria-hidden="true">
+        <div class="shape shape--1"></div>
+        <div class="shape shape--2"></div>
+    </div>
 
     <header>
         <section class="hero" aria-labelledby="main-heading">
@@ -378,8 +377,7 @@
         <section id="details" class="reveal">
             <div class="container">
                 <div class="grid-layout grid-layout--details">
-                    <div class="card tilt-element" data-tilt>
-                        <div class="card__glow"></div>
+                    <div class="card">
                         <h2 id="equipment-heading">Оборудование</h2>
                         <ul class="bullet-list">
                             <li>Ноутбук + стабильный интернет.</li>
@@ -391,8 +389,7 @@
                         </div>
                     </div>
 
-                    <div class="card tilt-element" data-tilt>
-                        <div class="card__glow"></div>
+                    <div class="card">
                         <h2 id="schedule-heading">График</h2>
                         <ul class="bullet-list">
                             <li>Смена — 8 часов.</li>
@@ -400,8 +397,7 @@
                         </ul>
                     </div>
 
-                    <div class="card tilt-element" data-tilt>
-                        <div class="card__glow"></div>
+                    <div class="card">
                         <h2 id="payment-heading">Оплата</h2>
                         <ul class="bullet-list">
                             <li>$5 000 / 30 дней = <span class="highlight-gold">$167</span> за каждый выход в эфир.</li>
@@ -418,8 +414,7 @@
                 <div class="grid-layout grid-layout--main">
 
                     <div class="grid-column">
-                        <div class="card card--large tilt-element" data-tilt>
-                            <div class="card__glow"></div>
+                        <div class="card card--large">
                             <h2 id="benefits-heading">Что ты получаешь</h2>
                             <ul class="bullet-list">
                                 <li><strong>Фиксированная зарплата <span class="highlight-gold">$5 000</span> в месяц.</strong></li>
@@ -430,8 +425,7 @@
                             </ul>
                         </div>
 
-                        <div class="card card--large tilt-element" data-tilt>
-                            <div class="card__glow"></div>
+                        <div class="card card--large">
                             <h2 id="responsibilities-heading">Обязанности</h2>
                             <ul class="bullet-list">
                                 <li>Стримы 18+ по нашему сценарию и регламенту — 8 часов в смену.</li>
@@ -444,8 +438,7 @@
                     </div>
 
                     <div class="grid-column">
-                        <div class="card tilt-element" data-tilt>
-                            <div class="card__glow"></div>
+                        <div class="card">
                             <h2 id="requirements-heading">Требования</h2>
                             <ul class="bullet-list">
                                 <li><strong>Возраст строго 18–20 лет.</strong> Меньше 18 или старше 20 — не подходит.</li>
@@ -454,8 +447,7 @@
                             </ul>
                         </div>
 
-                        <div class="card tilt-element" data-tilt>
-                            <div class="card__glow"></div>
+                        <div class="card">
                             <h2 id="selection-heading">Отбор</h2>
                             <ul class="bullet-list">
                                 <li>Отбор до 1 месяца — цель выбрать 10 девушек.</li>
@@ -463,8 +455,7 @@
                             </ul>
                         </div>
 
-                        <div class="card tilt-element" data-tilt>
-                            <div class="card__glow"></div>
+                        <div class="card">
                             <h2 id="rules-heading">Правила</h2>
                             <ul class="bullet-list">
                                 <li>Аккаунты продвигаются за наш счёт, поэтому после завершения сотрудничества <strong>аккаунты остаются у нас.</strong></li>
@@ -479,8 +470,7 @@
 
         <section id="application" aria-labelledby="application-heading" class="reveal">
             <div class="container container--narrow">
-                <div class="card tilt-element" data-tilt>
-                    <div class="card__glow"></div>
+                <div class="card">
                     <h2 id="application-heading">Как подать заявку</h2>
                     <p>Используй кнопку внизу страницы, чтобы связаться с нами в Telegram, и сразу:</p>
                     <ol class="numbered-list">
@@ -496,8 +486,7 @@
 
         <section id="about-webcam" aria-labelledby="about-webcam-heading" class="reveal">
             <div class="container container--narrow">
-                <div class="card tilt-element" data-tilt>
-                    <div class="card__glow"></div>
+                <div class="card">
                     <h2 id="about-webcam-heading">Что такое вебкам (кратко)</h2>
                     <p>Это онлайн-трансляции 18+ на Chaturbate с общением по нашим сценариям. Работа удалённая, безопасная, без офлайн-встреч, с ежедневными выплатами и чётким планом действий.</p>
                 </div>
@@ -561,7 +550,7 @@
              max-width: 850px;
         }
 
-        /* --- 10. Стили Списков --- */
+        /* --- 10. Стили Списков (Элегантные) --- */
         .bullet-list, .numbered-list {
             list-style: none;
             padding-left: 0;
@@ -572,18 +561,20 @@
 
         .bullet-list li {
             position: relative;
-            padding-left: 24px;
+            padding-left: 28px;
             color: var(--color-text-muted);
         }
 
-        /* Инновация: Циановые буллеты */
+        /* Инновация: Золотые буллеты */
         .bullet-list li::before {
-            content: '>';
+            content: '';
             position: absolute;
             left: 0;
-            top: 0;
-            color: var(--color-accent-cyan);
-            font-weight: 700;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background: var(--color-accent-gold);
+            border-radius: 50%;
         }
 
         .numbered-list {
@@ -595,21 +586,22 @@
         .numbered-list li {
             counter-increment: list-counter;
             position: relative;
-            padding-left: 40px;
+            padding-left: 45px;
             color: var(--color-text-muted);
         }
 
-        /* Инновация: Номера в стиле Cyber */
+        /* Инновация: Элегантные номера */
         .numbered-list li::before {
             content: counter(list-counter);
             position: absolute;
             left: 0;
             top: 0;
-            width: 28px;
-            height: 28px;
-            border: 1px solid var(--color-accent-cyan);
-            color: var(--color-accent-cyan);
-            border-radius: 4px;
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--color-accent-gold);
+            color: var(--color-text-primary);
+            background-color: #FFFCF9;
+            border-radius: 50%; /* Круглые номера */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -619,30 +611,34 @@
 
         /* --- 11. Callout Block (ТЗ 13) --- */
         .callout {
-            background: rgba(203, 166, 90, 0.1);
-            border: 1px solid var(--color-accent-gold);
-            padding: 20px;
-            border-radius: 4px;
+            /* Используем светло-золотой фон для выделения */
+            background: #FFFCF9;
+            border: 1px solid rgba(203, 166, 90, 0.5);
+            padding: 20px 24px;
+            border-radius: 16px;
             margin-top: 24px;
+            border-left: 4px solid var(--color-accent-gold);
         }
 
         .callout p {
              color: var(--color-text-primary);
              margin-bottom: 0;
-             font-size: 0.9rem;
+             font-size: 0.95rem;
         }
 
         /* Модификатор для информационного блока */
         .callout--info {
-             background: rgba(0, 255, 234, 0.1);
-             border-color: var(--color-accent-cyan);
+             background: #F0F0F0;
+             border-color: var(--color-text-muted);
+             border-left-color: var(--color-text-primary);
         }
 
         /* --- 12. CTA Section Styling --- */
         #cta-section {
             padding: 80px 0;
             margin-top: 80px;
-            background: var(--color-bg-secondary);
+            /* Используем чуть более темный фон для контраста */
+            background: #EFEBE8;
             border-top: 1px solid var(--color-border);
         }
 
@@ -653,6 +649,7 @@
 
         #cta-section h2 {
              margin-bottom: 16px;
+             font-size: 2rem;
         }
 
         .confirmation-checks {
@@ -672,13 +669,15 @@
             cursor: pointer;
             width: 100%;
             max-width: 500px;
-            padding: 15px;
-            border-radius: 4px;
-            transition: background-color 0.2s;
+            padding: 15px 20px;
+            border-radius: 12px;
+            transition: background-color 0.3s;
+            background-color: var(--color-bg-card);
+            box-shadow: 0 4px 15px rgba(44, 38, 35, 0.05);
         }
 
         .checkbox-wrapper:hover {
-             background-color: rgba(255, 255, 255, 0.05);
+             background-color: #FFFCF9;
         }
 
         input[type="checkbox"] {
@@ -686,10 +685,10 @@
             appearance: none;
             -webkit-appearance: none;
             /* Создаем кастомный */
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             border: 2px solid var(--color-text-muted);
-            border-radius: 4px;
+            border-radius: 8px;
             background-color: var(--color-bg-primary);
             cursor: pointer;
             flex-shrink: 0;
@@ -698,21 +697,20 @@
         }
 
         input[type="checkbox"]:hover {
-            border-color: var(--color-accent-cyan);
+            border-color: var(--color-accent-gold);
         }
 
         input[type="checkbox"]:checked {
-            background: var(--color-accent-cyan);
-            border-color: var(--color-accent-cyan);
-            box-shadow: 0 0 15px var(--color-accent-cyan);
+            background: var(--color-accent-gold);
+            border-color: var(--color-accent-gold);
         }
 
         /* Галочка (CSS) */
         input[type="checkbox"]:checked::after {
             content: '';
             position: absolute;
-            left: 7px;
-            top: 3px;
+            left: 8px;
+            top: 4px;
             width: 6px;
             height: 12px;
             border: solid var(--color-bg-primary);
@@ -728,7 +726,7 @@
             font-weight: 500;
         }
 
-        /* --- 14. CTA Button (Инновация: Золотая Мерцающая кнопка) --- */
+        /* --- 14. CTA Button (Золотая Мерцающая кнопка ТЗ 13) --- */
         .cta-button {
             display: block;
             width: 100%; /* ТЗ 6 */
@@ -740,8 +738,8 @@
             font-family: var(--font-heading);
             text-align: center;
             text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
             border: none;
             position: relative;
@@ -750,17 +748,16 @@
 
         /* ТЗ 6: Disabled состояние */
         .cta-button[aria-disabled="true"] {
-            background: #2a2d35;
-            color: #7a7f8d;
+            background: #D4D0CD;
+            color: #9A9693;
             cursor: not-allowed;
-            opacity: 0.7;
         }
 
         /* Активное состояние (Золото ТЗ 5) */
         .cta-button[aria-disabled="false"] {
-             background: linear-gradient(90deg, #CBA65A, #E1C27C);
-             color: var(--color-bg-primary);
-             box-shadow: 0 5px 25px rgba(203, 166, 90, 0.4);
+             background: var(--gradient-gold);
+             color: var(--color-text-primary);
+             box-shadow: 0 10px 30px rgba(203, 166, 90, 0.3);
         }
 
         /* Инновация: Эффект мерцания (Shimmer) */
@@ -771,7 +768,7 @@
             left: -150%;
             width: 50%;
             height: 100%;
-            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0) 100%);
             transform: skewX(-25deg);
             /* Анимация блика */
             animation: shimmer 2.5s infinite;
@@ -786,7 +783,7 @@
         .cta-button[aria-disabled="false"]:hover,
         .cta-button[aria-disabled="false"]:focus-visible {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(203, 166, 90, 0.6);
+            box-shadow: 0 15px 40px rgba(203, 166, 90, 0.4);
         }
 
         .cta-helper-text {
@@ -817,15 +814,15 @@
         /* --- 16. Анимации (ТЗ 5) --- */
         .reveal {
              opacity: 0;
-             transform: translateY(40px);
-             /* ТЗ 5: Длительность строго ≤200ms */
-             transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+             transform: translateY(40px) scale(0.98);
+             /* ТЗ 5: Длительность строго ≤200ms. Используем плавный easing. */
+             transition: opacity 0.2s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
              will-change: opacity, transform;
         }
 
         .reveal.visible {
              opacity: 1;
-             transform: translateY(0);
+             transform: translateY(0) scale(1);
         }
 
         #scroll-sentinel {
@@ -905,31 +902,36 @@
                 if (progressBar) progressBar.style.width = `${Math.min(scrollPercent, 100)}%`;
             };
 
-            // Инновация: Кинетическая анимация H1 (Reveal/Glitch)
+            // Инновация: Элегантная анимация H1 (Reveal)
             const animateH1 = () => {
+                // ИСПРАВЛЕНИЕ: Текст с корректным пробелом
                 const text = 'Работа в вебкаме — Фикс <span class="highlight-gold">$5 000/мес</span> + ежедневные выплаты';
                 h1Element.innerHTML = '';
-                let delay = 0;
-                const delayIncrement = 0.03; // Задержка между буквами
+                let delay = 0.1;
+                const delayIncrement = 0.04; // Задержка между буквами
 
-                // Функция для обработки текста (включая HTML теги)
+                // Парсинг текста, сохраняя структуру HTML тегов
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(text, 'text/html');
                 const nodes = doc.body.childNodes;
 
                 nodes.forEach(node => {
                     if (node.nodeType === Node.TEXT_NODE) {
+                        // Обработка обычного текста
                         node.textContent.split('').forEach(char => {
                             const span = document.createElement('span');
                             span.className = 'h1-char';
-                            span.textContent = char;
-                            span.style.animationDelay = `${delay}s`;
-                            // Добавляем случайный глитч эффект
-                            if (Math.random() > 0.95 && char !== ' ') {
-                                 span.classList.add('glitch');
+
+                             // Обработка пробелов: они должны занимать место, но не анимироваться
+                            if (char === ' ') {
+                                span.classList.add('h1-char--space');
+                            } else {
+                                span.style.animationDelay = `${delay}s`;
+                                delay += delayIncrement;
                             }
+
+                            span.textContent = char;
                             h1Element.appendChild(span);
-                            delay += delayIncrement;
                         });
                     } else if (node.nodeType === Node.ELEMENT_NODE) {
                         // Обработка вложенных элементов (например, highlight-gold)
@@ -946,68 +948,6 @@
                         h1Element.appendChild(wrapper);
                     }
                 });
-            };
-
-            // Инновация: 3D Tilt Effect + Interactive Glow (Vanilla JS)
-            const initTiltEffect = () => {
-                const tiltElements = document.querySelectorAll('.tilt-element');
-                const maxTilt = 10; // Максимальный угол наклона (в градусах)
-
-                const handleMouseMove = (e, element, bounds) => {
-                    const { width, height, left, top } = bounds;
-                    const centerX = left + width / 2;
-                    const centerY = top + height / 2;
-                    const mouseX = e.clientX;
-                    const mouseY = e.clientY;
-
-                    // Рассчитываем угол поворота (от -maxTilt до +maxTilt)
-                    const rotateX = ((mouseY - centerY) / (height / 2)) * -maxTilt;
-                    const rotateY = ((mouseX - centerX) / (width / 2)) * maxTilt;
-
-                    // Применяем 3D трансформацию
-                    element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-
-                    // Управление свечением (Glow)
-                    const glow = element.querySelector('.card__glow');
-                    if (glow) {
-                        // Перемещаем центр градиента свечения в точку курсора относительно элемента
-                        const glowX = mouseX - left;
-                        const glowY = mouseY - top;
-                        glow.style.background = `radial-gradient(circle at ${glowX}px ${glowY}px, rgba(0, 255, 234, 0.4) 0%, transparent 60%)`;
-                    }
-                };
-
-                const handleMouseLeave = (element) => {
-                    // Сброс трансформации в исходное состояние
-                    element.style.transition = 'transform 0.3s ease-out, border-color 0.3s, box-shadow 0.3s';
-                    element.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-
-                    // Сброс свечения
-                    const glow = element.querySelector('.card__glow');
-                    if (glow) {
-                         glow.style.background = `radial-gradient(circle at center, rgba(0, 255, 234, 0.4) 0%, transparent 60%)`;
-                    }
-                };
-
-                 const handleMouseEnter = (element) => {
-                     // Убираем transition для transform при входе, чтобы наклон был мгновенным
-                     element.style.transition = 'border-color 0.3s, box-shadow 0.3s';
-                 };
-
-                // Применяем эффект только если устройство поддерживает hover (не мобильные)
-                if (window.matchMedia && window.matchMedia("(hover: hover)").matches) {
-                    tiltElements.forEach(element => {
-                        let bounds;
-                        // Оптимизация: рассчитываем границы элемента при входе мыши
-                        element.addEventListener('mouseenter', () => {
-                             bounds = element.getBoundingClientRect();
-                             handleMouseEnter(element);
-                        });
-                        // Используем requestAnimationFrame для плавности анимации
-                        element.addEventListener('mousemove', (e) => requestAnimationFrame(() => handleMouseMove(e, element, bounds)));
-                        element.addEventListener('mouseleave', () => requestAnimationFrame(() => handleMouseLeave(element)));
-                    });
-                }
             };
 
 
@@ -1106,7 +1046,6 @@
 
             // Запуск анимаций и эффектов
             animateH1();
-            initTiltEffect();
 
             // Первичная проверка
             updateProgressBar();
