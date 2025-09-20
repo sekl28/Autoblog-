@@ -27,24 +27,30 @@
       gtag('js', new Date());
       // Замените G-XXXXXXXXXX на ваш ID GA4
       gtag('config', 'G-XXXXXXXXXX', {
-          'page_version': 'v1_innovative',
+          'page_version': 'v4_glass_ticker',
           'geo_blocking': true
       });
     </script>
 
     <style>
-        /* --- 1. Переменные и Сброс (Инновация: Глубина и Премиум Палитра) --- */
+        /* --- 1. Переменные и Сброс (Инновация: Яркая Премиум Палитра) --- */
         :root {
-            /* Палитра (ТЗ 5) */
-            --color-bg-primary: #0A0A0C; /* Глубокий черный для фона */
-            --color-bg-secondary: #121216; /* Для карточек/акцентов */
+            /* Палитра (Neon Future Premium) */
+            --color-bg-primary: #0F0C1D; /* Глубокий фиолетово-синий */
             --color-text-primary: #FFFFFF;
-            --color-text-muted: #A0A0B0;
-            --color-gold-start: #CBA65A;
-            --color-gold-end: #E1C27C;
-            --color-accent-violet: #8B5CF6;
-            --gradient-gold: linear-gradient(90deg, var(--color-gold-start), var(--color-gold-end));
-            --color-border: rgba(255, 255, 255, 0.08);
+            --color-text-muted: #B0B0C8;
+
+            /* Акценты */
+            --color-accent-pink: #E94560; /* Яркий розовый/маджента */
+            --color-accent-blue: #5334FF; /* Яркий синий/фиолетовый */
+            --color-accent-gold: #CBA65A; /* Золотой для финансов (ТЗ 5) */
+
+            --gradient-primary: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-pink));
+
+            /* Glassmorphism */
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-blur: 15px;
 
             /* Шрифты (ТЗ 5) */
             --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
@@ -52,8 +58,6 @@
 
             /* Размеры (ТЗ 7) */
             --container-max-width: 1120px;
-            --padding-mobile: 24px;
-            --padding-desktop: 40px;
         }
 
         *, *::before, *::after {
@@ -71,23 +75,21 @@
             background-color: var(--color-bg-primary);
             color: var(--color-text-primary);
             line-height: 1.6;
-            font-size: 17px;
+            font-size: 16px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            /* Инновация: Добавление текстуры шума для глубины (SVG Data URL) */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
             overflow-x: hidden;
         }
 
-        @media (min-width: 768px) {
-            body {
-                font-size: 18px;
-            }
-        }
+         @media (min-width: 768px) {
+             body {
+                 font-size: 18px;
+             }
+         }
 
-        /* ТЗ 5: A11y (Видимые focus-стили) */
+        /* ТЗ 5: A11y */
         :focus-visible {
-            outline: 3px solid var(--color-accent-violet);
+            outline: 3px solid var(--color-accent-pink);
             outline-offset: 4px;
         }
 
@@ -97,74 +99,139 @@
             top: 0;
             left: 0;
             width: 0%;
-            height: 3px; /* 3px (ТЗ 13) */
-            background: var(--gradient-gold);
-            z-index: 1000;
+            height: 3px;
+            background: var(--gradient-primary);
+            z-index: 2000;
             transition: width 0.1s linear;
-            box-shadow: 0 0 10px rgba(203, 166, 90, 0.5);
+            box-shadow: 0 0 10px var(--color-accent-pink);
         }
 
         /* --- 3. Контейнер (ТЗ 7) --- */
         .container {
             max-width: var(--container-max-width);
             margin: 0 auto;
-            padding: 0 var(--padding-mobile);
+            padding: 0 20px;
         }
 
         @media (min-width: 768px) {
             .container {
-                padding: 0 var(--padding-desktop);
+                padding: 0 40px;
             }
         }
 
-        /* --- 4. Инновация: Эффект "Ауры" (Cursor Glow) --- */
-        #cursor-aura {
+        /* --- 4. Инновация: Динамический Фон (Abstract Liquid Shapes) --- */
+        .background-wrapper {
             position: fixed;
             top: 0;
             left: 0;
-            width: 600px;
-            height: 600px;
-            /* Смесь фиолетового и золотого для премиального, мягкого свечения */
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(203, 166, 90, 0.08) 40%, rgba(10, 10, 12, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none; /* Не блокирует клики */
-            z-index: 1; /* Над фоном, под контентом */
-            transform: translate(-50%, -50%);
-            /* Скрываем на мобильных устройствах (где нет курсора) */
-            display: none;
-            will-change: transform;
-        }
-
-        /* Показываем только если у устройства есть точный указатель (мышь) */
-        @media (pointer: fine) {
-            #cursor-aura {
-                display: block;
-            }
-        }
-
-        /* --- 5. Hero Section (Инновация: Визуальная глубина и типографика) --- */
-        .hero {
-            padding: 15vh 0 120px;
-            text-align: left;
-            position: relative;
-            z-index: 2; /* Над аурой */
+            width: 100%;
+            height: 100%;
+            z-index: 1;
             overflow: hidden;
         }
 
-        /* Инновация: Фоновый Mesh Gradient (легкий, без изображений) */
-        .hero::before {
-            content: '';
+        .blob {
             position: absolute;
-            top: -300px;
-            right: -400px;
-            width: 1000px;
-            height: 1000px;
-            background: radial-gradient(ellipse, rgba(139, 92, 246, 0.15) 0%, rgba(10, 10, 12, 0) 60%);
-            filter: blur(150px);
-            z-index: -1;
-            opacity: 0.8;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            animation: blob-movement 25s infinite alternate ease-in-out;
         }
 
+        .blob--1 {
+            width: 600px;
+            height: 600px;
+            background: var(--color-accent-pink);
+            top: -20%;
+            left: -10%;
+        }
+
+        .blob--2 {
+            width: 700px;
+            height: 700px;
+            background: var(--color-accent-blue);
+            bottom: -30%;
+            right: -20%;
+            animation-delay: -5s;
+        }
+
+        .blob--3 {
+            width: 400px;
+            height: 400px;
+            background: var(--color-accent-gold);
+            top: 50%;
+            left: 30%;
+            opacity: 0.3;
+            animation-delay: -10s;
+        }
+
+        @keyframes blob-movement {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+            50% {
+                transform: scale(1.2) translate(50px, -50px);
+            }
+            100% {
+                transform: scale(1) translate(0, 0);
+            }
+        }
+
+        /* --- 5. Инновация: Вовлекающий Элемент (Live Ticker) --- */
+        .live-ticker {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            padding: 10px 0;
+            z-index: 1500;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .ticker-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--color-accent-pink);
+            border-radius: 50%;
+            margin-right: 12px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; box-shadow: 0 0 5px var(--color-accent-pink); }
+            50% { opacity: 0.5; box-shadow: 0 0 0px var(--color-accent-pink); }
+            100% { opacity: 1; box-shadow: 0 0 5px var(--color-accent-pink); }
+        }
+
+        #ticker-amount {
+            font-family: var(--font-heading);
+            color: var(--color-accent-gold);
+            margin-left: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* --- 6. Hero Section и Типографика --- */
+        header, main, footer {
+            position: relative;
+            z-index: 10; /* Над фоном */
+        }
+
+        .hero {
+            padding: 15vh 0 100px;
+            text-align: left;
+        }
+
+        /* Инновация: Неоновый эффект заголовка */
         h1 {
             font-family: var(--font-heading);
             font-size: 3rem; /* 48px */
@@ -172,14 +239,9 @@
             margin-bottom: 32px;
             max-width: 900px;
             font-weight: 700;
-        }
-
-        .highlight-text {
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 700;
+            color: #fff;
+            /* Легкий неоновый эффект */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 15px rgba(233, 69, 96, 0.2);
         }
 
         @media (min-width: 768px) {
@@ -188,8 +250,20 @@
             }
         }
 
+        .highlight-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        
+        .highlight-gold {
+             color: var(--color-accent-gold);
+        }
+
         .hero__intro {
-            font-size: 1.25rem; /* 20px */
+            font-size: 1.125rem;
             color: var(--color-text-muted);
             max-width: 800px;
             margin-bottom: 48px;
@@ -201,38 +275,34 @@
             gap: 16px;
         }
 
-        /* Инновация: "Магнитные" теги с 3D эффектом */
+        /* Инновация: Glassmorphic теги */
         .thesis-tag {
             padding: 10px 24px;
-            background-color: var(--color-bg-secondary);
-            border: 1px solid var(--color-border);
+            /* Glassmorphism */
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 500;
-            /* Плавный переход с кастомным easing для премиум ощущения */
-            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s, box-shadow 0.3s;
-            will-change: transform;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
         .thesis-tag:hover {
-             border-color: var(--color-accent-violet);
-             /* Легкий 3D эффект и свечение */
-             transform: translateY(-3px) scale(1.03);
-             box-shadow: 0 10px 20px rgba(139, 92, 246, 0.2);
+             border-color: var(--color-accent-pink);
+             transform: scale(1.05);
         }
 
-        /* --- 6. Базовая типографика и Секции --- */
-        main {
-            position: relative;
-            z-index: 2; /* Над аурой */
-        }
-
+        /* --- 7. Базовая типографика и Секции --- */
         h2 {
             font-family: var(--font-heading);
-            font-size: 2.5rem; /* 40px */
-            margin-bottom: 40px;
+            font-size: 2.25rem; /* 36px */
+            margin-bottom: 32px;
             color: var(--color-text-primary);
             font-weight: 700;
+            /* Легкий неоновый эффект */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
         }
 
         p {
@@ -246,32 +316,53 @@
         }
 
         section {
-            padding: 80px 0;
-            /* Инновация: Разделители между секциями для лучшей структуры */
-            border-bottom: 1px solid var(--color-border);
+            padding: 60px 0;
         }
 
          @media (min-width: 768px) {
              section {
-                 padding: 120px 0;
+                 padding: 80px 0;
              }
          }
 
-         /* Убираем границу у последней секции перед CTA */
-         #about-webcam {
-             border-bottom: none;
+         /* --- 8. Инновация: Glassmorphism Контентные Блоки --- */
+         .glass-card {
+            /* Glassmorphism */
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur)); /* Safari support */
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-out;
          }
+
+         @media (min-width: 768px) {
+              .glass-card {
+                  padding: 40px;
+              }
+              /* Легкий эффект при наведении для вовлечения */
+              .glass-card:hover {
+                   transform: translateY(-5px);
+              }
+         }
+
     </style>
 </head>
 <body>
-    <div id="cursor-aura" aria-hidden="true"></div>
-
     <div id="progress-bar" aria-hidden="true"></div>
+
+    <div class="background-wrapper" aria-hidden="true">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+        <div class="blob blob--3"></div>
+    </div>
 
     <header>
         <section class="hero" aria-labelledby="main-heading">
             <div class="container">
-                <h1 id="main-heading">Работа в вебкаме — фикс <span class="highlight-text">$5 000/мес</span> + ежедневные выплаты</h1>
+                <h1 id="main-heading">Работа в вебкаме — фикс <span class="highlight-gold">$5 000/мес</span> + ежедневные выплаты</h1>
                 <p class="hero__intro">Ищем ответственных девушек 18–20 лет для долгосрочной работы по чёткому регламенту. Работаем строго на одной платформе — Chaturbate.com. Мы полностью создаём и ведём твои рабочие аккаунты и берём на себя продвижение. Твоя задача — стабильно работать по нашему шаблону и соблюдать правила.</p>
                 <div class="hero__theses">
                     <span class="thesis-tag">Фикс $5 000 в месяц</span>
@@ -290,131 +381,150 @@
 
             <section id="benefits" aria-labelledby="benefits-heading" class="reveal">
                 <div class="container">
-                    <h2 id="benefits-heading">Что ты получаешь</h2>
-                    <ul class="bullet-list">
-                        <li><strong>Фиксированная зарплата <span class="highlight-text">$5 000</span> в месяц.</strong></li>
-                        <li>Ежедневные выплаты после каждого стрима любым удобным способом (включая криптовалюту).</li>
-                        <li>Обучение, сценарии, техническая настройка от А до Я.</li>
-                        <li>Аккаунты создаём и полностью ведём мы (OnlyFans, Instagram, Telegram и др.) — ты согласна на ведение нами.</li>
-                        <li><strong>Гео-приватность:</strong> продвижение на дальние страны (США, Великобритания и др.); в стримах блокируются русскоязычные страны — риск быть узнанной минимальный.</li>
-                        <li>Контакт для заявок в Telegram: @webmanager4</li>
-                    </ul>
+                    <div class="glass-card">
+                        <h2 id="benefits-heading">Что ты получаешь</h2>
+                        <ul class="bullet-list">
+                            <li><strong>Фиксированная зарплата <span class="highlight-gold">$5 000</span> в месяц.</strong></li>
+                            <li>Ежедневные выплаты после каждого стрима любым удобным способом (включая криптовалюту).</li>
+                            <li>Обучение, сценарии, техническая настройка от А до Я.</li>
+                            <li>Аккаунты создаём и полностью ведём мы (OnlyFans, Instagram, Telegram и др.) — ты согласна на ведение нами.</li>
+                            <li><strong>Гео-приватность:</strong> продвижение на дальние страны (США, Великобритания и др.); в стримах блокируются русскоязычные страны — риск быть узнанной минимальный.</li>
+                            </ul>
+                    </div>
                 </div>
             </section>
 
             <section id="equipment" aria-labelledby="equipment-heading" class="reveal">
                 <div class="container">
-                    <h2 id="equipment-heading">Оборудование (обязательно)</h2>
-                    <ul class="bullet-list">
-                        <li>Ноутбук + стабильный интернет.</li>
-                        <li>Внешняя веб-камера <strong>не ниже Logitech C920</strong> (~$100).</li>
-                        <li><strong>Важно:</strong> камеры телефона и встроенные камеры ноутбука не подходят.</li>
-                    </ul>
-                    <div class="callout">
-                        <h3>Окупаемость первым стримом</h3>
-                        <p>Если камеры нет — вкладываешь ~$100, и в первый же стрим окупаешь: получаешь <span class="highlight-text">$167</span> после эфира в любом случае.</p>
+                    <div class="glass-card">
+                        <h2 id="equipment-heading">Оборудование (обязательно)</h2>
+                        <ul class="bullet-list">
+                            <li>Ноутбук + стабильный интернет.</li>
+                            <li>Внешняя веб-камера <strong>не ниже Logitech C920</strong> (~$100).</li>
+                            <li><strong>Важно:</strong> камеры телефона и встроенные камеры ноутбука не подходят.</li>
+                        </ul>
+                        <div class="callout">
+                            <h3>Окупаемость первым стримом</h3>
+                            <p>Если камеры нет — вкладываешь ~$100, и в первый же стрим окупаешь: получаешь <span class="highlight-gold">$167</span> после эфира в любом случае.</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section id="schedule" aria-labelledby="schedule-heading" class="reveal">
                 <div class="container">
-                    <h2 id="schedule-heading">График и выходные</h2>
-                    <ul class="bullet-list">
-                        <li>Смена — 8 часов.</li>
-                        <li>Выходных — <strong>максимум 2 в неделю.</strong> Больше — не рассматривается.</li>
-                    </ul>
+                    <div class="glass-card">
+                        <h2 id="schedule-heading">График и выходные</h2>
+                        <ul class="bullet-list">
+                            <li>Смена — 8 часов.</li>
+                            <li>Выходных — <strong>максимум 2 в неделю.</strong> Больше — не рассматривается.</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
             <section id="payment" aria-labelledby="payment-heading" class="reveal">
                 <div class="container">
-                    <h2 id="payment-heading">Оплата — как это работает</h2>
-                    <ul class="bullet-list">
-                        <li>$5 000 / 30 дней = <span class="highlight-text">$167</span> за каждый выход в эфир.</li>
-                        <li>Вышла в эфир — получила $167 в тот же день после стрима.</li>
-                        <li>Дни планируешь сама, соблюдая лимит не более 2 выходных в неделю.</li>
-                    </ul>
+                    <div class="glass-card">
+                        <h2 id="payment-heading">Оплата — как это работает</h2>
+                        <ul class="bullet-list">
+                            <li>$5 000 / 30 дней = <span class="highlight-gold">$167</span> за каждый выход в эфир.</li>
+                            <li>Вышла в эфир — получила $167 в тот же день после стрима.</li>
+                            <li>Дни планируешь сама, соблюдая лимит не более 2 выходных в неделю.</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
             <section id="responsibilities" aria-labelledby="responsibilities-heading" class="reveal">
                 <div class="container">
-                    <h2 id="responsibilities-heading">Обязанности</h2>
-                    <ul class="bullet-list">
-                        <li>Стримы 18+ по нашему сценарию и регламенту — 8 часов в смену.</li>
-                        <li>1 видео 18+ в неделю для OnlyFans (по нашему ТЗ).</li>
-                        <li>1–2 фото в неделю для соцсетей (по нашему ТЗ).</li>
-                        <li>Согласие на то, что мы создаём и полностью ведём твои промо-аккаунты (OnlyFans/Instagram/Telegram и др.) и размещаем контент в рамках ТЗ.</li>
-                        <li>Дисциплина, пунктуальность, выполнение чек-листов.</li>
-                    </ul>
+                    <div class="glass-card">
+                        <h2 id="responsibilities-heading">Обязанности</h2>
+                        <ul class="bullet-list">
+                            <li>Стримы 18+ по нашему сценарию и регламенту — 8 часов в смену.</li>
+                            <li>1 видео 18+ в неделю для OnlyFans (по нашему ТЗ).</li>
+                            <li>1–2 фото в неделю для соцсетей (по нашему ТЗ).</li>
+                            <li>Согласие на то, что мы создаём и полностью ведём твои промо-аккаунты (OnlyFans/Instagram/Telegram и др.) и размещаем контент в рамках ТЗ.</li>
+                            <li>Дисциплина, пунктуальность, выполнение чек-листов.</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
             <section id="requirements" aria-labelledby="requirements-heading" class="reveal">
                 <div class="container">
-                    <h2 id="requirements-heading">Требования</h2>
-                    <ul class="bullet-list">
-                        <li><strong>Возраст строго 18–20 лет.</strong> Если тебе меньше 18 или старше 20 — не подходит.</li>
-                        <li>Ответственность и готовность работать в долгую по нашему шаблону.</li>
-                        <li><strong>Знание английского не требуется.</strong> Мы работаем по другому принципу: даём готовые скрипты, фразы и инструкции.</li>
-                    </ul>
+                    <div class="glass-card">
+                        <h2 id="requirements-heading">Требования</h2>
+                        <ul class="bullet-list">
+                            <li><strong>Возраст строго 18–20 лет.</strong> Если тебе меньше 18 или старше 20 — не подходит.</li>
+                            <li>Ответственность и готовность работать в долгую по нашему шаблону.</li>
+                            <li><strong>Знание английского не требуется.</strong> Мы работаем по другому принципу: даём готовые скрипты, фразы и инструкции.</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
             <section id="selection" aria-labelledby="selection-heading" class="reveal">
                 <div class="container">
-                    <h2 id="selection-heading">Отбор и испытательный период</h2>
-                    <ul class="bullet-list">
-                        <li>Отбор занимает до 1 месяца — цель выбрать 10 девушек.</li>
-                        <li>После прохождения отбора — испытательная неделя, оплачивается: <span class="highlight-text">$167</span> за каждый стрим в этот период.</li>
-                    </ul>
+                    <div class="glass-card">
+                        <h2 id="selection-heading">Отбор и испытательный период</h2>
+                        <ul class="bullet-list">
+                            <li>Отбор занимает до 1 месяца — цель выбрать 10 девушек.</li>
+                            <li>После прохождения отбора — испытательная неделя, оплачивается: <span class="highlight-gold">$167</span> за каждый стрим в этот период.</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
             <section id="rules" aria-labelledby="rules-heading" class="reveal">
                 <div class="container">
-                    <h2 id="rules-heading">Правила по аккаунтам и контенту</h2>
-                    <ul class="bullet-list">
-                        <li>Аккаунты создаются и продвигаются за наш счёт, поэтому после завершения сотрудничества <strong>аккаунты остаются у нас.</strong></li>
-                        <li>Все ваши фото и видео, размещённые на этих аккаунтах, после завершения сотрудничества <strong>удаляются.</strong></li>
-                    </ul>
+                    <div class="glass-card">
+                        <h2 id="rules-heading">Правила по аккаунтам и контенту</h2>
+                        <ul class="bullet-list">
+                            <li>Аккаунты создаются и продвигаются за наш счёт, поэтому после завершения сотрудничества <strong>аккаунты остаются у нас.</strong></li>
+                            <li>Все ваши фото и видео, размещённые на этих аккаунтах, после завершения сотрудничества <strong>удаляются.</strong></li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
             <section id="application" aria-labelledby="application-heading" class="reveal">
                 <div class="container">
-                    <h2 id="application-heading">Как подать заявку (прочитай внимательно)</h2>
-                    <ol class="numbered-list">
-                        <li>Напиши в Telegram: <strong>@webmanager4</strong></li>
-                        <li>Сразу укажи возраст и пришли 3–4 фото в полный рост.</li>
-                        <li>Коротко напиши, что готова работать по нашему регламенту.</li>
-                    </ol>
-                    <div class="callout callout--info">
-                        <p>Мы игнорируем пустые сообщения («здравствуйте», «можно вопрос?» и т. п.). На этой странице есть вся базовая информация. Возраст и фото — обязательны для рассмотрения заявки.</p>
+                    <div class="glass-card">
+                        <h2 id="application-heading">Как подать заявку (прочитай внимательно)</h2>
+                        <p>Используй кнопку внизу страницы, чтобы связаться с нами в Telegram, и сразу:</p>
+                        <ol class="numbered-list">
+                            <li>Укажи возраст и пришли 3–4 фото в полный рост.</li>
+                            <li>Коротко напиши, что готова работать по нашему регламенту.</li>
+                        </ol>
+                        <div class="callout callout--info">
+                            <p>Мы игнорируем пустые сообщения («здравствуйте», «можно вопрос?» и т. п.). На этой странице есть вся базовая информация. Возраст и фото — обязательны для рассмотрения заявки.</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section id="about-webcam" aria-labelledby="about-webcam-heading" class="reveal">
                 <div class="container">
-                    <h2 id="about-webcam-heading">Что такое вебкам (кратко)</h2>
-                    <p>Это онлайн-трансляции 18+ на Chaturbate с общением по нашим сценариям. Работа удалённая, безопасная, без офлайн-встреч, с ежедневными выплатами и чётким планом действий.</p>
+                    <div class="glass-card">
+                        <h2 id="about-webcam-heading">Что такое вебкам (кратко)</h2>
+                        <p>Это онлайн-трансляции 18+ на Chaturbate с общением по нашим сценариям. Работа удалённая, безопасная, без офлайн-встреч, с ежедневными выплатами и чётким планом действий.</p>
+                    </div>
                 </div>
             </section>
         </div>
 
         <section id="cta-section" aria-labelledby="cta-heading">
             <div class="container cta-container">
-                <h2 id="cta-heading">Готова? Пиши в Telegram: @webmanager4</h2>
+                <h2 id="cta-heading">Готова начать?</h2>
                 <p>После получения возраста и фото мы свяжемся и назначим стартовое обучение.</p>
 
                 <div class="confirmation-checks" role="group" aria-label="Подтверждения">
-                    <div class="checkbox-wrapper">
+                    <div class="checkbox-wrapper glass-card">
                         <input type="checkbox" id="age-check" aria-required="true">
                         <label for="age-check">Мне 18–20 лет (подтверждаю возраст)</label>
                     </div>
-                    <div class="checkbox-wrapper">
+                    <div class="checkbox-wrapper glass-card">
                         <input type="checkbox" id="agreement-check" aria-required="true">
                         <label for="agreement-check">Я прочитала и согласна с правилами и регламентом</label>
                     </div>
@@ -451,6 +561,14 @@
         </div>
     </footer>
 
+    <div class="live-ticker" aria-live="polite">
+        <div class="ticker-content">
+            <div class="live-dot"></div>
+            <span>Выплаты за сегодня:</span>
+            <span id="ticker-amount">$1,503</span>
+        </div>
+    </div>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -459,74 +577,69 @@
       "url": "https://example.com/"
     }
     </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Webcam Agency",
-      "url": "https://example.com/"
-    }
-    </script>
 
     <style>
-        /* --- 7. Макет контента --- */
+        /* --- 9. Макет контента --- */
         .content-wrapper {
              /* Ограничение ширины контента для лучшей читаемости */
-             max-width: 800px;
+             max-width: 850px;
              margin: 0 auto;
+             /* Отступ снизу, чтобы тикер не перекрывал контент */
+             padding-bottom: 100px;
         }
 
-        /* --- 8. Стили Списков (Инновация: Премиальные буллеты) --- */
+        /* --- 10. Стили Списков --- */
         .bullet-list, .numbered-list {
             list-style: none;
             padding-left: 0;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 20px;
         }
 
         .bullet-list li {
             position: relative;
-            padding-left: 36px;
+            padding-left: 30px;
             color: var(--color-text-muted);
         }
 
-        /* Инновация: Кастомный буллет с иконкой (ТЗ 14: SVG в коде) */
+        /* Инновация: Яркие буллеты */
         .bullet-list li::before {
             content: '';
             position: absolute;
             left: 0;
-            top: 4px;
-            width: 20px;
-            height: 20px;
-            /* Иконка "звезда" с золотым градиентом */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23CBA65A;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23E1C27C;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2' stroke='url(%23grad1)'/%3E%3C/svg%3E");
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: var(--color-accent-pink);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--color-accent-pink);
         }
 
         .numbered-list {
             counter-reset: list-counter;
+            margin-top: 20px;
+            margin-bottom: 24px;
         }
 
         .numbered-list li {
             counter-increment: list-counter;
             position: relative;
-            padding-left: 48px;
+            padding-left: 40px;
             color: var(--color-text-muted);
         }
 
-        /* Инновация: Премиальные номера */
+        /* Инновация: Номера с градиентом */
         .numbered-list li::before {
             content: counter(list-counter);
             position: absolute;
             left: 0;
             top: 0;
-            width: 32px;
-            height: 32px;
-            background-color: var(--color-bg-secondary);
-            /* Фиолетовый акцент (ТЗ 5) */
-            border: 1px solid var(--color-accent-violet);
-            color: var(--color-text-primary);
-            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            background: var(--gradient-primary);
+            color: #fff;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -534,35 +647,24 @@
             font-family: var(--font-heading);
         }
 
-        /* --- 9. Callout Block (ТЗ 13) --- */
+        /* --- 11. Callout Block (ТЗ 13) --- */
         .callout {
-            background-color: var(--color-bg-secondary);
-            padding: 32px;
+            /* Используем Glassmorphism, но чуть темнее для выделения */
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            padding: 24px;
             border-radius: 16px;
-            /* Рамка с золотым оттенком (ТЗ 13) */
-            border: 1px solid rgba(203, 166, 90, 0.2);
-            margin-top: 40px;
-            /* Инновация: 3D эффект и глубина */
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            margin-top: 32px;
             position: relative;
-            overflow: hidden;
-        }
-
-        /* Инновация: Акцентная линия сверху */
-        .callout::before {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 3px;
-             background: var(--gradient-gold);
+            border-left: 4px solid var(--color-accent-gold);
         }
 
         .callout h3 {
             font-family: var(--font-heading);
-            font-size: 1.5rem;
-            margin-bottom: 12px;
+            font-size: 1.25rem;
+            margin-bottom: 8px;
             color: var(--color-text-primary);
         }
 
@@ -571,27 +673,20 @@
              margin-bottom: 0;
         }
 
-        /* Модификатор для информационного блока (Как подать заявку) */
+        /* Модификатор для информационного блока */
         .callout--info {
-             border-color: rgba(139, 92, 246, 0.3);
+             border-left-color: var(--color-accent-blue);
         }
 
-        .callout--info::before {
-             background: var(--color-accent-violet);
-        }
-
-        /* --- 10. CTA Section Styling (Инновация: Фокусный блок) --- */
+        /* --- 12. CTA Section Styling --- */
         #cta-section {
-            /* Используем вторичный фон для выделения */
-            background-color: var(--color-bg-secondary);
-            padding: 80px 0;
-            margin-top: 80px;
-            border-top: 1px solid var(--color-border);
-            border-bottom: 1px solid var(--color-border);
-            /* Инновация: Добавляем легкое фоновое свечение в CTA */
-            background-image: radial-gradient(ellipse at center, rgba(203, 166, 90, 0.05) 0%, rgba(18, 18, 22, 0) 70%);
-            position: relative;
-            z-index: 2;
+            padding: 80px 0 150px; /* Доп. отступ снизу из-за тикера */
+            margin-top: 60px;
+            /* Выделяем секцию более темным Glassmorphism */
+            background: rgba(0,0,0, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
         }
 
         .cta-container {
@@ -600,34 +695,29 @@
         }
 
         #cta-section h2 {
-             margin-bottom: 20px;
-             font-size: 2.25rem;
+             margin-bottom: 16px;
         }
 
         .confirmation-checks {
             margin: 40px 0;
             text-align: left;
-            /* Инновация: Центрируем чекбоксы внутри блока */
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 20px;
         }
 
-        /* --- 11. Кастомные Чекбоксы (ТЗ 13) --- */
+        /* --- 13. Кастомные Чекбоксы (ТЗ 13) --- */
         .checkbox-wrapper {
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-bottom: 24px;
-            padding: 12px;
-            border-radius: 8px;
-            transition: background-color 0.2s;
             cursor: pointer;
-            max-width: 500px;
-        }
-
-        .checkbox-wrapper:hover {
-             background-color: rgba(255, 255, 255, 0.05);
+            width: 100%;
+            max-width: 550px;
+            /* Убираем паддинг и маргин, так как теперь это glass-card */
+            padding: 20px 24px;
+            margin: 0;
         }
 
         input[type="checkbox"] {
@@ -639,7 +729,7 @@
             height: 28px;
             border: 2px solid var(--color-text-muted);
             border-radius: 8px;
-            background-color: var(--color-bg-primary);
+            background-color: rgba(0,0,0,0.3);
             cursor: pointer;
             flex-shrink: 0;
             transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
@@ -647,13 +737,13 @@
         }
 
         input[type="checkbox"]:hover {
-            border-color: var(--color-gold-start);
+            border-color: var(--color-accent-pink);
         }
 
         input[type="checkbox"]:checked {
-            background-color: var(--color-gold-start);
-            border-color: var(--color-gold-start);
-            box-shadow: 0 0 15px rgba(203, 166, 90, 0.5);
+            background: var(--gradient-primary);
+            border-color: transparent;
+            box-shadow: 0 0 15px var(--color-accent-pink);
         }
 
         /* Галочка (CSS) */
@@ -664,39 +754,37 @@
             top: 5px;
             width: 8px;
             height: 14px;
-            border: solid var(--color-bg-primary);
+            border: solid #fff;
             border-width: 0 3px 3px 0;
             transform: rotate(45deg);
         }
 
         label {
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--color-text-primary);
             user-select: none;
             font-weight: 500;
         }
 
-        /* --- 12. CTA Button (ТЗ 6 и 13) (Инновация: Премиальный 3D эффект) --- */
+        /* --- 14. CTA Button (Инновация: Мерцающая кнопка) --- */
         .cta-button {
             display: block;
-            width: 100%; /* ТЗ 6: На мобиле ширина 100% */
+            width: 100%; /* ТЗ 6 */
             max-width: 550px;
             margin: 0 auto;
             padding: 20px 24px;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 700;
             font-family: var(--font-heading);
             text-align: center;
             text-decoration: none;
             border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.3s;
             cursor: pointer;
-            /* ТЗ 13: Золотой градиент */
-            background: var(--gradient-gold);
-            color: var(--color-bg-primary);
             border: none;
-            box-shadow: 0 5px 15px rgba(203, 166, 90, 0.3);
+            position: relative;
+            overflow: hidden; /* Для эффекта мерцания */
         }
 
         /* ТЗ 6: Disabled состояние */
@@ -705,16 +793,43 @@
             color: #7a7f8d;
             cursor: not-allowed;
             opacity: 0.7;
-            box-shadow: none;
         }
 
-        /* ТЗ 6: Мягкое свечение по hover/focus (Инновация: Усиленный эффект) */
+        /* Активное состояние */
+        .cta-button[aria-disabled="false"] {
+             background: var(--gradient-primary);
+             color: #fff;
+             box-shadow: 0 5px 25px rgba(233, 69, 96, 0.4);
+        }
+
+        /* Инновация: Эффект мерцания (Shimmer) */
+        .cta-button[aria-disabled="false"]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-25deg);
+            /* Анимация блика */
+            animation: shimmer 2.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -150%;
+            }
+            100% {
+                left: 150%;
+            }
+        }
+
+        /* ТЗ 6: Hover/focus эффект */
         .cta-button[aria-disabled="false"]:hover,
         .cta-button[aria-disabled="false"]:focus-visible {
             transform: translateY(-4px) scale(1.02);
-            /* Увеличенное мягкое свечение и 3D эффект */
-            box-shadow: 0 15px 40px rgba(203, 166, 90, 0.5);
-            filter: brightness(1.1);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.6);
         }
 
         .cta-helper-text {
@@ -725,14 +840,13 @@
             visibility: hidden; /* Скрыт по умолчанию */
         }
 
-        /* --- 13. Футер --- */
+        /* --- 15. Футер --- */
         .footer {
-            background-color: var(--color-bg-primary);
             padding: 60px 0;
-            margin-top: 80px;
-            position: relative;
-            z-index: 2;
-            border-top: 1px solid var(--color-border);
+            border-top: 1px solid var(--glass-border);
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
         .footer-content {
@@ -770,27 +884,25 @@
         }
 
         .footer-links a:hover {
-            color: var(--color-gold-start);
+            color: var(--color-accent-pink);
         }
 
-        /* --- 14. Анимации (ТЗ 5) (Инновация: Сложные и плавные) --- */
+        /* --- 16. Анимации (ТЗ 5) --- */
         .reveal {
              opacity: 0;
-             /* Инновация: Добавляем легкое масштабирование для "дорогого" эффекта */
-             transform: translateY(40px) scale(0.98);
-             /* ТЗ 5: Длительность строго ≤200ms, используем кастомный easing */
-             transition: opacity 0.2s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+             transform: translateY(40px);
+             /* ТЗ 5: Длительность строго ≤200ms */
+             transition: opacity 0.2s ease-out, transform 0.2s ease-out;
              will-change: opacity, transform;
         }
 
         .reveal.visible {
              opacity: 1;
-             transform: translateY(0) scale(1);
+             transform: translateY(0);
         }
 
         #scroll-sentinel {
             height: 1px;
-            /* Отступ, чтобы скролл засчитался до того, как пользователь увидит футер */
             margin-bottom: 300px;
         }
 
@@ -819,14 +931,13 @@
             const scrollSentinel = document.getElementById('scroll-sentinel');
             const ctaHelperText = document.getElementById('cta-helper-text');
             const sectionsToReveal = document.querySelectorAll('.reveal');
-            const cursorAura = document.getElementById('cursor-aura');
+            const tickerAmountEl = document.getElementById('ticker-amount');
 
             // --- Функции ---
 
             // Отправка событий аналитики (ТЗ 9)
             const sendAnalyticsEvent = (eventName) => {
                 if (typeof gtag === 'function') {
-                    // Параметры page_version и geo_blocking уже установлены в gtag('config')
                     gtag('event', eventName);
                 }
             };
@@ -869,30 +980,27 @@
                 if (progressBar) progressBar.style.width = `${Math.min(scrollPercent, 100)}%`;
             };
 
-            // Инновация: Логика следования Ауры за курсором (с оптимизацией и плавной интерполяцией)
-            let mouseX = window.innerWidth / 2;
-            let mouseY = window.innerHeight / 2;
-            let auraX = mouseX;
-            let auraY = mouseY;
-            const auraSpeed = 0.15; // Скорость следования (чем выше, тем быстрее)
+            // Инновация: Логика Live Ticker (Симуляция)
+            const startLiveTicker = () => {
+                if (!tickerAmountEl) return;
 
-            const animateAura = () => {
-                if (!cursorAura) return;
+                let currentAmount = 1503; // Стартовое значение
 
-                // Плавное движение (Линейная интерполяция - LERP)
-                auraX += (mouseX - auraX) * auraSpeed;
-                auraY += (mouseY - auraY) * auraSpeed;
+                const updateTicker = () => {
+                    // Рандомное увеличение суммы (например, от $5 до $50)
+                    const increment = Math.floor(Math.random() * (50 - 5 + 1)) + 5;
+                    currentAmount += increment;
 
-                // Применяем координаты с аппаратным ускорением (translate)
-                // Используем toFixed(2) для оптимизации рендеринга субпикселей
-                cursorAura.style.transform = `translate(${auraX.toFixed(2)}px, ${auraY.toFixed(2)}px) translate(-50%, -50%)`;
+                    // Форматирование числа с запятыми
+                    tickerAmountEl.textContent = '$' + currentAmount.toLocaleString();
 
-                requestAnimationFrame(animateAura);
-            };
+                    // Планирование следующего обновления через рандомное время (от 3 до 15 секунд)
+                    const nextUpdateIn = Math.floor(Math.random() * (15000 - 3000 + 1)) + 3000;
+                    setTimeout(updateTicker, nextUpdateIn);
+                };
 
-            const handleMouseMove = (event) => {
-                mouseX = event.clientX;
-                mouseY = event.clientY;
+                // Запускаем первый раз через 5 секунд
+                setTimeout(updateTicker, 5000);
             };
 
 
@@ -912,7 +1020,7 @@
             // Улучшенный UX: Клик по всей области чекбокса (wrapper)
             document.querySelectorAll('.checkbox-wrapper').forEach(wrapper => {
                 wrapper.addEventListener('click', (event) => {
-                    // Убедимся, что клик не был прямо по input или label (чтобы избежать двойного срабатывания)
+                    // Убедимся, что клик не был прямо по input или label (избегаем двойного срабатывания)
                     if (event.target.tagName !== 'INPUT' && event.target.tagName !== 'LABEL') {
                          const checkbox = wrapper.querySelector('input[type="checkbox"]');
                          if (checkbox) {
@@ -965,8 +1073,8 @@
                     }
                 });
             }, {
-                threshold: 0.05, // Появляется раньше для большей плавности
-                rootMargin: "0px 0px -100px 0px"
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
             });
 
 
@@ -975,12 +1083,6 @@
             // Подключение обработчиков (с passive для производительности)
             window.addEventListener('scroll', updateProgressBar, { passive: true });
             window.addEventListener('resize', updateProgressBar, { passive: true });
-
-            // Подключаем отслеживание мыши и анимацию Ауры только если есть точный указатель (мышь)
-            if (window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
-                document.addEventListener('mousemove', handleMouseMove, { passive: true });
-                animateAura();
-            }
 
             ageCheck.addEventListener('change', handleCheckboxChange);
             agreementCheck.addEventListener('change', handleCheckboxChange);
@@ -994,6 +1096,9 @@
             sectionsToReveal.forEach(section => {
                 revealObserver.observe(section);
             });
+
+            // Запуск тикера
+            startLiveTicker();
 
             // Первичная проверка
             updateProgressBar();
@@ -1014,7 +1119,7 @@
                 updateCTAState();
             };
 
-            // Задержка для учета загрузки шрифтов, которые могут изменить высоту документа
+            // Задержка для учета загрузки шрифтов
             setTimeout(checkInitialScroll, 150);
         });
     </script>
