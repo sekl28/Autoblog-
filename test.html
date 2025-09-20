@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вебкам — Фикс $5 000/мес | Ежедневные выплаты 18-20 лет</title>
-    <meta name="description" content="Ищем девушек 18–20 лет для работы на Chaturbate. Фикс $5000/мес ($167/стрим). Ежедневные выплаты. Мы создаём и ведём аккаунты. Строгий регламент.">
+    <title>Вебкам — Потенциал $5 000/мес | $167/Стрим | 18-20 лет</title>
+    <meta name="description" content="Ищем девушек 18–20 лет для работы на Chaturbate. Потенциальный доход до $5000/мес ($167/стрим). Ежедневные выплаты. Строгий регламент.">
 
     <meta name="robots" content="noindex,nofollow">
 
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; img-src 'self' data:; connect-src https://www.google-analytics.com;">
 
-    <meta property="og:title" content="Вебкам — Фикс $5 000/мес | Работа строго 18–20 лет">
+    <meta property="og:title" content="Вебкам — Потенциал $5 000/мес | Работа строго 18–20 лет">
     <meta property="og:description" content="Фиксированная оплата $167 за стрим. Ежедневные выплаты. Работа на Chaturbate. Мы берём на себя продвижение и ведение аккаунтов.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://example.com/">
@@ -27,39 +27,37 @@
       gtag('js', new Date());
       // Замените G-XXXXXXXXXX на ваш ID GA4
       gtag('config', 'G-XXXXXXXXXX', {
-          'page_version': 'v7_modern_luxury_beige',
+          'page_version': 'v8_liquid_gold_depth',
           'geo_blocking': true
       });
     </script>
 
     <style>
-        /* --- 1. Переменные и Сброс (Инновация: Бежевая Премиум Палитра) --- */
+        /* --- 1. Переменные и Сброс (Инновация: Темный Премиум + Золото) --- */
         :root {
-            /* Палитра (Современный Люкс / Беж) */
-            --color-bg-primary: #F7F4F1; /* Теплый белый / Светло-бежевый фон */
-            --color-bg-card: #FFFFFF; /* Чистый белый для карточек */
+            /* Палитра (ТЗ 5) */
+            --color-bg-primary: #0F1115;
+            --color-text-primary: #EDEFF3;
+            --color-text-muted: #A9B1C1;
 
-            /* Текст (Высокий контраст для A11y ТЗ 5) */
-            --color-text-primary: #2C2623; /* Глубокий темно-коричневый/угольный */
-            --color-text-muted: #7D7470; /* Приглушенный серый/коричневый */
+            /* Золотые акценты (ТЗ 5) */
+            --color-gold-start: #CBA65A;
+            --color-gold-end: #E1C27C;
+            --gradient-gold: linear-gradient(90deg, var(--color-gold-start), var(--color-gold-end));
 
-            /* Акценты */
-            --color-accent-gold: #CBA65A; /* Золотой (ТЗ 5) */
-            --color-accent-soft: #E5A98F; /* Мягкий терракотовый/розовый для фона */
-
-            --gradient-gold: linear-gradient(90deg, #CBA65A, #E1C27C);
-            --color-border: rgba(44, 38, 35, 0.1);
-
-            /* Тени (Soft UI) */
-            --shadow-soft: 0 30px 60px rgba(44, 38, 35, 0.1);
-            --shadow-hover: 0 40px 80px rgba(44, 38, 35, 0.15);
+            /* Glassmorphism на темном фоне */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            /* Усиление границы золотым оттенком для "завораживающего" эффекта */
+            --glass-border-gold: rgba(203, 166, 90, 0.3);
+            --glass-blur: 20px;
 
             /* Шрифты (ТЗ 5) */
             --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
             --font-body: 'Inter', 'Manrope', system-ui, sans-serif;
 
             /* Размеры (ТЗ 7) */
-            --container-max-width: 1200px;
+            --container-max-width: 1120px;
         }
 
         *, *::before, *::after {
@@ -76,22 +74,24 @@
             font-family: var(--font-body);
             background-color: var(--color-bg-primary);
             color: var(--color-text-primary);
-            line-height: 1.6;
+            line-height: 1.7;
             font-size: 16px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
+             /* Добавление текстуры шума для глубины */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
         }
 
          @media (min-width: 768px) {
              body {
-                 font-size: 17px;
+                 font-size: 18px;
              }
          }
 
         /* ТЗ 5: A11y */
         :focus-visible {
-            outline: 3px solid var(--color-accent-gold);
+            outline: 3px solid var(--color-gold-start);
             outline-offset: 4px;
         }
 
@@ -105,6 +105,7 @@
             background: var(--gradient-gold);
             z-index: 2000;
             transition: width 0.1s linear;
+            box-shadow: 0 0 10px rgba(203, 166, 90, 0.5);
         }
 
         /* --- 3. Контейнер (ТЗ 7) --- */
@@ -114,14 +115,14 @@
             padding: 0 20px;
         }
 
-        @media (min-width: 992px) {
+        @media (min-width: 768px) {
             .container {
                 padding: 0 40px;
             }
         }
 
-        /* --- 4. Инновация: Динамичный Фон (Мягкие плавающие формы) --- */
-        .background-dynamics {
+        /* --- 4. Инновация: Динамический Фон (Жидкое Золото) --- */
+        .background-wrapper {
             position: fixed;
             top: 0;
             left: 0;
@@ -131,57 +132,87 @@
             overflow: hidden;
         }
 
-        .shape {
+        .liquid-gold {
             position: absolute;
             border-radius: 50%;
-            /* Мягкое размытие для глубины */
-            filter: blur(120px);
+            /* Сильное размытие создает эффект глубины и жидкости */
+            filter: blur(150px);
             opacity: 0.6;
-            animation: shape-movement 30s infinite alternate ease-in-out;
+            animation: liquid-movement 40s infinite alternate ease-in-out;
         }
 
-        /* Используем мягкие акцентные цвета */
-        .shape--1 {
-            width: 600px;
+        .liquid-gold--1 {
+            width: 800px;
+            height: 800px;
+            background: #CBA65A;
+            top: -30%;
+            left: -20%;
+        }
+
+        .liquid-gold--2 {
+            width: 900px;
             height: 600px;
-            background: var(--color-accent-soft);
-            top: -10%;
-            left: -10%;
+            background: #E1C27C;
+            bottom: -30%;
+            right: -30%;
+            animation-delay: -15s;
         }
 
-        .shape--2 {
-            width: 700px;
+        .liquid-gold--3 {
+            width: 500px;
             height: 500px;
-            background: rgba(203, 166, 90, 0.5); /* Мягкий золотой */
-            bottom: -20%;
-            right: -15%;
-            animation-delay: -10s;
+            background: #A67C45;
+            top: 40%;
+            left: 40%;
+            opacity: 0.4;
+            animation-delay: -5s;
         }
 
-        @keyframes shape-movement {
+        @keyframes liquid-movement {
             0% {
-                transform: scale(1) translate(0, 0);
+                transform: scale(1) translate(0, 0) rotate(0deg);
             }
             50% {
-                transform: scale(1.1) translate(20px, -40px);
+                transform: scale(1.3) translate(100px, -100px) rotate(180deg);
             }
             100% {
-                transform: scale(1) translate(0, 0);
+                transform: scale(1) translate(0, 0) rotate(360deg);
             }
         }
 
-        /* --- 5. Hero Section и Типографика --- */
+        /* --- 5. Инновация: Интерактивная Аура (Золотое свечение) --- */
+        #cursor-aura {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 500px;
+            height: 500px;
+            /* Мягкое золотое свечение */
+            background: radial-gradient(circle, rgba(203, 166, 90, 0.15) 0%, rgba(15, 17, 21, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 5; /* Между фоном и контентом */
+            transform: translate(-50%, -50%);
+            display: none;
+            will-change: transform;
+        }
+
+        /* Показываем только если есть мышь */
+        @media (pointer: fine) {
+            #cursor-aura {
+                display: block;
+            }
+        }
+
+        /* --- 6. Hero Section и Типографика --- */
         header, main, footer {
             position: relative;
-            z-index: 10; /* Над фоном */
+            z-index: 10; /* Над фоном и аурой */
         }
 
         .hero {
-            padding: 15vh 0 100px;
+            padding: 15vh 0 120px;
             text-align: left;
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
         }
 
         h1 {
@@ -189,42 +220,23 @@
             font-size: 3rem; /* 48px */
             line-height: 1.15;
             margin-bottom: 32px;
-            max-width: 1000px;
+            max-width: 900px;
             font-weight: 700;
-            color: var(--color-text-primary);
+            color: #fff;
         }
 
-        @media (min-width: 992px) {
+        @media (min-width: 768px) {
             h1 {
-                font-size: 4.5rem; /* 72px */
+                font-size: 4rem; /* 64px */
             }
         }
 
-        /* Инновация: Элегантная Анимация H1 (Плавное появление) */
-        .h1-char {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(20px) scale(0.95);
-            /* Плавная анимация появления с кастомным easing */
-            animation: elegant-reveal 0.6s forwards cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* Исправление для пробелов, чтобы они занимали место */
-         .h1-char--space {
-            width: 0.3em;
-            animation: none;
-            opacity: 1;
-            transform: none;
-        }
-
-        @keyframes elegant-reveal {
-            0% { opacity: 0; transform: translateY(20px) scale(0.95); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .highlight-gold {
-             color: var(--color-accent-gold);
-             font-weight: 700;
+        .highlight-text {
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
         }
 
         .hero__intro {
@@ -232,45 +244,38 @@
             color: var(--color-text-muted);
             max-width: 800px;
             margin-bottom: 48px;
-            /* Анимация появления интро текста после H1 */
-            opacity: 0;
-            animation: elegant-reveal 0.6s 1.5s forwards;
         }
 
         .hero__theses {
             display: flex;
             flex-wrap: wrap;
             gap: 16px;
-            /* Анимация появления тегов */
-            opacity: 0;
-            animation: elegant-reveal 0.6s 1.8s forwards;
         }
 
-        /* Инновация: Элегантные теги */
+        /* Инновация: Премиальные теги */
         .thesis-tag {
             padding: 10px 24px;
-            background: var(--color-bg-card);
-            border: 1px solid var(--color-border);
-            color: var(--color-text-primary);
-            border-radius: 50px; /* Мягкая скругленная форма */
+            /* Glassmorphism */
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border-gold);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 500;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s;
-            /* Мягкая тень */
-            box-shadow: 0 4px 10px rgba(44, 38, 35, 0.05);
+            transition: transform 0.3s, background-color 0.3s;
         }
 
         .thesis-tag:hover {
-             border-color: var(--color-accent-gold);
-             transform: translateY(-4px);
-             box-shadow: 0 8px 20px rgba(44, 38, 35, 0.1);
+             background: rgba(203, 166, 90, 0.2);
+             transform: scale(1.05);
         }
 
-        /* --- 6. Базовая типографика и Секции --- */
+        /* --- 7. Базовая типографика и Секции --- */
         h2 {
             font-family: var(--font-heading);
-            font-size: 1.8rem; /* 28px */
-            margin-bottom: 24px;
+            font-size: 2.25rem; /* 36px */
+            margin-bottom: 32px;
             color: var(--color-text-primary);
             font-weight: 700;
         }
@@ -286,63 +291,37 @@
         }
 
         section {
-            padding: 60px 0;
+            padding: 80px 0;
         }
 
-         @media (min-width: 992px) {
+         @media (min-width: 768px) {
              section {
                  padding: 100px 0;
              }
          }
 
-         /* --- 7. Инновация: Дизайн Карточек (Мягкий, Реалистичный / Soft UI) --- */
-         .card {
-            background: var(--color-bg-card);
-            border: 1px solid var(--color-border);
-            border-radius: 24px; /* Сильное скругление для мягкости */
-            padding: 32px;
-            /* Инновация: Мягкая, рассеянная тень для глубины */
-            box-shadow: var(--shadow-soft);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: transform;
+         /* --- 8. Инновация: Завораживающие Блоки (Glassmorphism + Depth) --- */
+         .glass-card {
+            /* Glassmorphism (ТЗ 5: Аккуратный премиум-стиль) */
+            background: var(--glass-bg);
+            /* Инновация: Двойная рамка (тонкая белая + размытая золотая) */
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 0 0 1px var(--glass-border-gold), 0 15px 35px rgba(0, 0, 0, 0.3);
+
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur)); /* Safari support */
+            border-radius: 24px;
+            padding: 40px;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
          }
 
          @media (min-width: 768px) {
-              .card {
-                  padding: 40px;
+              /* Эффект при наведении для вовлечения */
+              .glass-card:hover {
+                   transform: translateY(-5px);
+                   /* Усиление золотой тени при наведении */
+                   box-shadow: 0 0 0 1px var(--glass-border-gold), 0 20px 40px rgba(203, 166, 90, 0.1);
               }
-             /* Инновация: Эффект "приподнимания" при наведении */
-             .card:hover {
-                  transform: translateY(-8px);
-                  box-shadow: var(--shadow-hover);
-             }
-         }
-
-
-         /* --- 8. Инновация: Асимметричная Сетка (Layout) --- */
-         .grid-layout {
-             display: grid;
-             grid-template-columns: 1fr;
-             gap: 40px;
-         }
-
-         @media (min-width: 992px) {
-             /* Двухколоночный макет для основного контента */
-             .grid-layout--main {
-                 grid-template-columns: 2fr 1fr;
-                 gap: 50px;
-             }
-             /* Трехколоночный макет для деталей */
-             .grid-layout--details {
-                 grid-template-columns: repeat(3, 1fr);
-                 gap: 40px;
-             }
-         }
-
-         .grid-column {
-              display: flex;
-              flex-direction: column;
-              gap: 40px;
          }
 
     </style>
@@ -350,149 +329,168 @@
 <body>
     <div id="progress-bar" aria-hidden="true"></div>
 
-    <div class="background-dynamics" aria-hidden="true">
-        <div class="shape shape--1"></div>
-        <div class="shape shape--2"></div>
+    <div class="background-wrapper" aria-hidden="true">
+        <div class="liquid-gold liquid-gold--1"></div>
+        <div class="liquid-gold liquid-gold--2"></div>
+        <div class="liquid-gold liquid-gold--3"></div>
     </div>
+
+    <div id="cursor-aura" aria-hidden="true"></div>
 
     <header>
         <section class="hero" aria-labelledby="main-heading">
             <div class="container">
-                <h1 id="main-heading"></h1>
+                <h1 id="main-heading">Работа в вебкаме — Потенциал <span class="highlight-text">$5 000/мес</span> + ежедневные выплаты</h1>
                 <p class="hero__intro">Ищем ответственных девушек 18–20 лет для долгосрочной работы по чёткому регламенту. Работаем строго на одной платформе — Chaturbate.com. Мы полностью создаём и ведём твои рабочие аккаунты и берём на себя продвижение. Твоя задача — стабильно работать по нашему шаблону и соблюдать правила.</p>
                 <div class="hero__theses">
-                    <span class="thesis-tag">Фикс $5 000/мес</span>
-                    <span class="thesis-tag">$167/стрим</span>
+                    <span class="thesis-tag">До $5 000 в месяц</span>
+                    <span class="thesis-tag">$167 за стрим</span>
                     <span class="thesis-tag">Ежедневные выплаты</span>
-                    <span class="thesis-tag">18–20 лет</span>
-                    <span class="thesis-tag">Chaturbate</span>
-                    <span class="thesis-tag">Аккаунты ведём мы</span>
+                    <span class="thesis-tag">Возраст строго 18–20 лет</span>
+                    <span class="thesis-tag">Платформа: Chaturbate</span>
+                    <span class="thesis-tag">Аккаунты создаём и ведём мы</span>
                 </div>
             </div>
         </section>
     </header>
 
     <main>
+        <div class="content-wrapper">
 
-        <section id="details" class="reveal">
-            <div class="container">
-                <div class="grid-layout grid-layout--details">
-                    <div class="card">
-                        <h2 id="equipment-heading">Оборудование</h2>
+            <section id="benefits" aria-labelledby="benefits-heading" class="reveal">
+                <div class="container">
+                    <div class="glass-card">
+                        <h2 id="benefits-heading">Что ты получаешь</h2>
                         <ul class="bullet-list">
-                            <li>Ноутбук + стабильный интернет.</li>
-                            <li>Внешняя камера <strong>не ниже Logitech C920</strong> (~$100).</li>
-                            <li><strong>Важно:</strong> камеры телефона/встроенные не подходят.</li>
-                        </ul>
-                        <div class="callout">
-                            <p>Нет камеры? Вкладываешь ~$100, и в первый же стрим окупаешь: получаешь <span class="highlight-gold">$167</span> после эфира.</p>
-                        </div>
+                            <li><strong>Потенциальный доход до $5 000 в месяц.</strong></li>
+                            <li>Ежедневные выплаты после каждого стрима любым удобным способом (включая криптовалюту).</li>
+                            <li>Обучение, сценарии, техническая настройка от А до Я.</li>
+                            <li>Аккаунты создаём и полностью ведём мы (OnlyFans, Instagram, Telegram и др.) — ты согласна на ведение нами.</li>
+                            <li><strong>Гео-приватность:</strong> продвижение на дальние страны (США, Великобритания и др.); в стримах блокируются русскоязычные страны — риск быть узнанной минимальный.</li>
+                            </ul>
                     </div>
+                </div>
+            </section>
 
-                    <div class="card">
-                        <h2 id="schedule-heading">График</h2>
+             <section id="payment" aria-labelledby="payment-heading" class="reveal">
+                <div class="container">
+                    <div class="glass-card">
+                        <h2 id="payment-heading">Оплата — как это работает</h2>
+                        <ul class="bullet-list">
+                            <li><strong>Фиксированная ставка: <span class="highlight-text">$167</span> за каждый выход в эфир.</strong></li>
+                            <li>Вышла в эфир — получила $167 в тот же день после стрима.</li>
+                            <li>$5 000 в месяц — это доход при работе 30 дней (без выходных). Если берешь выходные, месячный доход будет пропорционально меньше (по факту отработанных смен).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="schedule" aria-labelledby="schedule-heading" class="reveal">
+                <div class="container">
+                    <div class="glass-card">
+                        <h2 id="schedule-heading">График и выходные</h2>
                         <ul class="bullet-list">
                             <li>Смена — 8 часов.</li>
-                            <li>Выходных — <strong>максимум 2 в неделю.</strong> Больше — не рассматривается.</li>
+                            <li><strong>График строгий:</strong> максимум 2 выходных в неделю. Большее количество выходных не рассматривается.</li>
                         </ul>
                     </div>
+                </div>
+            </section>
 
-                    <div class="card">
-                        <h2 id="payment-heading">Оплата</h2>
+            <section id="equipment" aria-labelledby="equipment-heading" class="reveal">
+                <div class="container">
+                    <div class="glass-card">
+                        <h2 id="equipment-heading">Оборудование (обязательно)</h2>
                         <ul class="bullet-list">
-                            <li>$5 000 / 30 дней = <span class="highlight-gold">$167</span> за каждый выход в эфир.</li>
-                            <li>Вышла в эфир — получила $167 в тот же день после стрима.</li>
-                            <li>Дни планируешь сама, соблюдая лимит выходных.</li>
+                            <li>Ноутбук + стабильный интернет.</li>
+                            <li>Внешняя веб-камера <strong>не ниже Logitech C920</strong> (~$100).</li>
+                            <li><strong>Важно:</strong> камеры телефона и встроенные камеры ноутбука не подходят.</li>
+                        </ul>
+                        <div class="callout">
+                            <h3>Окупаемость первым стримом</h3>
+                            <p>Если камеры нет — вкладываешь ~$100, и в первый же стрим окупаешь: получаешь <span class="highlight-text">$167</span> после эфира в любом случае.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="responsibilities" aria-labelledby="responsibilities-heading" class="reveal">
+                <div class="container">
+                    <div class="glass-card">
+                        <h2 id="responsibilities-heading">Обязанности</h2>
+                        <ul class="bullet-list">
+                            <li>Стримы 18+ по нашему сценарию и регламенту — 8 часов в смену.</li>
+                            <li>1 видео 18+ в неделю для OnlyFans (по нашему ТЗ).</li>
+                            <li>1–2 фото в неделю для соцсетей (по нашему ТЗ).</li>
+                            <li>Согласие на то, что мы создаём и полностью ведём твои промо-аккаунты (OnlyFans/Instagram/Telegram и др.) и размещаем контент в рамках ТЗ.</li>
+                            <li>Дисциплина, пунктуальность, выполнение чек-листов.</li>
                         </ul>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="main-content" class="reveal">
-            <div class="container">
-                <div class="grid-layout grid-layout--main">
-
-                    <div class="grid-column">
-                        <div class="card card--large">
-                            <h2 id="benefits-heading">Что ты получаешь</h2>
-                            <ul class="bullet-list">
-                                <li><strong>Фиксированная зарплата <span class="highlight-gold">$5 000</span> в месяц.</strong></li>
-                                <li>Ежедневные выплаты после каждого стрима любым удобным способом (включая криптовалюту).</li>
-                                <li>Обучение, сценарии, техническая настройка от А до Я.</li>
-                                <li>Аккаунты создаём и полностью ведём мы (OnlyFans, Instagram, Telegram и др.) — ты согласна на ведение нами.</li>
-                                <li><strong>Гео-приватность:</strong> продвижение на дальние страны (США, Великобритания и др.); в стримах блокируются русскоязычные страны — риск быть узнанной минимальный.</li>
-                            </ul>
-                        </div>
-
-                        <div class="card card--large">
-                            <h2 id="responsibilities-heading">Обязанности</h2>
-                            <ul class="bullet-list">
-                                <li>Стримы 18+ по нашему сценарию и регламенту — 8 часов в смену.</li>
-                                <li>1 видео 18+ в неделю для OnlyFans (по нашему ТЗ).</li>
-                                <li>1–2 фото в неделю для соцсетей (по нашему ТЗ).</li>
-                                <li>Согласие на то, что мы создаём и полностью ведём твои промо-аккаунты (OnlyFans/Instagram/Telegram и др.) и размещаем контент в рамках ТЗ.</li>
-                                <li>Дисциплина, пунктуальность, выполнение чек-листов.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="grid-column">
-                        <div class="card">
-                            <h2 id="requirements-heading">Требования</h2>
-                            <ul class="bullet-list">
-                                <li><strong>Возраст строго 18–20 лет.</strong> Меньше 18 или старше 20 — не подходит.</li>
-                                <li>Ответственность и готовность работать в долгую.</li>
-                                <li><strong>Английский не требуется.</strong> Мы даём готовые скрипты и инструкции.</li>
-                            </ul>
-                        </div>
-
-                        <div class="card">
-                            <h2 id="selection-heading">Отбор</h2>
-                            <ul class="bullet-list">
-                                <li>Отбор до 1 месяца — цель выбрать 10 девушек.</li>
-                                <li>Испытательная неделя оплачивается: <span class="highlight-gold">$167</span> за стрим.</li>
-                            </ul>
-                        </div>
-
-                        <div class="card">
-                            <h2 id="rules-heading">Правила</h2>
-                            <ul class="bullet-list">
-                                <li>Аккаунты продвигаются за наш счёт, поэтому после завершения сотрудничества <strong>аккаунты остаются у нас.</strong></li>
-                                <li>Все ваши фото и видео после завершения сотрудничества <strong>удаляются.</strong></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="application" aria-labelledby="application-heading" class="reveal">
-            <div class="container container--narrow">
-                <div class="card">
-                    <h2 id="application-heading">Как подать заявку</h2>
-                    <p>Используй кнопку внизу страницы, чтобы связаться с нами в Telegram, и сразу:</p>
-                    <ol class="numbered-list">
-                        <li>Укажи возраст и пришли 3–4 фото в полный рост.</li>
-                        <li>Коротко напиши, что готова работать по нашему регламенту.</li>
-                    </ol>
-                    <div class="callout callout--info">
-                        <p>Мы игнорируем пустые сообщения («здравствуйте», «можно вопрос?»). Возраст и фото — обязательны для рассмотрения заявки.</p>
+            <section id="requirements" aria-labelledby="requirements-heading" class="reveal">
+                <div class="container">
+                    <div class="glass-card">
+                        <h2 id="requirements-heading">Требования</h2>
+                        <ul class="bullet-list">
+                            <li><strong>Возраст строго 18–20 лет.</strong> Если тебе меньше 18 или старше 20 — не подходит.</li>
+                            <li>Ответственность и готовность работать в долгую по нашему шаблону.</li>
+                            <li><strong>Знание английского не требуется.</strong> Мы работаем по другому принципу: даём готовые скрипты, фразы и инструкции.</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="about-webcam" aria-labelledby="about-webcam-heading" class="reveal">
-            <div class="container container--narrow">
-                <div class="card">
-                    <h2 id="about-webcam-heading">Что такое вебкам (кратко)</h2>
-                    <p>Это онлайн-трансляции 18+ на Chaturbate с общением по нашим сценариям. Работа удалённая, безопасная, без офлайн-встреч, с ежедневными выплатами и чётким планом действий.</p>
+            <section id="selection" aria-labelledby="selection-heading" class="reveal">
+                <div class="container">
+                    <div class="glass-card">
+                        <h2 id="selection-heading">Отбор и испытательный период</h2>
+                        <ul class="bullet-list">
+                            <li>Отбор занимает до 1 месяца — цель выбрать 10 девушек.</li>
+                            <li>После прохождения отбора — испытательная неделя. <strong>Она полностью оплачивается: <span class="highlight-text">$167</span> за каждый стрим</strong> в этот период.</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
+            <section id="rules" aria-labelledby="rules-heading" class="reveal">
+                <div class="container">
+                    <div class="glass-card">
+                        <h2 id="rules-heading">Правила по аккаунтам и контенту</h2>
+                        <ul class="bullet-list">
+                            <li>Аккаунты создаются и продвигаются за наш счёт, поэтому после завершения сотрудничества <strong>аккаунты остаются у нас.</strong></li>
+                            <li>Все ваши фото и видео, размещённые на этих аккаунтах, после завершения сотрудничества <strong>удаляются.</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="application" aria-labelledby="application-heading" class="reveal">
+                <div class="container">
+                    <div class="glass-card">
+                        <h2 id="application-heading">Как подать заявку (прочитай внимательно)</h2>
+                         <p>Используй кнопку внизу страницы, чтобы связаться с нами в Telegram, и сразу:</p>
+                        <ol class="numbered-list">
+                            <li>Укажи возраст и пришли 3–4 фото в полный рост.</li>
+                            <li>Коротко напиши, что готова работать по нашему регламенту.</li>
+                        </ol>
+                        <div class="callout callout--info">
+                            <p>Мы игнорируем пустые сообщения («здравствуйте», «можно вопрос?» и т. п.). На этой странице есть вся базовая информация. Возраст и фото — обязательны для рассмотрения заявки.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about-webcam" aria-labelledby="about-webcam-heading" class="reveal">
+                <div class="container">
+                    <div class="glass-card">
+                        <h2 id="about-webcam-heading">Что такое вебкам (кратко)</h2>
+                        <p>Это онлайн-трансляции 18+ на Chaturbate с общением по нашим сценариям. Работа удалённая, безопасная, без офлайн-встреч, с ежедневными выплатами и чётким планом действий.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
 
         <section id="cta-section" aria-labelledby="cta-heading">
             <div class="container cta-container">
@@ -500,11 +498,11 @@
                 <p>После получения возраста и фото мы свяжемся и назначим стартовое обучение.</p>
 
                 <div class="confirmation-checks" role="group" aria-label="Подтверждения">
-                    <div class="checkbox-wrapper">
+                    <div class="checkbox-wrapper glass-card">
                         <input type="checkbox" id="age-check" aria-required="true">
                         <label for="age-check">Мне 18–20 лет (подтверждаю возраст)</label>
                     </div>
-                    <div class="checkbox-wrapper">
+                    <div class="checkbox-wrapper glass-card">
                         <input type="checkbox" id="agreement-check" aria-required="true">
                         <label for="agreement-check">Я прочитала и согласна с правилами и регламентом</label>
                     </div>
@@ -532,7 +530,7 @@
     <footer class="footer">
         <div class="container footer-content">
             <p class="disclaimer">Строго 18+. Контент предназначен только для взрослых. © 2025</p>
-            </div>
+        </div>
     </footer>
 
     <script type="application/ld+json">
@@ -545,36 +543,39 @@
     </script>
 
     <style>
-        /* --- 9. Макет и Размеры --- */
-        .container--narrow {
+        /* --- 9. Макет контента --- */
+        .content-wrapper {
+             /* Ограничение ширины контента для лучшей читаемости */
              max-width: 850px;
+             margin: 0 auto;
         }
 
-        /* --- 10. Стили Списков (Элегантные) --- */
+        /* --- 10. Стили Списков --- */
         .bullet-list, .numbered-list {
             list-style: none;
             padding-left: 0;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
 
         .bullet-list li {
             position: relative;
-            padding-left: 28px;
+            padding-left: 30px;
             color: var(--color-text-muted);
         }
 
-        /* Инновация: Золотые буллеты */
+        /* Инновация: Золотые буллеты с мягким свечением */
         .bullet-list li::before {
             content: '';
             position: absolute;
             left: 0;
-            top: 8px;
+            top: 10px;
             width: 10px;
             height: 10px;
-            background: var(--color-accent-gold);
+            background: var(--color-gold-start);
             border-radius: 50%;
+            box-shadow: 0 0 8px rgba(203, 166, 90, 0.6);
         }
 
         .numbered-list {
@@ -590,7 +591,7 @@
             color: var(--color-text-muted);
         }
 
-        /* Инновация: Элегантные номера */
+        /* Инновация: Номера с золотым градиентом */
         .numbered-list li::before {
             content: counter(list-counter);
             position: absolute;
@@ -598,10 +599,9 @@
             top: 0;
             width: 32px;
             height: 32px;
-            border: 1px solid var(--color-accent-gold);
-            color: var(--color-text-primary);
-            background-color: #FFFCF9;
-            border-radius: 50%; /* Круглые номера */
+            background: var(--gradient-gold);
+            color: var(--color-bg-primary);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -611,45 +611,52 @@
 
         /* --- 11. Callout Block (ТЗ 13) --- */
         .callout {
-            /* Используем светло-золотой фон для выделения */
-            background: #FFFCF9;
-            border: 1px solid rgba(203, 166, 90, 0.5);
-            padding: 20px 24px;
+            /* Используем темный фон и золотую рамку для выделения */
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border-gold);
+            padding: 24px 32px;
             border-radius: 16px;
-            margin-top: 24px;
-            border-left: 4px solid var(--color-accent-gold);
+            margin-top: 32px;
+            position: relative;
+            border-left: 4px solid var(--color-gold-start);
+        }
+
+        .callout h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            color: var(--color-text-primary);
         }
 
         .callout p {
-             color: var(--color-text-primary);
+             color: var(--color-text-muted);
              margin-bottom: 0;
-             font-size: 0.95rem;
         }
 
         /* Модификатор для информационного блока */
         .callout--info {
-             background: #F0F0F0;
-             border-color: var(--color-text-muted);
-             border-left-color: var(--color-text-primary);
+             border-left-color: var(--color-text-muted);
+             border-color: var(--glass-border);
         }
 
         /* --- 12. CTA Section Styling --- */
         #cta-section {
             padding: 80px 0;
-            margin-top: 80px;
-            /* Используем чуть более темный фон для контраста */
-            background: #EFEBE8;
-            border-top: 1px solid var(--color-border);
+            margin-top: 60px;
+            /* Выделяем секцию более темным фоном и границей */
+            background: rgba(0,0,0, 0.4);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-top: 1px solid var(--glass-border);
         }
 
         .cta-container {
             text-align: center;
-            max-width: 600px;
+            max-width: 650px;
         }
 
         #cta-section h2 {
              margin-bottom: 16px;
-             font-size: 2rem;
         }
 
         .confirmation-checks {
@@ -668,16 +675,10 @@
             gap: 16px;
             cursor: pointer;
             width: 100%;
-            max-width: 500px;
-            padding: 15px 20px;
-            border-radius: 12px;
-            transition: background-color 0.3s;
-            background-color: var(--color-bg-card);
-            box-shadow: 0 4px 15px rgba(44, 38, 35, 0.05);
-        }
-
-        .checkbox-wrapper:hover {
-             background-color: #FFFCF9;
+            max-width: 550px;
+            /* Адаптация под glass-card стили */
+            padding: 20px 24px;
+            margin: 0;
         }
 
         input[type="checkbox"] {
@@ -685,34 +686,35 @@
             appearance: none;
             -webkit-appearance: none;
             /* Создаем кастомный */
-            width: 26px;
-            height: 26px;
+            width: 28px;
+            height: 28px;
             border: 2px solid var(--color-text-muted);
             border-radius: 8px;
-            background-color: var(--color-bg-primary);
+            background-color: rgba(0,0,0,0.5);
             cursor: pointer;
             flex-shrink: 0;
-            transition: all 0.2s;
+            transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
             position: relative;
         }
 
         input[type="checkbox"]:hover {
-            border-color: var(--color-accent-gold);
+            border-color: var(--color-gold-start);
         }
 
         input[type="checkbox"]:checked {
-            background: var(--color-accent-gold);
-            border-color: var(--color-accent-gold);
+            background: var(--gradient-gold);
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(203, 166, 90, 0.6);
         }
 
         /* Галочка (CSS) */
         input[type="checkbox"]:checked::after {
             content: '';
             position: absolute;
-            left: 8px;
-            top: 4px;
-            width: 6px;
-            height: 12px;
+            left: 9px;
+            top: 5px;
+            width: 8px;
+            height: 14px;
             border: solid var(--color-bg-primary);
             border-width: 0 3px 3px 0;
             transform: rotate(45deg);
@@ -720,17 +722,17 @@
 
         label {
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--color-text-primary);
             user-select: none;
             font-weight: 500;
         }
 
-        /* --- 14. CTA Button (Золотая Мерцающая кнопка ТЗ 13) --- */
+        /* --- 14. CTA Button (Инновация: Мерцающая кнопка) --- */
         .cta-button {
             display: block;
             width: 100%; /* ТЗ 6 */
-            max-width: 500px;
+            max-width: 550px;
             margin: 0 auto;
             padding: 20px 24px;
             font-size: 1.2rem;
@@ -748,16 +750,17 @@
 
         /* ТЗ 6: Disabled состояние */
         .cta-button[aria-disabled="true"] {
-            background: #D4D0CD;
-            color: #9A9693;
+            background: #2a2d35;
+            color: #7a7f8d;
             cursor: not-allowed;
+            opacity: 0.7;
         }
 
-        /* Активное состояние (Золото ТЗ 5) */
+        /* Активное состояние */
         .cta-button[aria-disabled="false"] {
              background: var(--gradient-gold);
-             color: var(--color-text-primary);
-             box-shadow: 0 10px 30px rgba(203, 166, 90, 0.3);
+             color: var(--color-bg-primary);
+             box-shadow: 0 5px 25px rgba(203, 166, 90, 0.4);
         }
 
         /* Инновация: Эффект мерцания (Shimmer) */
@@ -768,22 +771,26 @@
             left: -150%;
             width: 50%;
             height: 100%;
-            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0) 100%);
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
             transform: skewX(-25deg);
             /* Анимация блика */
             animation: shimmer 2.5s infinite;
         }
 
         @keyframes shimmer {
-            0% { left: -150%; }
-            100% { left: 150%; }
+            0% {
+                left: -150%;
+            }
+            100% {
+                left: 150%;
+            }
         }
 
         /* ТЗ 6: Hover/focus эффект */
         .cta-button[aria-disabled="false"]:hover,
         .cta-button[aria-disabled="false"]:focus-visible {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(203, 166, 90, 0.4);
+            box-shadow: 0 15px 40px rgba(203, 166, 90, 0.6);
         }
 
         .cta-helper-text {
@@ -797,8 +804,10 @@
         /* --- 15. Футер --- */
         .footer {
             padding: 40px 0;
-            border-top: 1px solid var(--color-border);
-            background: var(--color-bg-primary);
+            border-top: 1px solid var(--glass-border);
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             margin-top: 80px;
         }
 
@@ -814,15 +823,15 @@
         /* --- 16. Анимации (ТЗ 5) --- */
         .reveal {
              opacity: 0;
-             transform: translateY(40px) scale(0.98);
-             /* ТЗ 5: Длительность строго ≤200ms. Используем плавный easing. */
-             transition: opacity 0.2s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+             transform: translateY(40px);
+             /* ТЗ 5: Длительность строго ≤200ms */
+             transition: opacity 0.2s ease-out, transform 0.2s ease-out;
              will-change: opacity, transform;
         }
 
         .reveal.visible {
              opacity: 1;
-             transform: translateY(0) scale(1);
+             transform: translateY(0);
         }
 
         #scroll-sentinel {
@@ -833,6 +842,7 @@
     </style>
 
     <script>
+        // Логика из /assets/js/app.js
         document.addEventListener('DOMContentLoaded', () => {
             // --- Состояние (ТЗ 11) ---
             const state = {
@@ -854,7 +864,7 @@
             const scrollSentinel = document.getElementById('scroll-sentinel');
             const ctaHelperText = document.getElementById('cta-helper-text');
             const sectionsToReveal = document.querySelectorAll('.reveal');
-            const h1Element = document.getElementById('main-heading');
+            const cursorAura = document.getElementById('cursor-aura');
 
             // --- Функции ---
 
@@ -875,13 +885,14 @@
                     ctaButton.setAttribute('aria-disabled', 'false');
                     ctaHelperText.style.visibility = 'hidden';
 
-                    // ТЗ 9: cta_enabled
+                    // Отправка события cta_enabled (ТЗ 9)
                     if (!wasEnabled && !state.analytics.ctaEnabledSent) {
                         sendAnalyticsEvent('cta_enabled');
                         state.analytics.ctaEnabledSent = true;
                     }
                 } else {
                     ctaButton.setAttribute('aria-disabled', 'true');
+                    // Показываем подсказку, если пользователь уже пытался взаимодействовать
                     if (state.scrolledToBottom || state.ageChecked || state.agreeChecked) {
                          ctaHelperText.style.visibility = 'visible';
                     }
@@ -902,52 +913,29 @@
                 if (progressBar) progressBar.style.width = `${Math.min(scrollPercent, 100)}%`;
             };
 
-            // Инновация: Элегантная анимация H1 (Reveal)
-            const animateH1 = () => {
-                // ИСПРАВЛЕНИЕ: Текст с корректным пробелом
-                const text = 'Работа в вебкаме — Фикс <span class="highlight-gold">$5 000/мес</span> + ежедневные выплаты';
-                h1Element.innerHTML = '';
-                let delay = 0.1;
-                const delayIncrement = 0.04; // Задержка между буквами
+            // Инновация: Логика следования Ауры за курсором (с плавной интерполяцией)
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let auraX = mouseX;
+            let auraY = mouseY;
+            const auraSpeed = 0.1; // Скорость следования
 
-                // Парсинг текста, сохраняя структуру HTML тегов
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(text, 'text/html');
-                const nodes = doc.body.childNodes;
+            const animateAura = () => {
+                if (!cursorAura) return;
 
-                nodes.forEach(node => {
-                    if (node.nodeType === Node.TEXT_NODE) {
-                        // Обработка обычного текста
-                        node.textContent.split('').forEach(char => {
-                            const span = document.createElement('span');
-                            span.className = 'h1-char';
+                // Плавное движение (Линейная интерполяция - LERP)
+                auraX += (mouseX - auraX) * auraSpeed;
+                auraY += (mouseY - auraY) * auraSpeed;
 
-                             // Обработка пробелов: они должны занимать место, но не анимироваться
-                            if (char === ' ') {
-                                span.classList.add('h1-char--space');
-                            } else {
-                                span.style.animationDelay = `${delay}s`;
-                                delay += delayIncrement;
-                            }
+                // Применяем координаты с аппаратным ускорением
+                cursorAura.style.transform = `translate(${auraX.toFixed(2)}px, ${auraY.toFixed(2)}px) translate(-50%, -50%)`;
 
-                            span.textContent = char;
-                            h1Element.appendChild(span);
-                        });
-                    } else if (node.nodeType === Node.ELEMENT_NODE) {
-                        // Обработка вложенных элементов (например, highlight-gold)
-                        const wrapper = document.createElement('span');
-                        wrapper.className = node.className;
-                        node.childNodes[0].textContent.split('').forEach(char => {
-                             const span = document.createElement('span');
-                            span.className = 'h1-char';
-                            span.textContent = char;
-                            span.style.animationDelay = `${delay}s`;
-                            wrapper.appendChild(span);
-                            delay += delayIncrement;
-                        });
-                        h1Element.appendChild(wrapper);
-                    }
-                });
+                requestAnimationFrame(animateAura);
+            };
+
+            const handleMouseMove = (event) => {
+                mouseX = event.clientX;
+                mouseY = event.clientY;
             };
 
 
@@ -982,7 +970,7 @@
             // Клик по CTA (ТЗ 11: onClick)
             const handleCTAClick = (event) => {
                 if (state.ctaEnabled && ctaButton.getAttribute('aria-disabled') === 'false') {
-                    // ТЗ 9: click_telegram
+                    // Отправка события click_telegram (ТЗ 9)
                     sendAnalyticsEvent('click_telegram');
                     // Переход по ссылке происходит стандартно (<a> tag behavior)
                 } else {
@@ -1001,7 +989,7 @@
                         state.scrolledToBottom = true;
                         updateCTAState();
 
-                        // ТЗ 9: scroll_read_complete
+                        // Отправка события scroll_read_complete (ТЗ 9)
                         if (!state.analytics.scrollCompleteSent) {
                             sendAnalyticsEvent('scroll_read_complete');
                             state.analytics.scrollCompleteSent = true;
@@ -1020,16 +1008,22 @@
                     }
                 });
             }, {
-                threshold: 0.05,
-                rootMargin: "0px 0px -100px 0px"
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
             });
 
 
             // --- Инициализация ---
 
-            // Подключение обработчиков
+            // Подключение обработчиков (с passive для производительности)
             window.addEventListener('scroll', updateProgressBar, { passive: true });
             window.addEventListener('resize', updateProgressBar, { passive: true });
+
+             // Подключаем анимацию Ауры только если есть точный указатель (мышь)
+            if (window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
+                document.addEventListener('mousemove', handleMouseMove, { passive: true });
+                animateAura();
+            }
 
             ageCheck.addEventListener('change', handleCheckboxChange);
             agreementCheck.addEventListener('change', handleCheckboxChange);
@@ -1044,14 +1038,12 @@
                 revealObserver.observe(section);
             });
 
-            // Запуск анимаций и эффектов
-            animateH1();
-
             // Первичная проверка
             updateProgressBar();
 
              // Проверка для очень больших экранов (ТЗ 11 Анти-ошибка)
             const checkInitialScroll = () => {
+                // Если высота окна больше высоты документа (минус небольшой буфер)
                 if (window.innerHeight >= document.documentElement.scrollHeight - 100) {
                      if (!state.scrolledToBottom) {
                         state.scrolledToBottom = true;
@@ -1061,12 +1053,12 @@
                         }
                      }
                 }
-                // ТЗ 11: Кнопка все равно требует оба чекбокса
+                // ТЗ 11: Кнопка всё равно требует оба чекбокса.
                 updateCTAState();
             };
 
-            // Задержка для учета загрузки шрифтов и анимации H1
-            setTimeout(checkInitialScroll, 2000);
+            // Задержка для учета загрузки шрифтов
+            setTimeout(checkInitialScroll, 150);
         });
     </script>
 
