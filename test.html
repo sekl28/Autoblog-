@@ -11,12 +11,14 @@
       --bg:#0b0b10; --bg2:#0f0f15;
       --txt:#ffffff; --muted:#c9c9d3;
       --pink:#ff2e88; --pink2:#ff6fb0;
+      --blue:#2aafff; --blue2:#4cd3ff;
       --r:16px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; color:var(--txt); background:
+      margin:0; color:var(--txt);
+      background:
         radial-gradient(900px 700px at 90% -10%, rgba(255,46,136,.18), transparent 60%),
         radial-gradient(700px 600px at -10% 20%, rgba(0,240,255,.12), transparent 60%),
         linear-gradient(180deg, var(--bg), var(--bg2));
@@ -37,12 +39,20 @@
     .sub{margin:6px 0 14px; color:var(--muted)}
     .list{margin:14px auto 18px; text-align:left; display:inline-block}
     .list li{margin:6px 0}
-    .cta{
+    .cta, .cta2{
       display:inline-block; text-decoration:none; color:#fff;
-      background:linear-gradient(90deg,var(--pink),var(--pink2));
       padding:14px 18px; border-radius:12px; font-weight:900;
       letter-spacing:.4px; text-transform:uppercase;
-      box-shadow:0 0 18px rgba(255,46,136,.45);
+      box-shadow:0 0 20px rgba(255,46,136,.45);
+      animation:pulse 2s infinite;
+      transition:transform .2s ease;
+    }
+    .cta:hover, .cta2:hover{transform:scale(1.05)}
+    .cta{background:linear-gradient(90deg,var(--pink),var(--pink2));}
+    .cta2{background:linear-gradient(90deg,var(--blue),var(--blue2)); margin-top:12px; box-shadow:0 0 20px rgba(76,211,255,.4);}
+    @keyframes pulse{
+      0%,100%{box-shadow:0 0 15px rgba(255,46,136,.45)}
+      50%{box-shadow:0 0 25px rgba(255,46,136,.8)}
     }
     .age{margin-top:12px; color:var(--muted); font-size:13px}
     .foot{margin-top:18px; font-size:12px; color:#9a9aa4; opacity:.9}
@@ -57,13 +67,17 @@
     <ul class="list">
       <li>✅ Daily drops — stay first.</li>
       <li>✅ Private updates and behind-the-scenes.</li>
-      <li>✅ Join for free. Cancel anytime.</li>
+      <li>✅ Free to join. Cancel anytime.</li>
     </ul>
 
-    <p class="age">By clicking the button below, you confirm that you are <b>18 years old or older</b>.</p>
+    <p class="age">By clicking the buttons below, you confirm that you are <b>18 years old or older</b>.</p>
 
     <p style="margin:14px 0 0">
-      <a class="cta" href="https://onlyfans.com/ehotlovea2" aria-label="Join ehotlovea on OnlyFans">Join on OnlyFans</a>
+      <a class="cta" href="https://onlyfans.com/ehotlovea2" target="_blank" aria-label="Join ehotlovea on OnlyFans">Join on OnlyFans</a>
+    </p>
+
+    <p>
+      <a class="cta2" href="https://t.me/+V8Tadb628BhlY2I0" target="_blank" aria-label="Join ehotlovea Telegram Channel">Join Telegram Channel</a>
     </p>
 
     <div class="foot">© <span id="y"></span> ehotlovea</div>
